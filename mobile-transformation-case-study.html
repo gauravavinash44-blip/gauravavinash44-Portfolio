@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile Transformation Case Study — Gaurav Avinash</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,700&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0f1013;
+      --paper: #f7f4ef;
+      --mid: #67625d;
+      --line: rgba(16, 15, 13, 0.13);
+      --accent: #d44a16;
+      --deep: #14161c;
+      --deep-2: #1c202a;
+      --serif: "Fraunces", Georgia, serif;
+      --mono: "DM Mono", monospace;
+      --sans: "Instrument Sans", sans-serif;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.62; overflow-x: hidden; }
+
+    .progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: var(--accent); z-index: 90; }
+    .nav {
+      position: fixed; top: 0; width: 100%; z-index: 80; padding: 1.2rem 1.4rem;
+      transition: background .25s ease, border-color .25s ease; border-bottom: 1px solid transparent;
+    }
+    .nav.scrolled { background: rgba(247,244,239,.9); backdrop-filter: blur(12px); border-color: var(--line); }
+    .nav-inner { max-width: var(--max); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .nav a { text-decoration: none; color: var(--ink); font-family: var(--mono); font-size: .7rem; letter-spacing: .11em; text-transform: uppercase; }
+    .nav-back { padding: .48rem .72rem; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.65); transition: transform .2s ease, border-color .2s ease; }
+    .nav-back:hover { transform: translateY(-1px); border-color: #a68e7b; }
+
+    section { padding: 6rem 1.4rem; }
+    .wrap { max-width: var(--max); margin: 0 auto; }
+    .eyebrow { font-family: var(--mono); font-size: .68rem; letter-spacing: .13em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+
+    .hero {
+      min-height: 94vh; display: grid; align-items: center; overflow: hidden;
+      background:
+        radial-gradient(circle at 18% 20%, rgba(212, 74, 22, .15), transparent 45%),
+        radial-gradient(circle at 82% 12%, rgba(72, 99, 180, .12), transparent 50%),
+        linear-gradient(165deg, #f8f4ed 12%, #eee8de 75%);
+    }
+    h1 { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 4.7rem); line-height: 1.08; letter-spacing: -.02em; max-width: 13ch; margin-bottom: 1rem; }
+    .hero-sub { color: #45413d; max-width: 58ch; font-size: 1.04rem; margin-bottom: .55rem; }
+    .hero-support { color: #5e5851; max-width: 60ch; margin-bottom: 2rem; }
+    .btn { display: inline-block; text-decoration: none; background: var(--ink); color: var(--paper); border-radius: 999px; padding: .86rem 1.3rem; font-family: var(--mono); font-size: .83rem; letter-spacing: .08em; text-transform: uppercase; transition: transform .2s ease; }
+    .btn:hover { transform: translateY(-2px); }
+
+    .hook h2 { font-family: var(--serif); font-size: clamp(2rem, 4.8vw, 4rem); line-height: 1.1; max-width: 16ch; letter-spacing: -.02em; margin-bottom: .9rem; }
+    .copy { color: var(--mid); max-width: 70ch; }
+
+    .split { display: grid; grid-template-columns: 1.1fr 1fr; gap: 2rem; align-items: start; }
+    .section-title { font-family: var(--serif); font-size: clamp(1.55rem, 3vw, 2.5rem); line-height: 1.16; letter-spacing: -.015em; margin-bottom: 1rem; max-width: 18ch; }
+    .list li { list-style: none; margin-bottom: .56rem; padding-left: 1.1rem; position: relative; color: #413c37; }
+    .list li::before { content: "•"; position: absolute; left: 0; color: var(--accent); font-size: 1.2rem; line-height: 1; }
+
+    .placeholder {
+      border: 1px dashed #91887f; border-radius: 12px; min-height: 320px;
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      padding: 1rem; background: linear-gradient(145deg,#f0ece5,#e8e3db);
+      color: #766e65; text-transform: uppercase; font-family: var(--mono); font-size: .72rem; letter-spacing: .07em;
+    }
+    .placeholder.short { min-height: 210px; }
+    .placeholder.tall { min-height: 420px; }
+
+    .turning-point { background: var(--deep); color: #f4f1ec; }
+    .turning-point .copy { color: #c2bdc0; }
+    .turning-quote { margin-top: .9rem; font-family: var(--serif); font-size: clamp(1.4rem, 2.6vw, 2rem); line-height: 1.2; max-width: 18ch; }
+
+    .tension-grid { margin-top: 1.1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .tension-card { border: 1px solid var(--line); border-radius: 12px; background: #fcfaf6; padding: 1rem; }
+    .tension-card h4 { font-family: var(--mono); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: #5f5850; margin-bottom: .4rem; }
+    .final-direction { margin-top: 1rem; font-family: var(--serif); font-size: clamp(1.35rem,2.5vw,2rem); }
+
+    .decision { font-family: var(--serif); font-size: clamp(1.8rem,4.5vw,3.3rem); line-height: 1.1; max-width: 17ch; margin-bottom: .9rem; }
+    .bullets li { list-style: none; margin-bottom: .5rem; color: #3f3a35; }
+
+    .interactive-grid { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: .75rem; margin-top: 1.2rem; }
+    .interactive-card {
+      border: 1px solid var(--line); border-radius: 12px; background: #f9f5ef;
+      padding: .95rem .88rem; min-height: 190px; cursor: pointer;
+      transition: transform .2s ease, background .25s ease; overflow: hidden;
+    }
+    .interactive-card h4 { font-family: var(--serif); font-size: 1.03rem; margin-bottom: .52rem; line-height: 1.2; }
+    .interactive-card p { max-height: 0; opacity: 0; overflow: hidden; transition: max-height .25s, opacity .25s; color: #5d5752; font-size: .9rem; }
+    .interactive-card:hover { transform: translateY(-3px); }
+    .interactive-card.active { background: #fff; border-color: #c9b4a0; }
+    .interactive-card.active p { max-height: 170px; opacity: 1; }
+
+    .steps { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 1rem; margin-top: 1rem; }
+    .step h4 { font-family: var(--mono); font-size: .67rem; letter-spacing: .09em; text-transform: uppercase; color: #5d5751; margin-bottom: .45rem; }
+
+    .micro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+    .card { border: 1px solid var(--line); border-radius: 12px; background: #fcfaf6; padding: 1rem; }
+    .card strong { display: block; font-family: var(--serif); font-size: 1.1rem; margin-bottom: .45rem; }
+    .card p { color: var(--mid); }
+
+    .impact { background: #121319; color: #f6f1ea; }
+    .impact .eyebrow { color: #ff8d57; }
+    .impact-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1rem; margin-top: 1.1rem; }
+    .impact-stat { border: 1px solid #2f323b; border-radius: 12px; padding: 1rem; background: #171922; }
+    .impact-num { font-family: var(--serif); font-size: clamp(1.85rem,4vw,2.6rem); line-height: 1.05; }
+    .impact-label { color: #bcb7b0; font-family: var(--mono); font-size: .66rem; text-transform: uppercase; letter-spacing: .08em; margin-top: .3rem; }
+
+    .quote-list li { list-style: none; margin-bottom: .6rem; border-left: 2px solid #c4b8ab; padding-left: .7rem; color: #4b4641; }
+
+    .final { border-top: 1px solid var(--line); margin-top: 1rem; padding-top: 3rem; }
+    .final h3 { font-family: var(--serif); font-size: clamp(1.8rem,4vw,3rem); line-height: 1.1; margin-bottom: .7rem; }
+    .links { display: flex; gap: .9rem; flex-wrap: wrap; margin-top: .9rem; }
+    .links a { text-decoration: none; color: var(--ink); border-bottom: 1px solid #8c8378; padding-bottom: .14rem; font-family: var(--mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s, transform .7s; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 1020px) {
+      .split { grid-template-columns: 1fr; }
+      .tension-grid { grid-template-columns: 1fr; }
+      .interactive-grid { grid-template-columns: 1fr 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .impact-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 680px) {
+      section { padding: 4.4rem 1rem; }
+      .interactive-grid, .steps, .micro-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="./index.html" class="nav-back">Back to Portfolio</a>
+      <a href="#final-cta">Contact</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="wrap reveal">
+      <p class="eyebrow">Case Study 04 / Mobile Transformation</p>
+      <h1>From Fragmented Screens to Seamless Action</h1>
+      <p class="hero-sub">Redesigning mobile flows to reduce friction and improve task completion.</p>
+      <p class="hero-support">This wasn’t a redesign. It was a rethink of how users move from intent to action.</p>
+      <a class="btn" href="#hook">View Case Study</a>
+    </div>
+  </section>
+
+  <section id="hook">
+    <div class="wrap hook reveal">
+      <p class="eyebrow">Hook</p>
+      <h2>Users weren’t struggling to use the product. They were struggling to finish what they started.</h2>
+      <p class="copy">The product had feature coverage, but action pathways were fragmented. Users could begin tasks, yet abandoned midway because transitions, status cues, and next steps lacked continuity.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap split reveal">
+      <div>
+        <p class="eyebrow">Problem</p>
+        <h3 class="section-title">Completion suffered because flow logic was broken across screens.</h3>
+        <ul class="list">
+          <li>Fragmented navigation with weak handoffs between steps</li>
+          <li>Important actions hidden, delayed, or context-dependent</li>
+          <li>High cognitive load from repeated state interpretation</li>
+          <li>No clear progression model during key task flows</li>
+        </ul>
+      </div>
+      <div class="placeholder tall">Insert old mobile UI screens here</div>
+    </div>
+  </section>
+
+  <section class="turning-point">
+    <div class="wrap reveal">
+      <p class="eyebrow">Turning Point</p>
+      <h3 class="section-title">We initially improved visual clarity. It changed very little.</h3>
+      <p class="copy">Cleaner layouts, better spacing, and hierarchy refinements looked better, but completion metrics stayed flat.</p>
+      <p class="turning-quote">That’s when we realized the issue wasn’t visual clarity. It was structural.</p>
+      <ul class="list" style="margin-top:1rem">
+        <li style="color:#ddd6cf">UI polish didn’t resolve completion bottlenecks</li>
+        <li style="color:#ddd6cf">Flow architecture needed to be redesigned at task-level depth</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap reveal">
+      <p class="eyebrow">The Tension</p>
+      <div class="tension-grid">
+        <article class="tension-card">
+          <h4>Option A / Improve UI</h4>
+          <p>Cleaner screens, but task pathways remain inefficient and fragile.</p>
+        </article>
+        <article class="tension-card">
+          <h4>Option B / Rebuild Flows</h4>
+          <p>Better user outcomes, but higher design and engineering complexity.</p>
+        </article>
+      </div>
+      <p class="final-direction">Final direction: We redesigned how users move, not just what they see.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap split reveal">
+      <div>
+        <p class="eyebrow">Key Decision</p>
+        <p class="decision">We shifted from screen-first design to flow-first thinking.</p>
+      </div>
+      <div>
+        <ul class="bullets">
+          <li><strong>Users think in tasks, not screens.</strong></li>
+          <li><strong>Flow architecture defines experience quality.</strong></li>
+          <li><strong>Layouts support flow, they don’t replace it.</strong></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap reveal">
+      <p class="eyebrow">Solution</p>
+      <h3 class="section-title">The redesign prioritized action continuity over UI novelty.</h3>
+      <div class="interactive-grid">
+        <article class="interactive-card active">
+          <h4>Flow restructuring</h4>
+          <p>Merged fragmented pathways into coherent task sequences with clear forward momentum.</p>
+        </article>
+        <article class="interactive-card">
+          <h4>Action prioritization</h4>
+          <p>Primary actions surfaced contextually, reducing search time and interaction hesitation.</p>
+        </article>
+        <article class="interactive-card">
+          <h4>Reduced cognitive load</h4>
+          <p>State visibility and decision framing lowered interpretation overhead at each step.</p>
+        </article>
+        <article class="interactive-card">
+          <h4>Continuous navigation</h4>
+          <p>Users progressed without restarting context when moving between related tasks.</p>
+        </article>
+        <article class="interactive-card">
+          <h4>Context preservation</h4>
+          <p>Selections, progress, and user intent persisted across transitions and re-entry points.</p>
+        </article>
+      </div>
+      <div style="margin-top:1rem" class="placeholder">Insert flow architecture here</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap reveal">
+      <p class="eyebrow">Design Evolution</p>
+      <h3 class="section-title">A stepwise transformation from disconnected screens to task-native flow.</h3>
+      <div class="steps">
+        <div class="step">
+          <h4>Step 1</h4>
+          <div class="placeholder short">Old screens</div>
+        </div>
+        <div class="step">
+          <h4>Step 2</h4>
+          <div class="placeholder short">Flow diagrams</div>
+        </div>
+        <div class="step">
+          <h4>Step 3</h4>
+          <div class="placeholder short">Wireframes</div>
+        </div>
+        <div class="step">
+          <h4>Step 4</h4>
+          <div class="placeholder short">Final UI</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap reveal">
+      <p class="eyebrow">Interaction Details</p>
+      <h3 class="section-title">Small interaction changes that removed large behavioral friction.</h3>
+      <div class="micro-grid">
+        <article class="card">
+          <strong>Smoother step transitions</strong>
+          <p>Reduced discontinuity between screens so users maintained intent across flow boundaries.</p>
+        </article>
+        <article class="card">
+          <strong>Reduced backtracking</strong>
+          <p>Clear next actions and status states lowered dead-end interactions and reversal loops.</p>
+        </article>
+        <article class="card">
+          <strong>Guided progression states</strong>
+          <p>System surfaced where users are, what’s done, and what remains without cognitive guesswork.</p>
+        </article>
+        <div class="placeholder">Insert interaction demo here</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="impact">
+    <div class="wrap reveal">
+      <p class="eyebrow">Impact</p>
+      <h3 class="section-title">Post-redesign performance signals</h3>
+      <div class="impact-grid">
+        <article class="impact-stat">
+          <div class="impact-num" data-target="19">0%</div>
+          <div class="impact-label">Improved task completion</div>
+        </article>
+        <article class="impact-stat">
+          <div class="impact-num" data-target="24">0%</div>
+          <div class="impact-label">Reduced friction events</div>
+        </article>
+        <article class="impact-stat">
+          <div class="impact-num" data-target="31">0%</div>
+          <div class="impact-label">Faster user actions</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap split reveal">
+      <div>
+        <p class="eyebrow">What Didn’t Work</p>
+        <ul class="quote-list">
+          <li>Initial UI-centric improvements failed to deliver measurable impact.</li>
+          <li>Early flow drafts remained too long and asked users to re-interpret state repeatedly.</li>
+          <li>Meaningful improvements required multiple structural iterations.</li>
+        </ul>
+      </div>
+      <div>
+        <p class="eyebrow">Learnings</p>
+        <ul class="quote-list">
+          <li>Users don’t navigate—they act.</li>
+          <li>Flow clarity matters more than visual polish.</li>
+          <li>Good UX reduces thinking, not clicks.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap split reveal">
+      <div>
+        <p class="eyebrow">My Role</p>
+        <p class="copy">Led UX strategy for mobile transformation, defined the flow restructuring framework, partnered with product and engineering, and delivered the redesign end-to-end.</p>
+      </div>
+      <div>
+        <p class="eyebrow">Collaboration Scope</p>
+        <p class="copy">Worked cross-functionally on task architecture, state logic, interaction sequencing, and rollout validation with behavior-level success criteria.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap reveal final" id="final-cta">
+      <h3>Let’s design products that actually work.</h3>
+      <p class="copy">Open to product work where outcomes matter more than polished slides.</p>
+      <div class="links">
+        <a href="https://www.linkedin.com/in/gauravavinash" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="mailto:gauravavinash3@gmail.com">Email</a>
+        <a href="./assets/Resume-Gaurav.pdf" target="_blank" rel="noreferrer">Resume</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const nav = document.getElementById("nav");
+    const progress = document.getElementById("progress");
+    window.addEventListener("scroll", () => {
+      nav.classList.toggle("scrolled", window.scrollY > 30);
+      const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+      progress.style.width = scrolled + "%";
+    });
+
+    const reveals = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach((el) => observer.observe(el));
+
+    const cards = document.querySelectorAll(".interactive-card");
+    cards.forEach((card) => {
+      card.addEventListener("mouseenter", () => {
+        cards.forEach((c) => c.classList.remove("active"));
+        card.classList.add("active");
+      });
+      card.addEventListener("click", () => {
+        const active = card.classList.contains("active");
+        cards.forEach((c) => c.classList.remove("active"));
+        if (!active) card.classList.add("active");
+      });
+    });
+
+    const impactNums = document.querySelectorAll(".impact-num");
+    const impactObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = Number(el.dataset.target);
+        let current = 0;
+        const step = Math.max(1, Math.round(target / 28));
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          el.textContent = current + "%";
+        }, 30);
+        impactObserver.unobserve(el);
+      });
+    }, { threshold: 0.45 });
+    impactNums.forEach((el) => impactObserver.observe(el));
+  </script>
+</body>
+</html>

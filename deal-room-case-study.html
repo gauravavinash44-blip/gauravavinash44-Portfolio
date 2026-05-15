@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deal Room Case Study — Gaurav Avinash</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,700&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0f1013;
+      --paper: #f7f4ef;
+      --mid: #67625d;
+      --line: rgba(16, 15, 13, 0.13);
+      --accent: #d44a16;
+      --deep: #14161c;
+      --deep-2: #1d2028;
+      --serif: "Fraunces", Georgia, serif;
+      --mono: "DM Mono", monospace;
+      --sans: "Instrument Sans", sans-serif;
+      --max: 1180px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.62; overflow-x: hidden; }
+
+    .progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: var(--accent); z-index: 90; }
+    .nav { position: fixed; top: 0; width: 100%; z-index: 80; padding: 1.2rem 1.4rem; transition: background .25s ease, border-color .25s ease; border-bottom: 1px solid transparent; }
+    .nav.scrolled { background: rgba(247,244,239,.9); backdrop-filter: blur(12px); border-color: var(--line); }
+    .nav-inner { max-width: var(--max); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .nav a { text-decoration: none; color: var(--ink); font-family: var(--mono); font-size: .7rem; letter-spacing: .11em; text-transform: uppercase; }
+    .nav-back { padding: .48rem .72rem; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.65); transition: transform .2s ease, border-color .2s ease; }
+    .nav-back:hover { transform: translateY(-1px); border-color: #a68e7b; }
+
+    section { padding: 6rem 1.4rem; }
+    .wrap { max-width: var(--max); margin: 0 auto; }
+    .eyebrow { font-family: var(--mono); font-size: .68rem; letter-spacing: .13em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+
+    .hero {
+      min-height: 94vh; display: grid; align-items: center; overflow: hidden;
+      background:
+        radial-gradient(circle at 18% 20%, rgba(212, 74, 22, .15), transparent 45%),
+        radial-gradient(circle at 82% 12%, rgba(74, 98, 168, .13), transparent 50%),
+        linear-gradient(165deg, #f8f4ed 12%, #eee8de 75%);
+    }
+    h1 { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 4.7rem); line-height: 1.08; letter-spacing: -.02em; max-width: 14ch; margin-bottom: 1rem; }
+    .hero-sub { color: #45413d; max-width: 58ch; font-size: 1.04rem; margin-bottom: 2rem; }
+    .hook h2 { font-family: var(--serif); font-size: clamp(2rem, 4.8vw, 4rem); line-height: 1.1; max-width: 16ch; letter-spacing: -.02em; margin-bottom: .9rem; }
+    .copy { color: var(--mid); max-width: 70ch; }
+    .section-title { font-family: var(--serif); font-size: clamp(1.55rem, 3vw, 2.5rem); line-height: 1.16; letter-spacing: -.015em; margin-bottom: 1rem; max-width: 18ch; }
+    .split { display: grid; grid-template-columns: 1.1fr 1fr; gap: 2rem; align-items: start; }
+    .list li { list-style: none; margin-bottom: .56rem; padding-left: 1.1rem; position: relative; color: #413c37; }
+    .list li::before { content: "•"; position: absolute; left: 0; color: var(--accent); font-size: 1.2rem; line-height: 1; }
+
+    .placeholder {
+      border: 1px dashed #91887f; border-radius: 12px; min-height: 320px;
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      padding: 1rem; background: linear-gradient(145deg,#f0ece5,#e8e3db);
+      color: #766e65; text-transform: uppercase; font-family: var(--mono); font-size: .72rem; letter-spacing: .07em;
+    }
+    .placeholder.short { min-height: 210px; }
+    .placeholder.tall { min-height: 420px; }
+
+    .flow-visual {
+      border-radius: clamp(9px, 2.2vw, 12px);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #faf8f5;
+      box-shadow: 0 8px 28px rgba(15, 14, 12, 0.06);
+      width: 100%;
+      min-width: 0;
+    }
+    .flow-visual img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      vertical-align: top;
+    }
+
+    .case-diagram {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #faf8f5;
+      box-shadow: 0 8px 28px rgba(15, 14, 12, 0.06);
+    }
+    .case-diagram-label {
+      font-family: var(--sans);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #666;
+      margin-top: 24px;
+      margin-bottom: 12px;
+      line-height: 1.35;
+      padding: 0 20px;
+    }
+    .case-diagram-stage {
+      position: relative;
+    }
+    .case-diagram img {
+      width: 100%;
+      height: auto;
+      display: block;
+      vertical-align: top;
+      padding: 20px;
+    }
+    .case-diagram-tag {
+      position: absolute;
+      font-family: var(--sans);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      padding: 4px 8px;
+      border-radius: 6px;
+      background: rgba(76, 70, 63, 0.09);
+      color: #3d3833;
+      line-height: 1.2;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 1;
+      box-shadow: 0 1px 2px rgba(15, 14, 12, 0.04);
+    }
+    .case-diagram-tag--loops { top: 11%; left: 9%; }
+    .case-diagram-tag--context { top: 20%; right: 7%; }
+    .case-diagram-tag--manual { bottom: 13%; left: 11%; }
+    .case-diagram-caption {
+      font-family: var(--sans);
+      font-size: 0.8125rem;
+      font-style: normal;
+      color: #777;
+      margin-top: 14px;
+      line-height: 1.45;
+      text-align: left;
+      padding: 0 20px 1rem;
+    }
+
+    .entry-point-shot {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #faf8f5;
+      box-shadow: 0 8px 28px rgba(15, 14, 12, 0.06);
+    }
+    .entry-point-shot img {
+      width: 100%;
+      height: auto;
+      display: block;
+      vertical-align: top;
+    }
+
+    .turning { background: var(--deep); color: #f4f1ec; }
+    .turning .copy { color: #c2bdc0; }
+    .turning-quote { margin-top: .9rem; font-family: var(--serif); font-size: clamp(1.4rem, 2.6vw, 2rem); line-height: 1.2; max-width: 18ch; }
+
+    .insight { font-family: var(--serif); font-size: clamp(1.8rem,4.5vw,3.2rem); line-height: 1.1; max-width: 17ch; margin-bottom: .9rem; }
+
+    .entry-block { border: 1px solid var(--line); border-radius: 14px; padding: 1rem; background: #fcfaf6; margin-top: .8rem; }
+    .entry-block li { list-style: none; margin-bottom: .45rem; color: #4a453f; }
+
+    /* System Design cards — same pattern as Solution Approach (systematic agent case study) */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+      align-items: start;
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #f9f5ef;
+      padding: 1rem 0.9rem;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.25s ease;
+    }
+    .card h4 {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      margin: 0 0 0.55rem;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+    .card p {
+      margin: 0;
+      color: #5a5551;
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: #bf7f62;
+      background: #fff;
+    }
+
+    .flow-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(1.35rem, 3.2vw, 2rem);
+      margin-top: 1rem;
+      width: 100%;
+      min-width: 0;
+    }
+    .flow-grid > .step {
+      min-width: 0;
+    }
+    .step h4 {
+      font-family: var(--mono);
+      font-size: .67rem;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: #5d5751;
+      margin-bottom: .45rem;
+    }
+
+    /* Dashboard — system overview (shared surfaces, not a linear flow) */
+    .dashboard {
+      margin-top: 0.15rem;
+    }
+    .dashboard__intro {
+      font-family: var(--sans);
+      font-size: clamp(0.92rem, 1.6vw, 1.02rem);
+      line-height: 1.55;
+      color: var(--mid);
+      max-width: 62ch;
+      margin: 0 0 0.15rem;
+    }
+    .dashboard__mosaic {
+      display: grid;
+      grid-template-columns: minmax(0, 1.22fr) minmax(0, 1fr);
+      grid-template-areas:
+        "overview dealroom"
+        "overview actions"
+        "insights insights";
+      gap: 1.85rem 2rem;
+      margin-top: 1.25rem;
+      align-items: start;
+    }
+    .dashboard__tile {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+    .dashboard__tile--overview { grid-area: overview; position: relative; z-index: 0; }
+    .dashboard__tile--dealroom { grid-area: dealroom; }
+    .dashboard__tile--actions {
+      grid-area: actions;
+      position: relative;
+      z-index: 0;
+    }
+    .dashboard__tile--insights {
+      grid-area: insights;
+      max-width: min(100%, 52rem);
+      margin-inline: auto;
+      width: 100%;
+    }
+    .dashboard__label {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #6b6560;
+      line-height: 1.35;
+      margin: 0 0 0.4rem;
+    }
+    .dashboard__frame {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #faf8f5;
+      box-shadow: 0 6px 22px rgba(15, 14, 12, 0.055);
+    }
+    .dashboard__frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+      vertical-align: top;
+    }
+    .dashboard__caption {
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      line-height: 1.45;
+      color: var(--mid);
+      margin: 0.65rem 0 0;
+    }
+
+    /* NDA flow — ≤1020px: 2×2 grid (steps 1–2 row, 3–4 row); see min-width:1021px for desktop strip */
+    .nda-flow {
+      margin-top: 0.15rem;
+      width: 100%;
+      min-width: 0;
+    }
+    .nda-flow__row {
+      display: grid;
+      width: 100%;
+      min-width: 0;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      grid-template-rows: auto auto;
+      column-gap: clamp(0.35rem, 2vw, 0.85rem);
+      row-gap: clamp(0.75rem, 2.5vw, 1.35rem);
+      align-items: stretch;
+    }
+    .nda-flow__row > :nth-child(1) { grid-column: 1; grid-row: 1; }
+    .nda-flow__row > :nth-child(2) { grid-column: 2; grid-row: 1; align-self: center; }
+    .nda-flow__row > :nth-child(3) { grid-column: 3; grid-row: 1; }
+    .nda-flow__row > :nth-child(4) { display: none; }
+    .nda-flow__row > :nth-child(5) { grid-column: 1; grid-row: 2; }
+    .nda-flow__row > :nth-child(6) { grid-column: 2; grid-row: 2; align-self: center; }
+    .nda-flow__row > :nth-child(7) { grid-column: 3; grid-row: 2; }
+    .nda-flow__step {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .nda-flow__label {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #6b6560;
+      line-height: 1.35;
+    }
+    .nda-flow__label strong {
+      color: #3d3833;
+      font-weight: 600;
+    }
+    .nda-flow__caption {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      line-height: 1.45;
+      color: var(--mid);
+      margin: 0;
+      padding-right: 0.25rem;
+    }
+    .nda-flow__sep {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: clamp(0.85rem, 2.5vw, 1.2rem);
+      padding: 0;
+      font-family: var(--mono);
+      font-size: clamp(0.6rem, 1.8vw, 0.68rem);
+      color: #a39a91;
+      user-select: none;
+    }
+    .nda-screen {
+      border: 1px solid var(--line);
+      border-radius: clamp(8px, 1.8vw, 10px);
+      background: #fff;
+      overflow: hidden;
+      min-height: clamp(104px, 11vw, 124px);
+      max-height: clamp(118px, 13vw, 148px);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 14px rgba(15, 14, 12, 0.04);
+    }
+    .nda-screen__body {
+      flex: 1;
+      padding: 0.45rem 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      justify-content: center;
+    }
+    .nda-screen__line {
+      height: 4px;
+      border-radius: 2px;
+      background: #ddd8cf;
+    }
+    .nda-screen__line--w60 { width: 62%; }
+    .nda-screen__line--w40 { width: 42%; }
+    .nda-screen--muted .nda-screen__body {
+      opacity: 0.38;
+      filter: blur(0.35px);
+    }
+    .nda-screen--muted.nda-screen--gate-capture .nda-screen__body {
+      opacity: 1;
+      filter: none;
+    }
+    .nda-screen--success,
+    .nda-screen--sign-capture,
+    .nda-screen--select-capture,
+    .nda-screen--gate-capture {
+      min-height: clamp(114px, 12vw, 136px);
+      max-height: clamp(128px, 14vw, 158px);
+    }
+    .nda-screen--success .nda-screen__body,
+    .nda-screen--sign-capture .nda-screen__body,
+    .nda-screen--select-capture .nda-screen__body,
+    .nda-screen--gate-capture .nda-screen__body {
+      padding: 0.25rem 0.3rem;
+      justify-content: center;
+    }
+    .nda-screen--success .nda-screen__body img,
+    .nda-screen--sign-capture .nda-screen__body img,
+    .nda-screen--select-capture .nda-screen__body img,
+    .nda-screen--gate-capture .nda-screen__body img {
+      width: 100%;
+      height: auto;
+      max-height: clamp(96px, 12vw, 132px);
+      object-fit: contain;
+      object-position: center top;
+      display: block;
+      border-radius: 6px;
+    }
+    .nda-screen__lock {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      font-family: var(--mono);
+      font-size: 0.52rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #5d5751;
+      background: rgba(252, 250, 246, 0.88);
+    }
+    .nda-screen__modal {
+      margin: 0.35rem auto;
+      width: 78%;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #fcfaf6;
+      padding: 0.4rem 0.45rem 0.5rem;
+      box-shadow: 0 6px 16px rgba(15, 14, 12, 0.06);
+    }
+    .nda-screen__modal-title {
+      font-size: 0.45rem;
+      font-weight: 600;
+      color: #3d3833;
+      margin-bottom: 4px;
+      letter-spacing: 0.01em;
+    }
+    .nda-screen__check {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.42rem;
+      color: #6b6560;
+    }
+    .nda-screen__check::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border: 1px solid #b9b0a6;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .nda-screen__cta {
+      margin-top: 5px;
+      height: 14px;
+      border-radius: 4px;
+      background: #2f3f5c;
+      width: 100%;
+    }
+    .nda-screen__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      margin-top: 2px;
+    }
+    .nda-screen__cell {
+      height: 18px;
+      border-radius: 4px;
+      border: 1px solid #e5e0d8;
+      background: #faf8f5;
+    }
+
+    /* NDA flow — desktop: one horizontal line; smaller screens: 2×2 (1–2 / 3–4) */
+    @media (min-width: 1021px) {
+      .nda-flow__row {
+        display: flex;
+        align-items: stretch;
+        gap: 0;
+        grid-template-columns: unset;
+        grid-template-rows: unset;
+        column-gap: unset;
+        row-gap: unset;
+      }
+      .nda-flow__row > :nth-child(n) {
+        grid-column: unset;
+        grid-row: unset;
+        align-self: unset;
+      }
+      .nda-flow__row > :nth-child(2),
+      .nda-flow__row > :nth-child(6) {
+        align-self: center;
+      }
+      .nda-flow__row > :nth-child(4) {
+        display: flex;
+        align-self: center;
+      }
+      .nda-flow__step {
+        flex: 1 1 0;
+      }
+      .nda-flow__sep {
+        flex: 0 0 1.15rem;
+        width: auto;
+        padding-bottom: 2.85rem;
+        font-size: 0.68rem;
+      }
+    }
+
+    .impact { background: #121319; color: #f6f1ea; }
+    .impact .eyebrow { color: #ff8d57; }
+    .impact-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1rem; margin-top: 1.1rem; }
+    .impact-stat { border: 1px solid #2f323b; border-radius: 12px; padding: 1rem; background: #171922; }
+    .impact-num { font-family: var(--serif); font-size: clamp(1.85rem,4vw,2.6rem); line-height: 1.05; }
+    .impact-label { color: #bcb7b0; font-family: var(--mono); font-size: .66rem; text-transform: uppercase; letter-spacing: .08em; margin-top: .3rem; }
+
+    .quote-list li { list-style: none; margin-bottom: .6rem; border-left: 2px solid #c4b8ab; padding-left: .7rem; color: #4b4641; }
+
+    .final { border-top: 1px solid var(--line); margin-top: 1rem; padding-top: 3rem; }
+    .final h3 { font-family: var(--serif); font-size: clamp(1.8rem,4vw,3rem); line-height: 1.1; margin-bottom: .7rem; }
+    .links { display: flex; gap: .9rem; flex-wrap: wrap; margin-top: .9rem; }
+    .links a { text-decoration: none; color: var(--ink); border-bottom: 1px solid #8c8378; padding-bottom: .14rem; font-family: var(--mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s, transform .7s; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 1120px) { .cards { grid-template-columns: 1fr 1fr 1fr; } }
+    @media (max-width: 1020px) {
+      .split { grid-template-columns: 1fr; }
+      .cards { grid-template-columns: 1fr 1fr; }
+      .flow-grid { gap: clamp(28px, 5vw, 40px) 1.5rem; }
+      .impact-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 960px) {
+      .dashboard__mosaic {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "overview"
+          "dealroom"
+          "actions"
+          "insights";
+        gap: 1.5rem;
+      }
+      .dashboard__tile--insights { max-width: none; }
+    }
+    @media (max-width: 680px) {
+      section { padding: 4.4rem 1rem; }
+      .cards { grid-template-columns: 1fr; }
+      .case-diagram-tag { font-size: 0.625rem; padding: 3px 6px; }
+      .case-diagram-tag--loops { top: 8%; left: 5%; }
+      .case-diagram-tag--context { top: 16%; right: 4%; }
+      .case-diagram-tag--manual { bottom: 10%; left: 6%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="./index.html" class="nav-back">Back to Portfolio</a>
+      <a href="#final-cta">Contact</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="wrap reveal">
+      <p class="eyebrow">Case Study / Deal Room Platform</p>
+      <h1>From Discovery to Deal Execution</h1>
+      <p class="hero-sub">Designing a system that turns company exploration into structured deal flow.</p>
+    </div>
+  </section>
+
+  <section id="hook">
+    <div class="wrap hook reveal">
+      <p class="eyebrow">Hook</p>
+      <h2>Deals don’t fail due to lack of interest. They fail when momentum breaks.</h2>
+      <p class="copy">Interest existed. Data existed. The missing layer was execution continuity: no shared structure, no dependable entry point, and no bridge from research behavior to commitment behavior.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap split reveal">
+      <div>
+        <p class="eyebrow">Problem</p>
+        <h3 class="section-title">Deal flow felt operationally expensive because the workflow was fragmented.</h3>
+        <ul class="list">
+          <li>Fragmented deal workflows across disconnected surfaces</li>
+          <li>No shared operational structure for participants</li>
+          <li>Missing bridge between discovery intent and action commitment</li>
+        </ul>
+      </div>
+      <figure class="case-diagram">
+        <p class="case-diagram-label">Current workflow — fragmented and hard to navigate</p>
+        <div class="case-diagram-stage">
+          <img
+            src="./assets/deal-chaos-current-workflow.png"
+            alt="Deal chaos: current workflow map — fragmented paths between deal inbox, company profiles, data room, and dead ends"
+            width="1024"
+            height="512"
+            loading="lazy"
+            decoding="async"
+          >
+          <span class="case-diagram-tag case-diagram-tag--loops">Repeated loops</span>
+          <span class="case-diagram-tag case-diagram-tag--context">Context switching</span>
+          <span class="case-diagram-tag case-diagram-tag--manual">Manual tracking</span>
+        </div>
+        <figcaption class="case-diagram-caption">Users had to navigate multiple disconnected steps, often losing context and repeating actions to complete a single deal flow.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="turning">
+    <div class="wrap reveal">
+      <p class="eyebrow">Turning Point</p>
+      <h3 class="section-title">We initially focused on structuring deals—but adoption remained low.</h3>
+      <p class="turning-quote">We realized the issue wasn’t the system. It was where the system starts.</p>
+      <p class="copy" style="margin-top:1rem">The deal room logic was solid, but users were not entering it naturally. We optimized downstream mechanics while ignoring the behavioral entry point upstream.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap split reveal">
+      <div>
+        <p class="eyebrow">Key Insight</p>
+        <p class="insight">Users don’t start with deals. They start with companies.</p>
+      </div>
+      <div>
+        <ul class="list">
+          <li>Company profile is the real intent surface</li>
+          <li>Deal creation lacked a natural trigger at that entry point</li>
+          <li>Without bridge design, structure remains unused</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap split reveal">
+      <div>
+        <p class="eyebrow">Entry Point Solution</p>
+        <h3 class="section-title">We introduced Deal Room creation exactly where user intent already existed.</h3>
+        <div class="entry-block">
+          <ul>
+            <li><strong>Create Deal Room CTA</strong> appears on company profile if no room exists.</li>
+            <li><strong>Switch to Deal Room</strong> appears when room is already created.</li>
+            <li><strong>Auto-selected company context</strong> removes setup friction at creation.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="entry-point-shot">
+        <img
+          src="./assets/company-profile-cta.svg"
+          alt="Company profile screen with Deal Room creation call-to-action"
+          width="4788"
+          height="1449"
+          loading="lazy"
+          decoding="async"
+        >
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap reveal">
+      <p class="eyebrow">First-Time Experience</p>
+      <h3 class="section-title">A deliberate first-run modal reduced conceptual confusion before users entered the workflow.</h3>
+      <p class="copy">The modal framed what the Deal Room is, why it matters, and what happens next. This prevented silent drop-off caused by feature misunderstanding.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap reveal">
+      <p class="eyebrow">System Design</p>
+      <h3 class="section-title">Seven system levers that turned structure into adoption.</h3>
+      <div class="cards">
+        <article class="card"><h4>Deal setup flow</h4><p>Guided setup sequence that eliminated ambiguous first actions.</p></article>
+        <article class="card"><h4>Readiness system</h4><p>Readiness indicators showed deal maturity and next operational priorities.</p></article>
+        <article class="card"><h4>NDA gating</h4><p>Access controls aligned confidentiality with progression state.</p></article>
+        <article class="card"><h4>Progressive disclosure</h4><p>Users saw complexity only when context justified it.</p></article>
+        <article class="card"><h4>Guided journey</h4><p>Step cues reduced dead-ends and clarified path-to-commitment.</p></article>
+        <article class="card"><h4>Timeline urgency</h4><p>Time-sensitive signals pushed momentum without manipulative patterns.</p></article>
+        <article class="card"><h4>Visibility dashboard</h4><p>Cross-role status view kept teams aligned on action readiness.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap reveal">
+      <p class="eyebrow">Design Flow</p>
+      <h3 class="section-title">Core product surfaces in execution sequence.</h3>
+      <div class="flow-grid">
+        <div class="step">
+          <h4>Deal builder</h4>
+          <div class="flow-visual">
+            <img
+              src="./assets/deal-room-flow-ui.png"
+              alt="SYSTEMATIC Deal Room setup flow — wizard, company selection, roles, and deal room dashboard"
+              width="1024"
+              height="598"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+        </div>
+        <div class="step">
+          <h4>NDA flow</h4>
+          <div class="nda-flow" role="region" aria-label="NDA gating flow, four steps">
+            <div class="nda-flow__row">
+              <article class="nda-flow__step">
+                <p class="nda-flow__label"><strong>Step 1</strong> · Access attempt</p>
+                <div class="nda-screen nda-screen--muted nda-screen--gate-capture" aria-hidden="true">
+                  <div class="nda-screen__body">
+                    <img
+                      src="./assets/nda-gate-review-sign.png"
+                      alt="Deal Room gated state: Sign NDA to view deal details modal over blurred app shell"
+                      width="640"
+                      height="400"
+                      loading="lazy"
+                      decoding="async"
+                    >
+                  </div>
+                </div>
+                <p class="nda-flow__caption">Sensitive room content stays blurred until eligibility is proven.</p>
+              </article>
+              <span class="nda-flow__sep" aria-hidden="true">→</span>
+              <article class="nda-flow__step">
+                <p class="nda-flow__label"><strong>Step 2</strong> · NDA prompt</p>
+                <div class="nda-screen nda-screen--select-capture" aria-hidden="true">
+                  <div class="nda-screen__body">
+                    <img
+                      src="./assets/nda-select-for-deal.png"
+                      alt="Select NDA for this deal: template options with recommended choice and document preview"
+                      width="640"
+                      height="400"
+                      loading="lazy"
+                      decoding="async"
+                    >
+                  </div>
+                </div>
+                <p class="nda-flow__caption">A single focused surface explains obligations before any data unlocks.</p>
+              </article>
+              <span class="nda-flow__sep" aria-hidden="true">→</span>
+              <article class="nda-flow__step">
+                <p class="nda-flow__label"><strong>Step 3</strong> · Signing</p>
+                <div class="nda-screen nda-screen--sign-capture" aria-hidden="true">
+                  <div class="nda-screen__body">
+                    <img
+                      src="./assets/nda-agreement-signing.png"
+                      alt="Electronic signature step: agreement text, dual signature columns, and Sign action"
+                      width="640"
+                      height="400"
+                      loading="lazy"
+                      decoding="async"
+                    >
+                  </div>
+                </div>
+                <p class="nda-flow__caption">One decisive CTA advances state—no nested legal maze.</p>
+              </article>
+              <span class="nda-flow__sep" aria-hidden="true">→</span>
+              <article class="nda-flow__step">
+                <p class="nda-flow__label"><strong>Step 4</strong> · Access granted</p>
+                <div class="nda-screen nda-screen--success" aria-hidden="true">
+                  <div class="nda-screen__body">
+                    <img
+                      src="./assets/nda-signed-success.png"
+                      alt="Success state: NDA signed successfully — user gains access to the deal"
+                      width="640"
+                      height="400"
+                      loading="lazy"
+                      decoding="async"
+                    >
+                  </div>
+                </div>
+                <p class="nda-flow__caption">Documents and summaries render normally once the gate clears.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <h4>Dashboard</h4>
+          <div class="dashboard" role="region" aria-label="Deal Room dashboard as a unified workspace">
+            <p class="dashboard__intro">
+              The dashboard brings all deal activity into a single, actionable surface—reducing context switching and improving visibility.
+            </p>
+            <div class="dashboard__mosaic">
+              <figure class="dashboard__tile dashboard__tile--overview">
+                <p class="dashboard__label">Overview</p>
+                <div class="dashboard__frame">
+                  <img
+                    src="./assets/deal-room-flow-ui.png"
+                    alt="Deal Room setup and dashboard shell: guided flow with company context and room structure"
+                    width="1024"
+                    height="598"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </div>
+                <figcaption class="dashboard__caption">Centralized view of deal activity.</figcaption>
+              </figure>
+              <figure class="dashboard__tile dashboard__tile--dealroom">
+                <p class="dashboard__label">Deal Room</p>
+                <div class="dashboard__frame">
+                  <img
+                    src="./assets/deal-room-dashboard-overview.png"
+                    alt="SYSTEMATIC Deal Room overview: sidebar navigation, Overview tab active, company summary and industry cards"
+                    width="1024"
+                    height="595"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </div>
+                <figcaption class="dashboard__caption">All deal assets in one place.</figcaption>
+              </figure>
+              <figure class="dashboard__tile dashboard__tile--actions">
+                <p class="dashboard__label">Actions</p>
+                <div class="dashboard__frame">
+                  <img
+                    src="./assets/nda-agreement-signing.png"
+                    alt="Electronic signature step: agreement review and Sign action in the deal room"
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </div>
+                <figcaption class="dashboard__caption">Key actions without leaving context.</figcaption>
+              </figure>
+              <figure class="dashboard__tile dashboard__tile--insights">
+                <p class="dashboard__label">Insights</p>
+                <div class="dashboard__frame">
+                  <img
+                    src="./assets/nda-gate-review-sign.png"
+                    alt="Gated deal view with readiness signal: Sign NDA prompt over blurred room content"
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </div>
+                <figcaption class="dashboard__caption">Signals to prioritize decisions.</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="impact">
+    <div class="wrap reveal">
+      <p class="eyebrow">Impact</p>
+      <h3 class="section-title">Behavior-level outcomes after entry-point redesign</h3>
+      <div class="impact-grid">
+        <article class="impact-stat"><div class="impact-num" data-target="32">0%</div><div class="impact-label">Increase in deal creation from company profiles</div></article>
+        <article class="impact-stat"><div class="impact-num" data-target="27">0%</div><div class="impact-label">Reduced discovery-to-action friction</div></article>
+        <article class="impact-stat"><div class="impact-num" data-target="41">0%</div><div class="impact-label">Higher feature adoption</div></article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap split reveal">
+      <div>
+        <p class="eyebrow">What Didn’t Work</p>
+        <ul class="quote-list">
+          <li>Isolated entry points buried adoption.</li>
+          <li>Assumption-led UX ignored real initiation behavior.</li>
+          <li>Feature-first framing diluted execution value.</li>
+        </ul>
+      </div>
+      <div>
+        <p class="eyebrow">Learnings</p>
+        <ul class="quote-list">
+          <li>Entry points define adoption.</li>
+          <li>Users act where intent exists.</li>
+          <li>Structure without access is useless.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap split reveal">
+      <div>
+        <p class="eyebrow">Role</p>
+        <p class="copy">Owned UX strategy and execution for Deal Room system behavior, including entry-point architecture, setup flow definition, and interaction model alignment with PM and engineering.</p>
+      </div>
+      <div>
+        <p class="eyebrow">Delivery Scope</p>
+        <p class="copy">Defined cross-surface behavior contracts, state logic, progressive disclosure rules, and adoption measurement criteria post-launch.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap reveal final" id="final-cta">
+      <h3>Let’s design systems that move users to action.</h3>
+      <div class="links">
+        <a href="https://www.linkedin.com/in/gauravavinash" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="mailto:gauravavinash3@gmail.com">Email</a>
+        <a href="./assets/Resume-Gaurav.pdf" target="_blank" rel="noreferrer">Resume</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const nav = document.getElementById("nav");
+    const progress = document.getElementById("progress");
+    window.addEventListener("scroll", () => {
+      nav.classList.toggle("scrolled", window.scrollY > 30);
+      const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+      progress.style.width = scrolled + "%";
+    });
+
+    const reveals = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach((el) => observer.observe(el));
+
+    const impactNums = document.querySelectorAll(".impact-num");
+    const impactObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = Number(el.dataset.target);
+        let current = 0;
+        const step = Math.max(1, Math.round(target / 28));
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          el.textContent = current + "%";
+        }, 30);
+        impactObserver.unobserve(el);
+      });
+    }, { threshold: 0.45 });
+    impactNums.forEach((el) => impactObserver.observe(el));
+  </script>
+</body>
+</html>
