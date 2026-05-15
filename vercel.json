@@ -1,0 +1,25 @@
+{
+  "headers": [
+    {
+      "source": "/assets/(.*)\\.m4v",
+      "headers": [
+        { "key": "Content-Type", "value": "video/mp4" },
+        { "key": "Accept-Ranges", "value": "bytes" }
+      ]
+    },
+    {
+      "source": "/assets/(.*)\\.mov",
+      "headers": [
+        { "key": "Content-Type", "value": "video/mp4" },
+        { "key": "Accept-Ranges", "value": "bytes" }
+      ]
+    },
+    {
+      "source": "/assets/(.*)\\.mp4",
+      "headers": [
+        { "key": "Content-Type", "value": "video/mp4" },
+        { "key": "Accept-Ranges", "value": "bytes" }
+      ]
+    }
+  ]
+}

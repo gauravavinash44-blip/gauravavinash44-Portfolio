@@ -73,9 +73,9 @@
   }
   .nav-logo {
     font-family: var(--serif);
-    font-size: 1.1rem;
-    font-weight: 400;
-    letter-spacing: -0.01em;
+    font-size: 1.28rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
     color: var(--ink);
     text-decoration: none;
   }
@@ -155,11 +155,12 @@
   }
   .hero-h1 {
     font-family: var(--serif);
-    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-size: clamp(2.6rem, 4.6vw, 3.85rem);
     font-weight: 300;
     line-height: 1.1;
     letter-spacing: -0.02em;
-    margin-bottom: 1.8rem;
+    margin-bottom: 1.15rem;
+    max-width: 16ch;
     opacity: 0;
     animation: fadeUp 0.9s 0.4s forwards;
   }
@@ -168,30 +169,33 @@
     color: var(--accent);
   }
   .hero-sub {
-    font-size: 1.05rem;
-    color: var(--mid);
-    line-height: 1.65;
-    max-width: 440px;
-    margin-bottom: 2.8rem;
+    font-size: 1.02rem;
+    font-weight: 500;
+    color: #45413d;
+    line-height: 1.5;
+    max-width: 38ch;
+    margin-bottom: 2rem;
     opacity: 0;
-    animation: fadeUp 0.9s 0.6s forwards;
+    animation: fadeUp 0.9s 0.55s forwards;
   }
   .hero-ctas {
     display: flex;
-    gap: 1rem;
+    flex-wrap: wrap;
+    gap: 1.1rem 1.5rem;
     align-items: center;
     opacity: 0;
-    animation: fadeUp 0.9s 0.8s forwards;
+    animation: fadeUp 0.9s 0.7s forwards;
   }
   .btn-primary {
     background: var(--ink);
     color: var(--paper);
-    padding: 0.85rem 2rem;
+    padding: 0.95rem 2.1rem;
     font-family: var(--sans);
-    font-size: 0.88rem;
-    font-weight: 500;
+    font-size: 0.92rem;
+    font-weight: 600;
     letter-spacing: 0.01em;
     border: none;
+    border-radius: 6px;
     cursor: none;
     text-decoration: none;
     display: inline-block;
@@ -222,15 +226,63 @@
     transition: gap 0.2s;
   }
   .btn-secondary:hover { gap: 0.9rem; }
+  .btn-link-secondary {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(107, 101, 96, 0.35);
+    padding-bottom: 0.12rem;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-link-secondary:hover {
+    color: var(--ink);
+    border-color: var(--ink);
+  }
 
   .hero-right {
     position: relative;
     z-index: 1;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
+    width: 100%;
     opacity: 0;
-    animation: fadeIn 1.2s 1s forwards;
+    animation: fadeIn 1.2s 0.85s forwards;
+  }
+  .hero-preview {
+    position: relative;
+    width: min(100%, 540px);
+    margin-right: -0.5rem;
+  }
+  .hero-preview__frame {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: #faf8f5;
+    box-shadow: 0 20px 56px rgba(15, 14, 12, 0.14);
+  }
+  .hero-preview__frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+    vertical-align: top;
+  }
+  .hero-preview__frame--main {
+    width: 100%;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+  .hero-preview__frame--accent {
+    position: absolute;
+    right: -4%;
+    bottom: 6%;
+    width: min(46%, 240px);
+    background: transparent;
+    box-shadow: 0 14px 40px rgba(15, 14, 12, 0.18);
   }
   .hero-phone {
     width: 220px;
@@ -306,17 +358,18 @@
     font-family: var(--mono);
   }
   .float-card-1 {
-    right: -1.5rem; top: 15%;
+    left: -1.25rem; top: 10%;
     font-size: 0.62rem;
     color: var(--mid);
-    max-width: 160px;
+    max-width: 148px;
     animation: floatY 4s ease-in-out infinite;
   }
-  .float-card-1 strong { display: block; font-size: 1.1rem; color: #2d7d46; font-family: var(--serif); font-weight: 700; margin-bottom: 0.2rem; }
+  .float-card-1 strong { display: block; font-size: 1.1rem; color: var(--accent); font-family: var(--serif); font-weight: 700; margin-bottom: 0.2rem; }
   .float-card-2 {
-    left: -2rem; bottom: 20%;
+    right: -0.5rem; top: 52%;
     font-size: 0.58rem;
     color: var(--mid);
+    max-width: 150px;
     animation: floatY 4s 1.5s ease-in-out infinite;
   }
   .float-card-2 strong { display: block; font-size: 0.9rem; color: var(--ink); font-family: var(--serif); font-weight: 400; margin-bottom: 0.2rem; }
@@ -435,6 +488,14 @@
     color: var(--paper);
     margin-bottom: 1rem;
   }
+  .project-lead {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #3d3833;
+    line-height: 1.45;
+    margin: 0.35rem 0 0.65rem;
+    max-width: 42ch;
+  }
   .project-problem {
     font-size: 0.9rem;
     color: #9b9690;
@@ -495,10 +556,6 @@
     inset: 0;
     background: radial-gradient(ellipse at 70% 30%, rgba(212,65,11,0.08) 0%, transparent 70%);
   }
-  .project-visual--chat-demo {
-    padding: clamp(1.5rem, 3vw, 2.75rem);
-    min-height: 280px;
-  }
   .work-inline-video-wrap {
     position: relative;
     z-index: 1;
@@ -517,18 +574,29 @@
     vertical-align: top;
     pointer-events: none;
   }
-  .work-inline-video-wrap img {
+  .work-inline-video-wrap img,
+  .work-inline-video-fallback {
     width: 100%;
     height: auto;
     display: block;
     vertical-align: top;
     pointer-events: none;
   }
-  .project-visual--easyeat-showcase {
-    padding: clamp(1.5rem, 3vw, 2.75rem);
-    min-height: 280px;
+  .work-inline-video-fallback {
+    display: none;
   }
-
+  .work-inline-video-wrap.use-fallback video {
+    display: none;
+  }
+  .work-inline-video-wrap.use-fallback .work-inline-video-fallback {
+    display: block;
+  }
+  .work-inline-video-wrap--flat {
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    border-radius: 12px;
+  }
   .mini-phone {
     width: 110px;
     height: 220px;
@@ -1034,81 +1102,44 @@
 
 <section class="hero" id="hero">
   <div class="hero-left">
-    <div class="hero-tag">Product Designer · Fintech</div>
-    <h1 class="hero-h1">
-      I design fintech products<br>
-      where <em>trust</em> breaks first.
-    </h1>
-    <p class="hero-sub">
-      Four years untangling complex financial flows — KYC, payments, investment onboarding — into interfaces people actually understand. I work where the edge cases are the product.
-    </p>
+    <div class="hero-tag">4.5+ years • Fintech • SaaS • AI workflows</div>
+    <h1 class="hero-h1">Turning complex workflows into clear, actionable products.</h1>
+    <p class="hero-sub">Simplifying complex fintech workflows into structured, high-impact systems.</p>
     <div class="hero-ctas">
-      <a href="#work" class="btn-primary"><span>View Selected Work</span></a>
-      <a href="#case-studies" class="btn-secondary">Case Studies →</a>
+      <a href="./deal-room-case-study.html" class="btn-primary"><span>View Deal Room Case Study</span></a>
+      <a href="#work" class="btn-link-secondary">View all work</a>
     </div>
   </div>
   <div class="hero-right">
-    <div class="hero-phone">
-      <div class="phone-ui">
-        <div class="phone-topbar">
-          <div class="phone-logo">Finflow</div>
-          <div class="phone-avatar"></div>
-        </div>
-        <div class="phone-balance-label">TOTAL BALANCE</div>
-        <div class="phone-balance">₹2,47,340 <sub>+1.4% today</sub></div>
-        <div class="phone-card">
-          <div class="phone-card-label">Virtual Card</div>
-          <div class="phone-card-num">•••• •••• •••• 4821</div>
-          <div class="phone-card-row">
-            <span>GAURAV A.</span>
-            <span>08/27</span>
-          </div>
-        </div>
-        <div class="phone-actions">
-          <div class="phone-action">
-            <div class="phone-action-icon">↑</div>
-            <span>Send</span>
-          </div>
-          <div class="phone-action">
-            <div class="phone-action-icon">↓</div>
-            <span>Receive</span>
-          </div>
-          <div class="phone-action">
-            <div class="phone-action-icon">⇄</div>
-            <span>Convert</span>
-          </div>
-        </div>
-        <div class="phone-tx-label">Recent</div>
-        <div class="phone-tx">
-          <div>
-            <div class="phone-tx-name">Razorpay Payout</div>
-            <div class="phone-tx-date">Today, 11:24 AM</div>
-          </div>
-          <div class="phone-tx-amt">+₹8,400</div>
-        </div>
-        <div class="phone-tx">
-          <div>
-            <div class="phone-tx-name">AWS Invoice</div>
-            <div class="phone-tx-date">Yesterday</div>
-          </div>
-          <div class="phone-tx-amt neg">−₹1,230</div>
-        </div>
-        <div class="phone-tx">
-          <div>
-            <div class="phone-tx-name">Stripe Settlement</div>
-            <div class="phone-tx-date">Apr 22</div>
-          </div>
-          <div class="phone-tx-amt">+₹22,100</div>
-        </div>
+    <div class="hero-preview">
+      <div class="hero-preview__frame hero-preview__frame--main">
+        <img
+          src="./assets/deal-room-hero-laptop.png"
+          alt="Deal Room setup flow — company context, roles, and deal room structure"
+          width="1024"
+          height="762"
+          loading="eager"
+          decoding="async"
+        >
       </div>
-    </div>
-    <div class="hero-float-card float-card-1">
-      <strong>↓ 34%</strong>
-      KYC drop-off reduction after redesign
-    </div>
-    <div class="hero-float-card float-card-2">
-      <strong>Trust signals</strong>
-      visible before the ask — not after
+      <div class="hero-preview__frame hero-preview__frame--accent">
+        <img
+          src="./assets/deal-room-dashboard-overview.png"
+          alt="Deal Room dashboard overview with company summary and deal activity"
+          width="1024"
+          height="595"
+          loading="eager"
+          decoding="async"
+        >
+      </div>
+      <div class="hero-float-card float-card-1">
+        <strong>+32%</strong>
+        Deal creation from company profiles
+      </div>
+      <div class="hero-float-card float-card-2">
+        <strong>Deal Room</strong>
+        Structured execution system
+      </div>
     </div>
   </div>
 </section>
@@ -1138,10 +1169,10 @@
   <div class="work-header reveal">
     <div>
       <div class="section-label">Selected Work</div>
-      <h2 class="work-h2">Three projects.<br>Each one broke something.</h2>
+      <h2 class="work-h2">Three projects.<br>Clear problems. Measurable outcomes.</h2>
     </div>
     <p class="work-intro">
-      I work on AI-first B2B SaaS problems where users are overloaded, search breaks down, and product decisions need to move from assumptions to measurable outcomes.
+      AI-first B2B SaaS work—complex workflows, broken search, and decisions that need measurable proof.
     </p>
   </div>
 
@@ -1157,9 +1188,10 @@
               <span class="project-tag">B2B SaaS</span>
             </div>
           </div>
-          <h3 class="project-title">From discovery to deal execution with a structured Deal Room platform</h3>
+          <h3 class="project-title">Deal Room — structured deal execution</h3>
+          <p class="project-lead">Transforming fragmented deal workflows into a structured execution system</p>
           <p class="project-problem">
-            Private deal workflows were fragmented and disconnected from company exploration, causing momentum loss between discovery and commitment. The redesign anchored deal initiation at the right behavioral entry point.
+            Deal work was split across surfaces. We anchored creation on the company profile—where intent already lives.
           </p>
         </div>
         <div>
@@ -1167,12 +1199,12 @@
             <div class="outcome-stat insight-trigger">
               <div class="outcome-num">+32%</div>
               <div class="outcome-label">Deal creation adoption</div>
-              <div class="insight-bubble">Entry-point redesign increased deal room creation from company profiles.</div>
+              <div class="insight-bubble">Entry-point redesign lifted deal room creation from profiles.</div>
             </div>
             <div class="outcome-stat insight-trigger">
               <div class="outcome-num">−27%</div>
               <div class="outcome-label">Discovery-to-action friction</div>
-              <div class="insight-bubble">Users moved into structured deal flow with less drop-off and fewer dead ends.</div>
+              <div class="insight-bubble">Structured flow with less drop-off and fewer dead ends.</div>
             </div>
           </div>
           <a href="./deal-room-case-study.html" class="project-link">Read the case study →</a>
@@ -1216,7 +1248,7 @@
           </div>
           <h3 class="project-title">Contextual chat assistant for faster investor company discovery</h3>
           <p class="project-problem">
-            Investors were jumping across filters, pages, and disconnected data sources to evaluate companies. The search journey took 3 to 4 minutes per query and confidence dropped when context was missing.
+            Investors jumped across filters and pages to evaluate companies. Search took 3–4 minutes; confidence dropped without context.
           </p>
         </div>
         <div>
@@ -1224,32 +1256,27 @@
             <div class="outcome-stat insight-trigger">
               <div class="outcome-num">&lt;30s</div>
               <div class="outcome-label">Search completion time</div>
-              <div class="insight-bubble">Reduced from 3 to 4 minutes using OpenAI + vector search</div>
+              <div class="insight-bubble">Cut from 3–4 minutes with OpenAI + vector search</div>
             </div>
             <div class="outcome-stat insight-trigger">
               <div class="outcome-num">+25%</div>
               <div class="outcome-label">User engagement</div>
-              <div class="insight-bubble">Improved exploration depth in company discovery workflows</div>
+              <div class="insight-bubble">Deeper exploration in company discovery workflows</div>
             </div>
           </div>
           <a href="./case-study-systematic-agent.html" class="project-link">Read the case study →</a>
         </div>
       </div>
-      <div class="project-visual project-visual--chat-demo">
-        <div class="work-inline-video-wrap" id="work-chat-demo-observe">
-          <video
-            id="work-chat-demo-video"
-            muted
-            loop
-            playsinline
-            disablepictureinpicture
-            disableremoteplayback
-            preload="metadata"
-            aria-label="Silent looping preview of the contextual chat assistant in the investor discovery workflow"
+      <div class="project-visual">
+        <div class="work-inline-video-wrap work-inline-video-wrap--flat">
+          <img
+            src="./assets/systematic-agent-chat.png"
+            alt="Systematic Agent chat interface with investor discovery prompts"
+            width="684"
+            height="545"
+            loading="lazy"
+            decoding="async"
           >
-            <source src="./assets/contextual-chat-assistant-demo.m4v" type="video/mp4">
-            <source src="./assets/contextual-chat-assistant-demo.mov" type="video/quicktime">
-          </video>
         </div>
       </div>
     </div>
@@ -1266,7 +1293,7 @@
           </div>
           <h3 class="project-title">Redesigning EasyEat customization flow for faster and clearer ordering</h3>
           <p class="project-problem">
-            Users struggled with variant and add-on selection due to multiple popups, unclear min/max rules, and disabled CTA confusion. The redesign focused on reducing taps, improving communication, and making required selections obvious.
+            Multiple popups and unclear min/max rules blocked ordering. We cut taps and made required choices obvious.
           </p>
         </div>
         <div>
@@ -1274,19 +1301,19 @@
             <div class="outcome-stat insight-trigger">
               <div class="outcome-num">+8.3%</div>
               <div class="outcome-label">QR adoption in 3 weeks</div>
-              <div class="insight-bubble">Post-release adoption improved after customization UX redesign.</div>
+              <div class="insight-bubble">QR adoption improved after customization UX redesign.</div>
             </div>
             <div class="outcome-stat insight-trigger">
               <div class="outcome-num">Fewer Taps</div>
               <div class="outcome-label">Higher completion clarity</div>
-              <div class="insight-bubble">Single-screen flow, better feedback, and clearer required selection guidance.</div>
+              <div class="insight-bubble">Single-screen flow with clearer required-selection guidance.</div>
             </div>
           </div>
           <a href="./easyeat-case-study.html" class="project-link">Read the case study →</a>
         </div>
       </div>
-      <div class="project-visual project-visual--easyeat-showcase">
-        <div class="work-inline-video-wrap">
+      <div class="project-visual">
+        <div class="work-inline-video-wrap work-inline-video-wrap--flat">
           <img
             src="./assets/easyeat-customization-showcase.png"
             alt="EasyEat customization case preview — order customization for easyeat.ai user side"
@@ -1311,7 +1338,7 @@
       </div>
       <div class="about-meta">
         <div class="about-meta-item">
-          <div class="about-meta-val">4+</div>
+          <div class="about-meta-val">4.5+</div>
           <div class="about-meta-key">Years in Product Design</div>
         </div>
         <div class="about-meta-item">
@@ -1325,15 +1352,15 @@
       </div>
     </div>
     <div class="about-right">
-      <h2 class="about-h2 reveal">I learned to design<br>by shipping AI products<br><em style="font-style:italic;color:var(--accent)">in ambiguous systems.</em></h2>
+      <h2 class="about-h2 reveal">I design by shipping<br>AI products in<br><em style="font-style:italic;color:var(--accent)">ambiguous systems.</em></h2>
       <p class="about-p reveal reveal-delay-1">
-        I am currently a Product Designer II at Systematic, working remotely with a New York based team on AI-powered B2B SaaS products. My focus is Human-AI interaction, complex data workflows, and turning high-friction flows into faster, clearer decisions.
+        Product Designer II at Systematic—remote with a New York team on AI B2B SaaS. I focus on Human-AI interaction and turning high-friction flows into clear decisions.
       </p>
       <p class="about-p reveal reveal-delay-2">
-        I led end-to-end design for contextual AI search and AI-assisted profile creation, defining query states, progressive disclosure, empty states, and failure paths for ambiguous model responses. I prioritize measurable outcomes over feature volume.
+        I led contextual AI search and AI-assisted profile creation—query states, progressive disclosure, and failure paths for uncertain model responses.
       </p>
       <p class="about-p reveal reveal-delay-3">
-        Before this, I worked at Easy Eat on multi-country product launches and monetization flows, and at LA FUORI where I owned B2B website design and visual campaigns. <strong>I work best with product, engineering, and business teams in the same decision loop.</strong>
+        Before Systematic: Easy Eat (multi-country launches) and LA FUORI (B2B web and campaigns). <strong>I work best with product, engineering, and business in one loop.</strong>
       </p>
       <div class="about-stack reveal reveal-delay-4">
         <div class="about-stack-label">Working with</div>
@@ -1362,46 +1389,46 @@
       <h2 class="principles-h2 reveal">How I make decisions<br>in AI product design.</h2>
     </div>
     <p class="principles-sub reveal">
-      These principles come from shipping production AI workflows where user trust, model uncertainty, and business speed have to work together.
+      From shipping AI workflows where trust, model uncertainty, and business speed must align.
     </p>
   </div>
   <div class="principles-grid">
     <div class="principle-card reveal">
       <div class="principle-num">01</div>
       <h3 class="principle-q">"AI should reduce effort, not remove user agency."</h3>
-      <p class="principle-body">I design hybrid flows where users can accept, edit, or override AI output. Autocomplete without control is a liability in high-stakes workflows.</p>
+      <p class="principle-body">Hybrid flows let users accept, edit, or override AI. Autocomplete without control fails in high-stakes work.</p>
     </div>
     <div class="principle-card reveal reveal-delay-1">
       <div class="principle-num">02</div>
       <h3 class="principle-q">"Good UX is usually about sequencing information."</h3>
-      <p class="principle-body">Most drop-offs happen when users hit uncertainty. I sequence context, confidence cues, and actions so decisions feel informed instead of rushed.</p>
+      <p class="principle-body">Drop-offs follow uncertainty. I sequence context, confidence cues, and actions so decisions feel informed.</p>
     </div>
     <div class="principle-card reveal reveal-delay-2">
       <div class="principle-num">03</div>
       <h3 class="principle-q">"Ambiguity gets resolved through states, not screens."</h3>
-      <p class="principle-body">I define query states, empty states, and recovery paths first. If a model response fails, the interface still needs to guide the next best action.</p>
+      <p class="principle-body">Query states, empty states, and recovery paths come first. Failed model responses still need a clear next action.</p>
     </div>
     <div class="principle-card reveal reveal-delay-3">
       <div class="principle-num">04</div>
       <h3 class="principle-q">"I push back when decisions are assumption-led."</h3>
-      <p class="principle-body">I translate assumptions into testable product bets. Evidence early prevents expensive redesign cycles after launch.</p>
+      <p class="principle-body">I turn assumptions into testable bets. Early evidence prevents costly post-launch redesigns.</p>
     </div>
     <div class="principle-card reveal">
       <div class="principle-num">05</div>
       <h3 class="principle-q">"Metrics and behavior both matter."</h3>
-      <p class="principle-body">I use product metrics for direction and user conversations for diagnosis. Numbers tell me where to look; behavior tells me what to fix.</p>
+      <p class="principle-body">Metrics show where to look; user conversations show what to fix.</p>
     </div>
     <div class="principle-card reveal reveal-delay-1">
       <div class="principle-num">06</div>
       <h3 class="principle-q">"Cross-functional clarity beats isolated design polish."</h3>
-      <p class="principle-body">I work closely with PMs and engineers so design decisions reflect technical constraints and business priorities, not slide-deck ideals.</p>
+      <p class="principle-body">I align with PMs and engineers so design reflects constraints and priorities—not slide-deck ideals.</p>
     </div>
   </div>
 </section>
 
 <section id="case-studies">
   <div class="section-label reveal">Case Studies</div>
-  <h2 class="about-h2 reveal" style="font-family:var(--serif);font-size:clamp(2rem,3.5vw,2.8rem);font-weight:300;letter-spacing:-0.02em;line-height:1.15;margin-bottom:3rem">Case studies from shipped AI workflows.<br>What changed and why it mattered.</h2>
+  <h2 class="about-h2 reveal" style="font-family:var(--serif);font-size:clamp(2rem,3.5vw,2.8rem);font-weight:300;letter-spacing:-0.02em;line-height:1.15;margin-bottom:3rem">Shipped AI workflows.<br>What changed and why.</h2>
   <div class="cs-grid">
     <a class="cs-card reveal" href="./case-study-systematic-agent.html">
       <div class="cs-meta-row">
@@ -1409,7 +1436,7 @@
         <div class="cs-arrow">→</div>
       </div>
       <h3 class="cs-title">Contextual chat assistant for faster investor company discovery</h3>
-      <p class="cs-desc">Designed and launched conversational company discovery powered by OpenAI and vector search, replacing fragmented multi-step search behavior with natural language exploration.</p>
+      <p class="cs-desc">Conversational company discovery with OpenAI and vector search—replacing fragmented search with natural language.</p>
       <div class="cs-meta">
         <span>Systematic · 2022–Present</span>
         <span>Product Designer II</span>
@@ -1422,7 +1449,7 @@
         <div class="cs-arrow">→</div>
       </div>
       <h3 class="cs-title">AI-assisted company profile creation with hybrid editing controls</h3>
-      <p class="cs-desc">Led end-to-end design of an AI profile builder with manual override, smart defaults, and real-time guidance that improved completion and profile quality for fundraising teams.</p>
+      <p class="cs-desc">AI profile builder with manual override and smart defaults—higher completion and quality for fundraising teams.</p>
       <div class="cs-meta">
         <span>+40% completion rate</span>
         <span>−30% onboarding abandonment</span>
@@ -1434,8 +1461,8 @@
         <span class="cs-tag">Deal Room · System Design</span>
         <div class="cs-arrow">→</div>
       </div>
-      <h3 class="cs-title">From discovery to deal execution with a structured Deal Room platform</h3>
-      <p class="cs-desc">Redesigned private deal workflows by anchoring deal creation to company profiles, improving feature entry points, and turning fragmented intent into guided commitment paths.</p>
+      <h3 class="cs-title">Deal Room — structured deal execution</h3>
+      <p class="cs-desc">Anchored deal creation to company profiles. Turned fragmented intent into guided commitment paths.</p>
       <div class="cs-meta">
         <span>Entry-point redesign</span>
         <span>B2B fintech workflow</span>
@@ -1448,7 +1475,7 @@
         <div class="cs-arrow">→</div>
       </div>
       <h3 class="cs-title">From fragmented screens to seamless action-driven mobile UX</h3>
-      <p class="cs-desc">A flow-first redesign that reduced backtracking, improved action clarity, and moved users from intent to completion with less cognitive overhead.</p>
+      <p class="cs-desc">Flow-first mobile redesign—less backtracking, clearer actions, faster intent-to-completion.</p>
       <div class="cs-meta">
         <span>Task-first architecture</span>
         <span>Flow restructuring</span>
@@ -1461,7 +1488,7 @@
         <div class="cs-arrow">→</div>
       </div>
       <h3 class="cs-title">Redesigning EasyEat customization flow for faster and clearer ordering</h3>
-      <p class="cs-desc">Users struggled with variant and add-on selection due to multiple popups, unclear min/max rules, and disabled CTA confusion. The redesign reduced taps, improved communication, and made required selections obvious.</p>
+      <p class="cs-desc">Cut taps and popup overload in variant selection. Made min/max rules and required choices obvious.</p>
       <div class="cs-meta">
         <span>+8.3% QR adoption (3 weeks)</span>
         <span>Fewer taps</span>
@@ -1474,42 +1501,42 @@
 <section class="experiments" id="experiments">
   <div class="section-label">Skills & Learning</div>
   <h2 class="exp-h2 reveal">Capabilities I use across product, AI, and execution.</h2>
-  <p class="exp-sub reveal">A condensed view of my design practice, research depth, and tooling stack from recent roles.</p>
+  <p class="exp-sub reveal">Design practice, research depth, and tooling from recent roles.</p>
   <div class="exp-grid">
     <div class="exp-item reveal">
       <div class="exp-type">Design Practice</div>
       <h3 class="exp-title">UX strategy, user flows, concept sketches, experience mapping, prototypes</h3>
-      <p class="exp-note">I structure ambiguous product problems into clear interaction models and measurable design decisions.</p>
+      <p class="exp-note">I turn ambiguous problems into clear interaction models and measurable decisions.</p>
       <div class="exp-date">Core capability</div>
     </div>
     <div class="exp-item reveal reveal-delay-1">
       <div class="exp-type">AI Design</div>
       <h3 class="exp-title">Prompt design, AI prototyping, Human-AI experience design</h3>
-      <p class="exp-note">Designing model-assisted workflows that keep users in control while accelerating decision quality.</p>
+      <p class="exp-note">Model-assisted workflows that keep users in control and speed decisions.</p>
       <div class="exp-date">Production focus</div>
     </div>
     <div class="exp-item reveal reveal-delay-2">
       <div class="exp-type">Research</div>
       <h3 class="exp-title">User interviews, usability testing, affinity mapping, IA</h3>
-      <p class="exp-note">I combine qualitative insight with product metrics to validate assumptions and prioritize roadmap decisions.</p>
+      <p class="exp-note">Qualitative insight plus metrics to validate assumptions and prioritize roadmap.</p>
       <div class="exp-date">Applied across roles</div>
     </div>
     <div class="exp-item reveal">
       <div class="exp-type">Tools</div>
       <h3 class="exp-title">Figma, Adobe XD, Photoshop, Illustrator, InDesign, Framer, Miro</h3>
-      <p class="exp-note">Comfortable across wireframing, visual design, prototyping, and design communication workflows.</p>
+      <p class="exp-note">Wireframing, visual design, prototyping, and design communication.</p>
       <div class="exp-date">Daily workflow</div>
     </div>
     <div class="exp-item reveal reveal-delay-1">
       <div class="exp-type">Product Collaboration</div>
       <h3 class="exp-title">Notion, Slack, Asana, cross-functional delivery</h3>
-      <p class="exp-note">I work closely with PMs, engineers, and business stakeholders from scoping to launch and iteration.</p>
+      <p class="exp-note">Close work with PMs, engineers, and stakeholders from scoping through launch.</p>
       <div class="exp-date">Execution layer</div>
     </div>
     <div class="exp-item reveal reveal-delay-2">
       <div class="exp-type">Learning</div>
       <h3 class="exp-title">GenAI for UX Designers (Coursera), Vibe Coding (Scrimba)</h3>
-      <p class="exp-note">Exploring AI-native workflows through Cursor AI, GitHub Copilot, and Claude Code to speed up prototyping and experimentation.</p>
+      <p class="exp-note">AI-native workflows with Cursor, Copilot, and Claude Code for faster prototyping.</p>
       <div class="exp-date">Ongoing upskilling</div>
     </div>
   </div>
@@ -1521,7 +1548,7 @@
       <div class="section-label">Contact</div>
       <h2 class="contact-h2">Let's talk about<br>AI products <em>worth building.</em></h2>
       <p class="contact-sub">
-        Open to Product Designer roles and AI-first product challenges in B2B SaaS. I enjoy solving complex workflows where clarity and measurable outcomes both matter.
+        Open to Product Designer roles in B2B SaaS. I solve complex workflows where clarity and measurable outcomes both matter.
       </p>
     </div>
     <div class="contact-right reveal reveal-delay-1">
@@ -1566,7 +1593,7 @@
 
 <footer>
   <span>Gaurav Avinash · Product Designer · UX/AI Design</span>
-  <span>4+ years experience · B2B SaaS</span>
+  <span>4.5+ years · Fintech · SaaS · AI workflows</span>
   <span>English, Hindi · <a href="#">Portfolio in progress</a></span>
 </footer>
 
@@ -1692,24 +1719,6 @@
     });
   }
 
-  (function () {
-    const root = document.getElementById('work-chat-demo-observe');
-    const video = document.getElementById('work-chat-demo-video');
-    if (!root || !video) return;
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            video.play().catch(() => {});
-          } else {
-            video.pause();
-          }
-        });
-      },
-      { threshold: 0.32, rootMargin: '0px 0px -5% 0px' }
-    );
-    io.observe(root);
-  })();
 </script>
 </body>
 </html>
