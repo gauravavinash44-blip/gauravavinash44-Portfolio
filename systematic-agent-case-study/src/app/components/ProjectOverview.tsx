@@ -18,7 +18,7 @@ const overviewCards = [
   {
     title: 'My Role',
     description:
-      'Lead Product Designer & UX Researcher. End-to-end ownership: user research, problem framing, concepting, high-fidelity UI, and engineering handoff. Managed stakeholder alignment across product, data, and ML teams.',
+      'Product Designer & UX Researcher. End-to-end ownership: user research, problem framing, concepting, high-fidelity UI, and engineering handoff. Managed stakeholder alignment across product, data, and ML teams.',
     icon: User,
     accentColor: 'bg-purple-500',
     borderColor: 'border-purple-400/40',

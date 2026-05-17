@@ -17,7 +17,6 @@ import { CollaborationLeadership } from './CollaborationLeadership';
 import { ImpactMetrics } from './ImpactMetrics';
 import { Reflection } from './Reflection';
 import { Navigation } from './Navigation';
-import { Footer } from './Footer';
 
 export default function CaseStudy() {
   return (
@@ -74,8 +73,6 @@ export default function CaseStudy() {
 
       {/* 10 — Reflection */}
       <Reflection />
-
-      <Footer />
     </div>
   );
 }
