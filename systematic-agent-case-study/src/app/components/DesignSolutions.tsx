@@ -133,6 +133,8 @@ function EntryPoints() {
               src={imgImage26}
               alt="Search bar entry point"
               className="w-full rounded-xl shadow-md"
+              loading="lazy"
+              decoding="async"
             />
           </div>
           <div className="lg:w-72 space-y-5">
@@ -173,6 +175,8 @@ function FTUEDesign() {
           src={imgFTUE}
           alt="FTUE Design"
           className="w-full rounded-2xl shadow-xl border border-gray-100"
+          loading="lazy"
+          decoding="async"
         />
       </div>
     </motion.div>
@@ -201,6 +205,8 @@ function ChatInterfaceBehavior() {
             src={imgImage27}
             alt="Chat interface"
             className="w-full rounded-2xl shadow-xl border border-gray-100"
+            loading="lazy"
+            decoding="async"
           />
         </div>
         <div className="lg:col-span-2 space-y-6">
@@ -288,6 +294,8 @@ function ChatHistoryManagement() {
             src={imgChatHistory}
             alt="Chat interface and history management"
             className="w-full rounded-2xl shadow-xl border border-gray-100"
+            loading="lazy"
+            decoding="async"
           />
         </div>
       </div>
@@ -966,6 +974,8 @@ function Part2AIInsights() {
             src={imgImage2}
             alt="AI Insights panel"
             className="w-full rounded-2xl shadow-xl border border-gray-100"
+            loading="lazy"
+            decoding="async"
           />
         </div>
       </div>

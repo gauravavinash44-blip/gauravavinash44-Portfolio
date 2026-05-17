@@ -211,6 +211,8 @@ export function DiscoveryBlindness() {
               src={imgSearchWithNoInput1}
               alt="Old search interface — no guidance"
               className="w-full h-auto block"
+              loading="lazy"
+              decoding="async"
             />
             {annotations.search.map((a, i) => (
               <AnnotationBadge key={i} text={a.text} pos={a.pos} />
@@ -236,6 +238,8 @@ export function DiscoveryBlindness() {
                 src={imgGroup11712749011}
                 alt="Old filter panel — overwhelming complexity"
                 className="w-full h-auto block"
+                loading="lazy"
+                decoding="async"
               />
               {annotations.filters.map((a, i) => (
                 <AnnotationBadge key={i} text={a.text} pos={a.pos} />
@@ -258,6 +262,8 @@ export function DiscoveryBlindness() {
                 src={imgGroup11712749001}
                 alt="Old results view — cluttered and unscannable"
                 className="w-full h-auto block"
+                loading="lazy"
+                decoding="async"
               />
               {annotations.results.map((a, i) => (
                 <AnnotationBadge key={i} text={a.text} pos={a.pos} />
