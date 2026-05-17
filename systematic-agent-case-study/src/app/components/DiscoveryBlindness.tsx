@@ -1,0 +1,288 @@
+'use client';
+
+import { motion } from 'motion/react';
+import { Quote, AlertTriangle } from 'lucide-react';
+import imgSearchWithNoInput1 from 'figma:asset/638164091f1a511c933bbf6676c59846c0642287.png';
+import imgGroup11712749011 from 'figma:asset/2bd6ac00e29141a42162a521c0c2d02d9cb4d420.png';
+import imgGroup11712749001 from 'figma:asset/f9934aa7d5219d385b278358f86ba1aafdb5a374.png';
+
+const userQuotes = [
+  {
+    text: "I don't know what I'm looking for until I see a pattern, but I can't see the pattern because I don't know what to search for.",
+    speaker: 'Institutional Investor, Series B',
+    accentColor: 'border-purple-400',
+    tagBg: 'bg-purple-50',
+    tagText: 'text-purple-700',
+  },
+  {
+    text: "Filtering is too rigid. If my criteria is 'innovative' but the database only has 'R&D spend', I miss the nuance entirely.",
+    speaker: 'Angel Investor, Tech Focus',
+    accentColor: 'border-teal-400',
+    tagBg: 'bg-teal-50',
+    tagText: 'text-teal-700',
+  },
+  {
+    text: "I spend more time configuring filters than actually evaluating companies. The tool is supposed to help me move faster — it does the opposite.",
+    speaker: 'VC Partner, Growth Stage',
+    accentColor: 'border-orange-400',
+    tagBg: 'bg-orange-50',
+    tagText: 'text-orange-700',
+  },
+  {
+    text: "The search returns names. What I need is context — stage, traction, why it's even relevant to my current thesis. None of that comes through.",
+    speaker: 'Investment Associate, Early-stage VC',
+    accentColor: 'border-indigo-400',
+    tagBg: 'bg-indigo-50',
+    tagText: 'text-indigo-700',
+  },
+  {
+    text: "By the time I've gathered enough signal to feel confident making an intro, someone else already closed the round.",
+    speaker: 'Managing Director, PE Fund',
+    accentColor: 'border-rose-400',
+    tagBg: 'bg-rose-50',
+    tagText: 'text-rose-700',
+  },
+];
+
+// Annotation labels per screenshot area
+const annotations = {
+  search: [
+    { text: 'No intent guidance', pos: 'top-3 right-3' },
+    { text: 'Keyword-only — thesis not expressible', pos: 'bottom-3 left-3' },
+  ],
+  filters: [
+    { text: '40+ unexplained parameters', pos: 'top-3 left-3' },
+    { text: 'Weak hierarchy — all options equal weight', pos: 'bottom-3 right-3' },
+  ],
+  results: [
+    { text: 'Cluttered — no scannable signal', pos: 'top-3 left-3' },
+    { text: 'No AI synthesis or relevance ranking', pos: 'bottom-3 right-3' },
+  ],
+};
+
+function AnnotationBadge({ text, pos }: { text: string; pos: string }) {
+  return (
+    null
+  );
+}
+
+export function DiscoveryBlindness() {
+  return (
+    <section className="py-28 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-8">
+
+        {/* Section header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-20"
+        >
+          <p className="text-purple-600 text-sm font-bold uppercase tracking-[0.2em] mb-4">
+            02.1 — User Research
+          </p>
+          <h2 className="text-5xl font-bold text-gray-900 tracking-tight">
+            Discovery Blindness
+          </h2>
+          <div className="mt-8 h-px bg-gradient-to-r from-purple-200 via-purple-100 to-transparent" />
+        </motion.div>
+
+        {/* Top row: intro + quotes + stats — full width */}
+        <div className="grid md:grid-cols-2 gap-16 items-start mb-20">
+
+          {/* Left: quotes + stats */}
+          <motion.div
+            initial={{ opacity: 0, x: -32 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <p className="text-xl text-gray-500 mb-10 leading-relaxed">
+              Users reported that traditional keyword search felt like{' '}
+              <span className="text-gray-800 font-semibold italic">
+                "looking for a needle in a haystack where the needle is invisible."
+              </span>
+            </p>
+
+            <div className="space-y-4">
+              {userQuotes.map((quote, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.08 }}
+                  whileHover={{ x: 6, transition: { duration: 0.2 } }}
+                  className={`bg-white border-l-4 ${quote.accentColor} rounded-r-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 relative`}
+                >
+                  <Quote className="absolute top-4 right-4 w-5 h-5 text-gray-200" />
+                  <p className="text-gray-700 leading-relaxed italic mb-3 pr-6">
+                    "{quote.text}"
+                  </p>
+                  <div className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${quote.tagBg} ${quote.tagText}`}>
+                    {quote.speaker}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Research stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="mt-8 grid grid-cols-3 gap-4"
+            >
+              {[
+                { value: '18', label: 'User Interviews' },
+                { value: '6', label: 'Stakeholder Sessions' },
+                { value: '3', label: 'Usability Tests' },
+              ].map((stat) => (
+                <div key={stat.label} className="bg-white rounded-xl p-5 border border-gray-100 text-center shadow-sm">
+                  <p className="text-3xl font-bold text-purple-700 mb-1">{stat.value}</p>
+                  <p className="text-xs text-gray-500 font-medium">{stat.label}</p>
+                </div>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* Right: key insight callout */}
+          <motion.div
+            initial={{ opacity: 0, x: 32 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="space-y-5"
+          >
+            <div className="bg-white border border-gray-100 rounded-2xl p-8 shadow-sm">
+              <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-5">What the research revealed</p>
+              <div className="space-y-4">
+                {[
+                  { color: 'bg-red-500', label: 'Search UX', detail: 'No guidance, no intent recognition — users started from zero every session.' },
+                  { color: 'bg-orange-500', label: 'Filter Panel', detail: '40+ undifferentiated parameters with no hierarchy or investment-aware grouping.' },
+                  { color: 'bg-amber-500', label: 'Results View', detail: 'Flat, cluttered rows with no signal-to-noise differentiation or AI synthesis.' },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-4">
+                    <div className={`w-2 mt-2 self-stretch rounded-full ${item.color} shrink-0 min-h-[40px]`} />
+                    <div>
+                      <p className="text-sm font-bold text-gray-800 mb-1">{item.label}</p>
+                      <p className="text-sm text-gray-500 leading-relaxed">{item.detail}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="bg-red-50 border border-red-100 rounded-2xl px-6 py-5">
+              <p className="text-red-700 font-semibold text-sm leading-relaxed">
+                "The average session involved 3 separate screens, 20+ minutes, and still ended without a shortlist."
+              </p>
+              <p className="text-red-400 text-xs mt-2">— Synthesised from 18 user interviews</p>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Full-width annotated screenshots */}
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          {/* Label row */}
+          <div className="flex items-center gap-4 mb-8">
+            <span className="bg-red-100 text-red-600 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-red-200">
+              Before — Fragmented UX
+            </span>
+            <div className="flex-1 h-px bg-red-100" />
+            <span className="text-xs text-gray-400">3 problem screens · annotated</span>
+          </div>
+
+          {/* Screenshot A — full width hero */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="relative rounded-2xl overflow-hidden border-2 border-white shadow-2xl mb-6"
+          >
+            <img
+              src={imgSearchWithNoInput1}
+              alt="Old search interface — no guidance"
+              className="w-full h-auto block"
+            />
+            {annotations.search.map((a, i) => (
+              <AnnotationBadge key={i} text={a.text} pos={a.pos} />
+            ))}
+            {/* Screen label overlay */}
+            <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold px-3 py-1.5 rounded-lg flex items-center gap-2">
+              <span className="w-4 h-4 rounded-full bg-red-500 flex items-center justify-center text-[9px] font-black">A</span>
+              Search — Empty State
+            </div>
+            <div className="absolute inset-0 border-2 border-red-300/20 rounded-2xl pointer-events-none" />
+          </motion.div>
+
+          {/* Screenshots B + C — large side by side */}
+          <div className="grid md:grid-cols-2 gap-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="relative rounded-2xl overflow-hidden border-2 border-white shadow-2xl"
+            >
+              <img
+                src={imgGroup11712749011}
+                alt="Old filter panel — overwhelming complexity"
+                className="w-full h-auto block"
+              />
+              {annotations.filters.map((a, i) => (
+                <AnnotationBadge key={i} text={a.text} pos={a.pos} />
+              ))}
+              <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold px-3 py-1.5 rounded-lg flex items-center gap-2">
+                <span className="w-4 h-4 rounded-full bg-red-500 flex items-center justify-center text-[9px] font-black">B</span>
+                Filter Panel — Filters remained cognitively heavy
+              </div>
+              <div className="absolute inset-0 border-2 border-red-300/20 rounded-2xl pointer-events-none" />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="relative rounded-2xl overflow-hidden border-2 border-white shadow-2xl"
+            >
+              <img
+                src={imgGroup11712749001}
+                alt="Old results view — cluttered and unscannable"
+                className="w-full h-auto block"
+              />
+              {annotations.results.map((a, i) => (
+                <AnnotationBadge key={i} text={a.text} pos={a.pos} />
+              ))}
+              <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold px-3 py-1.5 rounded-lg flex items-center gap-2">
+                <span className="w-4 h-4 rounded-full bg-red-500 flex items-center justify-center text-[9px] font-black">C</span>
+                Filter Panel — Filters remained cognitively heavy
+              </div>
+              <div className="absolute inset-0 border-2 border-red-300/20 rounded-2xl pointer-events-none" />
+            </motion.div>
+          </div>
+
+          {/* Caption strip */}
+          <div className="mt-5 grid grid-cols-3 gap-4">
+            {[
+              { letter: 'A', label: 'Empty search — no guidance or intent recognition' },
+              { letter: 'B', label: 'Filter overload — 40+ params, no hierarchy' },
+              { letter: 'C', label: 'Cluttered results — no AI signal or synthesis' },
+            ].map((s) => (
+              null
+            ))}
+          </div>
+        </motion.div>
+
+      </div>
+    </section>
+  );
+}
