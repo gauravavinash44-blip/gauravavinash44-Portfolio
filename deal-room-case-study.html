@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Deal Room Case Study — Gaurav Avinash</title>
+  <title>Deal Room — Designing a Guided Investment Workflow — Gaurav Avinash</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,700&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -375,6 +375,7 @@
       font-weight: 600;
     }
     .impact .section-narrative { color: #c2bdc0; }
+    .impact .list li { color: #c2bdc0; }
     .nda-flow__sep {
       display: flex;
       align-items: center;
@@ -559,13 +560,159 @@
     .links { display: flex; gap: .9rem; flex-wrap: wrap; margin-top: .9rem; }
     .links a { text-decoration: none; color: var(--ink); border-bottom: 1px solid #8c8378; padding-bottom: .14rem; font-family: var(--mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
 
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+      gap: 1.25rem 1.5rem;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--line);
+      max-width: 52rem;
+    }
+    .hero-meta dt {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #8a837c;
+      margin-bottom: 0.25rem;
+    }
+    .hero-meta dd {
+      font-size: 0.92rem;
+      color: #3d3833;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    .flow-ladder {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      margin-top: 1rem;
+    }
+    .flow-ladder__step {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 0.7rem 1rem;
+      background: #f9f5ef;
+      text-align: center;
+      font-size: 0.86rem;
+      color: #3d3833;
+      line-height: 1.35;
+    }
+    .flow-ladder__sep {
+      text-align: center;
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      padding: 0.35rem 0;
+      line-height: 1;
+    }
+    .flow-ladder__note {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #8a837c;
+      text-align: center;
+      margin-top: 0.75rem;
+    }
+    .state-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    .state-compare__head {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .state-compare__head--future { color: #3d5a8a; }
+
+    .cards--goals { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .cards--principles { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .cards--research { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .problem-block {
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .problem-block:last-child { border-bottom: none; padding-bottom: 0; }
+    .problem-block:first-child { padding-top: 0; }
+
+    .solution-tag {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #8a837c;
+      margin-bottom: 0.5rem;
+    }
+
+    .iteration-chain {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.35rem 0.5rem;
+      margin: 1rem 0 1.25rem;
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #6b6560;
+    }
+    .iteration-chain span:not(.iteration-chain__sep) {
+      padding: 0.35rem 0.55rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fcfaf6;
+    }
+    .iteration-chain__sep { color: var(--accent); }
+
+    .e2e-flow {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem 0.35rem;
+      margin-top: 1.25rem;
+    }
+    .e2e-flow__step {
+      font-size: 0.78rem;
+      padding: 0.45rem 0.65rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f9f5ef;
+      color: #3d3833;
+      text-align: center;
+      line-height: 1.3;
+      max-width: 9.5rem;
+    }
+    .e2e-flow__sep {
+      font-family: var(--mono);
+      color: var(--accent);
+      font-size: 0.7rem;
+    }
+
     .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s, transform .7s; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    @media (max-width: 1120px) { .cards { grid-template-columns: 1fr 1fr 1fr; } }
+    @media (max-width: 1120px) {
+      .cards { grid-template-columns: 1fr 1fr 1fr; }
+      .cards--principles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
     @media (max-width: 1020px) {
       .split { grid-template-columns: 1fr; }
+      .state-compare { grid-template-columns: 1fr; }
       .cards { grid-template-columns: 1fr 1fr; }
+      .cards--goals { grid-template-columns: 1fr 1fr; }
+      .cards--research { grid-template-columns: 1fr 1fr; }
+      .cards--principles { grid-template-columns: 1fr 1fr; }
       .flow-grid { gap: clamp(28px, 5vw, 40px) 1.5rem; }
       .impact-grid { grid-template-columns: 1fr; }
     }
@@ -583,7 +730,10 @@
     }
     @media (max-width: 680px) {
       section { padding: 4.4rem 1rem; }
-      .cards { grid-template-columns: 1fr; }
+      .cards,
+      .cards--goals,
+      .cards--research,
+      .cards--principles { grid-template-columns: 1fr; }
       .case-diagram-tag { font-size: 0.625rem; padding: 3px 6px; }
       .case-diagram-tag--loops { top: 8%; left: 5%; }
       .case-diagram-tag--context { top: 16%; right: 4%; }
@@ -602,142 +752,296 @@
 
   <section class="hero">
     <div class="wrap reveal">
-      <p class="eyebrow">Case Study / Deal Room Platform</p>
-      <h1>From Discovery to Deal Execution</h1>
-      <p class="hero-sub">A system that turns company exploration into structured deal flow.</p>
+      <p class="eyebrow">Case Study / Deal Room</p>
+      <h1>Designing a Guided Investment Workflow</h1>
+      <p class="hero-sub">How we transformed fragmented fundraising into a structured experience for founders and investors.</p>
+      <dl class="hero-meta">
+        <div><dt>Role</dt><dd>Product Designer</dd></div>
+        <div><dt>Timeline</dt><dd>2023–2024</dd></div>
+        <div><dt>Platform</dt><dd>B2B SaaS · Web</dd></div>
+        <div><dt>Team</dt><dd>Product, Engineering, Legal</dd></div>
+        <div><dt>Responsibilities</dt><dd>Research, IA, flows, UI, handoff, adoption metrics</dd></div>
+      </dl>
     </div>
   </section>
 
-  <section id="hook">
+  <section id="what-is-deal-room">
     <div class="wrap hook reveal">
-      <p class="eyebrow">Hook</p>
-      <h2>Deals don’t fail due to lack of interest. They fail when momentum breaks.</h2>
-      <p class="copy">Interest and data were there. What was missing was execution continuity—shared structure, a clear entry point, and a bridge from research to commitment.</p>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap split reveal">
-      <div>
-        <p class="eyebrow">Problem</p>
-        <h3 class="section-title">Deal flow was fragmented and costly to run.</h3>
-        <p class="section-narrative">This workflow required users to navigate across disconnected surfaces to complete a single task.</p>
-        <ul class="list">
-          <li>Deal work split across disconnected surfaces</li>
-          <li>No shared structure for participants</li>
-          <li>No bridge from discovery intent to commitment</li>
-        </ul>
-        <p class="section-outcome">High friction from repeated context switches</p>
-      </div>
-      <figure class="case-diagram">
-        <p class="case-diagram-label">Workflow chaos — fragmented paths across the product</p>
-        <div class="case-diagram-stage">
-          <img
-            src="./assets/deal-chaos-current-workflow.png"
-            alt="Deal chaos: current workflow map — fragmented paths between deal inbox, company profiles, data room, and dead ends"
-            width="1024"
-            height="512"
-            loading="lazy"
-            decoding="async"
-          >
-          <span class="case-diagram-tag case-diagram-tag--loops">Repeated loops</span>
-          <span class="case-diagram-tag case-diagram-tag--context">Context switching</span>
-          <span class="case-diagram-tag case-diagram-tag--manual">Manual tracking</span>
+      <p class="eyebrow">What is a Deal Room?</p>
+      <h2>Explain the product before the solution.</h2>
+      <p class="copy">Investors evaluating startups receive information from multiple disconnected places—before any single decision is made.</p>
+      <ul class="list" style="margin-top:1.25rem">
+        <li>Company profiles, emails, financial documents, NDAs, calls, WhatsApp, Google Drive</li>
+      </ul>
+      <p class="section-narrative" style="margin-top:1rem">Because everything happens across different tools:</p>
+      <ul class="list">
+        <li>Information gets lost</li>
+        <li>Trust decreases</li>
+        <li>Decisions become slower</li>
+        <li>Founders repeatedly answer the same questions</li>
+      </ul>
+      <div class="state-compare">
+        <div>
+          <p class="state-compare__head">Current state</p>
+          <div class="flow-ladder" aria-label="Disconnected fundraising workflow">
+            <div class="flow-ladder__step">Company Profile</div>
+            <span class="flow-ladder__sep" aria-hidden="true">↓</span>
+            <div class="flow-ladder__step">Email</div>
+            <span class="flow-ladder__sep" aria-hidden="true">↓</span>
+            <div class="flow-ladder__step">Financials</div>
+            <span class="flow-ladder__sep" aria-hidden="true">↓</span>
+            <div class="flow-ladder__step">NDA</div>
+            <span class="flow-ladder__sep" aria-hidden="true">↓</span>
+            <div class="flow-ladder__step">Calls</div>
+            <span class="flow-ladder__sep" aria-hidden="true">↓</span>
+            <div class="flow-ladder__step">Decision</div>
+          </div>
+          <p class="flow-ladder__note">Everything disconnected</p>
         </div>
-        <figcaption class="case-diagram-caption">Users repeatedly switched contexts, creating friction and loss of momentum.</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <section class="turning">
-    <div class="wrap reveal">
-      <p class="eyebrow">Turning Point</p>
-      <h3 class="section-title">We structured deals first—adoption stayed low.</h3>
-      <p class="turning-quote">The issue wasn’t the system. It was where the system starts.</p>
-      <p class="copy" style="margin-top:1rem">Deal room logic was sound, but users weren’t entering naturally. We had optimized downstream mechanics and missed the upstream entry point.</p>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap split reveal">
-      <div>
-        <p class="eyebrow">Key Insight</p>
-        <p class="insight">Users don’t start with deals. They start with companies.</p>
-        <p class="section-narrative" style="margin-top:0.75rem">Intent forms on the company profile—not inside the deal room.</p>
-      </div>
-      <div>
-        <ul class="list">
-          <li>Company profile is where intent actually forms</li>
-          <li>Deal creation had no natural trigger there</li>
-          <li>Without a bridge, structure goes unused</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap split reveal">
-      <div>
-        <p class="eyebrow">Entry Point Solution</p>
-        <h3 class="section-title">Deal Room creation lives where intent already exists.</h3>
-        <p class="section-narrative">We placed deal room creation directly at the moment of user intent.</p>
-        <div class="entry-block">
-          <ul>
-            <li><strong>Create Deal Room</strong> on company profile when no room exists.</li>
-            <li><strong>Switch to Deal Room</strong> when a room is already active.</li>
-            <li><strong>Auto-selected company context</strong> at creation—less setup friction.</li>
-          </ul>
+        <div>
+          <p class="state-compare__head state-compare__head--future">Future state</p>
+          <div class="flow-ladder" aria-label="Guided Deal Room workflow">
+            <div class="flow-ladder__step">Company Profile</div>
+            <span class="flow-ladder__sep" aria-hidden="true">↓</span>
+            <div class="flow-ladder__step">Deal Room</div>
+            <span class="flow-ladder__sep" aria-hidden="true">↓</span>
+            <div class="flow-ladder__step">NDA</div>
+            <span class="flow-ladder__sep" aria-hidden="true">↓</span>
+            <div class="flow-ladder__step">Documents</div>
+            <span class="flow-ladder__sep" aria-hidden="true">↓</span>
+            <div class="flow-ladder__step">Discussions</div>
+            <span class="flow-ladder__sep" aria-hidden="true">↓</span>
+            <div class="flow-ladder__step">Investment Decision</div>
+          </div>
+          <p class="flow-ladder__note">One guided workflow</p>
         </div>
-        <p class="section-outcome">Enabled faster transition from discovery to execution</p>
-      </div>
-      <div class="entry-point-shot">
-        <img
-          src="./assets/company-profile-cta.svg"
-          alt="Company profile screen with Deal Room creation call-to-action"
-          width="4788"
-          height="1449"
-          loading="lazy"
-          decoding="async"
-        >
       </div>
     </div>
   </section>
 
-  <section>
+  <section id="business-goals">
     <div class="wrap reveal">
-      <p class="eyebrow">First-Time Experience</p>
-      <h3 class="section-title">A first-run modal set expectations before users entered the flow.</h3>
-      <p class="section-narrative">Users saw what the Deal Room is, why it matters, and what happens next—before committing to setup.</p>
-      <p class="section-outcome">Improved clarity during deal creation</p>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap reveal">
-      <p class="eyebrow">System Design</p>
-      <h3 class="section-title">Seven levers that turned structure into adoption.</h3>
-      <p class="section-narrative">Each surface reinforced momentum, clarity, and the right action at the right moment.</p>
-      <div class="cards">
-        <article class="card"><h4>Deal setup flow</h4><p>Guided setup removed ambiguous first actions.</p></article>
-        <article class="card"><h4>Readiness system</h4><p>Indicators showed deal maturity and next priorities.</p></article>
-        <article class="card"><h4>NDA gating</h4><p>Access aligned confidentiality with deal progression.</p></article>
-        <article class="card"><h4>Progressive disclosure</h4><p>Complexity appeared only when context required it.</p></article>
-        <article class="card"><h4>Guided journey</h4><p>Step cues reduced dead-ends on the path to commitment.</p></article>
-        <article class="card"><h4>Timeline urgency</h4><p>Time signals pushed momentum without dark patterns.</p></article>
-        <article class="card"><h4>Visibility dashboard</h4><p>Cross-role view kept teams aligned on readiness.</p></article>
+      <p class="eyebrow">Business Goals</p>
+      <h3 class="section-title">What success looked like for the business.</h3>
+      <p class="section-narrative">Each goal mapped to a measurable funnel step—not a feature checklist.</p>
+      <div class="cards cards--goals">
+        <article class="card"><h4>Increase Deal Creation</h4><p>More rooms started from real investor and founder intent.</p></article>
+        <article class="card"><h4>Increase Investor Engagement</h4><p>More meaningful actions inside the product—not passive browsing.</p></article>
+        <article class="card"><h4>Reduce Founder Effort</h4><p>Less manual coordination across email, drive, and calls.</p></article>
+        <article class="card"><h4>Improve Trust</h4><p>Confidentiality, permissions, and access feel reliable in-product.</p></article>
+        <article class="card"><h4>Increase NDA Completion</h4><p>Fewer drop-offs at the confidentiality gate.</p></article>
+        <article class="card"><h4>Reduce Drop-offs</h4><p>Fewer dead ends mid-flow and fewer abandoned deals.</p></article>
       </div>
-      <p class="section-outcome">Eliminated unnecessary setup steps</p>
     </div>
   </section>
 
-  <section>
+  <section id="discovery">
     <div class="wrap reveal">
-      <p class="eyebrow">Design Flow</p>
-      <h3 class="section-title">Core surfaces in execution sequence.</h3>
-      <p class="section-narrative">From setup to access control to operations—each step supports the next without breaking context.</p>
+      <p class="eyebrow">Discovery</p>
+      <h3 class="section-title">How fundraising actually happened before structure.</h3>
+      <p class="section-narrative">We mapped the founder journey to find where momentum broke—not where features were missing.</p>
+      <div class="flow-grid" style="max-width:36rem;margin-inline:auto">
+        <div class="step"><h4>Founder creates company</h4></div>
+        <div class="step"><h4>Shares documents manually</h4></div>
+        <div class="step"><h4>Investor asks questions</h4></div>
+        <div class="step"><h4>Founder searches for files</h4></div>
+        <div class="step"><h4>NDA sent separately</h4></div>
+        <div class="step"><h4>More emails</h4></div>
+        <div class="step"><h4>Calls</h4></div>
+        <div class="step"><h4>Decision delayed</h4></div>
+      </div>
+      <p class="section-outcome" style="text-align:center;margin-top:1.5rem">Momentum broke outside the product—not because of lack of interest</p>
+    </div>
+  </section>
+
+  <section id="research">
+    <div class="wrap reveal">
+      <p class="eyebrow">Research</p>
+      <h3 class="section-title">Grounding the problem before designing.</h3>
+      <p class="section-narrative">We paired qualitative interviews with workflow audits—not assumption-led UX.</p>
+      <div class="cards cards--research">
+        <article class="card"><h4>Stakeholder Interviews</h4><p>Aligned product, legal, and GTM on deal-room constraints.</p></article>
+        <article class="card"><h4>Founder Conversations</h4><p>Understood coordination pain and repeated Q&amp;A loops.</p></article>
+        <article class="card"><h4>Investor Conversations</h4><p>Mapped trust signals and evaluation behavior under time pressure.</p></article>
+        <article class="card"><h4>Product Walkthroughs</h4><p>Audited existing surfaces for dead ends and context loss.</p></article>
+        <article class="card"><h4>Competitive Analysis</h4><p>Compared data-room and CRM patterns in fintech workflows.</p></article>
+        <article class="card"><h4>Internal Workflow Reviews</h4><p>Validated handoffs between discovery, legal, and deal ops.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="problems">
+    <div class="wrap reveal">
+      <p class="eyebrow">Primary Problems</p>
+      <h3 class="section-title">Three blockers that shaped every design decision.</h3>
+      <p class="section-narrative">Each problem maps to a solution pillar—not a screen inventory.</p>
+
+      <div class="problem-block">
+        <div class="split">
+          <div>
+            <p class="solution-tag">Problem 1</p>
+            <h3 class="section-title" style="max-width:none">No structured deal journey</h3>
+            <p class="section-narrative">Founders uploaded information randomly. There was no guidance. Investors received inconsistent information.</p>
+            <ul class="list">
+              <li>No shared structure for participants</li>
+              <li>Deal work split across disconnected surfaces</li>
+              <li>No bridge from discovery intent to commitment</li>
+            </ul>
+            <p class="section-outcome">Before: messy workflow → After: guided workflow</p>
+          </div>
+          <figure class="case-diagram">
+            <p class="case-diagram-label">Before — fragmented paths across the product</p>
+            <div class="case-diagram-stage">
+              <img
+                src="./assets/deal-chaos-current-workflow.png"
+                alt="Deal chaos: fragmented paths between deal inbox, company profiles, data room, and dead ends"
+                width="1024"
+                height="512"
+                loading="lazy"
+                decoding="async"
+              >
+              <span class="case-diagram-tag case-diagram-tag--loops">Repeated loops</span>
+              <span class="case-diagram-tag case-diagram-tag--context">Context switching</span>
+              <span class="case-diagram-tag case-diagram-tag--manual">Manual tracking</span>
+            </div>
+            <figcaption class="case-diagram-caption">Users repeatedly switched contexts, creating friction and loss of momentum.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="problem-block">
+        <div class="split">
+          <div>
+            <p class="solution-tag">Problem 2</p>
+            <h3 class="section-title" style="max-width:none">Trust happened outside the platform</h3>
+            <p class="section-narrative">NDA, document sharing, and permissions lived in email and drive—investors continuously switched platforms.</p>
+            <div class="state-compare" style="margin-top:1rem;grid-template-columns:1fr">
+              <div>
+                <p class="state-compare__head">Before</p>
+                <div class="flow-ladder">
+                  <div class="flow-ladder__step">Email</div>
+                  <span class="flow-ladder__sep">↓</span>
+                  <div class="flow-ladder__step">NDA</div>
+                  <span class="flow-ladder__sep">↓</span>
+                  <div class="flow-ladder__step">Drive</div>
+                  <span class="flow-ladder__sep">↓</span>
+                  <div class="flow-ladder__step">Platform</div>
+                  <span class="flow-ladder__sep">↓</span>
+                  <div class="flow-ladder__step">Call</div>
+                </div>
+              </div>
+              <div>
+                <p class="state-compare__head state-compare__head--future">After</p>
+                <div class="flow-ladder">
+                  <div class="flow-ladder__step">Everything inside Deal Room</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <figure class="case-diagram">
+            <p class="case-diagram-label">After — NDA and access in one contextual flow</p>
+            <div class="case-diagram-stage">
+              <img
+                src="./assets/nda-gate-review-sign.png"
+                alt="Deal Room gated state with Sign NDA prompt over blurred room content"
+                width="640"
+                height="400"
+                loading="lazy"
+                decoding="async"
+                style="padding:12px"
+              >
+            </div>
+            <figcaption class="case-diagram-caption">Trust built progressively—obligations shown before access unlocks.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="problem-block">
+        <div class="split">
+          <div>
+            <p class="solution-tag">Problem 3</p>
+            <h3 class="section-title" style="max-width:none">No visibility into deal progress</h3>
+            <p class="section-narrative">Founders couldn't answer: Who viewed? Who signed the NDA? Who downloaded files? Who showed investment interest?</p>
+            <ul class="list">
+              <li>Engagement was guesswork</li>
+              <li>No readiness signals for next actions</li>
+              <li>Teams misaligned on deal maturity</li>
+            </ul>
+            <p class="section-outcome">Old dashboard → New progress dashboard</p>
+          </div>
+          <figure class="case-diagram">
+            <p class="case-diagram-label">After — unified progress and readiness view</p>
+            <div class="case-diagram-stage">
+              <img
+                src="./assets/deal-room-dashboard-overview.png"
+                alt="Deal Room dashboard overview with company summary and deal activity"
+                width="1024"
+                height="595"
+                loading="lazy"
+                decoding="async"
+                style="padding:12px"
+              >
+            </div>
+            <figcaption class="case-diagram-caption">Founders track engagement without chasing investors manually.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="principles">
+    <div class="wrap reveal">
+      <p class="eyebrow">Design Principles</p>
+      <h3 class="section-title">How we aligned on trade-offs before pixels.</h3>
+      <div class="cards cards--principles">
+        <article class="card"><h4>Reduce Cognitive Load</h4><p>One decision at a time—complexity only when context requires it.</p></article>
+        <article class="card"><h4>Guide Step-by-Step</h4><p>Linear setup with clear next actions—not blank-slate anxiety.</p></article>
+        <article class="card"><h4>Build Trust Progressively</h4><p>NDA and permissions surfaced before sensitive access.</p></article>
+        <article class="card"><h4>Keep Investors Focused</h4><p>Deal context stays intact—no tab-hopping to evaluate.</p></article>
+        <article class="card"><h4>Surface Actions at the Right Time</h4><p>CTAs appear where intent already exists.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="solution">
+    <div class="wrap reveal">
+      <p class="eyebrow">Solution</p>
+      <h3 class="section-title">Three problems, three design responses.</h3>
+      <p class="section-narrative">For every screen: why it exists, what user problem it solves, and how it supports the business.</p>
+
+      <div class="problem-block">
+        <div class="split">
+          <div>
+            <p class="solution-tag">Response to Problem 1 · Structured journey</p>
+            <h3 class="section-title" style="max-width:none">Deal Room creation lives where intent already exists.</h3>
+            <p class="section-narrative"><strong>Why:</strong> Users don't start with deals—they start with companies.</p>
+            <p class="section-narrative"><strong>User problem:</strong> No natural trigger to begin a structured deal.</p>
+            <p class="section-narrative"><strong>Business:</strong> Increase deal creation from profiles.</p>
+            <div class="entry-block">
+              <ul>
+                <li><strong>Create Deal Room</strong> on company profile when no room exists.</li>
+                <li><strong>Switch to Deal Room</strong> when a room is already active.</li>
+                <li><strong>Auto-selected company context</strong> at creation—less setup friction.</li>
+              </ul>
+            </div>
+            <p class="section-outcome">First-run modal set expectations before setup began</p>
+          </div>
+          <div class="entry-point-shot">
+            <img
+              src="./assets/company-profile-cta.svg"
+              alt="Company profile screen with Deal Room creation call-to-action"
+              width="4788"
+              height="1449"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+        </div>
+      </div>
+
       <div class="flow-grid">
         <div class="step">
-          <h4>Deal builder</h4>
+          <h4>Deal builder · Final design</h4>
           <p class="step-narrative">We simplified deal setup into a clear, linear flow with minimal backtracking.</p>
           <div class="flow-visual">
             <img
@@ -753,8 +1057,8 @@
           <p class="step-outcome">Improved clarity during deal creation</p>
         </div>
         <div class="step">
-          <h4>NDA flow</h4>
-          <p class="step-narrative">We reduced NDA friction to a single, contextual step triggered only when access is needed.</p>
+          <h4>NDA flow · Response to Problem 2</h4>
+          <p class="step-narrative">We reduced NDA friction to a contextual flow triggered only when access is needed—keeping trust in-product.</p>
           <div class="nda-flow" role="region" aria-label="NDA gating flow, four steps">
             <div class="nda-flow__row">
               <article class="nda-flow__step">
@@ -829,8 +1133,8 @@
           <p class="step-outcome">Minimized friction in accessing sensitive data</p>
         </div>
         <div class="step">
-          <h4>Dashboard</h4>
-          <p class="step-narrative">The dashboard consolidates all deal activity into a single, actionable workspace.</p>
+          <h4>Dashboard · Response to Problem 3</h4>
+          <p class="step-narrative">The dashboard consolidates deal activity into a single workspace—who viewed, signed, and showed interest.</p>
           <div class="dashboard" role="region" aria-label="Deal Room dashboard as a unified workspace">
             <div class="dashboard__mosaic">
               <figure class="dashboard__tile dashboard__tile--overview">
@@ -897,64 +1201,137 @@
     </div>
   </section>
 
-  <section class="impact">
+  <section id="iterations">
     <div class="wrap reveal">
-      <p class="eyebrow">Impact</p>
-      <h3 class="section-title">Measured outcomes after entry-point redesign</h3>
-      <p class="section-narrative">Shifting the entry point changed behavior—not just feature awareness.</p>
+      <p class="eyebrow">Iterations</p>
+      <h3 class="section-title">Design thinking—not just polished screens.</h3>
+      <p class="section-narrative">Each major feature moved through hypothesis, exploration, feedback, and refinement.</p>
+
+      <div class="problem-block">
+        <p class="solution-tag">Entry point on company profile</p>
+        <div class="iteration-chain" aria-label="Iteration process">
+          <span>Problem</span><span class="iteration-chain__sep">→</span>
+          <span>Hypothesis</span><span class="iteration-chain__sep">→</span>
+          <span>Sketches</span><span class="iteration-chain__sep">→</span>
+          <span>Wireframes</span><span class="iteration-chain__sep">→</span>
+          <span>User feedback</span><span class="iteration-chain__sep">→</span>
+          <span>Changes</span><span class="iteration-chain__sep">→</span>
+          <span>Final UI</span>
+        </div>
+        <p class="step-narrative"><strong>Problem:</strong> Deal creation was buried—users never reached structured flow.</p>
+        <p class="step-narrative"><strong>Hypothesis:</strong> Placing CTA on the company profile would lift adoption without adding steps.</p>
+        <p class="step-narrative"><strong>Change:</strong> Discarded isolated nav entry; anchored creation to profile intent.</p>
+        <p class="step-outcome">+32% deal creation from company profiles</p>
+      </div>
+
+      <div class="problem-block">
+        <p class="solution-tag">NDA gating</p>
+        <div class="iteration-chain">
+          <span>Problem</span><span class="iteration-chain__sep">→</span>
+          <span>Hypothesis</span><span class="iteration-chain__sep">→</span>
+          <span>Wireframes</span><span class="iteration-chain__sep">→</span>
+          <span>User feedback</span><span class="iteration-chain__sep">→</span>
+          <span>Final UI</span>
+        </div>
+        <p class="step-narrative"><strong>Problem:</strong> Legal steps happened off-platform—trust eroded at the gate.</p>
+        <p class="step-narrative"><strong>Change:</strong> Collapsed multi-step legal maze into four in-context screens with preview before sign.</p>
+        <p class="step-outcome">Higher NDA completion; fewer support escalations</p>
+      </div>
+
+      <div class="problem-block">
+        <p class="solution-tag">Progress dashboard</p>
+        <div class="iteration-chain">
+          <span>Problem</span><span class="iteration-chain__sep">→</span>
+          <span>Hypothesis</span><span class="iteration-chain__sep">→</span>
+          <span>Wireframes</span><span class="iteration-chain__sep">→</span>
+          <span>Final UI</span>
+        </div>
+        <p class="step-narrative"><strong>Problem:</strong> Founders couldn't see engagement—everything was guesswork.</p>
+        <p class="step-narrative"><strong>Change:</strong> Readiness signals and role-based views replaced static status lists.</p>
+        <p class="step-outcome">Founders prioritized follow-ups with evidence, not intuition</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="final-experience">
+    <div class="wrap reveal">
+      <p class="eyebrow">Final Experience</p>
+      <h3 class="section-title">End-to-end flow—from profile to investment discussion.</h3>
+      <p class="section-narrative">One continuous workflow inside Deal Room.</p>
+      <div class="e2e-flow" role="list" aria-label="End-to-end Deal Room flow">
+        <span class="e2e-flow__step" role="listitem">Company Profile</span>
+        <span class="e2e-flow__sep" aria-hidden="true">→</span>
+        <span class="e2e-flow__step" role="listitem">Create Deal Room</span>
+        <span class="e2e-flow__sep" aria-hidden="true">→</span>
+        <span class="e2e-flow__step" role="listitem">Complete Setup</span>
+        <span class="e2e-flow__sep" aria-hidden="true">→</span>
+        <span class="e2e-flow__step" role="listitem">Publish</span>
+        <span class="e2e-flow__sep" aria-hidden="true">→</span>
+        <span class="e2e-flow__step" role="listitem">Investor Invitation</span>
+        <span class="e2e-flow__sep" aria-hidden="true">→</span>
+        <span class="e2e-flow__step" role="listitem">Sign NDA</span>
+        <span class="e2e-flow__sep" aria-hidden="true">→</span>
+        <span class="e2e-flow__step" role="listitem">Access Granted</span>
+        <span class="e2e-flow__sep" aria-hidden="true">→</span>
+        <span class="e2e-flow__step" role="listitem">Review Documents</span>
+        <span class="e2e-flow__sep" aria-hidden="true">→</span>
+        <span class="e2e-flow__step" role="listitem">Show Interest</span>
+        <span class="e2e-flow__sep" aria-hidden="true">→</span>
+        <span class="e2e-flow__step" role="listitem">Track Progress</span>
+        <span class="e2e-flow__sep" aria-hidden="true">→</span>
+        <span class="e2e-flow__step" role="listitem">Investment Discussion</span>
+      </div>
+      <div class="flow-visual" style="margin-top:2rem">
+        <img
+          src="./assets/deal-room-flow-ui.png"
+          alt="Deal Room end-to-end setup and dashboard experience"
+          width="1024"
+          height="598"
+          loading="lazy"
+          decoding="async"
+        >
+      </div>
+    </div>
+  </section>
+
+  <section class="impact" id="outcome">
+    <div class="wrap reveal">
+      <p class="eyebrow">Outcome</p>
+      <h3 class="section-title">Impact on behavior—not just feature awareness.</h3>
+      <p class="section-narrative">Structured workflow, improved confidence, and clearer engagement signals.</p>
       <div class="impact-grid">
         <article class="impact-stat"><div class="impact-num" data-target="32">0%</div><div class="impact-label">Deal creation from company profiles</div></article>
         <article class="impact-stat"><div class="impact-num" data-target="27">0%</div><div class="impact-label">Discovery-to-action friction</div></article>
         <article class="impact-stat"><div class="impact-num" data-target="41">0%</div><div class="impact-label">Feature adoption</div></article>
       </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap split reveal">
-      <div>
-        <p class="eyebrow">What Didn’t Work</p>
-        <ul class="quote-list">
-          <li>Isolated entry points buried adoption</li>
-          <li>Assumption-led UX missed real initiation behavior</li>
-          <li>Feature-first framing diluted execution value</li>
-        </ul>
-      </div>
-      <div>
-        <p class="eyebrow">Learnings</p>
-        <ul class="quote-list">
-          <li>Entry points define adoption.</li>
-          <li>Users act where intent exists.</li>
-          <li>Structure without access is useless.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap split reveal">
-      <div>
-        <p class="eyebrow">Role</p>
-        <p class="copy">Owned UX strategy and execution for Deal Room behavior—entry-point architecture, setup flow definition, and interaction alignment with PM and engineering.</p>
-      </div>
-      <div>
-        <p class="eyebrow">Delivery Scope</p>
-        <p class="copy">Defined cross-surface behavior contracts, state logic, progressive disclosure rules, and post-launch adoption metrics.</p>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap reveal">
-      <p class="eyebrow">Outcome</p>
-      <h3 class="section-title">What the system delivered</h3>
-      <ul class="list">
-        <li>Unified fragmented workflows into a single system</li>
-        <li>Reduced context switching across surfaces</li>
-        <li>Simplified deal room creation flow</li>
-        <li>Minimized NDA friction during access</li>
-        <li>Improved overall operational clarity</li>
+      <ul class="list" style="margin-top:2rem">
+        <li>Structured fundraising workflow inside one system</li>
+        <li>Improved investor confidence through in-product NDA and access</li>
+        <li>Reduced manual coordination across email and drive</li>
+        <li>Higher visibility into engagement and deal readiness</li>
+        <li>Better decision-making experience for founders and investors</li>
       </ul>
+    </div>
+  </section>
+
+  <section id="learnings">
+    <div class="wrap split reveal">
+      <div>
+        <p class="eyebrow">Key Learnings</p>
+        <ul class="quote-list">
+          <li>Designing for trust means showing obligations before access—not after.</li>
+          <li>Business goals (NDA completion, deal creation) must map to user moments.</li>
+          <li>Enterprise workflows need progressive disclosure, not feature dumps.</li>
+        </ul>
+      </div>
+      <div>
+        <p class="eyebrow">What I'd apply next time</p>
+        <ul class="quote-list">
+          <li>Entry points define adoption more than downstream polish.</li>
+          <li>Structure without access is useless—trust and visibility ship together.</li>
+          <li>Products that scale need shared mental models across founder and investor roles.</li>
+        </ul>
+      </div>
     </div>
   </section>
 
