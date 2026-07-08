@@ -2,7 +2,19 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Systematic Agent: npm install",
+      "label": "Loading Experience: build",
+      "type": "shell",
+      "command": "bash scripts/build.sh",
+      "options": {
+        "cwd": "${workspaceFolder}/loading-experience"
+      },
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
       "type": "shell",
       "command": "bash scripts/install-deps.sh",
       "options": {
