@@ -157,27 +157,30 @@
     margin-bottom: 2rem;
     max-width: 12em;
   }
+  .hero-h1__line {
+    display: inline;
+  }
   .hero-h1__word {
     display: inline;
-    color: rgba(107, 101, 96, 0.36);
+    color: rgba(107, 101, 96, 0.38);
   }
   .hero-h1__word--accent em {
     font-style: italic;
     color: inherit;
   }
   body.landing-ready .hero-h1__word {
-    animation: heroWordRevealInk 0.52s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    animation-delay: calc(0.2s + var(--word-i, 0) * 0.085s);
+    animation: heroWordRevealInk 0.58s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: calc(0.28s + var(--word-i, 0) * 0.1s);
   }
   body.landing-ready .hero-h1__word--accent {
     animation-name: heroWordRevealAccent;
   }
   @keyframes heroWordRevealInk {
-    from { color: rgba(107, 101, 96, 0.36); }
+    from { color: rgba(107, 101, 96, 0.38); }
     to { color: var(--ink); }
   }
   @keyframes heroWordRevealAccent {
-    from { color: rgba(107, 101, 96, 0.36); }
+    from { color: rgba(107, 101, 96, 0.38); }
     to { color: var(--accent); }
   }
   .hero-sub {
@@ -191,7 +194,7 @@
     filter: blur(4px);
   }
   body.landing-ready .hero-sub {
-    animation: blurReveal 1.05s 1.38s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: blurReveal 1.05s 1.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
   .hero-ctas {
     display: flex;
@@ -202,7 +205,7 @@
     filter: blur(3px);
   }
   body.landing-ready .hero-ctas {
-    animation: blurReveal 0.95s 1.56s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: blurReveal 0.95s 1.78s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
 
   @media (min-width: 1024px) {
@@ -210,16 +213,28 @@
       max-width: 50%;
       width: 50%;
       grid-column: 1;
+      padding-right: 1.5rem;
+    }
+    .hero-tag {
+      letter-spacing: 0.14em;
+      font-size: 0.62rem;
+      white-space: nowrap;
+      margin-bottom: 2.5rem;
     }
     .hero-h1 {
-      font-size: clamp(3.2rem, 4.6vw, 5.35rem);
-      line-height: 1.06;
-      letter-spacing: -0.035em;
+      font-size: clamp(3.6rem, 5.2vw, 6.25rem);
+      font-weight: 400;
+      line-height: 0.98;
+      letter-spacing: -0.04em;
       max-width: none;
-      margin-bottom: 2.25rem;
+      margin-bottom: 2.5rem;
+    }
+    .hero-h1__line {
+      display: block;
     }
     .hero-sub {
-      max-width: 92%;
+      max-width: 88%;
+      font-size: 1.08rem;
     }
   }
 
@@ -431,7 +446,8 @@
       animation: none !important;
       color: var(--ink);
     }
-    .hero-h1__word--accent {
+    .hero-h1__word--accent,
+    .hero-h1__word--accent em {
       color: var(--accent);
     }
     body.landing-ready .hero { animation: none; opacity: 1; filter: none; }
@@ -1192,15 +1208,21 @@
   <div class="hero-left">
     <p class="hero-tag">AI Products • Fintech • Enterprise SaaS • Design Systems</p>
     <h1 class="hero-h1" aria-label="Senior Product Designer focused on Enterprise SaaS, AI, and Fintech.">
-      <span class="hero-h1__word" style="--word-i:0">Senior</span>
-      <span class="hero-h1__word" style="--word-i:1">Product</span>
-      <span class="hero-h1__word" style="--word-i:2">Designer</span>
-      <span class="hero-h1__word" style="--word-i:3">focused</span>
-      <span class="hero-h1__word" style="--word-i:4">on</span>
-      <span class="hero-h1__word hero-h1__word--accent" style="--word-i:5"><em>Enterprise SaaS</em>,</span>
-      <span class="hero-h1__word hero-h1__word--accent" style="--word-i:6"><em>AI</em>,</span>
-      <span class="hero-h1__word" style="--word-i:7">and</span>
-      <span class="hero-h1__word hero-h1__word--accent" style="--word-i:8"><em>Fintech</em>.</span>
+      <span class="hero-h1__line">
+        <span class="hero-h1__word" style="--word-i:0">Senior</span>
+        <span class="hero-h1__word" style="--word-i:1">Product</span>
+        <span class="hero-h1__word" style="--word-i:2">Designer</span>
+      </span>
+      <span class="hero-h1__line">
+        <span class="hero-h1__word" style="--word-i:3">focused</span>
+        <span class="hero-h1__word" style="--word-i:4">on</span>
+      </span>
+      <span class="hero-h1__line">
+        <span class="hero-h1__word hero-h1__word--accent" style="--word-i:5"><em>Enterprise SaaS</em>,</span>
+        <span class="hero-h1__word hero-h1__word--accent" style="--word-i:6"><em>AI</em>,</span>
+        <span class="hero-h1__word" style="--word-i:7">and</span>
+        <span class="hero-h1__word hero-h1__word--accent" style="--word-i:8"><em>Fintech</em>.</span>
+      </span>
     </h1>
     <p class="hero-sub">Over the past 5+ years, I've partnered with product managers and engineers to design scalable products that simplify complex workflows into intuitive experiences.</p>
     <div class="hero-ctas">
