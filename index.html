@@ -156,15 +156,29 @@
     letter-spacing: -0.03em;
     margin-bottom: 2rem;
     max-width: 12em;
-    opacity: 0;
-    filter: blur(6px);
   }
-  body.landing-ready .hero-h1 {
-    animation: blurReveal 1.15s 0.22s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  .hero-h1__word {
+    display: inline;
+    color: rgba(107, 101, 96, 0.36);
   }
-  .hero-h1 em {
+  .hero-h1__word--accent em {
     font-style: italic;
-    color: var(--accent);
+    color: inherit;
+  }
+  body.landing-ready .hero-h1__word {
+    animation: heroWordRevealInk 0.52s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: calc(0.2s + var(--word-i, 0) * 0.085s);
+  }
+  body.landing-ready .hero-h1__word--accent {
+    animation-name: heroWordRevealAccent;
+  }
+  @keyframes heroWordRevealInk {
+    from { color: rgba(107, 101, 96, 0.36); }
+    to { color: var(--ink); }
+  }
+  @keyframes heroWordRevealAccent {
+    from { color: rgba(107, 101, 96, 0.36); }
+    to { color: var(--accent); }
   }
   .hero-sub {
     font-size: 1.05rem;
@@ -177,7 +191,7 @@
     filter: blur(4px);
   }
   body.landing-ready .hero-sub {
-    animation: blurReveal 1.05s 0.38s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: blurReveal 1.05s 1.38s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
   .hero-ctas {
     display: flex;
@@ -188,8 +202,27 @@
     filter: blur(3px);
   }
   body.landing-ready .hero-ctas {
-    animation: blurReveal 0.95s 0.52s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: blurReveal 0.95s 1.56s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
+
+  @media (min-width: 1024px) {
+    .hero-left {
+      max-width: 50%;
+      width: 50%;
+      grid-column: 1;
+    }
+    .hero-h1 {
+      font-size: clamp(3.2rem, 4.6vw, 5.35rem);
+      line-height: 1.06;
+      letter-spacing: -0.035em;
+      max-width: none;
+      margin-bottom: 2.25rem;
+    }
+    .hero-sub {
+      max-width: 92%;
+    }
+  }
+
   .btn-primary {
     background: var(--ink);
     color: var(--paper);
@@ -386,7 +419,6 @@
   }
   @media (prefers-reduced-motion: reduce) {
     body.landing-ready .hero-tag,
-    body.landing-ready .hero-h1,
     body.landing-ready .hero-sub,
     body.landing-ready .hero-ctas,
     body.landing-ready .hero-gradient-wrap {
@@ -394,6 +426,13 @@
       opacity: 1;
       filter: none;
       transform: none;
+    }
+    .hero-h1__word {
+      animation: none !important;
+      color: var(--ink);
+    }
+    .hero-h1__word--accent {
+      color: var(--accent);
     }
     body.landing-ready .hero { animation: none; opacity: 1; filter: none; }
     .hero-gradient__blob { animation: none !important; }
@@ -1151,9 +1190,19 @@
     </div>
   </div>
   <div class="hero-left">
-    <p class="hero-tag">5+ Years • AI Products • Fintech</p>
-    <h1 class="hero-h1">Turning enterprise complexity into intuitive products.</h1>
-    <p class="hero-sub">I help product teams transform fragmented workflows into intuitive, scalable experiences through thoughtful product design, systems thinking, and close collaboration with engineering.</p>
+    <p class="hero-tag">AI Products • Fintech • Enterprise SaaS • Design Systems</p>
+    <h1 class="hero-h1" aria-label="Senior Product Designer focused on Enterprise SaaS, AI, and Fintech.">
+      <span class="hero-h1__word" style="--word-i:0">Senior</span>
+      <span class="hero-h1__word" style="--word-i:1">Product</span>
+      <span class="hero-h1__word" style="--word-i:2">Designer</span>
+      <span class="hero-h1__word" style="--word-i:3">focused</span>
+      <span class="hero-h1__word" style="--word-i:4">on</span>
+      <span class="hero-h1__word hero-h1__word--accent" style="--word-i:5"><em>Enterprise SaaS</em>,</span>
+      <span class="hero-h1__word hero-h1__word--accent" style="--word-i:6"><em>AI</em>,</span>
+      <span class="hero-h1__word" style="--word-i:7">and</span>
+      <span class="hero-h1__word hero-h1__word--accent" style="--word-i:8"><em>Fintech</em>.</span>
+    </h1>
+    <p class="hero-sub">Over the past 5+ years, I've partnered with product managers and engineers to design scalable products that simplify complex workflows into intuitive experiences.</p>
     <div class="hero-ctas">
       <a href="#work" class="btn-primary"><span>Explore Work</span></a>
     </div>
