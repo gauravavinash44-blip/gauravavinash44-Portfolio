@@ -238,6 +238,26 @@
     }
   }
 
+  @media (min-width: 1280px) {
+    .hero-left {
+      max-width: min(62%, 46rem);
+      width: min(62%, 46rem);
+      padding-right: 0.75rem;
+    }
+    .hero-h1 {
+      font-size: clamp(3.5rem, 4.5vw, 6.2rem);
+      line-height: 1.06;
+      max-width: 100%;
+      text-wrap: balance;
+    }
+    .hero-h1__line {
+      display: inline;
+    }
+    .hero-sub {
+      max-width: 94%;
+    }
+  }
+
   .btn-primary {
     background: var(--ink);
     color: var(--paper);
