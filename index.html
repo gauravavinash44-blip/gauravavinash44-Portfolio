@@ -264,104 +264,82 @@
     transform: translateY(-1px);
   }
 
-  .hero-right {
-    display: none;
-  }
-  .hero-atmosphere-wrap {
+  .hero-gradient-wrap {
     position: absolute;
-    inset: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 48%;
     z-index: 0;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-right: 2rem;
     pointer-events: none;
     opacity: 0;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.5) 12%, black 28%, black 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.5) 12%, black 28%, black 100%);
   }
-  body.landing-ready .hero-atmosphere-wrap {
+  body.landing-ready .hero-gradient-wrap {
     animation: atmosphereReveal 1.4s 0.62s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
-  .hero-atmosphere {
-    position: relative;
-    width: min(100%, 420px);
-    height: min(460px, 56vh);
-    pointer-events: none;
-    will-change: transform;
-  }
-  .hero-atmosphere__grain {
+  .hero-gradient {
     position: absolute;
-    inset: -8%;
-    opacity: 0.035;
-    pointer-events: none;
-    background-image: radial-gradient(rgba(15, 14, 12, 0.45) 0.6px, transparent 0.6px);
-    background-size: 4px 4px;
-    mask-image: radial-gradient(ellipse 70% 70% at 52% 48%, black 10%, transparent 80%);
-    -webkit-mask-image: radial-gradient(ellipse 70% 70% at 52% 48%, black 10%, transparent 80%);
+    inset: -15% -10% -15% -5%;
   }
-  .hero-atmosphere__glow {
+  .hero-gradient::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 85% 75% at 72% 44%,
+      rgba(249, 232, 225, 0.42) 0%,
+      rgba(212, 65, 11, 0.08) 42%,
+      transparent 68%
+    );
+    pointer-events: none;
+  }
+  .hero-gradient__blob {
     position: absolute;
     border-radius: 50%;
-    pointer-events: none;
+    filter: blur(56px);
     will-change: transform;
   }
-  .hero-atmosphere__glow--1 {
-    width: 78%;
-    height: 78%;
-    top: 8%;
-    right: 4%;
-    background: radial-gradient(circle at 42% 40%, rgba(212, 65, 11, 0.1) 0%, transparent 68%);
+  .hero-gradient__blob--1 {
+    width: 64%;
+    height: 64%;
+    top: 16%;
+    right: 6%;
+    background: radial-gradient(circle, rgba(212, 65, 11, 0.32) 0%, rgba(212, 65, 11, 0.14) 42%, rgba(212, 65, 11, 0.04) 62%, transparent 76%);
+    animation: heroBlobDrift1 24s ease-in-out infinite;
   }
-  .hero-atmosphere__glow--2 {
-    width: 52%;
-    height: 52%;
-    bottom: 14%;
-    left: 12%;
-    background: radial-gradient(circle at 50% 50%, rgba(15, 14, 12, 0.06) 0%, transparent 72%);
-  }
-  .hero-atmosphere__orbital {
-    position: absolute;
-    top: 46%;
-    left: 54%;
-    border: 1px solid rgba(15, 14, 12, 0.18);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0.85;
-    will-change: transform;
-  }
-  .hero-atmosphere__orbital--1 {
-    width: 88%;
-    height: 88%;
-  }
-  .hero-atmosphere__orbital--2 {
+  .hero-gradient__blob--2 {
     width: 58%;
     height: 58%;
-    opacity: 0.65;
-    border-color: rgba(212, 65, 11, 0.22);
+    bottom: 10%;
+    right: 18%;
+    background: radial-gradient(circle, rgba(249, 232, 225, 1) 0%, rgba(249, 232, 225, 0.55) 40%, rgba(212, 65, 11, 0.08) 58%, transparent 72%);
+    animation: heroBlobDrift2 30s ease-in-out infinite;
   }
-  .hero-atmosphere__orbital--3 {
-    width: 34%;
-    height: 34%;
-    opacity: 0.5;
+  .hero-gradient__blob--3 {
+    width: 50%;
+    height: 50%;
+    top: 40%;
+    right: 0;
+    background: radial-gradient(circle, rgba(212, 65, 11, 0.22) 0%, rgba(212, 65, 11, 0.09) 46%, transparent 74%);
+    animation: heroBlobDrift3 20s ease-in-out infinite;
   }
-  .hero-atmosphere__line {
-    position: absolute;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(15, 14, 12, 0.2), transparent);
-    opacity: 0.7;
-    will-change: transform;
+  @keyframes heroBlobDrift1 {
+    0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+    35% { transform: translate3d(-9%, 7%, 0) scale(1.08); }
+    70% { transform: translate3d(6%, -5%, 0) scale(0.96); }
   }
-  .hero-atmosphere__line--1 {
-    width: 42%;
-    top: 38%;
-    right: 8%;
-    transform: rotate(-12deg);
+  @keyframes heroBlobDrift2 {
+    0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+    40% { transform: translate3d(8%, -8%, 0) scale(1.06); }
+    75% { transform: translate3d(-6%, 6%, 0) scale(0.97); }
   }
-  .hero-atmosphere__line--2 {
-    width: 28%;
-    bottom: 32%;
-    left: 18%;
-    transform: rotate(8deg);
-    opacity: 0.3;
+  @keyframes heroBlobDrift3 {
+    0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+    45% { transform: translate3d(-7%, -6%, 0) scale(1.07); }
+    80% { transform: translate3d(8%, 5%, 0) scale(0.95); }
   }
 
   /* Loading screen mount — styles live in loading-experience bundle */
@@ -411,13 +389,14 @@
     body.landing-ready .hero-h1,
     body.landing-ready .hero-sub,
     body.landing-ready .hero-ctas,
-    body.landing-ready .hero-atmosphere-wrap {
+    body.landing-ready .hero-gradient-wrap {
       animation: none;
       opacity: 1;
       filter: none;
       transform: none;
     }
     body.landing-ready .hero { animation: none; opacity: 1; filter: none; }
+    .hero-gradient__blob { animation: none !important; }
   }
 
   .marquee-strip {
@@ -1112,18 +1091,23 @@
     transform: scale(1);
   }
 
+  @media (max-width: 1100px) {
+    .hero-gradient-wrap { width: 46%; }
+  }
+
   @media (max-width: 900px) {
     .hero { grid-template-columns: 1fr; padding: 7.5rem 1.75rem 4.5rem; }
     .hero-left { max-width: none; }
-    .hero-atmosphere-wrap {
-      justify-content: center;
-      align-items: flex-end;
-      padding-right: 0;
-      padding-bottom: 2rem;
+    .hero-gradient-wrap {
+      width: 100%;
+      height: 38%;
+      top: auto;
+      bottom: 0;
+      -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 32%, black 100%);
+      mask-image: linear-gradient(180deg, transparent 0%, black 32%, black 100%);
     }
-    .hero-atmosphere {
-      width: min(72vw, 300px);
-      height: 240px;
+    .hero-gradient__blob {
+      animation: none !important;
     }
     section { padding: 5rem 1.5rem; }
     nav { padding: 1.2rem 1.5rem; }
@@ -1159,16 +1143,11 @@
 </nav>
 
 <section class="hero" id="hero">
-  <div class="hero-atmosphere-wrap" aria-hidden="true">
-    <div class="hero-atmosphere" id="heroAtmosphere">
-      <div class="hero-atmosphere__grain"></div>
-      <div class="hero-atmosphere__glow hero-atmosphere__glow--1"></div>
-      <div class="hero-atmosphere__glow hero-atmosphere__glow--2"></div>
-      <div class="hero-atmosphere__orbital hero-atmosphere__orbital--1"></div>
-      <div class="hero-atmosphere__orbital hero-atmosphere__orbital--2"></div>
-      <div class="hero-atmosphere__orbital hero-atmosphere__orbital--3"></div>
-      <div class="hero-atmosphere__line hero-atmosphere__line--1"></div>
-      <div class="hero-atmosphere__line hero-atmosphere__line--2"></div>
+  <div class="hero-gradient-wrap" aria-hidden="true">
+    <div class="hero-gradient">
+      <div class="hero-gradient__blob hero-gradient__blob--1"></div>
+      <div class="hero-gradient__blob hero-gradient__blob--2"></div>
+      <div class="hero-gradient__blob hero-gradient__blob--3"></div>
     </div>
   </div>
   <div class="hero-left">
@@ -1755,88 +1734,6 @@
       }
     });
   }
-
-  (function initHeroAtmosphereMotion() {
-    const hero = document.getElementById('hero');
-    const atmosphere = document.getElementById('heroAtmosphere');
-    if (!hero || !atmosphere) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    const hasPointer = !window.matchMedia('(hover: none), (pointer: coarse)').matches;
-    const orbitals = [
-      { el: atmosphere.querySelector('.hero-atmosphere__orbital--1'), speed: 9, depth: 18 },
-      { el: atmosphere.querySelector('.hero-atmosphere__orbital--2'), speed: -14, depth: 24 },
-      { el: atmosphere.querySelector('.hero-atmosphere__orbital--3'), speed: 18, depth: 14 },
-    ];
-    const glows = [
-      { el: atmosphere.querySelector('.hero-atmosphere__glow--1'), depth: 20 },
-      { el: atmosphere.querySelector('.hero-atmosphere__glow--2'), depth: 14 },
-    ];
-    const lines = [
-      { el: atmosphere.querySelector('.hero-atmosphere__line--1'), base: -12, depth: 28 },
-      { el: atmosphere.querySelector('.hero-atmosphere__line--2'), base: 8, depth: 18 },
-    ];
-
-    let targetX = 0;
-    let targetY = 0;
-    let currentX = 0;
-    let currentY = 0;
-    const start = performance.now();
-
-    if (hasPointer) {
-      hero.addEventListener('mousemove', (event) => {
-        const rect = hero.getBoundingClientRect();
-        targetX = (event.clientX - rect.left) / rect.width - 0.5;
-        targetY = (event.clientY - rect.top) / rect.height - 0.5;
-      });
-
-      hero.addEventListener('mouseleave', () => {
-        targetX = 0;
-        targetY = 0;
-      });
-    }
-
-    const animate = (now) => {
-      const t = (now - start) / 1000;
-
-      if (hasPointer) {
-        currentX += (targetX - currentX) * 0.07;
-        currentY += (targetY - currentY) * 0.07;
-      }
-
-      const stageX = currentX * 14 + Math.sin(t * 0.45) * 10;
-      const stageY = currentY * 14 + Math.cos(t * 0.38) * 12;
-      atmosphere.style.transform = `translate3d(${stageX}px, ${stageY}px, 0)`;
-
-      orbitals.forEach(({ el, speed, depth }) => {
-        if (!el) return;
-        const rot = t * speed;
-        const px = currentX * depth;
-        const py = currentY * depth;
-        el.style.transform = `translate(calc(-50% + ${px}px), calc(-50% + ${py}px)) rotate(${rot}deg)`;
-      });
-
-      glows.forEach(({ el, depth }, index) => {
-        if (!el) return;
-        const px = currentX * depth;
-        const py = currentY * depth + Math.sin(t * 0.42 + index * 1.4) * 8;
-        const scale = 1 + Math.sin(t * 0.35 + index) * 0.04;
-        el.style.transform = `translate3d(${px}px, ${py}px, 0) scale(${scale})`;
-      });
-
-      lines.forEach(({ el, base, depth }, index) => {
-        if (!el) return;
-        const px = currentX * depth;
-        const py = currentY * depth * 0.55;
-        const rot = base + Math.sin(t * 0.5 + index * 0.8) * 3.5;
-        el.style.transform = `rotate(${rot}deg) translate3d(${px}px, ${py}px, 0)`;
-      });
-
-      requestAnimationFrame(animate);
-    };
-
-    requestAnimationFrame(animate);
-  })();
 
 </script>
 <script src="./loading-experience/dist/loading-screen.js"></script>

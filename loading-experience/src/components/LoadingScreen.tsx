@@ -70,10 +70,12 @@ export function LoadingScreen({ onComplete, onExitComplete }: LoadingScreenProps
         if (isExiting) onExitComplete?.();
       }}
     >
+      <p className="loading-screen__brand">GAURAV AVINASH</p>
       <div className="loading-screen__content">
         <LoadingLogo durationMs={TOTAL_DURATION_MS} />
         <LoadingText lineIndex={lineIndex} />
       </div>
+      <p className="loading-screen__footer">Designed &amp; Built with Cursor</p>
     </motion.div>
   );
 }

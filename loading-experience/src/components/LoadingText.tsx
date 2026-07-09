@@ -8,9 +8,10 @@ const PHILOSOPHY_LINES = [
 
 export const HOLD_MS = 850;
 export const FADE_MS = 350;
+export const FINAL_HOLD_MS = 1500;
 
 export const TOTAL_DURATION_MS =
-  HOLD_MS + (PHILOSOPHY_LINES.length - 1) * (HOLD_MS + FADE_MS) + HOLD_MS;
+  HOLD_MS + (PHILOSOPHY_LINES.length - 1) * (HOLD_MS + FADE_MS) + HOLD_MS + FINAL_HOLD_MS;
 
 type LoadingTextProps = {
   lineIndex: number;
