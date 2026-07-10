@@ -1,0 +1,25 @@
+/* Shared page-transition chrome for case study pages */
+#loading-root {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+#loading-root:not(:empty) {
+  pointer-events: auto;
+}
+
+body.is-loading {
+  overflow: hidden;
+}
+
+body.is-loading > *:not(#loading-root) {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+body.landing-ready > *:not(#loading-root) {
+  opacity: 1;
+  transition: opacity 0.45s ease;
+}

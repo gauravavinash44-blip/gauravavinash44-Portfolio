@@ -6,6 +6,8 @@
   <title>Mobile Transformation Case Study — Gaurav Avinash</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,700&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./loading-experience/dist/loading-screen.css">
+  <link rel="stylesheet" href="./assets/page-transition.css">
   <style>
     :root {
       --ink: #0f1013;
@@ -132,7 +134,8 @@
     }
   </style>
 </head>
-<body>
+<body class="is-loading">
+  <div id="loading-root" data-loader="skeleton"></div>
   <div class="progress" id="progress"></div>
   <nav class="nav" id="nav">
     <div class="nav-inner">
@@ -419,5 +422,6 @@
     }, { threshold: 0.45 });
     impactNums.forEach((el) => impactObserver.observe(el));
   </script>
+  <script src="./loading-experience/dist/loading-screen.js"></script>
 </body>
 </html>
