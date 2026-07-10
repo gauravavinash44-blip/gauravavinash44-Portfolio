@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;1,9..144,300;1,9..144,400&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./loading-experience/dist/loading-screen.css">
+<link rel="stylesheet" href="./assets/portfolio-assistant/portfolio-assistant.css">
 <style>
   :root {
     --ink: #0f0e0c;
@@ -1451,6 +1452,38 @@
   </div>
 </section>
 
+<section class="portfolio-assistant" id="portfolio-assistant">
+  <div class="pa-wrap reveal">
+    <header class="pa-header">
+      <div class="section-label">Portfolio Assistant</div>
+      <h2 class="pa-title">Explore My Portfolio Through Conversation</h2>
+      <p class="pa-subtitle">Have a question about my experience, projects, or design process? Ask naturally, or start with one of the suggested questions below.</p>
+    </header>
+
+    <div class="pa-card">
+      <div class="pa-card-header">
+        <div class="pa-card-title">Portfolio Assistant</div>
+        <div class="pa-card-caption">Helping you explore my work faster.</div>
+      </div>
+
+      <div class="pa-messages" id="paMessages" role="log" aria-live="polite" aria-relevant="additions"></div>
+
+      <form class="pa-input-row" id="paForm">
+        <input
+          class="pa-input"
+          id="paInput"
+          type="text"
+          name="message"
+          placeholder="Ask about my work..."
+          autocomplete="off"
+          aria-label="Ask about my work"
+        >
+        <button class="pa-send" type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+</section>
+
 <section id="about">
   <div class="about">
     <div class="about-left reveal">
@@ -1739,7 +1772,7 @@
   }
   animateRing();
 
-  document.querySelectorAll('a, button, .project-row, .cs-card, .exp-item, .principle-card').forEach(el => {
+  document.querySelectorAll('a, button, .project-row, .cs-card, .exp-item, .principle-card, .pa-suggestion, .pa-send, .pa-input').forEach(el => {
     el.addEventListener('mouseenter', () => {
       cursor.style.width = '16px';
       cursor.style.height = '16px';
@@ -1849,5 +1882,6 @@
 
 </script>
 <script src="./loading-experience/dist/loading-screen.js"></script>
+<script src="./assets/portfolio-assistant/portfolio-assistant.js"></script>
 </body>
 </html>

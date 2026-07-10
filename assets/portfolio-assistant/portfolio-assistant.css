@@ -1,0 +1,319 @@
+.portfolio-assistant {
+  padding: 7rem 3rem;
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+}
+
+.pa-wrap {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.pa-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.pa-header .section-label {
+  justify-content: center;
+  margin-bottom: 1.75rem;
+}
+
+.pa-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.8vw, 2.85rem);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  margin-bottom: 1.25rem;
+  color: var(--ink);
+}
+
+.pa-subtitle {
+  max-width: 640px;
+  margin: 0 auto;
+  font-size: 1.02rem;
+  line-height: 1.72;
+  color: var(--mid);
+}
+
+.pa-card {
+  background: rgba(255, 255, 255, 0.52);
+  border: 1px solid rgba(15, 14, 12, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.65) inset,
+    0 24px 64px rgba(15, 14, 12, 0.06);
+  overflow: hidden;
+}
+
+.pa-card-header {
+  padding: 1.75rem 2rem 1.35rem;
+  border-bottom: 1px solid rgba(15, 14, 12, 0.08);
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.pa-card-title {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 0.35rem;
+}
+
+.pa-card-caption {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mid);
+}
+
+.pa-messages {
+  min-height: 320px;
+  max-height: 480px;
+  overflow-y: auto;
+  padding: 1.75rem 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  scroll-behavior: smooth;
+}
+
+.pa-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.pa-messages::-webkit-scrollbar-thumb {
+  background: rgba(15, 14, 12, 0.12);
+  border-radius: 999px;
+}
+
+.pa-message {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: paMessageIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.pa-message--user {
+  align-items: flex-end;
+}
+
+.pa-bubble {
+  max-width: 88%;
+  padding: 1rem 1.2rem;
+  border-radius: 16px;
+  font-size: 0.96rem;
+  line-height: 1.68;
+  white-space: pre-wrap;
+}
+
+.pa-bubble--assistant {
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(15, 14, 12, 0.08);
+  color: var(--ink);
+}
+
+.pa-bubble--user {
+  align-self: flex-end;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 16px 16px 4px 16px;
+}
+
+.pa-bubble a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(212, 65, 11, 0.35);
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.pa-bubble a:hover {
+  border-color: var(--accent);
+}
+
+.pa-bubble strong {
+  font-weight: 600;
+}
+
+.pa-bubble--typing::after {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 2px;
+  background: var(--accent);
+  vertical-align: text-bottom;
+  animation: paCursorBlink 0.9s step-end infinite;
+}
+
+.pa-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  padding-left: 0.15rem;
+  opacity: 0;
+  transform: translateY(6px);
+  animation: paSuggestionsIn 0.5s 0.15s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.pa-suggestion {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(15, 14, 12, 0.12);
+  border-radius: 999px;
+  padding: 0.55rem 0.95rem;
+  cursor: none;
+  transition:
+    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.2s,
+    background 0.2s,
+    box-shadow 0.2s;
+}
+
+.pa-suggestion:hover {
+  transform: translateY(-2px);
+  border-color: rgba(212, 65, 11, 0.35);
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(15, 14, 12, 0.06);
+}
+
+.pa-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 1.5rem 1.5rem;
+  border-top: 1px solid rgba(15, 14, 12, 0.08);
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.pa-input {
+  flex: 1;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(15, 14, 12, 0.12);
+  border-radius: 12px;
+  padding: 0.95rem 1.1rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.pa-input::placeholder {
+  color: rgba(107, 101, 96, 0.72);
+}
+
+.pa-input:focus {
+  border-color: rgba(212, 65, 11, 0.45);
+  box-shadow: 0 0 0 3px rgba(212, 65, 11, 0.08);
+}
+
+.pa-send {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: var(--ink);
+  border: none;
+  border-radius: 12px;
+  padding: 0.95rem 1.25rem;
+  cursor: none;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.pa-send:hover {
+  transform: translateY(-1px);
+  background: #2a2824;
+}
+
+.pa-send:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+@keyframes paMessageIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes paSuggestionsIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes paCursorBlink {
+  50% { opacity: 0; }
+}
+
+@media (max-width: 900px) {
+  .portfolio-assistant {
+    padding: 5rem 1.5rem;
+  }
+
+  .pa-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .pa-header .section-label {
+    justify-content: flex-start;
+  }
+
+  .pa-header {
+    text-align: left;
+  }
+
+  .pa-card-header,
+  .pa-messages,
+  .pa-input-row {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .pa-messages {
+    min-height: 280px;
+    max-height: 420px;
+  }
+
+  .pa-bubble {
+    max-width: 94%;
+  }
+
+  .pa-input-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pa-send {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pa-message,
+  .pa-suggestions {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .pa-bubble--typing::after {
+    display: none;
+  }
+}
