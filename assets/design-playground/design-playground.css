@@ -161,29 +161,17 @@
   transform: scale(1.04);
 }
 
-/* Dark mockup planes — match charcoal image backdrops (Nomad, Health Karma) */
-.pg-card[data-project-id="nomad"] .pg-card-media,
-.pg-card[data-project-id="health-karma"] .pg-card-media {
-  background:
-    radial-gradient(118% 90% at 50% 42%, #343434 0%, #1f1f1f 52%, #151515 100%);
-  border-color: rgba(255, 255, 255, 0.08);
-  box-shadow:
-    0 22px 56px rgba(0, 0, 0, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
-}
-
-.pg-card[data-project-id="nomad"]:hover .pg-card-media,
-.pg-card[data-project-id="health-karma"]:hover .pg-card-media {
-  box-shadow:
-    0 30px 68px rgba(0, 0, 0, 0.36),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
-}
-
+/* Nomad + Health Karma cards — cropped hero preview; dark plane only in modal */
 .pg-card[data-project-id="nomad"] .pg-card-media img,
 .pg-card[data-project-id="health-karma"] .pg-card-media img {
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
-  padding: 0.35rem 0.5rem;
+  transform: scale(1.05);
+}
+
+.pg-card[data-project-id="nomad"]:hover .pg-card-media img,
+.pg-card[data-project-id="health-karma"]:hover .pg-card-media img {
+  transform: scale(1.08);
 }
 
 .pg-card-body {
