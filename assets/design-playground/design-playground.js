@@ -157,8 +157,10 @@
       heroMedia = `<img src="${escapeHtml(item.preview.src)}" alt="${escapeHtml(item.preview.alt)}" width="${item.preview.width}" height="${item.preview.height}">`;
     }
 
-    const heroClass =
-      item.id === 'nomad' ? 'pg-modal-hero pg-modal-hero--dark' : 'pg-modal-hero';
+    const darkMediaIds = { nomad: true, 'health-karma': true };
+    const heroClass = darkMediaIds[item.id]
+      ? 'pg-modal-hero pg-modal-hero--dark'
+      : 'pg-modal-hero';
 
     modalBodyEl.innerHTML = `
       <div class="${heroClass}">${heroMedia}</div>
