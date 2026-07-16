@@ -1,6 +1,30 @@
 {
   "interface": [
     {
+      "id": "nomad",
+      "title": "Nomad",
+      "category": "Interface Exploration",
+      "description": "A concept for a travel app that puts the destination first. Instead of overwhelming users with options, the experience is designed to make discovering places feel simple, immersive, and enjoyable before booking.",
+      "overview": "A concept for a travel app that puts the destination first. Instead of overwhelming users with options, the experience is designed to make discovering places feel simple, immersive, and enjoyable before booking.",
+      "objective": "The goal was to create a cleaner travel experience where beautiful visuals, intuitive navigation, and a focused booking flow work together to help users explore naturally.",
+      "thinking": [
+        "Designed around destination-first storytelling",
+        "Kept interactions simple to reduce decision fatigue",
+        "Used a dark interface to let photography become the focus",
+        "Created a smooth journey from discovery to booking"
+      ],
+      "tools": ["Figma", "Design System", "Prototyping", "Motion Design"],
+      "prototype": null,
+      "preview": {
+        "layout": "mobile",
+        "src": "./assets/design-playground/nomad-mobile-mockup.png",
+        "width": 1179,
+        "height": 2556,
+        "alt": "Nomad travel app mobile interface mockup"
+      },
+      "gallery": []
+    },
+    {
       "id": "deal-room-dashboard",
       "title": "Deal Room Dashboard",
       "category": "B2B SaaS · Data Visualization",
