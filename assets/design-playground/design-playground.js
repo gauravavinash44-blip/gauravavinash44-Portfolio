@@ -11,7 +11,6 @@
   const motionGrid = section.querySelector('[data-grid="motion"]');
   const modalEl = document.getElementById('pgModal');
   const modalBodyEl = modalEl && modalEl.querySelector('.pg-modal-body');
-  const exploreBtn = section.querySelector('[data-pg-explore]');
 
   let data = null;
   let activeCategory = 'interface';
@@ -226,13 +225,6 @@
       const activeTab = tabsEl.querySelector('[aria-selected="true"]');
       updateIndicator(activeTab);
     });
-
-    if (exploreBtn) {
-      exploreBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        tabsEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      });
-    }
 
     if (modalEl) {
       modalEl.querySelector('.pg-modal-backdrop').addEventListener('click', closeModal);

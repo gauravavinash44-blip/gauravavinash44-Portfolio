@@ -5,8 +5,8 @@
 
 .pg-header {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 3rem 4rem;
+  grid-template-columns: 1fr;
+  gap: 0;
   align-items: end;
   margin-bottom: 3.5rem;
 }
@@ -36,13 +36,6 @@
   line-height: 1.72;
   color: var(--mid);
   max-width: 520px;
-}
-
-.pg-header-aside {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1.5rem;
 }
 
 .pg-tabs {
@@ -438,13 +431,7 @@ body.pg-modal-open {
 
 @media (max-width: 900px) {
   .pg-header {
-    grid-template-columns: 1fr;
-    gap: 2rem;
     margin-bottom: 2.5rem;
-  }
-
-  .pg-header-aside {
-    width: 100%;
   }
 
   .pg-grid {

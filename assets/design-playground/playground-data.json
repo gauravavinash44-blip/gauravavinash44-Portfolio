@@ -11,70 +11,45 @@
       "prototype": null,
       "preview": {
         "src": "./assets/design-playground/nomad-mobile-mockup.png",
-        "width": 1536,
-        "height": 1024,
+        "width": 1024,
+        "height": 665,
         "alt": "Nomad travel app — Leh Ladakh three-screen interface mockup"
       },
       "gallery": []
     },
     {
-      "id": "deal-room-dashboard",
-      "title": "Deal Room Dashboard",
-      "category": "B2B SaaS · Data Visualization",
-      "description": "A calm, structured dashboard for tracking deal progress—balancing dense investor data with clear hierarchy and actionable status cues.",
-      "objective": "Make deal state readable at a glance without overwhelming founders during high-stakes fundraising.",
-      "thinking": "Sequenced metrics by decision urgency. Used restrained typography and soft dividers so status gates remain the focal point.",
-      "tools": ["Figma", "Design Systems"],
+      "id": "health-karma",
+      "title": "Health Karma",
+      "category": "Interface Exploration",
+      "description": "A concept for a modern credit health app that makes financial information easier to understand through clear visualizations, AI assistance, and a simplified dashboard experience. The focus was on making complex financial data feel approachable instead of overwhelming.",
+      "objective": "The goal was to design an experience that helps users monitor, understand, and improve their credit health through intuitive insights, clean navigation, and actionable recommendations.",
+      "thinking": "Turned complex financial data into simple visual insights. Balanced data density with a clean, approachable interface. Introduced AI assistance to guide users through financial decisions. Designed a flexible dashboard that surfaces the most important information first.",
+      "tools": ["Figma", "Design System", "Prototyping", "Motion Design"],
       "prototype": null,
       "preview": {
-        "src": "./assets/deal-room-dashboard-overview.png",
-        "width": 2400,
-        "height": 1500,
-        "alt": "Deal Room dashboard interface exploration"
+        "src": "./assets/design-playground/health-karma-mockup.png",
+        "width": 1024,
+        "height": 576,
+        "alt": "Health Karma credit health app — four-screen mobile interface mockup"
       },
-      "gallery": [
-        "./assets/deal-room-dashboard-insights.png",
-        "./assets/deal-room-flow-ui.png"
-      ]
+      "gallery": []
     },
     {
-      "id": "ai-profile-builder",
-      "title": "AI Profile Builder",
-      "category": "AI Interface · Founder Tools",
-      "description": "Hybrid AI-assisted profile creation with inline editing—speed without sacrificing user control over published content.",
-      "objective": "Reduce form fatigue while keeping founders confident that AI-generated sections are editable and trustworthy.",
-      "thinking": "Section-by-section drafts with visible progress. Accent highlights editable AI fields; manual override always one click away.",
-      "tools": ["Figma", "Framer"],
-      "prototype": "./case-study-company-profile-creation.html",
+      "id": "swaply",
+      "title": "Swaply",
+      "category": "Interface Exploration",
+      "description": "A concept for a community-driven marketplace where people can exchange products instead of simply buying and selling. The focus was on making every interaction feel transparent, trustworthy, and easy to navigate.",
+      "objective": "The goal was to simplify the barter experience by helping users quickly evaluate listings, build trust with sellers, and confidently propose exchanges through a clean, intuitive interface.",
+      "thinking": "Designed a trust-first marketplace experience. Simplified product discovery and exchange decisions. Highlighted seller credibility through ratings and activity. Created a clear and frictionless barter flow from browsing to proposal.",
+      "tools": ["Figma", "Design System", "Prototyping", "Interaction Design"],
+      "prototype": null,
       "preview": {
-        "src": "./assets/production-candidate-ui.png",
-        "width": 1920,
-        "height": 1200,
-        "alt": "AI profile builder interface exploration"
+        "src": "./assets/design-playground/swaply-mockup.png",
+        "width": 1024,
+        "height": 576,
+        "alt": "Swaply barter marketplace — product detail and seller profile mobile mockups"
       },
-      "gallery": [
-        "./assets/company-profile-cta.svg"
-      ]
-    },
-    {
-      "id": "investor-discovery-chat",
-      "title": "Investor Discovery Chat",
-      "category": "AI Search · Conversational UI",
-      "description": "Conversational company discovery replacing fragmented filters—natural language queries with transparent, scannable results.",
-      "objective": "Compress 3–4 minute search workflows into under 30 seconds while preserving investor confidence in results.",
-      "thinking": "Prompt chips anchor intent. Results show match rationale. Empty and low-confidence states guide refinement—not dead ends.",
-      "tools": ["Figma", "Prototyping"],
-      "prototype": "./case-study-systematic-agent.html",
-      "preview": {
-        "src": "./assets/systematic-agent-chat.png",
-        "width": 1368,
-        "height": 1090,
-        "alt": "Investor discovery chat interface exploration"
-      },
-      "gallery": [
-        "./assets/image-02-preview.png",
-        "./assets/image-03-preview.png"
-      ]
+      "gallery": []
     }
   ],
   "motion": [
