@@ -1488,14 +1488,6 @@
   </div>
 </div>
 
-<div class="pg-lightbox" id="pgLightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Image preview">
-  <div class="pg-lightbox-backdrop"></div>
-  <button class="pg-lightbox-close" type="button" aria-label="Close image preview">×</button>
-  <div class="pg-lightbox-stage">
-    <img class="pg-lightbox-img" id="pgLightboxImg" alt="">
-  </div>
-</div>
-
 <section id="about">
   <div class="about">
     <div class="about-left reveal">
@@ -1784,7 +1776,7 @@
   }
   animateRing();
 
-  document.querySelectorAll('a, button, .project-row, .cs-card, .exp-item, .principle-card, .pg-card, .pg-tab, .pg-modal-close, .pg-lightbox-close, .pg-hero-zoom').forEach(el => {
+  document.querySelectorAll('a, button, .project-row, .cs-card, .exp-item, .principle-card, .pg-card, .pg-tab, .pg-modal-close').forEach(el => {
     el.addEventListener('mouseenter', () => {
       cursor.style.width = '16px';
       cursor.style.height = '16px';

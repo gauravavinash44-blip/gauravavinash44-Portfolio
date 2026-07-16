@@ -10,10 +10,7 @@
   const interfaceGrid = section.querySelector('[data-grid="interface"]');
   const motionGrid = section.querySelector('[data-grid="motion"]');
   const modalEl = document.getElementById('pgModal');
-  const modalDialogEl = modalEl && modalEl.querySelector('.pg-modal-dialog');
   const modalBodyEl = modalEl && modalEl.querySelector('.pg-modal-body');
-  const lightboxEl = document.getElementById('pgLightbox');
-  const lightboxImgEl = document.getElementById('pgLightboxImg');
   const exploreBtn = section.querySelector('[data-pg-explore]');
 
   let data = null;
@@ -28,41 +25,21 @@
       .replace(/"/g, '&quot;');
   }
 
-  function isMobileLayout(item) {
-    return item.preview && item.preview.layout === 'mobile';
-  }
-
-  function renderImageTag(preview, lazy) {
-    const attrs = lazy
-      ? 'loading="lazy" decoding="async"'
-      : 'loading="eager" decoding="async" fetchpriority="high"';
-    const srcset = preview.srcSet
-      ? ` srcset="${escapeHtml(preview.srcSet)}"`
-      : '';
-
-    return `<img src="${escapeHtml(preview.src)}"${srcset} alt="${escapeHtml(preview.alt)}" width="${preview.width}" height="${preview.height}" ${attrs}>`;
-  }
-
   function renderPreviewMedia(item, lazy) {
     const preview = item.preview;
+    const attrs = lazy
+      ? 'loading="lazy" decoding="async"'
+      : 'loading="eager" decoding="async"';
 
     if (item.media && item.media.type === 'video') {
-      return `<video muted loop playsinline autoplay poster="${escapeHtml(item.media.poster || preview.src)}" aria-hidden="true"><source src="${escapeHtml(item.media.src)}" type="video/mp4"></video>`;
+      return `<video muted loop playsinline autoplay poster="${escapeHtml(item.media.poster || preview.src)}" ${attrs.replace('loading="lazy"', '')} aria-hidden="true"><source src="${escapeHtml(item.media.src)}" type="video/mp4"></video>`;
     }
 
     if (item.media && item.media.type === 'gif') {
-      return renderImageTag({ ...preview, src: item.media.src }, lazy);
+      return `<img src="${escapeHtml(item.media.src)}" alt="${escapeHtml(preview.alt)}" width="${preview.width}" height="${preview.height}" ${attrs}>`;
     }
 
-    return renderImageTag(preview, lazy);
-  }
-
-  function formatThinking(thinking) {
-    if (Array.isArray(thinking)) {
-      const items = thinking.map((line) => `<li>${escapeHtml(line)}</li>`).join('');
-      return `<ul class="pg-modal-list">${items}</ul>`;
-    }
-    return `<p class="pg-modal-text">${escapeHtml(thinking)}</p>`;
+    return `<img src="${escapeHtml(preview.src)}" alt="${escapeHtml(preview.alt)}" width="${preview.width}" height="${preview.height}" ${attrs}>`;
   }
 
   function createCard(item, index) {
@@ -72,10 +49,8 @@
     card.setAttribute('data-project-id', item.id);
     card.setAttribute('aria-label', `View details for ${item.title}`);
 
-    const mediaClass = isMobileLayout(item) ? 'pg-card-media pg-card-media--mobile' : 'pg-card-media';
-
     card.innerHTML = `
-      <div class="${mediaClass}">
+      <div class="pg-card-media">
         <div class="pg-card-media-inner">
           ${renderPreviewMedia(item, true)}
         </div>
@@ -155,32 +130,6 @@
     });
   }
 
-  function openLightbox(src, alt) {
-    if (!lightboxEl || !lightboxImgEl) return;
-    lightboxImgEl.src = src;
-    lightboxImgEl.alt = alt || '';
-    lightboxEl.classList.add('is-open');
-    lightboxEl.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('pg-lightbox-open');
-    lightboxEl.querySelector('.pg-lightbox-close').focus();
-  }
-
-  function closeLightbox() {
-    if (!lightboxEl) return;
-    lightboxEl.classList.remove('is-open');
-    lightboxEl.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('pg-lightbox-open');
-    lightboxImgEl.removeAttribute('src');
-  }
-
-  function bindHeroZoom(button, preview) {
-    if (!button) return;
-    button.addEventListener('click', (event) => {
-      event.stopPropagation();
-      openLightbox(preview.src, preview.alt);
-    });
-  }
-
   function openModal(item) {
     if (!modalEl || !modalBodyEl) return;
 
@@ -200,25 +149,27 @@
       ? `<a class="pg-modal-proto" href="${escapeHtml(item.prototype)}" target="_blank" rel="noreferrer">Open prototype →</a>`
       : '';
 
-    const overviewHtml = item.overview
-      ? `<div class="pg-modal-block">
-          <div class="pg-modal-label">Overview</div>
-          <p class="pg-modal-text">${escapeHtml(item.overview)}</p>
-        </div>`
-      : '';
+    let heroMedia = renderPreviewMedia(item, false);
+    if (item.media && item.media.type === 'video') {
+      heroMedia = `<video controls playsinline poster="${escapeHtml(item.media.poster || item.preview.src)}"><source src="${escapeHtml(item.media.src)}" type="video/mp4"></video>`;
+    } else if (item.media && item.media.type === 'gif') {
+      heroMedia = `<img src="${escapeHtml(item.media.src)}" alt="${escapeHtml(item.preview.alt)}" width="${item.preview.width}" height="${item.preview.height}">`;
+    } else {
+      heroMedia = `<img src="${escapeHtml(item.preview.src)}" alt="${escapeHtml(item.preview.alt)}" width="${item.preview.width}" height="${item.preview.height}">`;
+    }
 
-    const contentHtml = `
+    modalBodyEl.innerHTML = `
+      <div class="pg-modal-hero">${heroMedia}</div>
       <div class="pg-modal-content">
         <div class="pg-modal-category">${escapeHtml(item.category)}</div>
         <h2 class="pg-modal-title" id="pgModalTitle">${escapeHtml(item.title)}</h2>
-        ${overviewHtml}
         <div class="pg-modal-block">
           <div class="pg-modal-label">Design Objective</div>
           <p class="pg-modal-text">${escapeHtml(item.objective)}</p>
         </div>
         <div class="pg-modal-block">
           <div class="pg-modal-label">Design Thinking</div>
-          ${formatThinking(item.thinking)}
+          <p class="pg-modal-text">${escapeHtml(item.thinking)}</p>
         </div>
         <div class="pg-modal-block">
           <div class="pg-modal-label">Tools</div>
@@ -228,41 +179,6 @@
         ${galleryHtml ? `<div class="pg-modal-gallery">${galleryHtml}</div>` : ''}
       </div>
     `;
-
-    if (modalDialogEl) {
-      modalDialogEl.classList.toggle('pg-modal-dialog--editorial', isMobileLayout(item));
-    }
-
-    if (isMobileLayout(item)) {
-      const heroImg = renderImageTag(item.preview, false);
-      modalBodyEl.className = 'pg-modal-body pg-modal-body--editorial';
-      modalBodyEl.innerHTML = `
-        <div class="pg-modal-visual">
-          <button type="button" class="pg-hero-zoom" aria-label="View full size mockup">
-            ${heroImg}
-          </button>
-          <span class="pg-hero-zoom-hint">Click to enlarge</span>
-        </div>
-        ${contentHtml}
-      `;
-      bindHeroZoom(modalBodyEl.querySelector('.pg-hero-zoom'), item.preview);
-    } else {
-      modalBodyEl.className = 'pg-modal-body';
-
-      let heroMedia = renderPreviewMedia(item, false);
-      if (item.media && item.media.type === 'video') {
-        heroMedia = `<video controls playsinline poster="${escapeHtml(item.media.poster || item.preview.src)}"><source src="${escapeHtml(item.media.src)}" type="video/mp4"></video>`;
-      } else if (item.media && item.media.type === 'gif') {
-        heroMedia = renderImageTag({ ...item.preview, src: item.media.src }, false);
-      } else {
-        heroMedia = renderImageTag(item.preview, false);
-      }
-
-      modalBodyEl.innerHTML = `
-        <div class="pg-modal-hero">${heroMedia}</div>
-        ${contentHtml}
-      `;
-    }
 
     modalEl.classList.add('is-open');
     modalEl.setAttribute('aria-hidden', 'false');
@@ -275,7 +191,6 @@
     modalEl.classList.remove('is-open');
     modalEl.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('pg-modal-open');
-    if (modalDialogEl) modalDialogEl.classList.remove('pg-modal-dialog--editorial');
     const video = modalEl.querySelector('video');
     if (video) video.pause();
   }
@@ -319,21 +234,10 @@
     if (modalEl) {
       modalEl.querySelector('.pg-modal-backdrop').addEventListener('click', closeModal);
       modalEl.querySelector('.pg-modal-close').addEventListener('click', closeModal);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modalEl.classList.contains('is-open')) closeModal();
+      });
     }
-
-    if (lightboxEl) {
-      lightboxEl.querySelector('.pg-lightbox-backdrop').addEventListener('click', closeLightbox);
-      lightboxEl.querySelector('.pg-lightbox-close').addEventListener('click', closeLightbox);
-    }
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key !== 'Escape') return;
-      if (lightboxEl && lightboxEl.classList.contains('is-open')) {
-        closeLightbox();
-        return;
-      }
-      if (modalEl && modalEl.classList.contains('is-open')) closeModal();
-    });
   }
 
   init();
