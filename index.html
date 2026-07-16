@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;1,9..144,300;1,9..144,400&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./loading-experience/dist/loading-screen.css">
+<link rel="stylesheet" href="./assets/design-playground/design-playground.css">
 <style>
   :root {
     --ink: #0f0e0c;
@@ -1620,6 +1621,42 @@
   </div>
 </section>
 
+<section class="design-playground" id="design-playground">
+  <div class="pg-header reveal">
+    <div class="pg-header-main">
+      <div class="section-label">Design Playground</div>
+      <h2 class="pg-title">Design Playground</h2>
+      <p class="pg-subtitle">A curated collection of interface explorations and motion studies that showcase my approach to visual design, interaction, and craft beyond full product case studies.</p>
+    </div>
+    <div class="pg-header-aside">
+      <a href="#design-playground" class="btn-primary" data-pg-explore><span>Explore Playground</span></a>
+    </div>
+  </div>
+
+  <div class="pg-tabs reveal" role="tablist" aria-label="Playground categories">
+    <button class="pg-tab" type="button" role="tab" data-category="interface" aria-selected="true" aria-controls="pgPanelInterface" id="pgTabInterface">Interface</button>
+    <button class="pg-tab" type="button" role="tab" data-category="motion" aria-selected="false" aria-controls="pgPanelMotion" id="pgTabMotion">Motion</button>
+    <span class="pg-tab-indicator" aria-hidden="true"></span>
+  </div>
+
+  <div class="pg-panels">
+    <div class="pg-panel" id="pgPanelInterface" data-panel="interface" role="tabpanel" aria-labelledby="pgTabInterface">
+      <div class="pg-grid" data-grid="interface"></div>
+    </div>
+    <div class="pg-panel" id="pgPanelMotion" data-panel="motion" role="tabpanel" aria-labelledby="pgTabMotion" hidden>
+      <div class="pg-grid" data-grid="motion"></div>
+    </div>
+  </div>
+</section>
+
+<div class="pg-modal" id="pgModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="pgModalTitle">
+  <div class="pg-modal-backdrop"></div>
+  <div class="pg-modal-dialog">
+    <button class="pg-modal-close" type="button" aria-label="Close">×</button>
+    <div class="pg-modal-body"></div>
+  </div>
+</div>
+
 <section class="experiments" id="experiments">
   <div class="section-label">Skills & Learning</div>
   <h2 class="exp-h2 reveal">Capabilities I use across product, AI, and execution.</h2>
@@ -1739,7 +1776,7 @@
   }
   animateRing();
 
-  document.querySelectorAll('a, button, .project-row, .cs-card, .exp-item, .principle-card').forEach(el => {
+  document.querySelectorAll('a, button, .project-row, .cs-card, .exp-item, .principle-card, .pg-card, .pg-tab, .pg-modal-close').forEach(el => {
     el.addEventListener('mouseenter', () => {
       cursor.style.width = '16px';
       cursor.style.height = '16px';
@@ -1849,5 +1886,6 @@
 
 </script>
 <script src="./loading-experience/dist/loading-screen.js"></script>
+<script src="./assets/design-playground/design-playground.js"></script>
 </body>
 </html>

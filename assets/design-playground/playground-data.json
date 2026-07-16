@@ -1,0 +1,131 @@
+{
+  "interface": [
+    {
+      "id": "deal-room-dashboard",
+      "title": "Deal Room Dashboard",
+      "category": "B2B SaaS · Data Visualization",
+      "description": "A calm, structured dashboard for tracking deal progress—balancing dense investor data with clear hierarchy and actionable status cues.",
+      "objective": "Make deal state readable at a glance without overwhelming founders during high-stakes fundraising.",
+      "thinking": "Sequenced metrics by decision urgency. Used restrained typography and soft dividers so status gates remain the focal point.",
+      "tools": ["Figma", "Design Systems"],
+      "prototype": null,
+      "preview": {
+        "src": "./assets/deal-room-dashboard-overview.png",
+        "width": 2400,
+        "height": 1500,
+        "alt": "Deal Room dashboard interface exploration"
+      },
+      "gallery": [
+        "./assets/deal-room-dashboard-insights.png",
+        "./assets/deal-room-flow-ui.png"
+      ]
+    },
+    {
+      "id": "ai-profile-builder",
+      "title": "AI Profile Builder",
+      "category": "AI Interface · Founder Tools",
+      "description": "Hybrid AI-assisted profile creation with inline editing—speed without sacrificing user control over published content.",
+      "objective": "Reduce form fatigue while keeping founders confident that AI-generated sections are editable and trustworthy.",
+      "thinking": "Section-by-section drafts with visible progress. Accent highlights editable AI fields; manual override always one click away.",
+      "tools": ["Figma", "Framer"],
+      "prototype": "./case-study-company-profile-creation.html",
+      "preview": {
+        "src": "./assets/production-candidate-ui.png",
+        "width": 1920,
+        "height": 1200,
+        "alt": "AI profile builder interface exploration"
+      },
+      "gallery": [
+        "./assets/company-profile-cta.svg"
+      ]
+    },
+    {
+      "id": "investor-discovery-chat",
+      "title": "Investor Discovery Chat",
+      "category": "AI Search · Conversational UI",
+      "description": "Conversational company discovery replacing fragmented filters—natural language queries with transparent, scannable results.",
+      "objective": "Compress 3–4 minute search workflows into under 30 seconds while preserving investor confidence in results.",
+      "thinking": "Prompt chips anchor intent. Results show match rationale. Empty and low-confidence states guide refinement—not dead ends.",
+      "tools": ["Figma", "Prototyping"],
+      "prototype": "./case-study-systematic-agent.html",
+      "preview": {
+        "src": "./assets/systematic-agent-chat.png",
+        "width": 1368,
+        "height": 1090,
+        "alt": "Investor discovery chat interface exploration"
+      },
+      "gallery": [
+        "./assets/image-02-preview.png",
+        "./assets/image-03-preview.png"
+      ]
+    }
+  ],
+  "motion": [
+    {
+      "id": "contextual-chat-demo",
+      "title": "Contextual Chat Motion Study",
+      "category": "Motion · AI Interaction",
+      "description": "Micro-interactions for AI response states—typing indicators, result reveal, and smooth panel transitions during discovery.",
+      "objective": "Communicate system intelligence through motion timing, not decoration—calm, premium, and legible.",
+      "thinking": "Easing curves tuned for readability. Staggered result cards reinforce scan order. Motion pauses on reduced-motion preference.",
+      "tools": ["Figma", "After Effects", "Prototyping"],
+      "prototype": null,
+      "preview": {
+        "src": "./assets/systematic-agent-chat.png",
+        "width": 1368,
+        "height": 1090,
+        "alt": "Contextual chat motion study preview"
+      },
+      "media": {
+        "type": "video",
+        "src": "./assets/contextual-chat-assistant-demo.mp4",
+        "poster": "./assets/systematic-agent-chat.png"
+      },
+      "gallery": []
+    },
+    {
+      "id": "systematic-agent-interaction",
+      "title": "Systematic Agent Interaction",
+      "category": "Motion · Product Demo",
+      "description": "End-to-end interaction demo showing query input, AI processing, and contextual result expansion in a single fluid sequence.",
+      "objective": "Demonstrate how motion supports comprehension in AI workflows—never competing with the content layer.",
+      "thinking": "Each transition maps to a system state change. Duration scaled to cognitive load: faster for confirmations, slower for new information.",
+      "tools": ["Figma", "Screen Recording", "Editing"],
+      "prototype": "./case-study-systematic-agent.html",
+      "preview": {
+        "src": "./assets/deal-room-dashboard-overview.png",
+        "width": 2400,
+        "height": 1500,
+        "alt": "Systematic agent interaction motion preview"
+      },
+      "media": {
+        "type": "video",
+        "src": "./assets/systematic-agent-interaction-demo.mp4",
+        "poster": "./assets/systematic-agent-chat.png"
+      },
+      "gallery": []
+    },
+    {
+      "id": "investor-workflow-friction",
+      "title": "Investor Workflow Friction Map",
+      "category": "Motion · Narrative",
+      "description": "Animated visualization of fragmented investor search—highlighting friction points that motivated the conversational redesign.",
+      "objective": "Use motion to tell a problem story quickly for stakeholders before diving into solution screens.",
+      "thinking": "Looping GIF with restrained palette. Motion draws attention to drop-off moments without flashy transitions.",
+      "tools": ["Figma", "GIF Export"],
+      "prototype": null,
+      "preview": {
+        "src": "./assets/journey-map-search-friction.png",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Investor workflow friction motion study"
+      },
+      "media": {
+        "type": "gif",
+        "src": "./assets/systematic-investor-workflow-problem.gif",
+        "poster": "./assets/journey-map-search-friction.png"
+      },
+      "gallery": []
+    }
+  ]
+}
