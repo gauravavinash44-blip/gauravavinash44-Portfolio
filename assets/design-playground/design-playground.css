@@ -168,6 +168,28 @@
   transform: scale(1.04);
 }
 
+/* Nomad — match mockup charcoal plane, slightly richer than flat fill */
+.pg-card[data-project-id="nomad"] .pg-card-media {
+  background:
+    radial-gradient(118% 90% at 50% 42%, #343434 0%, #1f1f1f 52%, #151515 100%);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 22px 56px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.pg-card[data-project-id="nomad"]:hover .pg-card-media {
+  box-shadow:
+    0 30px 68px rgba(0, 0, 0, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.pg-card[data-project-id="nomad"] .pg-card-media img {
+  object-fit: contain;
+  object-position: center;
+  padding: 0.35rem 0.5rem;
+}
+
 .pg-card-body {
   display: flex;
   flex-direction: column;
@@ -291,6 +313,12 @@
   overflow: hidden;
   border-bottom: 1px solid var(--line);
   background: #fff;
+}
+
+.pg-modal-hero--dark {
+  background:
+    radial-gradient(118% 90% at 50% 38%, #343434 0%, #1f1f1f 52%, #121212 100%);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
 }
 
 .pg-modal-hero img,
