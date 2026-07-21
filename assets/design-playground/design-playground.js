@@ -7,14 +7,19 @@
   const indicatorEl = section.querySelector('.pg-tab-indicator');
   const interfacePanel = section.querySelector('[data-panel="interface"]');
   const motionPanel = section.querySelector('[data-panel="motion"]');
+  const motionLockEl = motionPanel && motionPanel.querySelector('.pg-motion-lock');
   const interfaceGrid = section.querySelector('[data-grid="interface"]');
   const motionGrid = section.querySelector('[data-grid="motion"]');
   const modalEl = document.getElementById('pgModal');
   const modalBodyEl = modalEl && modalEl.querySelector('.pg-modal-body');
 
+  const CINEMA_MS = 250;
+  const MOTION_LOCKED = true;
   let data = null;
   let activeCategory = 'interface';
   let scrollAnchor = 0;
+  let motionScrollY = 0;
+  let cinemaClosing = false;
 
   function escapeHtml(str) {
     return String(str)
@@ -41,7 +46,24 @@
     return `<img src="${escapeHtml(preview.src)}" alt="${escapeHtml(preview.alt)}" width="${preview.width}" height="${preview.height}" ${attrs}>`;
   }
 
-  function createCard(item, index) {
+  function renderMotionThumbnail(item) {
+    const poster = (item.media && item.media.poster) || item.preview.src;
+    return `<img src="${escapeHtml(poster)}" alt="${escapeHtml(item.preview.alt)}" width="${item.preview.width}" height="${item.preview.height}" loading="lazy" decoding="async">`;
+  }
+
+  function renderCinemaMedia(item) {
+    if (item.media && item.media.type === 'video') {
+      return `<video muted loop playsinline autoplay><source src="${escapeHtml(item.media.src)}" type="video/mp4"></video>`;
+    }
+
+    if (item.media && item.media.type === 'gif') {
+      return `<img src="${escapeHtml(item.media.src)}" alt="" decoding="async">`;
+    }
+
+    return `<img src="${escapeHtml(item.preview.src)}" alt="${escapeHtml(item.preview.alt)}" width="${item.preview.width}" height="${item.preview.height}">`;
+  }
+
+  function createInterfaceCard(item, index) {
     const card = document.createElement('button');
     card.type = 'button';
     card.className = `pg-card reveal${index > 0 ? ` reveal-delay-${Math.min(index, 3)}` : ''}`;
@@ -62,13 +84,39 @@
       </div>
     `;
 
-    card.addEventListener('click', () => openModal(item));
+    card.addEventListener('click', () => openInterfaceModal(item));
     return card;
   }
 
-  function renderGrid(gridEl, items) {
+  function createMotionCard(item, index) {
+    const card = document.createElement('button');
+    card.type = 'button';
+    card.className = `pg-card pg-card--motion reveal${index > 0 ? ` reveal-delay-${Math.min(index, 3)}` : ''}`;
+    card.setAttribute('data-project-id', item.id);
+    card.setAttribute('aria-label', `Play ${item.title}`);
+
+    card.innerHTML = `
+      <div class="pg-card-media">
+        <div class="pg-card-media-inner">
+          ${renderMotionThumbnail(item)}
+        </div>
+      </div>
+      <div class="pg-card-body">
+        <h3 class="pg-card-title">${escapeHtml(item.title)}</h3>
+        <p class="pg-card-desc">${escapeHtml(item.description)}</p>
+      </div>
+    `;
+
+    card.addEventListener('click', () => openMotionModal(item));
+    return card;
+  }
+
+  function renderGrid(gridEl, items, kind) {
     gridEl.innerHTML = '';
-    items.forEach((item, i) => gridEl.appendChild(createCard(item, i)));
+    items.forEach((item, i) => {
+      const card = kind === 'motion' ? createMotionCard(item, i) : createInterfaceCard(item, i);
+      gridEl.appendChild(card);
+    });
     observeReveals(gridEl);
   }
 
@@ -96,6 +144,14 @@
     indicatorEl.style.transform = `translateX(${tab.offsetLeft}px)`;
   }
 
+  function updateMotionLock(isMotionActive) {
+    if (!motionPanel || !MOTION_LOCKED) return;
+    motionPanel.classList.toggle('is-locked', isMotionActive);
+    if (motionLockEl) {
+      motionLockEl.setAttribute('aria-hidden', isMotionActive ? 'false' : 'true');
+    }
+  }
+
   function switchCategory(category) {
     if (category === activeCategory) return;
 
@@ -121,6 +177,7 @@
     }, 200);
 
     activeCategory = category;
+    updateMotionLock(category === 'motion');
 
     tabsEl.querySelectorAll('.pg-tab').forEach((tab) => {
       const selected = tab.dataset.category === category;
@@ -129,8 +186,28 @@
     });
   }
 
-  function openModal(item) {
+  function pauseModalMedia() {
+    if (!modalEl) return;
+    modalEl.querySelectorAll('video').forEach((video) => video.pause());
+  }
+
+  function lockScroll() {
+    motionScrollY = window.scrollY;
+    document.body.style.top = `-${motionScrollY}px`;
+    document.body.classList.add('pg-modal-open', 'pg-scroll-locked');
+  }
+
+  function unlockScroll() {
+    document.body.classList.remove('pg-modal-open', 'pg-scroll-locked');
+    document.body.style.top = '';
+    window.scrollTo(0, motionScrollY);
+  }
+
+  function openInterfaceModal(item) {
     if (!modalEl || !modalBodyEl) return;
+
+    modalEl.classList.remove('pg-modal--cinema', 'is-closing');
+    modalEl.setAttribute('aria-labelledby', 'pgModalTitle');
 
     const galleryHtml = (item.gallery || [])
       .filter(Boolean)
@@ -190,13 +267,53 @@
     modalEl.querySelector('.pg-modal-close').focus();
   }
 
+  function openMotionModal(item) {
+    if (MOTION_LOCKED) return;
+    if (!modalEl || !modalBodyEl) return;
+
+    modalEl.classList.add('pg-modal--cinema');
+    modalEl.classList.remove('is-closing');
+    modalEl.removeAttribute('aria-labelledby');
+    modalEl.setAttribute('aria-label', item.title);
+
+    modalBodyEl.innerHTML = `<div class="pg-cinema-media">${renderCinemaMedia(item)}</div>`;
+
+    lockScroll();
+    modalEl.classList.add('is-open');
+    modalEl.setAttribute('aria-hidden', 'false');
+    modalEl.querySelector('.pg-modal-close').focus();
+
+    const video = modalBodyEl.querySelector('video');
+    if (video) {
+      video.play().catch(() => {});
+    }
+  }
+
   function closeModal() {
-    if (!modalEl) return;
-    modalEl.classList.remove('is-open');
+    if (!modalEl || cinemaClosing) return;
+
+    const isCinema = modalEl.classList.contains('pg-modal--cinema');
+
+    if (isCinema) {
+      cinemaClosing = true;
+      pauseModalMedia();
+      modalEl.classList.add('is-closing');
+      modalEl.classList.remove('is-open');
+
+      setTimeout(() => {
+        modalEl.classList.remove('is-closing', 'pg-modal--cinema');
+        modalEl.setAttribute('aria-hidden', 'true');
+        modalBodyEl.innerHTML = '';
+        unlockScroll();
+        cinemaClosing = false;
+      }, CINEMA_MS);
+      return;
+    }
+
+    pauseModalMedia();
+    modalEl.classList.remove('is-open', 'pg-modal--cinema', 'is-closing');
     modalEl.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('pg-modal-open');
-    const video = modalEl.querySelector('video');
-    if (video) video.pause();
   }
 
   async function init() {
@@ -209,8 +326,8 @@
       return;
     }
 
-    renderGrid(interfaceGrid, data.interface);
-    renderGrid(motionGrid, data.motion);
+    renderGrid(interfaceGrid, data.interface, 'interface');
+    renderGrid(motionGrid, data.motion, 'motion');
 
     interfacePanel.classList.add('is-active');
     interfacePanel.style.display = 'block';
