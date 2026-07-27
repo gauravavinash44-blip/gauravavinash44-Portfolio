@@ -1,0 +1,425 @@
+{
+    "welcome": {
+    "message": "👋 Welcome!\n\nI'm here to help you explore Gaurav's portfolio.\n\nYou can ask about projects, experience, design principles, skills, or this Portfolio Assistant itself.",
+    "suggestions": [
+      { "label": "Tell me about Gaurav", "topicId": "about_gaurav" },
+      { "label": "How do you think about design?", "topicId": "how_i_think" },
+      { "label": "Skills & Learning", "topicId": "skills_learning" }
+    ]
+  },
+  "topics": {
+    "about_gaurav": {
+      "aliases": ["tell me about gaurav", "about gaurav", "who is gaurav", "introduce gaurav", "gaurav"],
+      "response": "Gaurav Avinash is a Senior Product Designer with 5+ years of experience in Enterprise SaaS, AI products, and Fintech.\n\nHe currently works as Product Designer II at Systematic (remote, New York team), where he designs AI-first B2B SaaS workflows—turning high-friction flows into clear, measurable product decisions.\n\nHis work spans deal execution platforms, contextual AI search, AI-assisted profile creation, and mobile product redesigns across fintech and food-tech.",
+      "suggestions": [
+        { "label": "Experience", "topicId": "experience" },
+        { "label": "Skills", "topicId": "skills" },
+        { "label": "Career Journey", "topicId": "career_journey" }
+      ]
+    },
+    "featured_projects": {
+      "aliases": ["view featured projects", "featured projects", "projects", "case studies", "work"],
+      "response": "Gaurav's featured work focuses on complex B2B and AI product problems with measurable outcomes:\n\n**01 · Deal Room** — Structured deal execution anchored to company profiles (+32% deal creation adoption).\n\n**02 · AI Assistant** — Contextual chat for investor company discovery (search under 30 seconds, +25% engagement).\n\n**03 · Company Profile Builder** — AI-assisted profile creation with hybrid editing controls (+40% completion, 3× investor engagement).\n\nEach project includes a full case study with problem framing, research, design decisions, and outcomes.",
+      "suggestions": [
+        { "label": "Deal Room", "topicId": "deal_room" },
+        { "label": "AI Assistant", "topicId": "ai_assistant" },
+        { "label": "Company Profile Builder", "topicId": "company_profile_builder" }
+      ]
+    },
+    "design_process": {
+      "aliases": ["explain your design process", "design process", "how do you design", "process", "methodology"],
+      "response": "Gaurav's design process is built for ambiguous AI and enterprise systems—not slide-deck ideals.\n\nHe starts with problem framing and stakeholder alignment, then moves through research, structured exploration, system-level thinking, and close collaboration with engineering.\n\nEvery phase includes explicit states (loading, empty, failure, recovery) because trust in AI products is won or lost in edge cases—not just happy paths.",
+      "suggestions": [
+        { "label": "Research", "topicId": "process_research" },
+        { "label": "How do you think about design?", "topicId": "how_i_think" },
+        { "label": "Wireframes", "topicId": "process_wireframes" }
+      ]
+    },
+    "experience": {
+      "aliases": ["experience", "work experience", "background", "roles"],
+      "response": "Gaurav has 4.5+ years in product design across AI B2B SaaS, fintech, and consumer mobile.\n\n**Current:** Product Designer II at Systematic — AI search, profile creation, deal workflows.\n\n**Previous:** Easy Eat (multi-country food-tech launches), LA FUORI (B2B web and campaigns).\n\nHe works best embedded with product managers and engineers in one decision loop—especially when shipping 0→1 AI features under business pressure.",
+      "suggestions": [
+        { "label": "Current Role", "topicId": "current_role" },
+        { "label": "Previous Experience", "topicId": "previous_experience" },
+        { "label": "Resume", "topicId": "resume" }
+      ]
+    },
+    "skills": {
+      "aliases": ["skills", "expertise", "specialties", "what is he good at"],
+      "response": "Gaurav specializes in:\n\n• **Enterprise SaaS & Fintech UX** — complex workflows, compliance-aware flows, B2B decision tools\n• **AI Product Design** — Human-AI interaction, query states, progressive disclosure, hybrid editing\n• **Design Systems** — scalable components, documentation, cross-team consistency\n• **Research & Validation** — usability testing, behavioral metrics, assumption-led pushback\n• **Cross-functional Leadership** — PM + engineering alignment, handoff quality, adoption metrics\n\nSee **Skills & Learning** on the portfolio for the full capability breakdown—including design practice, AI design, research, tools, collaboration, and ongoing learning.",
+      "suggestions": [
+        { "label": "Skills & Learning", "topicId": "skills_learning" },
+        { "label": "Experience", "topicId": "experience" },
+        { "label": "Design Process", "topicId": "design_process" }
+      ]
+    },
+    "career_journey": {
+      "aliases": ["career journey", "career path", "how did he get here", "journey"],
+      "response": "Gaurav's path moved from campaign and web design into product design as problems got more systemic.\n\nAt **LA FUORI**, he learned to ship under brand and business constraints. At **Easy Eat**, he led mobile UX across markets—where small interaction decisions changed ordering completion.\n\nAt **Systematic**, he shifted into AI B2B SaaS: designing for model uncertainty, investor workflows, and measurable adoption—not just interface polish.\n\nThat arc shaped his focus: sequencing information, protecting user agency in AI flows, and designing for states—not screens.",
+      "suggestions": [
+        { "label": "Current Role", "topicId": "current_role" },
+        { "label": "Tell me about Gaurav", "topicId": "about_gaurav" },
+        { "label": "Resume", "topicId": "resume" }
+      ]
+    },
+    "deal_room": {
+      "aliases": ["deal room", "deal execution", "structured deal"],
+      "response": "**Deal Room — structured deal execution**\n\nDeal work was fragmented across surfaces. Founders and investors lost context jumping between profiles, documents, and status updates.\n\nGaurav anchored deal creation on the **company profile**—where fundraising intent already lives—and designed a guided execution system with clear gates (setup, NDA, commitments).\n\n**Outcomes:** +32% deal creation adoption · −27% discovery-to-action friction.\n\n→ [Read the full case study](./deal-room-case-study.html)",
+      "suggestions": [
+        { "label": "Problem Statement", "topicId": "deal_room_problem" },
+        { "label": "Research Process", "topicId": "deal_room_research" },
+        { "label": "Design Decisions", "topicId": "deal_room_decisions" }
+      ]
+    },
+    "ai_assistant": {
+      "aliases": ["ai assistant", "systematic agent", "contextual chat", "ai search", "chat assistant"],
+      "response": "**Contextual chat assistant for investor company discovery**\n\nInvestors spent 3–4 minutes jumping across filters and pages to evaluate companies. Confidence dropped without conversational context.\n\nGaurav designed a contextual AI assistant using OpenAI + vector search—natural language discovery with transparent results and faster evaluation paths.\n\n**Outcomes:** Search under 30 seconds · +25% user engagement.\n\n→ [Read the case study](./case-study-systematic-agent.html)",
+      "suggestions": [
+        { "label": "Problem Statement", "topicId": "ai_assistant_problem" },
+        { "label": "Design Decisions", "topicId": "ai_assistant_decisions" },
+        { "label": "Final Outcome", "topicId": "ai_assistant_outcome" }
+      ]
+    },
+    "company_profile_builder": {
+      "aliases": ["company profile builder", "company profile", "profile creation", "ai profile"],
+      "response": "**AI-assisted company profile creation**\n\nFundraising teams struggled with long, ambiguous profile forms. Pure AI generation felt risky; pure manual entry felt slow.\n\nGaurav designed a **hybrid model**: AI drafts sections with smart defaults, while users retain edit and override control at every step.\n\n**Outcomes:** +40% completion rate · −30% onboarding abandonment · 3× investor engagement.\n\n→ [Read the case study](./case-study-company-profile-creation.html)",
+      "suggestions": [
+        { "label": "Problem Statement", "topicId": "profile_problem" },
+        { "label": "Research Process", "topicId": "profile_research" },
+        { "label": "Design Decisions", "topicId": "profile_decisions" }
+      ]
+    },
+    "deal_room_problem": {
+      "aliases": ["problem statement", "deal room problem"],
+      "response": "**Problem:** Deal execution was split across disconnected surfaces. Users couldn't see status, next actions, or context in one place.\n\nCreation started in the wrong entry point—away from where company intent and investor relationships already lived.\n\nThe core insight: **anchor deal creation on the company profile**, not a standalone wizard disconnected from context.",
+      "suggestions": [
+        { "label": "Research Process", "topicId": "deal_room_research" },
+        { "label": "Design Decisions", "topicId": "deal_room_decisions" },
+        { "label": "Final Outcome", "topicId": "deal_room_outcome" }
+      ]
+    },
+    "deal_room_research": {
+      "aliases": ["research process", "deal room research", "discovery"],
+      "response": "Research combined stakeholder interviews, workflow mapping, and adoption analytics.\n\nGaurav mapped the full deal lifecycle—from profile review to NDA gate to investor commitment—and identified where users dropped due to **uncertainty**, not missing features.\n\nKey finding: users needed a **single source of truth** for deal status, not more navigation options.",
+      "suggestions": [
+        { "label": "Design Decisions", "topicId": "deal_room_decisions" },
+        { "label": "Final Outcome", "topicId": "deal_room_outcome" },
+        { "label": "Deal Room", "topicId": "deal_room" }
+      ]
+    },
+    "deal_room_decisions": {
+      "aliases": ["design decisions", "deal room decisions", "solution"],
+      "response": "Key design decisions for Deal Room:\n\n1. **Profile-anchored entry** — \"Create Deal Room\" lives where intent already exists.\n2. **Guided gates** — Setup → NDA → Commitments as a visible ladder, not hidden states.\n3. **Progressive disclosure** — show only what's actionable at each stage.\n4. **System consistency** — reusable patterns across deal types for faster learning.",
+      "suggestions": [
+        { "label": "Final Outcome", "topicId": "deal_room_outcome" },
+        { "label": "Problem Statement", "topicId": "deal_room_problem" },
+        { "label": "Featured Projects", "topicId": "featured_projects" }
+      ]
+    },
+    "deal_room_outcome": {
+      "aliases": ["final outcome", "deal room outcome", "impact", "results"],
+      "response": "**Deal Room outcomes:**\n\n• **+32%** deal creation adoption after entry-point redesign\n• **−27%** discovery-to-action friction\n• Clearer investor commitment paths with fewer dead ends\n\nThe structured flow reduced cognitive load and made next actions obvious at every gate.",
+      "suggestions": [
+        { "label": "Deal Room", "topicId": "deal_room" },
+        { "label": "AI Assistant", "topicId": "ai_assistant" },
+        { "label": "View featured projects", "topicId": "featured_projects" }
+      ]
+    },
+    "ai_assistant_problem": {
+      "aliases": ["ai problem", "search problem"],
+      "response": "Investors evaluated companies through fragmented filters and paginated results—3–4 minutes per search with low confidence in whether they'd seen everything relevant.\n\nThe problem wasn't missing data. It was **missing context**—users couldn't ask follow-up questions or refine intent naturally.",
+      "suggestions": [
+        { "label": "Design Decisions", "topicId": "ai_assistant_decisions" },
+        { "label": "Final Outcome", "topicId": "ai_assistant_outcome" },
+        { "label": "AI Assistant", "topicId": "ai_assistant" }
+      ]
+    },
+    "ai_assistant_decisions": {
+      "aliases": ["ai design decisions", "chat design"],
+      "response": "Key decisions for the AI assistant:\n\n1. **Contextual prompts** — suggestions based on where the user is in discovery.\n2. **Transparent results** — show why companies match, not just a list.\n3. **Hybrid control** — users can refine, filter, or pivot without losing thread.\n4. **Failure states** — clear recovery when the model returns low-confidence answers.",
+      "suggestions": [
+        { "label": "Final Outcome", "topicId": "ai_assistant_outcome" },
+        { "label": "Design Process", "topicId": "design_process" },
+        { "label": "Company Profile Builder", "topicId": "company_profile_builder" }
+      ]
+    },
+    "ai_assistant_outcome": {
+      "aliases": ["ai outcome", "ai results"],
+      "response": "**AI Assistant outcomes:**\n\n• Search completion **under 30 seconds** (down from 3–4 minutes)\n• **+25%** user engagement in company discovery\n• Deeper exploration with conversational follow-ups\n\nNatural language replaced fragmented filter-hopping without sacrificing precision.",
+      "suggestions": [
+        { "label": "AI Assistant", "topicId": "ai_assistant" },
+        { "label": "Deal Room", "topicId": "deal_room" },
+        { "label": "Skills", "topicId": "skills" }
+      ]
+    },
+    "profile_problem": {
+      "aliases": ["profile problem"],
+      "response": "Company profile creation suffered from long forms, unclear required fields, and low trust in AI-generated content.\n\nTeams abandoned mid-flow because they couldn't tell what was done, what was missing, or whether AI output was safe to publish.",
+      "suggestions": [
+        { "label": "Research Process", "topicId": "profile_research" },
+        { "label": "Design Decisions", "topicId": "profile_decisions" },
+        { "label": "Company Profile Builder", "topicId": "company_profile_builder" }
+      ]
+    },
+    "profile_research": {
+      "aliases": ["profile research"],
+      "response": "Research included founder interviews, completion funnel analysis, and side-by-side testing of AI-only vs manual flows.\n\nUsers wanted speed **and** control—they rejected full automation but also refused repetitive data entry.\n\nThe hybrid model emerged as the only path that improved both completion and quality.",
+      "suggestions": [
+        { "label": "Design Decisions", "topicId": "profile_decisions" },
+        { "label": "Final Outcome", "topicId": "profile_outcome" },
+        { "label": "Design Process", "topicId": "design_process" }
+      ]
+    },
+    "profile_decisions": {
+      "aliases": ["profile design decisions"],
+      "response": "Profile builder design decisions:\n\n1. **Section-by-section AI drafts** with inline edit at every step.\n2. **Smart defaults** from existing company data to reduce repetition.\n3. **Quality cues** — confidence indicators before publish.\n4. **Progress visibility** — always show what's complete vs outstanding.",
+      "suggestions": [
+        { "label": "Final Outcome", "topicId": "profile_outcome" },
+        { "label": "Research Process", "topicId": "profile_research" },
+        { "label": "AI Assistant", "topicId": "ai_assistant" }
+      ]
+    },
+    "profile_outcome": {
+      "aliases": ["profile outcome", "profile results"],
+      "response": "**Company Profile Builder outcomes:**\n\n• **+40%** profile completion rate\n• **−30%** onboarding abandonment\n• **3×** investor engagement on completed profiles\n\nHybrid AI + manual control balanced speed with trust.",
+      "suggestions": [
+        { "label": "Company Profile Builder", "topicId": "company_profile_builder" },
+        { "label": "Featured Projects", "topicId": "featured_projects" },
+        { "label": "Resume", "topicId": "resume" }
+      ]
+    },
+    "process_research": {
+      "aliases": ["research", "user research", "discovery research"],
+      "response": "Gaurav treats research as **decision fuel**, not a deliverable checkbox.\n\nHe combines stakeholder interviews, workflow mapping, funnel analytics, and usability tests—especially around moments of uncertainty in AI flows.\n\nResearch outputs become testable bets: what to sequence, what to automate, and what must stay manual.",
+      "suggestions": [
+        { "label": "Wireframes", "topicId": "process_wireframes" },
+        { "label": "Validation", "topicId": "process_validation" },
+        { "label": "Design Process", "topicId": "design_process" }
+      ]
+    },
+    "process_wireframes": {
+      "aliases": ["wireframes", "prototyping", "low fidelity"],
+      "response": "Wireframes focus on **flow sequencing** before visual polish.\n\nGaurav maps states early—empty, loading, partial, error, success—because enterprise and AI products fail in transitions, not layouts.\n\nPrototypes test decision clarity: can a user always tell what happened and what to do next?",
+      "suggestions": [
+        { "label": "Design Systems", "topicId": "process_design_systems" },
+        { "label": "Developer Collaboration", "topicId": "process_dev_collab" },
+        { "label": "Research", "topicId": "process_research" }
+      ]
+    },
+    "process_design_systems": {
+      "aliases": ["design systems", "components", "system design"],
+      "response": "Gaurav builds design systems as **shared language** between design and engineering—not static libraries.\n\nComponents include interaction specs, state variants, and usage guidance for complex flows (gates, AI suggestions, hybrid inputs).\n\nConsistency accelerates shipping; documentation prevents one-off drift.",
+      "suggestions": [
+        { "label": "Developer Collaboration", "topicId": "process_dev_collab" },
+        { "label": "Validation", "topicId": "process_validation" },
+        { "label": "Skills", "topicId": "skills" }
+      ]
+    },
+    "process_dev_collab": {
+      "aliases": ["developer collaboration", "engineering", "handoff", "dev collaboration"],
+      "response": "Gaurav embeds with engineering early—especially for AI features where backend constraints shape UX.\n\nHandoffs include edge-case specs, state diagrams, and acceptance criteria tied to user behavior—not just pixel specs.\n\nHe aligns with PMs on scope trade-offs so design reflects real priorities under sprint pressure.",
+      "suggestions": [
+        { "label": "Validation", "topicId": "process_validation" },
+        { "label": "Design Process", "topicId": "design_process" },
+        { "label": "Current Role", "topicId": "current_role" }
+      ]
+    },
+    "process_validation": {
+      "aliases": ["validation", "testing", "usability testing", "metrics"],
+      "response": "Validation combines **behavioral metrics** and **qualitative feedback**.\n\nGaurav tracks adoption, completion, and time-to-action—then interviews users to explain the \"why\" behind the numbers.\n\nHe pushes back on assumption-led launches: if a hypothesis isn't testable pre-ship, it's flagged as risk.",
+      "suggestions": [
+        { "label": "Research", "topicId": "process_research" },
+        { "label": "Featured Projects", "topicId": "featured_projects" },
+        { "label": "Experience", "topicId": "experience" }
+      ]
+    },
+    "current_role": {
+      "aliases": ["current role", "systematic", "job now", "present role"],
+      "response": "**Product Designer II at Systematic** (remote · New York team)\n\nGaurav designs AI-first B2B SaaS for investor and founder workflows—contextual search, profile creation, and deal execution.\n\nHe focuses on Human-AI interaction: query states, progressive disclosure, hybrid editing, and failure recovery when model responses are uncertain.",
+      "suggestions": [
+        { "label": "Previous Experience", "topicId": "previous_experience" },
+        { "label": "Tools", "topicId": "tools" },
+        { "label": "Featured Projects", "topicId": "featured_projects" }
+      ]
+    },
+    "previous_experience": {
+      "aliases": ["previous experience", "past jobs", "easy eat", "la fuori"],
+      "response": "**Easy Eat** — Product design for multi-country food-tech launches. Mobile UX, ordering flows, and market-specific customization.\n\n**LA FUORI** — B2B web design and campaign systems under tight brand and business constraints.\n\nBoth roles built the foundation for systems thinking—shipping under real operational pressure, not idealized briefs.",
+      "suggestions": [
+        { "label": "Career Journey", "topicId": "career_journey" },
+        { "label": "Current Role", "topicId": "current_role" },
+        { "label": "Experience", "topicId": "experience" }
+      ]
+    },
+    "tools": {
+      "aliases": ["tools", "software", "stack", "figma"],
+      "response": "Gaurav's toolkit:\n\n**Design:** Figma, Adobe XD, Framer, Photoshop, Illustrator\n**Collaboration:** Miro, Notion\n**AI-assisted workflow:** Cursor AI, ChatGPT, Copilot, Claude Code\n\nHe uses AI tools to accelerate exploration and documentation—while keeping design decisions grounded in user evidence and engineering constraints.",
+      "suggestions": [
+        { "label": "Skills", "topicId": "skills" },
+        { "label": "Resume", "topicId": "resume" },
+        { "label": "Design Process", "topicId": "design_process" }
+      ]
+    },
+    "resume": {
+      "aliases": ["resume", "cv", "download resume"],
+      "response": "You can preview or download Gaurav's resume directly from the portfolio.\n\n→ [Preview Resume](./assets/Resume-Gaurav.pdf)\n→ [Download Resume](./assets/Resume-Gaurav.pdf)\n\nFor a conversation about fit, the Contact section includes email, LinkedIn, and phone.",
+      "suggestions": [
+        { "label": "Experience", "topicId": "experience" },
+        { "label": "Tell me about Gaurav", "topicId": "about_gaurav" },
+        { "label": "Featured Projects", "topicId": "featured_projects" }
+      ]
+    },
+    "how_i_think": {
+      "aliases": ["how i think", "how do you think", "design principles", "principles", "thinking", "decisions", "how do you think about design", "how i work"],
+      "response": "Gaurav's **How I Think** principles come from shipping AI workflows where trust, model uncertainty, and business speed must align.\n\nPick a principle below to go deeper—or ask about any of them in your own words.",
+      "suggestionLimit": 6,
+      "suggestions": [
+        { "label": "User agency in AI", "topicId": "principle_agency" },
+        { "label": "Sequencing information", "topicId": "principle_sequencing" },
+        { "label": "States, not screens", "topicId": "principle_states" },
+        { "label": "Challenge assumptions", "topicId": "principle_assumptions" },
+        { "label": "Metrics + behavior", "topicId": "principle_metrics" },
+        { "label": "Cross-functional clarity", "topicId": "principle_cross_functional" }
+      ]
+    },
+    "principle_agency": {
+      "aliases": ["user agency", "ai agency", "principle 1", "reduce effort not agency", "hybrid flows"],
+      "response": "**\"AI should reduce effort, not remove user agency.\"**\n\nHybrid flows let users accept, edit, or override AI. Autocomplete without control fails in high-stakes work.\n\nGaurav applies this in AI profile creation (hybrid editing), contextual search (users can refine results), and portfolio patterns like suggested questions with free-text override.",
+      "suggestions": [
+        { "label": "Company Profile Builder", "topicId": "company_profile_builder" },
+        { "label": "Sequencing information", "topicId": "principle_sequencing" },
+        { "label": "All principles", "topicId": "how_i_think" }
+      ]
+    },
+    "principle_sequencing": {
+      "aliases": ["sequencing information", "principle 2", "information sequencing", "good ux sequencing"],
+      "response": "**\"Good UX is usually about sequencing information.\"**\n\nDrop-offs follow uncertainty. Gaurav sequences context, confidence cues, and actions so decisions feel informed—not rushed or overwhelming.\n\nIn investor workflows, this meant revealing AI results progressively and anchoring each step to what the user already knows.",
+      "suggestions": [
+        { "label": "States, not screens", "topicId": "principle_states" },
+        { "label": "Design Process", "topicId": "design_process" },
+        { "label": "All principles", "topicId": "how_i_think" }
+      ]
+    },
+    "principle_states": {
+      "aliases": ["states not screens", "principle 3", "empty states", "query states", "ambiguity states"],
+      "response": "**\"Ambiguity gets resolved through states, not screens.\"**\n\nQuery states, empty states, and recovery paths come first. Failed model responses still need a clear next action.\n\nThis shows up in AI assistant flows—loading, partial results, low-confidence answers, and graceful fallbacks to traditional search.",
+      "suggestions": [
+        { "label": "AI Assistant", "topicId": "ai_assistant" },
+        { "label": "Challenge assumptions", "topicId": "principle_assumptions" },
+        { "label": "All principles", "topicId": "how_i_think" }
+      ]
+    },
+    "principle_assumptions": {
+      "aliases": ["assumption led", "principle 4", "push back assumptions", "testable bets"],
+      "response": "**\"Push back when decisions are assumption-led.\"**\n\nGaurav turns assumptions into testable bets. Early evidence prevents costly post-launch redesigns.\n\nHe pairs qualitative interviews with behavioral metrics—if a hypothesis can't be validated pre-ship, it's flagged as delivery risk.",
+      "suggestions": [
+        { "label": "Metrics + behavior", "topicId": "principle_metrics" },
+        { "label": "Research", "topicId": "skill_research" },
+        { "label": "All principles", "topicId": "how_i_think" }
+      ]
+    },
+    "principle_metrics": {
+      "aliases": ["metrics and behavior", "principle 5", "metrics matter", "qualitative quantitative"],
+      "response": "**\"Metrics and behavior both matter.\"**\n\nMetrics show where to look; user conversations show what to fix.\n\nDeal Room adoption (+32%), AI search time (<30s), and profile completion (+40%) all started with funnel data—then user interviews explained why numbers moved.",
+      "suggestions": [
+        { "label": "Featured Projects", "topicId": "featured_projects" },
+        { "label": "Cross-functional clarity", "topicId": "principle_cross_functional" },
+        { "label": "All principles", "topicId": "how_i_think" }
+      ]
+    },
+    "principle_cross_functional": {
+      "aliases": ["cross functional", "principle 6", "isolated polish", "pm engineering alignment"],
+      "response": "**\"Cross-functional clarity beats isolated design polish.\"**\n\nGaurav aligns with PMs and engineers so design reflects constraints and priorities—not slide-deck ideals.\n\nHandoffs include state diagrams, edge-case specs, and acceptance criteria tied to user behavior—especially for AI features where backend limits shape UX.",
+      "suggestions": [
+        { "label": "Product Collaboration", "topicId": "skill_collaboration" },
+        { "label": "Current Role", "topicId": "current_role" },
+        { "label": "All principles", "topicId": "how_i_think" }
+      ]
+    },
+    "skills_learning": {
+      "aliases": ["skills and learning", "skills & learning", "capabilities", "learning", "what can you do", "tooling"],
+      "response": "The **Skills & Learning** section covers Gaurav's capabilities across product, AI, and execution.\n\nPick a capability below to explore—or ask about any area in your own words.",
+      "suggestionLimit": 7,
+      "suggestions": [
+        { "label": "Design Practice", "topicId": "skill_design_practice" },
+        { "label": "AI Design", "topicId": "skill_ai_design" },
+        { "label": "Research", "topicId": "skill_research" },
+        { "label": "Tools", "topicId": "skill_tools" },
+        { "label": "Product Collaboration", "topicId": "skill_collaboration" },
+        { "label": "Learning", "topicId": "skill_learning" },
+        { "label": "Portfolio Assistant", "topicId": "portfolio_assistant" }
+      ]
+    },
+    "skill_design_practice": {
+      "aliases": ["design practice", "ux strategy", "user flows", "prototypes", "experience mapping"],
+      "response": "**Design Practice**\n\nUX strategy, user flows, concept sketches, experience mapping, and prototypes.\n\nGaurav turns ambiguous problems into clear interaction models and measurable decisions—mapping states and sequencing before visual polish.",
+      "suggestions": [
+        { "label": "Design Process", "topicId": "design_process" },
+        { "label": "AI Design", "topicId": "skill_ai_design" },
+        { "label": "All capabilities", "topicId": "skills_learning" }
+      ]
+    },
+    "skill_ai_design": {
+      "aliases": ["ai design", "human ai", "prompt design", "ai prototyping"],
+      "response": "**AI Design**\n\nPrompt design, AI prototyping, and Human-AI experience design.\n\nModel-assisted workflows that keep users in control and speed decisions—query states, hybrid editing, progressive disclosure, and failure recovery.",
+      "suggestions": [
+        { "label": "AI Assistant project", "topicId": "ai_assistant" },
+        { "label": "User agency in AI", "topicId": "principle_agency" },
+        { "label": "All capabilities", "topicId": "skills_learning" }
+      ]
+    },
+    "skill_research": {
+      "aliases": ["research capability", "user interviews", "usability testing", "affinity mapping"],
+      "response": "**Research**\n\nUser interviews, usability testing, affinity mapping, and information architecture.\n\nQualitative insight plus metrics to validate assumptions and prioritize roadmap—research as decision fuel, not a deliverable checkbox.",
+      "suggestions": [
+        { "label": "Research in process", "topicId": "process_research" },
+        { "label": "Challenge assumptions", "topicId": "principle_assumptions" },
+        { "label": "All capabilities", "topicId": "skills_learning" }
+      ]
+    },
+    "skill_tools": {
+      "aliases": ["design tools", "figma tools", "software tools"],
+      "response": "**Tools**\n\nFigma, Adobe XD, Photoshop, Illustrator, InDesign, Framer, and Miro.\n\nWireframing, visual design, prototyping, and design communication—plus AI-assisted workflow tools for faster exploration.",
+      "suggestions": [
+        { "label": "Full toolkit", "topicId": "tools" },
+        { "label": "Learning", "topicId": "skill_learning" },
+        { "label": "All capabilities", "topicId": "skills_learning" }
+      ]
+    },
+    "skill_collaboration": {
+      "aliases": ["product collaboration", "cross functional delivery", "notion slack asana"],
+      "response": "**Product Collaboration**\n\nNotion, Slack, Asana, and cross-functional delivery.\n\nClose work with PMs, engineers, and stakeholders from scoping through launch—embedding early especially for AI features where backend constraints shape UX.",
+      "suggestions": [
+        { "label": "Cross-functional clarity", "topicId": "principle_cross_functional" },
+        { "label": "Developer Collaboration", "topicId": "process_dev_collab" },
+        { "label": "All capabilities", "topicId": "skills_learning" }
+      ]
+    },
+    "skill_learning": {
+      "aliases": ["ongoing learning", "genai coursera", "vibe coding", "upskilling"],
+      "response": "**Learning**\n\nGenAI for UX Designers (Coursera), Vibe Coding (Scrimba).\n\nAI-native workflows with Cursor, Copilot, and Claude Code for faster prototyping—while keeping design decisions grounded in user evidence.",
+      "suggestions": [
+        { "label": "Tools", "topicId": "skill_tools" },
+        { "label": "Portfolio Assistant", "topicId": "portfolio_assistant" },
+        { "label": "All capabilities", "topicId": "skills_learning" }
+      ]
+    },
+    "portfolio_assistant": {
+      "aliases": ["portfolio assistant", "this chat", "this assistant", "chatbot", "what is this", "how does this work", "portfolio experiment"],
+      "response": "You're using the **Portfolio Assistant**—a floating chat on this portfolio. Click the **Portfolio Assistant** button at the bottom-right to open it anytime.\n\nIt helps recruiters, hiring managers, and collaborators explore Gaurav's work without hunting through every section. Ask about featured projects, experience, design process, **How I Think** principles, or **Skills & Learning** capabilities.\n\nIt's knowledge-guided (structured topics and aliases—not a live LLM API), with typing animations and suggested follow-ups so exploration feels natural and fast.\n\nGaurav built it as a portfolio experiment under **Skills & Learning**, applying the same Human-AI patterns he ships in product: clear states, suggested next actions, and user agency.",
+      "suggestions": [
+        { "label": "Tell me about Gaurav", "topicId": "about_gaurav" },
+        { "label": "How do you think about design?", "topicId": "how_i_think" },
+        { "label": "Skills & Learning", "topicId": "skills_learning" }
+      ]
+    }
+  },
+  "fallback": {
+    "response": "I can help you explore Gaurav's experience, featured projects, design process, design principles, skills, or this Portfolio Assistant.\n\nTry one of the suggestions below, or ask about a topic in your own words.",
+    "suggestions": [
+      { "label": "Tell me about Gaurav", "topicId": "about_gaurav" },
+      { "label": "How do you think about design?", "topicId": "how_i_think" },
+      { "label": "Skills & Learning", "topicId": "skills_learning" }
+    ]
+  }
+}

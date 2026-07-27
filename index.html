@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;1,9..144,300;1,9..144,400&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./loading-experience/dist/loading-screen.css">
 <link rel="stylesheet" href="./assets/design-playground/design-playground.css?v=2">
+<link rel="stylesheet" href="./assets/portfolio-assistant/portfolio-assistant.css?v=7">
 <style>
   :root {
     --ink: #0f0e0c;
@@ -818,64 +819,6 @@
   }
   .tool-chip:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 
-  .principles { background: #f0ece4; }
-  .principles-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
-    background: var(--line);
-    border: 1px solid var(--line);
-    margin-top: 1rem;
-  }
-  .principle-card {
-    background: #f0ece4;
-    padding: 2.5rem 3rem;
-    transition: background 0.2s;
-    cursor: none;
-    position: relative;
-  }
-  .principle-card:hover { background: #fff; }
-  .principle-num {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.08em;
-    color: var(--accent);
-    margin-bottom: 1.2rem;
-  }
-  .principle-q {
-    font-family: var(--serif);
-    font-size: 1.25rem;
-    font-weight: 300;
-    letter-spacing: -0.01em;
-    line-height: 1.3;
-    color: var(--ink);
-    margin-bottom: 1rem;
-  }
-  .principle-body {
-    font-size: 0.88rem;
-    color: var(--mid);
-    line-height: 1.7;
-  }
-  .principles-header {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    margin-bottom: 4rem;
-    align-items: end;
-  }
-  .principles-h2 {
-    font-family: var(--serif);
-    font-size: clamp(2rem, 3.5vw, 2.8rem);
-    font-weight: 300;
-    letter-spacing: -0.02em;
-    line-height: 1.15;
-  }
-  .principles-sub {
-    font-size: 0.95rem;
-    color: var(--mid);
-    line-height: 1.7;
-  }
-
   .cs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; }
   .cs-card {
     border: 1px solid var(--line);
@@ -961,51 +904,18 @@
   }
   .cs-meta span { opacity: 0.7; }
 
-  .experiments { background: var(--ink); color: var(--paper); }
-  .experiments .section-label { color: #c87a55; }
-  .experiments .section-label::before { background: #c87a55; }
-  .exp-h2 {
-    font-family: var(--serif);
-    font-size: clamp(2rem, 3.5vw, 2.8rem);
-    font-weight: 300;
-    letter-spacing: -0.02em;
-    color: var(--paper);
-    margin-bottom: 1rem;
-  }
-  .exp-sub { font-size: 0.95rem; color: #9b9690; margin-bottom: 3.5rem; max-width: 480px; }
-  .exp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.06); }
-  .exp-item {
+  .contact {
     background: var(--ink);
-    padding: 2rem;
-    transition: background 0.2s;
-    cursor: none;
-  }
-  .exp-item:hover { background: #1a1915; }
-  .exp-type {
-    font-family: var(--mono);
-    font-size: 0.58rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1rem;
-  }
-  .exp-title {
-    font-family: var(--serif);
-    font-size: 1.05rem;
-    font-weight: 300;
     color: var(--paper);
-    margin-bottom: 0.8rem;
-    line-height: 1.35;
   }
-  .exp-note { font-size: 0.83rem; color: #9b9690; line-height: 1.6; }
-  .exp-date { font-family: var(--mono); font-size: 0.58rem; color: #6b6560; margin-top: 1rem; }
-
+  .contact .section-label { color: #c87a55; }
+  .contact .section-label::before { background: #c87a55; }
   .contact-inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 6rem;
     align-items: center;
-    border-top: 1px solid var(--line);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     padding-top: 5rem;
   }
   .contact-h2 {
@@ -1015,26 +925,27 @@
     letter-spacing: -0.03em;
     line-height: 1.1;
     margin-bottom: 1.5rem;
+    color: var(--paper);
   }
-  .contact-h2 em { font-style: italic; color: var(--accent); }
-  .contact-sub { font-size: 0.95rem; color: var(--mid); line-height: 1.7; max-width: 380px; }
+  .contact-h2 em { font-style: italic; color: #e07a52; }
+  .contact-sub { font-size: 0.95rem; color: #9b9690; line-height: 1.7; max-width: 380px; }
   .contact-right { display: flex; flex-direction: column; gap: 1.5rem; }
   .contact-link {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 0;
-    border-bottom: 1px solid var(--line);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     text-decoration: none;
-    color: var(--ink);
-    transition: padding-left 0.2s;
+    color: var(--paper);
+    transition: padding-left 0.2s, background 0.2s;
     cursor: none;
   }
   .contact-link:hover { padding-left: 0.5rem; }
-  .contact-link-label { font-family: var(--serif); font-size: 1.2rem; font-weight: 300; }
-  .contact-link-meta { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.07em; color: var(--mid); }
-  .contact-link-arrow { font-size: 1rem; color: var(--mid); transition: transform 0.2s, color 0.2s; }
-  .contact-link:hover .contact-link-arrow { transform: translate(4px, -4px); color: var(--accent); }
+  .contact-link-label { font-family: var(--serif); font-size: 1.2rem; font-weight: 300; color: var(--paper); }
+  .contact-link-meta { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.07em; color: #9b9690; }
+  .contact-link-arrow { font-size: 1rem; color: #9b9690; transition: transform 0.2s, color 0.2s; }
+  .contact-link:hover .contact-link-arrow { transform: translate(4px, -4px); color: #e07a52; }
   .contact-link-actions {
     display: flex;
     align-items: center;
@@ -1046,17 +957,18 @@
     align-items: center;
     justify-content: center;
     line-height: 1;
+    color: var(--paper);
   }
   .resume-action-icon {
     font-size: 1rem;
-    color: var(--mid);
+    color: #9b9690;
     transition: transform 0.2s, color 0.2s;
   }
   .contact-link-resume:hover .resume-action-icon {
-    color: var(--mid);
+    color: #9b9690;
     transform: none;
   }
-  .contact-link-actions a:hover .resume-action-icon { transform: translate(4px, -4px); color: var(--accent); }
+  .contact-link-actions a:hover .resume-action-icon { transform: translate(4px, -4px); color: #e07a52; }
 
   footer {
     padding: 2rem 3rem;
@@ -1195,10 +1107,7 @@
     .project-visual { min-height: 280px; }
     .about { grid-template-columns: 1fr; gap: 3rem; }
     .about-left { position: static; }
-    .principles-grid { grid-template-columns: 1fr; }
-    .principles-header { grid-template-columns: 1fr; }
     .cs-grid { grid-template-columns: 1fr; }
-    .exp-grid { grid-template-columns: 1fr; }
     .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
   }
 </style>
@@ -1228,7 +1137,6 @@
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="#principles">Thinking</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -1552,50 +1460,6 @@
   </div>
 </section>
 
-<section class="principles" id="principles">
-  <div class="principles-header">
-    <div>
-      <div class="section-label">How I Think</div>
-      <h2 class="principles-h2 reveal">How I make decisions<br>in AI product design.</h2>
-    </div>
-    <p class="principles-sub reveal">
-      From shipping AI workflows where trust, model uncertainty, and business speed must align.
-    </p>
-  </div>
-  <div class="principles-grid">
-    <div class="principle-card reveal">
-      <div class="principle-num">01</div>
-      <h3 class="principle-q">"AI should reduce effort, not remove user agency."</h3>
-      <p class="principle-body">Hybrid flows let users accept, edit, or override AI. Autocomplete without control fails in high-stakes work.</p>
-    </div>
-    <div class="principle-card reveal reveal-delay-1">
-      <div class="principle-num">02</div>
-      <h3 class="principle-q">"Good UX is usually about sequencing information."</h3>
-      <p class="principle-body">Drop-offs follow uncertainty. I sequence context, confidence cues, and actions so decisions feel informed.</p>
-    </div>
-    <div class="principle-card reveal reveal-delay-2">
-      <div class="principle-num">03</div>
-      <h3 class="principle-q">"Ambiguity gets resolved through states, not screens."</h3>
-      <p class="principle-body">Query states, empty states, and recovery paths come first. Failed model responses still need a clear next action.</p>
-    </div>
-    <div class="principle-card reveal reveal-delay-3">
-      <div class="principle-num">04</div>
-      <h3 class="principle-q">"I push back when decisions are assumption-led."</h3>
-      <p class="principle-body">I turn assumptions into testable bets. Early evidence prevents costly post-launch redesigns.</p>
-    </div>
-    <div class="principle-card reveal">
-      <div class="principle-num">05</div>
-      <h3 class="principle-q">"Metrics and behavior both matter."</h3>
-      <p class="principle-body">Metrics show where to look; user conversations show what to fix.</p>
-    </div>
-    <div class="principle-card reveal reveal-delay-1">
-      <div class="principle-num">06</div>
-      <h3 class="principle-q">"Cross-functional clarity beats isolated design polish."</h3>
-      <p class="principle-body">I align with PMs and engineers so design reflects constraints and priorities—not slide-deck ideals.</p>
-    </div>
-  </div>
-</section>
-
 <section id="case-studies">
   <div class="section-label reveal">Case Studies</div>
   <h2 class="about-h2 reveal" style="font-family:var(--serif);font-size:clamp(2rem,3.5vw,2.8rem);font-weight:300;letter-spacing:-0.02em;line-height:1.15;margin-bottom:3rem">Shipped AI workflows.<br>What changed and why.</h2>
@@ -1665,50 +1529,6 @@
         <span>Higher completion clarity</span>
       </div>
     </a>
-  </div>
-</section>
-
-<section class="experiments" id="experiments">
-  <div class="section-label">Skills & Learning</div>
-  <h2 class="exp-h2 reveal">Capabilities I use across product, AI, and execution.</h2>
-  <p class="exp-sub reveal">Design practice, research depth, and tooling from recent roles.</p>
-  <div class="exp-grid">
-    <div class="exp-item reveal">
-      <div class="exp-type">Design Practice</div>
-      <h3 class="exp-title">UX strategy, user flows, concept sketches, experience mapping, prototypes</h3>
-      <p class="exp-note">I turn ambiguous problems into clear interaction models and measurable decisions.</p>
-      <div class="exp-date">Core capability</div>
-    </div>
-    <div class="exp-item reveal reveal-delay-1">
-      <div class="exp-type">AI Design</div>
-      <h3 class="exp-title">Prompt design, AI prototyping, Human-AI experience design</h3>
-      <p class="exp-note">Model-assisted workflows that keep users in control and speed decisions.</p>
-      <div class="exp-date">Production focus</div>
-    </div>
-    <div class="exp-item reveal reveal-delay-2">
-      <div class="exp-type">Research</div>
-      <h3 class="exp-title">User interviews, usability testing, affinity mapping, IA</h3>
-      <p class="exp-note">Qualitative insight plus metrics to validate assumptions and prioritize roadmap.</p>
-      <div class="exp-date">Applied across roles</div>
-    </div>
-    <div class="exp-item reveal">
-      <div class="exp-type">Tools</div>
-      <h3 class="exp-title">Figma, Adobe XD, Photoshop, Illustrator, InDesign, Framer, Miro</h3>
-      <p class="exp-note">Wireframing, visual design, prototyping, and design communication.</p>
-      <div class="exp-date">Daily workflow</div>
-    </div>
-    <div class="exp-item reveal reveal-delay-1">
-      <div class="exp-type">Product Collaboration</div>
-      <h3 class="exp-title">Notion, Slack, Asana, cross-functional delivery</h3>
-      <p class="exp-note">Close work with PMs, engineers, and stakeholders from scoping through launch.</p>
-      <div class="exp-date">Execution layer</div>
-    </div>
-    <div class="exp-item reveal reveal-delay-2">
-      <div class="exp-type">Learning</div>
-      <h3 class="exp-title">GenAI for UX Designers (Coursera), Vibe Coding (Scrimba)</h3>
-      <p class="exp-note">AI-native workflows with Cursor, Copilot, and Claude Code for faster prototyping.</p>
-      <div class="exp-date">Ongoing upskilling</div>
-    </div>
   </div>
 </section>
 
@@ -1787,7 +1607,7 @@
   }
   animateRing();
 
-  document.querySelectorAll('a, button, .project-row, .cs-card, .exp-item, .principle-card, .pg-card, .pg-tab, .pg-modal-close').forEach(el => {
+  document.querySelectorAll('a, button, .project-row, .cs-card, .pg-card, .pg-tab, .pg-modal-close, .pa-suggestion, .pa-send, .pa-input, .pa-fab, .pa-modal-close').forEach(el => {
     el.addEventListener('mouseenter', () => {
       cursor.style.width = '16px';
       cursor.style.height = '16px';
@@ -1896,7 +1716,52 @@
   }
 
 </script>
+<button class="pa-fab" id="paFab" type="button" aria-label="Open Portfolio Assistant" aria-controls="paModal" aria-expanded="false">
+  <span class="pa-fab-icon" aria-hidden="true">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="2.1" fill="currentColor"/>
+      <path d="M12 9.9V6.8M12 17.2v-3.1M14.15 13.85l2.2 1.27M7.65 13.85l-2.2 1.27M14.15 10.15l2.2-1.27M7.65 10.15l-2.2-1.27" stroke="currentColor" stroke-width="1.35" stroke-linecap="round"/>
+      <circle cx="12" cy="5.4" r="1.15" fill="currentColor"/>
+      <circle cx="17.85" cy="16.2" r="1.15" fill="currentColor"/>
+      <circle cx="6.15" cy="16.2" r="1.15" fill="currentColor"/>
+      <path d="M12.85 5.95l4.35 2.55M11.15 5.95L6.8 8.5M7.2 15.05l3.65 2.1M16.8 15.05l-3.65 2.1" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" opacity="0.42"/>
+    </svg>
+  </span>
+  <span class="pa-fab-label">Portfolio Assistant</span>
+</button>
+
+<div class="pa-modal" id="paModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="paModalTitle">
+  <div class="pa-modal-backdrop"></div>
+  <div class="pa-modal-dialog">
+    <div class="pa-card">
+      <div class="pa-card-header">
+        <div class="pa-card-heading">
+          <div class="pa-card-title" id="paModalTitle">Portfolio Assistant</div>
+          <div class="pa-card-caption">Ask about experience, projects, or design process</div>
+        </div>
+        <button class="pa-modal-close" type="button" aria-label="Close Portfolio Assistant">×</button>
+      </div>
+
+      <div class="pa-messages" id="paMessages" role="log" aria-live="polite" aria-relevant="additions"></div>
+
+      <form class="pa-input-row" id="paForm">
+        <input
+          class="pa-input"
+          id="paInput"
+          type="text"
+          name="message"
+          placeholder="Ask about my work..."
+          autocomplete="off"
+          aria-label="Ask about my work"
+        >
+        <button class="pa-send" type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+</div>
+
 <script src="./loading-experience/dist/loading-screen.js"></script>
 <script src="./assets/design-playground/design-playground.js?v=2"></script>
+<script src="./assets/portfolio-assistant/portfolio-assistant.js?v=4"></script>
 </body>
 </html>
