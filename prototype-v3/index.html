@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gaurav Avinash — Prototype v3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles.css?v=2">
+</head>
+<body>
+
+<div class="proto-badge" role="note">Prototype v3 · <a href="../index.html">current site</a></div>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#top" aria-label="Gaurav Avinash home">
+      <img src="../assets/logo-ga.svg" alt="Gaurav Avinash" width="112" height="61" decoding="async">
+    </a>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#assistant">AI Assistant</a>
+      <a href="#details">Outcomes</a>
+    </div>
+    <a class="btn btn-blue btn-sm" href="mailto:gauravavinash3@gmail.com">Get in Touch</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="hero-copy">
+    <h1 class="hero-h1">Complex products,<br>made human.</h1>
+    <p class="hero-sub">Senior Product Designer for Enterprise SaaS, AI, and Fintech.<br class="br-desktop">Turning complexity into clarity for over 5 years.</p>
+    <div class="hero-btns">
+      <a class="btn btn-blue" href="#work">Explore the Work</a>
+      <a class="btn btn-ghost" href="../assets/Resume-Gaurav.pdf" target="_blank" rel="noopener">View Résumé</a>
+    </div>
+  </div>
+
+  <div class="hero-stage">
+    <!-- Floating cards -->
+    <div class="float-card fc-1" data-depth="0.9">
+      <img src="../assets/nda-signed-success.png" alt="NDA signed success state">
+    </div>
+    <div class="float-card fc-2" data-depth="1.4">
+      <div class="chip-card">
+        <span class="chip-dot chip-dot--green"></span>
+        <div><strong>+32%</strong><small>Deal creation adoption</small></div>
+      </div>
+    </div>
+    <div class="float-card fc-3" data-depth="1.1">
+      <div class="chip-card chip-card--chat">
+        <span class="chip-avatar">✦</span>
+        <div><strong>Systematic Agent</strong><small>“Show me fintech companies in Southeast Asia…”</small></div>
+      </div>
+    </div>
+    <div class="float-card fc-4" data-depth="1.6">
+      <div class="chip-card">
+        <span class="chip-dot chip-dot--blue"></span>
+        <div><strong>&lt;30s</strong><small>Search completion time</small></div>
+      </div>
+    </div>
+    <div class="float-card fc-5" data-depth="0.8">
+      <img src="../assets/systematic-agent-chat.png" alt="Agent chat interface">
+    </div>
+    <div class="float-card fc-6" data-depth="1.3">
+      <div class="chip-card">
+        <span class="chip-dot chip-dot--orange"></span>
+        <div><strong>+8.3%</strong><small>QR adoption · EasyEat</small></div>
+      </div>
+    </div>
+
+    <!-- Central browser frame -->
+    <div class="hero-device" data-depth="0.4">
+      <div class="browser-frame">
+        <div class="browser-bar">
+          <span class="b-dot"></span><span class="b-dot"></span><span class="b-dot"></span>
+          <span class="b-url">systematicventures.com / deal-room</span>
+        </div>
+        <img src="../assets/deal-room-dashboard-overview.png" alt="Deal Room dashboard">
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ VALUES ROW ============ -->
+<section class="values">
+  <div class="values-grid">
+    <div class="value-card" data-reveal><h5>Clear</h5><p>Whether it’s AI or fintech, the design makes it feel simple.</p></div>
+    <div class="value-card" data-reveal><h5>Trusted</h5><p>Explicit states everywhere. Trust is won in the edge cases.</p></div>
+    <div class="value-card" data-reveal><h5>Fast</h5><p>From 3–4 minutes of searching to under 30 seconds.</p></div>
+    <div class="value-card" data-reveal><h5>Crafted</h5><p>Micro-interactions taken seriously, at enterprise scale.</p></div>
+    <div class="value-card" data-reveal><h5>Measured</h5><p>Every project ships with outcomes, not opinions.</p></div>
+  </div>
+</section>
+
+<!-- ============ WORK CARDS ============ -->
+<section class="work" id="work">
+  <h2 class="h2 center" data-reveal>Three problems.<br>Solved end to end.</h2>
+  <p class="section-sub center" data-reveal>Real shipped work across deal execution, AI search, and mobile ordering.</p>
+
+  <div class="work-grid">
+    <a class="work-card" href="../deal-room-case-study.html" data-reveal>
+      <div class="work-card-img"><img src="../assets/deal-room-engagement-showcase.png" alt="Deal Room"></div>
+      <div class="work-card-body">
+        <h4>Deal Room</h4>
+        <p>Structured deal execution, anchored where intent already lives.</p>
+        <span class="work-tag">B2B SaaS · +32% adoption</span>
+      </div>
+    </a>
+    <a class="work-card" href="../case-study-systematic-agent.html" data-reveal>
+      <div class="work-card-img"><img src="../assets/contextual-chat-assistant-showcase.png" alt="Contextual Chat Assistant"></div>
+      <div class="work-card-body">
+        <h4>Contextual Chat Assistant</h4>
+        <p>AI-powered company discovery for investors—with context intact.</p>
+        <span class="work-tag">AI Search · &lt;30s search</span>
+      </div>
+    </a>
+    <a class="work-card" href="../easyeat-case-study.html" data-reveal>
+      <div class="work-card-img"><img src="../assets/easyeat-customization-showcase.png" alt="EasyEat"></div>
+      <div class="work-card-body">
+        <h4>EasyEat Customization</h4>
+        <p>Faster, clearer food ordering with fewer taps and obvious choices.</p>
+        <span class="work-tag">FoodTech · +8.3% QR adoption</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ============ PINNED DEAL ROOM FLOW ============ -->
+<section class="flow" id="flow">
+  <div class="flow-pin">
+    <div class="flow-head">
+      <h2 class="h2 center">Select, review, sign.<br>All in one place.</h2>
+      <div class="flow-tabs" id="flowTabs">
+        <span class="flow-tab is-active" data-step="0">Select</span>
+        <span class="flow-tab" data-step="1">Review</span>
+        <span class="flow-tab" data-step="2">Sign</span>
+        <span class="flow-tab" data-step="3">Done</span>
+      </div>
+    </div>
+
+    <div class="flow-stage">
+      <div class="browser-frame flow-frame">
+        <div class="browser-bar">
+          <span class="b-dot"></span><span class="b-dot"></span><span class="b-dot"></span>
+          <span class="b-url">deal-room / nda-workflow</span>
+        </div>
+        <div class="flow-screens">
+          <img class="flow-screen is-active" src="../assets/nda-select-for-deal.png" alt="Select company for deal">
+          <img class="flow-screen" src="../assets/nda-gate-review-sign.png" alt="Review NDA gate">
+          <img class="flow-screen" src="../assets/nda-agreement-signing.png" alt="Sign the agreement">
+          <img class="flow-screen" src="../assets/nda-signed-success.png" alt="NDA signed successfully">
+        </div>
+      </div>
+
+      <div class="flow-captions">
+        <div class="flow-caption is-active">
+          <h5>Select</h5>
+          <p>Deal creation starts on the company profile—where investor intent already lives. No more jumping across surfaces.</p>
+        </div>
+        <div class="flow-caption">
+          <h5>Review</h5>
+          <p>The NDA gate makes the legal step visible and understandable, instead of a buried blocker discovered too late.</p>
+        </div>
+        <div class="flow-caption">
+          <h5>Sign</h5>
+          <p>Signing happens inline with full context. Clear progress, no email round-trips, no lost momentum.</p>
+        </div>
+        <div class="flow-caption">
+          <h5>Done</h5>
+          <p>Explicit success states confirm what happened and what’s next. Result: +32% deal creation adoption.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AI ASSISTANT ============ -->
+<section class="feature" id="assistant">
+  <div class="feature-inner">
+    <div class="feature-copy" data-reveal>
+      <span class="eyebrow">Contextual</span>
+      <h2 class="h2">Company discovery you can just ask for.</h2>
+      <p class="section-sub">Investors were spending 3–4 minutes hopping across filters and pages. The contextual chat assistant answers in place—search drops under 30 seconds.</p>
+      <ul class="chip-list">
+        <li>Conversational Search</li>
+        <li>Context-Aware Answers</li>
+        <li>+25% Engagement</li>
+      </ul>
+    </div>
+    <div class="feature-media" data-reveal>
+      <div class="browser-frame">
+        <div class="browser-bar">
+          <span class="b-dot"></span><span class="b-dot"></span><span class="b-dot"></span>
+          <span class="b-url">systematic / agent</span>
+        </div>
+        <video src="../assets/contextual-chat-assistant-demo.mp4" autoplay muted loop playsinline></video>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EASYEAT ============ -->
+<section class="feature feature--flip">
+  <div class="feature-inner">
+    <div class="feature-copy" data-reveal>
+      <span class="eyebrow">Simple</span>
+      <h2 class="h2">Ordering food shouldn’t need a manual.</h2>
+      <p class="section-sub">EasyEat’s customization flow buried users in popups and unclear min/max rules. The redesign cut taps and made required choices obvious.</p>
+      <ul class="chip-list">
+        <li>Fewer Taps</li>
+        <li>Clear Required Choices</li>
+        <li>+8.3% QR Adoption</li>
+      </ul>
+    </div>
+    <div class="feature-media" data-reveal>
+      <div class="media-card">
+        <img src="../assets/easyeat-customization-showcase.png" alt="EasyEat customization flow">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DETAILS / METRICS ============ -->
+<section class="details" id="details">
+  <h2 class="h2 center" data-reveal>Details that matter.</h2>
+  <p class="section-sub center" data-reveal>Design measured in outcomes, no matter how small.</p>
+  <div class="details-grid">
+    <div class="detail-card" data-reveal>
+      <span class="detail-num" data-count="32" data-prefix="+" data-suffix="%">+32%</span>
+      <h5>Deal Creation Adoption</h5>
+      <p>Anchoring deal creation to company profiles put action where intent lives.</p>
+    </div>
+    <div class="detail-card" data-reveal>
+      <span class="detail-num" data-count="30" data-prefix="&lt;" data-suffix="s">&lt;30s</span>
+      <h5>Search Completion</h5>
+      <p>Contextual AI chat replaced 3–4 minutes of filter-hopping for investors.</p>
+    </div>
+    <div class="detail-card" data-reveal>
+      <span class="detail-num" data-count="25" data-prefix="+" data-suffix="%">+25%</span>
+      <h5>User Engagement</h5>
+      <p>Answers with context kept investors in flow instead of bouncing between pages.</p>
+    </div>
+    <div class="detail-card" data-reveal>
+      <span class="detail-num" data-count="8.3" data-prefix="+" data-suffix="%">+8.3%</span>
+      <h5>QR Adoption in 3 Weeks</h5>
+      <p>A clearer customization flow made ordering faster and mistakes rarer.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<section class="marquee-section">
+  <h2 class="h2 center" data-reveal>How the work gets made.</h2>
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Human–AI Interaction</span><span>Design Systems</span><span>Enterprise SaaS</span><span>Fintech</span><span>Prototyping</span><span>0→1 Features</span><span>Edge-Case States</span><span>Figma</span><span>Interaction Design</span><span>User Research</span>
+      <span>Human–AI Interaction</span><span>Design Systems</span><span>Enterprise SaaS</span><span>Fintech</span><span>Prototyping</span><span>0→1 Features</span><span>Edge-Case States</span><span>Figma</span><span>Interaction Design</span><span>User Research</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER CTA ============ -->
+<footer class="footer">
+  <div class="footer-inner" data-reveal>
+    <h2 class="footer-h2">Let’s build something<br>people love.</h2>
+    <p class="section-sub">Product Designer II at Systematic. Open to conversations about AI products worth building.</p>
+    <div class="hero-btns center">
+      <a class="btn btn-blue" href="mailto:gauravavinash3@gmail.com">gauravavinash3@gmail.com</a>
+      <a class="btn btn-ghost" href="../index.html">View Current Site</a>
+    </div>
+    <p class="footer-note">Prototype v3 · family.co-inspired direction · Gaurav Avinash</p>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="./app.js?v=3"></script>
+</body>
+</html>

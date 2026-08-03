@@ -1,13 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { LoadingLogo } from './LoadingLogo';
 import {
-  FADE_MS,
-  HOLD_MS,
+  BETWEEN_LINES_MS,
+  FINAL_HOLD_MS,
+  HOLD_AFTER_TYPE_MS,
   LoadingText,
   PHILOSOPHY_LINES,
   TOTAL_DURATION_MS,
 } from './LoadingText';
+
 type LoadingScreenProps = {
   onComplete: () => void;
   onExitComplete?: () => void;
@@ -18,40 +20,28 @@ export function LoadingScreen({ onComplete, onExitComplete }: LoadingScreenProps
   const [lineIndex, setLineIndex] = useState(0);
   const [isExiting, setIsExiting] = useState(false);
 
+  const handleLineComplete = useCallback((index: number) => {
+    const line = PHILOSOPHY_LINES[index];
+    if (!line) return;
+
+    const advanceDelay =
+      HOLD_AFTER_TYPE_MS +
+      (index < PHILOSOPHY_LINES.length - 1 ? BETWEEN_LINES_MS : FINAL_HOLD_MS);
+
+    window.setTimeout(() => {
+      if (index < PHILOSOPHY_LINES.length - 1) {
+        setLineIndex(index + 1);
+        return;
+      }
+      onComplete();
+      setIsExiting(true);
+    }, advanceDelay);
+  }, [onComplete]);
+
   useEffect(() => {
     if (reduceMotion) {
       onComplete();
-      return;
     }
-
-    let cancelled = false;
-    const timeouts: number[] = [];
-
-    const schedule = (delay: number, fn: () => void) => {
-      timeouts.push(window.setTimeout(fn, delay));
-    };
-
-    let elapsed = HOLD_MS;
-
-    for (let i = 1; i < PHILOSOPHY_LINES.length; i += 1) {
-      const index = i;
-      schedule(elapsed, () => {
-        if (!cancelled) setLineIndex(index);
-      });
-      elapsed += HOLD_MS + FADE_MS;
-    }
-
-    schedule(TOTAL_DURATION_MS, () => {
-      if (!cancelled) {
-        onComplete();
-        setIsExiting(true);
-      }
-    });
-
-    return () => {
-      cancelled = true;
-      timeouts.forEach((id) => window.clearTimeout(id));
-    };
   }, [onComplete, reduceMotion]);
 
   if (reduceMotion) {
@@ -70,10 +60,19 @@ export function LoadingScreen({ onComplete, onExitComplete }: LoadingScreenProps
         if (isExiting) onExitComplete?.();
       }}
     >
-      <p className="loading-screen__brand">GAURAV AVINASH</p>
+      <div className="loading-screen__brand">
+        <img
+          className="loading-screen__brand-logo"
+          src="./assets/logo-ga.svg"
+          alt="Gaurav Avinash"
+          width="112"
+          height="61"
+          decoding="async"
+        />
+      </div>
       <div className="loading-screen__content">
         <LoadingLogo durationMs={TOTAL_DURATION_MS} />
-        <LoadingText lineIndex={lineIndex} />
+        <LoadingText lineIndex={lineIndex} onLineComplete={handleLineComplete} />
       </div>
       <p className="loading-screen__footer">Designed &amp; Built with Cursor</p>
     </motion.div>

@@ -1,52 +1,73 @@
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { useReducedMotion } from 'framer-motion';
 
 const PHILOSOPHY_LINES = [
   'Every screen tells a story.',
   'Every interaction earns trust.',
-  'Every decision serves a purpose.',
 ] as const;
 
-export const HOLD_MS = 850;
-export const FADE_MS = 350;
-export const FINAL_HOLD_MS = 1500;
+export const CHAR_MS = 42;
+export const HOLD_AFTER_TYPE_MS = 1100;
+export const BETWEEN_LINES_MS = 280;
+export const FINAL_HOLD_MS = 900;
+
+function lineTypeDuration(line: string) {
+  return line.length * CHAR_MS;
+}
 
 export const TOTAL_DURATION_MS =
-  HOLD_MS + (PHILOSOPHY_LINES.length - 1) * (HOLD_MS + FADE_MS) + HOLD_MS + FINAL_HOLD_MS;
+  PHILOSOPHY_LINES.reduce((sum, line, index) => {
+    const typing = lineTypeDuration(line);
+    const hold = HOLD_AFTER_TYPE_MS;
+    const gap = index < PHILOSOPHY_LINES.length - 1 ? BETWEEN_LINES_MS : FINAL_HOLD_MS;
+    return sum + typing + hold + gap;
+  }, 0);
 
 type LoadingTextProps = {
   lineIndex: number;
+  onLineComplete?: (index: number) => void;
 };
 
-export function LoadingText({ lineIndex }: LoadingTextProps) {
+export function LoadingText({ lineIndex, onLineComplete }: LoadingTextProps) {
   const reduceMotion = useReducedMotion();
   const line = PHILOSOPHY_LINES[lineIndex] ?? PHILOSOPHY_LINES[0];
+  const [visibleCount, setVisibleCount] = useState(reduceMotion ? line.length : 0);
+
+  useEffect(() => {
+    if (reduceMotion) {
+      setVisibleCount(line.length);
+      onLineComplete?.(lineIndex);
+      return;
+    }
+
+    setVisibleCount(0);
+    let cancelled = false;
+    let i = 0;
+    const id = window.setInterval(() => {
+      if (cancelled) return;
+      i += 1;
+      setVisibleCount(i);
+      if (i >= line.length) {
+        window.clearInterval(id);
+        onLineComplete?.(lineIndex);
+      }
+    }, CHAR_MS);
+
+    return () => {
+      cancelled = true;
+      window.clearInterval(id);
+    };
+  }, [line, lineIndex, onLineComplete, reduceMotion]);
 
   return (
     <div className="loading-screen__text" aria-live="polite">
-      <AnimatePresence mode="wait">
-        <motion.p
-          key={line}
-          initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: -6 }}
-          transition={{
-            duration: reduceMotion ? 0 : FADE_MS / 1000,
-            ease: [0.4, 0, 0.2, 1],
-          }}
-          style={{
-            margin: 0,
-            fontFamily: "'Fraunces', Georgia, serif",
-            fontSize: 'clamp(1.05rem, 2.6vw, 1.35rem)',
-            fontWeight: 400,
-            fontStyle: 'italic',
-            letterSpacing: '-0.015em',
-            lineHeight: 1.55,
-            color: '#45413d',
-          }}
-        >
-          {line}
-        </motion.p>
-      </AnimatePresence>
+      <p className="loading-screen__typed">
+        <span>{line.slice(0, visibleCount)}</span>
+        <span
+          className={`loading-screen__caret${visibleCount >= line.length ? ' is-done' : ''}`}
+          aria-hidden="true"
+        />
+      </p>
     </div>
   );
 }

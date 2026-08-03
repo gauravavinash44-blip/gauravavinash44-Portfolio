@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gaurav Avinash — Prototype v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;1,9..144,300;1,9..144,400&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.161.0/build/three.module.js"
+  }
+}
+</script>
+</head>
+<body>
+
+<div class="proto-badge" role="note">Prototype v2 · not linked from live site · <a href="../index.html">view current site</a></div>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav class="nav">
+  <a href="#hero" class="nav-logo" aria-label="Gaurav Avinash home">
+    <img src="../assets/logo-ga.svg" alt="Gaurav Avinash" width="112" height="61" decoding="async">
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-cmdk" id="cmdkHint" type="button" aria-label="Open command palette">
+      <span class="nav-cmdk-key">⌘</span><span class="nav-cmdk-key">K</span>
+    </button>
+  </div>
+</nav>
+
+<header class="hero" id="hero">
+  <div class="hero-canvas-wrap" aria-hidden="true">
+    <canvas id="constellation"></canvas>
+    <div class="hero-labels" id="heroLabels"></div>
+  </div>
+
+  <div class="hero-inner">
+    <p class="hero-tag">AI Products • Fintech • Enterprise SaaS • Design Systems</p>
+    <h1 class="hero-h1">
+      Senior Product Designer<br>
+      focused on <em>Enterprise SaaS</em>,<br>
+      <em>AI</em>, and <em>Fintech</em>.
+    </h1>
+    <p class="hero-sub">For over 5 years, I’ve been turning complexity into clarity, designing products that help people work with greater confidence, efficiency, and ease.</p>
+    <div class="hero-ctas">
+      <a href="#work" class="btn-primary"><span>Explore Work</span></a>
+      <button class="btn-ghost" data-open-palette type="button">Press <kbd>⌘K</kbd> to navigate</button>
+    </div>
+  </div>
+
+  <div class="hero-scroll-hint" aria-hidden="true">Scroll</div>
+</header>
+
+<main>
+  <section class="work" id="work">
+    <div class="section-head reveal">
+      <div class="section-label">Selected Work</div>
+      <h2 class="section-h2">Three projects. Clear problems.<br>Measurable outcomes.</h2>
+    </div>
+
+    <article class="project reveal" id="project-deal-room">
+      <div class="project-media">
+        <img class="js-distort" src="../assets/deal-room-engagement-showcase.png" alt="Deal Room engagement dashboard" crossorigin="anonymous">
+      </div>
+      <div class="project-copy">
+        <div class="project-meta"><span class="project-num">01</span><span class="project-tag">Deal Room · B2B SaaS</span></div>
+        <h3 class="project-title">Deal Room — structured deal execution</h3>
+        <p class="project-desc">Deal work was split across surfaces. We anchored creation on the company profile—where intent already lives.</p>
+        <div class="project-stats">
+          <div class="stat"><span class="stat-num">+32%</span><span class="stat-label">Deal creation adoption</span></div>
+          <div class="stat"><span class="stat-num">−27%</span><span class="stat-label">Discovery-to-action friction</span></div>
+        </div>
+        <a class="project-link" href="../deal-room-case-study.html">Read the case study →</a>
+      </div>
+    </article>
+
+    <article class="project project--flip reveal" id="project-agent">
+      <div class="project-media">
+        <img class="js-distort" src="../assets/contextual-chat-assistant-showcase.png" alt="Contextual chat assistant interface" crossorigin="anonymous">
+      </div>
+      <div class="project-copy">
+        <div class="project-meta"><span class="project-num">02</span><span class="project-tag">AI Search · B2B SaaS</span></div>
+        <h3 class="project-title">Contextual chat assistant for faster investor company discovery</h3>
+        <p class="project-desc">Investors jumped across filters and pages to evaluate companies. Search took 3–4 minutes; confidence dropped without context.</p>
+        <div class="project-stats">
+          <div class="stat"><span class="stat-num">&lt;30s</span><span class="stat-label">Search completion time</span></div>
+          <div class="stat"><span class="stat-num">+25%</span><span class="stat-label">User engagement</span></div>
+        </div>
+        <a class="project-link" href="../case-study-systematic-agent.html">Read the case study →</a>
+      </div>
+    </article>
+
+    <article class="project reveal" id="project-easyeat">
+      <div class="project-media">
+        <img class="js-distort" src="../assets/easyeat-customization-showcase.png" alt="EasyEat customization flow" crossorigin="anonymous">
+      </div>
+      <div class="project-copy">
+        <div class="project-meta"><span class="project-num">03</span><span class="project-tag">FoodTech · Mobile UX</span></div>
+        <h3 class="project-title">Redesigning EasyEat customization flow for faster and clearer ordering</h3>
+        <p class="project-desc">Multiple popups and unclear min/max rules blocked ordering. We cut taps and made required choices obvious.</p>
+        <div class="project-stats">
+          <div class="stat"><span class="stat-num">+8.3%</span><span class="stat-label">QR adoption in 3 weeks</span></div>
+          <div class="stat"><span class="stat-num">Fewer taps</span><span class="stat-label">Higher completion clarity</span></div>
+        </div>
+        <a class="project-link" href="../easyeat-case-study.html">Read the case study →</a>
+      </div>
+    </article>
+  </section>
+
+  <section class="about" id="about">
+    <div class="about-inner reveal">
+      <div class="section-label">About</div>
+      <h2 class="section-h2">I design by shipping AI products<br>in <em>ambiguous systems.</em></h2>
+      <p class="about-p">Product Designer II at Systematic—remote with a New York team on AI B2B SaaS. I focus on Human-AI interaction and turning high-friction flows into clear decisions.</p>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="contact-inner reveal">
+      <div class="section-label">Contact</div>
+      <h2 class="section-h2">Let's talk about<br>AI products <em>worth building.</em></h2>
+      <a class="contact-mail" href="mailto:gauravavinash3@gmail.com">gauravavinash3@gmail.com</a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <span>Prototype v2 · Constellation hero · WebGL surfaces · ⌘K palette</span>
+</footer>
+
+<!-- Command palette -->
+<div class="palette" id="palette" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Command palette">
+  <div class="palette-backdrop" data-palette-close></div>
+  <div class="palette-panel">
+    <div class="palette-input-row">
+      <svg class="palette-search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <input class="palette-input" id="paletteInput" type="text" placeholder="Search sections, projects, or ask about me…" autocomplete="off" spellcheck="false">
+      <span class="palette-esc">esc</span>
+    </div>
+    <div class="palette-results" id="paletteResults" role="listbox"></div>
+    <div class="palette-answer" id="paletteAnswer" hidden>
+      <button class="palette-back" id="paletteBack" type="button">← Back</button>
+      <div class="palette-answer-title" id="paletteAnswerTitle"></div>
+      <div class="palette-answer-body" id="paletteAnswerBody"></div>
+    </div>
+    <div class="palette-footer">
+      <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+      <span><kbd>↵</kbd> select</span>
+      <span><kbd>esc</kbd> close</span>
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+<script type="module" src="./app.js?v=3"></script>
+</body>
+</html>

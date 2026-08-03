@@ -12,16 +12,17 @@
 
 .loading-screen__brand {
   position: absolute;
-  top: clamp(3rem, 5.5vh, 4rem);
+  top: clamp(2.75rem, 5vh, 3.75rem);
   left: 50%;
   transform: translateX(-50%);
   margin: 0;
-  font-family: 'Fraunces', Georgia, serif;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  color: #0f0e0c;
-  white-space: nowrap;
+  line-height: 0;
+}
+
+.loading-screen__brand-logo {
+  display: block;
+  height: 1.85rem;
+  width: auto;
 }
 
 .loading-screen__content {
@@ -52,7 +53,39 @@
 }
 
 .loading-screen__text {
-  min-height: 1.6em;
+  min-height: 1.7em;
+  width: min(28rem, 86vw);
+}
+
+.loading-screen__typed {
+  margin: 0;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(1.05rem, 2.6vw, 1.35rem);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.015em;
+  line-height: 1.55;
+  color: #45413d;
+  white-space: normal;
+}
+
+.loading-screen__caret {
+  display: inline-block;
+  width: 0.08em;
+  height: 1em;
+  margin-left: 0.08em;
+  vertical-align: -0.08em;
+  background: #0f0e0c;
+  animation: loadingCaretBlink 0.9s steps(1, end) infinite;
+}
+
+.loading-screen__caret.is-done {
+  opacity: 0.35;
+}
+
+@keyframes loadingCaretBlink {
+  0%, 45% { opacity: 1; }
+  50%, 100% { opacity: 0; }
 }
 
 .skeleton-screen {
@@ -123,8 +156,9 @@
 }
 
 .skeleton-bone--logo {
-  width: 9.5rem;
-  height: 1.15rem;
+  width: 3.4rem;
+  height: 1.85rem;
+  border-radius: 4px;
 }
 
 .skeleton-bone--link {
@@ -201,5 +235,9 @@
 @media (prefers-reduced-motion: reduce) {
   .skeleton-bone {
     animation: none;
+  }
+  .loading-screen__caret {
+    animation: none;
+    opacity: 0;
   }
 }
