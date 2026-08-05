@@ -363,9 +363,12 @@
     width: min(58vw, 880px);
     -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.35) 10%, #000 28%, #000 100%);
     mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.35) 10%, #000 28%, #000 100%);
+    perspective: 1100px;
+    perspective-origin: 65% 40%;
+    transform-style: preserve-3d;
   }
 
-  /* Exact Figma frame — fully static; lighting is a separate overlay */
+  /* Exact Figma frame — fully static; lighting + cubicle flips are overlays */
   .hero-atmosphere__exact {
     position: absolute;
     inset: 0;
@@ -375,34 +378,57 @@
     object-position: right center;
   }
 
-  /*
-   * Hover lighting only — base export stays fully static.
-   * Tile bump map + SVG specular shifts liquid-glass light
-   * (Figma rest ≈40° → pointer toward ≈90°).
-   */
+  /* Interactive cubicles — only the near cells appear, sliced from the same export */
+  .hero-atmosphere__tiles {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    overflow: visible;
+    transform-style: preserve-3d;
+  }
+  .hero-tile {
+    position: absolute;
+    transform-style: preserve-3d;
+    will-change: transform, opacity, filter;
+    transform-origin: center center;
+    backface-visibility: hidden;
+    background-repeat: no-repeat;
+    opacity: 0;
+    pointer-events: none;
+    border: none;
+    box-shadow: none;
+    transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg) scale(1);
+    transition:
+      transform 0.38s cubic-bezier(0.22, 1.2, 0.36, 1),
+      opacity 0.14s ease,
+      filter 0.14s ease,
+      box-shadow 0.2s ease;
+  }
+  .hero-tile.is-active {
+    opacity: 1;
+    filter: brightness(1.05) contrast(1.03);
+    box-shadow:
+      0 14px 28px rgba(15, 14, 12, 0.18),
+      0 1px 0 rgba(255, 255, 255, 0.35) inset;
+    z-index: 4;
+  }
+  .hero-tile.is-flipping {
+    z-index: 5;
+    transition: transform 0.46s cubic-bezier(0.34, 1.45, 0.64, 1);
+  }
+
+  /* Lighting overlay kept in DOM but disabled — flips only, no white sheen */
   .hero-atmosphere__light {
     position: absolute;
     inset: 0;
     pointer-events: none;
     z-index: 2;
-    opacity: 0;
-    --lx: 64%;
-    --ly: 40%;
-    --tile: 40px;
-    --mask-x: 0px;
-    --mask-y: 0px;
-    background-color: #000;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Crect width='40' height='40' fill='%23000'/%3E%3Crect x='1.5' y='1.5' width='37' height='37' rx='11' fill='%23c8c8c8'/%3E%3C/svg%3E");
-    background-size: var(--tile) var(--tile);
-    background-position: var(--mask-x) var(--mask-y);
-    background-repeat: repeat;
-    filter: url(#heroGlassSpec);
-    mix-blend-mode: screen;
-    transition: opacity 0.45s ease;
-    will-change: opacity, filter;
+    opacity: 0 !important;
+    visibility: hidden;
   }
   .hero.is-lit .hero-atmosphere__light {
-    opacity: 0.6;
+    opacity: 0 !important;
   }
 
   .hero-atmosphere__light-svg {
@@ -481,6 +507,8 @@
     body.landing-ready .hero { animation: none; opacity: 1; filter: none; }
     .hero-atmosphere__exact { animation: none !important; }
     .hero.is-lit .hero-atmosphere__light { opacity: 0 !important; }
+    .hero-atmosphere__tiles,
+    .hero-tile { transition: none !important; transform: none !important; opacity: 0 !important; }
   }
 
   .marquee-strip {
@@ -1139,6 +1167,7 @@
       mask-image: linear-gradient(180deg, transparent 0%, black 28%, black 100%);
     }
     .hero-atmosphere__exact { animation: none !important; }
+    .hero-atmosphere__tiles { display: none; }
     section { padding: 5rem 1.5rem; }
     nav { padding: 1.2rem 1.5rem; }
     .work-header { flex-direction: column; gap: 1.5rem; align-items: flex-start; }
@@ -1197,6 +1226,7 @@
         height="1964"
         decoding="async"
       >
+      <div class="hero-atmosphere__tiles" id="heroTiles" aria-hidden="true"></div>
       <svg class="hero-atmosphere__light-svg" aria-hidden="true" focusable="false">
         <filter id="heroGlassSpec" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
           <feGaussianBlur in="SourceGraphic" stdDeviation="0.45" result="bump"/>
@@ -1637,41 +1667,167 @@
     cursor.style.top = mouseY + 'px';
   });
 
-  /* Hero atmosphere — lighting only (static base + specular sheen) */
+  /* Hero atmosphere — proximity cubicle flips (desktop) */
   (function initHeroLighting() {
     const hero = document.getElementById('hero');
     const stage = hero && hero.querySelector('.hero-atmosphere__stage');
     const exact = hero && hero.querySelector('.hero-atmosphere__exact');
     const light = document.getElementById('heroLight');
     const point = document.getElementById('heroPointLight');
-    if (!hero || !stage || !exact || !light || !point) return;
+    const tilesRoot = document.getElementById('heroTiles');
+    if (!hero || !stage || !exact || !tilesRoot) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    /* Figma rest light ≈40°; pointer can swing toward ~90° */
     const REST = { nx: 0.28, ny: 0.22, z: 150 };
     let target = { nx: REST.nx, ny: REST.ny, z: REST.z };
     let cur = { nx: REST.nx, ny: REST.ny, z: REST.z };
     let lit = false;
     let raf = 0;
+    let grid = { tile: 40, ox: 0, oy: 0, cols: 0, rows: 0, radius: 0 };
+    let tiles = [];
+    let pointer = { x: -9999, y: -9999, vx: 0, vy: 0, px: 0, py: 0 };
+
+    function isDesktop() {
+      return !window.matchMedia('(max-width: 900px)').matches;
+    }
 
     function syncTileGrid() {
+      if (!isDesktop()) {
+        tilesRoot.innerHTML = '';
+        tiles = [];
+        return;
+      }
       const nw = exact.naturalWidth || 3024;
       const nh = exact.naturalHeight || 1964;
       const sw = stage.clientWidth;
       const sh = stage.clientHeight;
       if (!sw || !sh) return;
       const scale = Math.max(sw / nw, sh / nh);
-      const tile = 80 * scale;
+      const cell = 80 * scale;
       const dispW = nw * scale;
       const dispH = nh * scale;
       const ox = sw - dispW;
       const oy = (sh - dispH) / 2;
-      light.style.setProperty('--tile', tile.toFixed(3) + 'px');
-      light.style.setProperty('--mask-x', ox.toFixed(3) + 'px');
-      light.style.setProperty('--mask-y', oy.toFixed(3) + 'px');
+
+      grid = {
+        tile: cell,
+        ox,
+        oy,
+        dispW,
+        dispH,
+        cols: Math.ceil((sw - ox) / cell) + 1,
+        rows: Math.ceil((sh - oy) / cell) + 1,
+        radius: cell * 2.15,
+        sw,
+        sh,
+        imgUrl: exact.currentSrc || exact.src,
+        maxActive: 4,
+      };
+      buildTiles();
     }
 
-    function apply() {
+    function buildTiles() {
+      tilesRoot.innerHTML = '';
+      tiles = [];
+      const inset = grid.tile * (1.5 / 40);
+      const size = grid.tile - inset * 2;
+      const radius = grid.tile * (11 / 40);
+      const minX = grid.sw * 0.12;
+      for (let row = 0; row < grid.rows; row++) {
+        for (let col = 0; col < grid.cols; col++) {
+          const x = grid.ox + col * grid.tile + inset;
+          const y = grid.oy + row * grid.tile + inset;
+          if (x + size < minX) continue;
+          if (y + size < 0 || y > grid.sh) continue;
+          const el = document.createElement('span');
+          el.className = 'hero-tile';
+          el.style.left = x + 'px';
+          el.style.top = y + 'px';
+          el.style.width = size + 'px';
+          el.style.height = size + 'px';
+          el.style.borderRadius = radius + 'px';
+          el.style.backgroundImage = 'url("' + grid.imgUrl + '")';
+          el.style.backgroundSize = grid.dispW + 'px ' + grid.dispH + 'px';
+          el.style.backgroundPosition = (grid.ox - x) + 'px ' + (grid.oy - y) + 'px';
+          tilesRoot.appendChild(el);
+          tiles.push({
+            el,
+            cx: x + size / 2,
+            cy: y + size / 2,
+            active: false,
+          });
+        }
+      }
+    }
+
+    function resetTiles() {
+      for (let i = 0; i < tiles.length; i++) {
+        const t = tiles[i];
+        if (!t.active) continue;
+        t.active = false;
+        t.el.classList.remove('is-active', 'is-flipping');
+        t.el.style.transform = 'translate3d(0,0,0) rotateX(0deg) rotateY(0deg) scale(1)';
+      }
+    }
+
+    function updateTiles(localX, localY) {
+      if (!tiles.length || !grid.radius) return;
+      const radius = grid.radius;
+      const moveLen = Math.hypot(pointer.vx, pointer.vy) || 0;
+      const hasMove = moveLen > 0.4;
+      const dirX = hasMove ? pointer.vx / moveLen : 0;
+      const dirY = hasMove ? pointer.vy / moveLen : 0;
+
+      const near = [];
+      for (let i = 0; i < tiles.length; i++) {
+        const t = tiles[i];
+        const dist = Math.hypot(localX - t.cx, localY - t.cy);
+        if (dist <= radius) near.push({ t, dist, dx: localX - t.cx, dy: localY - t.cy });
+      }
+      near.sort((a, b) => a.dist - b.dist);
+      const chosen = near.slice(0, grid.maxActive);
+      const activeMap = new Map();
+      for (let i = 0; i < chosen.length; i++) activeMap.set(chosen[i].t, chosen[i]);
+
+      for (let i = 0; i < tiles.length; i++) {
+        const t = tiles[i];
+        const hit = activeMap.get(t);
+        if (!hit) {
+          if (t.active) {
+            t.active = false;
+            t.el.classList.remove('is-active', 'is-flipping');
+            t.el.style.transform = 'translate3d(0,0,0) rotateX(0deg) rotateY(0deg) scale(1)';
+          }
+          continue;
+        }
+
+        const closeness = 1 - hit.dist / radius;
+        const strength = 0.55 + 0.45 * Math.pow(closeness, 0.85);
+        const isCore = hit.dist < grid.tile * 0.85;
+        const signY = hasMove
+          ? (dirX === 0 ? 1 : Math.sign(dirX))
+          : (hit.dx === 0 ? 1 : Math.sign(hit.dx));
+        const signX = hasMove
+          ? (dirY === 0 ? -1 : Math.sign(dirY))
+          : (hit.dy === 0 ? -1 : -Math.sign(hit.dy));
+        /* Keep faces readable — past ~55° tiles go edge-on and look white */
+        const base = isCore ? 46 : 30;
+        const flipY = signY * base * strength;
+        const flipX = signX * base * 0.62 * strength;
+        const lift = 10 + 16 * strength;
+        const scale = 1.01 + 0.04 * strength;
+
+        t.active = true;
+        t.el.classList.add('is-active');
+        t.el.classList.toggle('is-flipping', isCore);
+        t.el.style.transform =
+          'translate3d(0,0,' + lift.toFixed(1) + 'px) rotateX(' + flipX.toFixed(2) +
+          'deg) rotateY(' + flipY.toFixed(2) + 'deg) scale(' + scale.toFixed(3) + ')';
+      }
+    }
+
+    function applyLight() {
+      if (!point || !light) return;
       const r = stage.getBoundingClientRect();
       point.setAttribute('x', (cur.nx * r.width).toFixed(1));
       point.setAttribute('y', (cur.ny * r.height).toFixed(1));
@@ -1684,7 +1840,7 @@
       cur.nx += (target.nx - cur.nx) * 0.1;
       cur.ny += (target.ny - cur.ny) * 0.1;
       cur.z += (target.z - cur.z) * 0.1;
-      apply();
+      applyLight();
       const settling =
         Math.abs(target.nx - cur.nx) < 0.002 &&
         Math.abs(target.ny - cur.ny) < 0.002 &&
@@ -1710,33 +1866,60 @@
     function setLit(on) {
       if (on === lit) return;
       lit = on;
-      hero.classList.toggle('is-lit', on);
-      if (!on) target = { nx: REST.nx, ny: REST.ny, z: REST.z };
+      if (!on) {
+        target = { nx: REST.nx, ny: REST.ny, z: REST.z };
+        resetTiles();
+      }
       startTick();
     }
 
-    hero.addEventListener('pointermove', (e) => {
-      if (!overStage(e.clientX, e.clientY)) {
+    function onPointer(clientX, clientY) {
+      if (!isDesktop() || !tiles.length) return;
+      if (!overStage(clientX, clientY)) {
         setLit(false);
         return;
       }
       setLit(true);
       const rect = stage.getBoundingClientRect();
-      const nx = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width));
-      const ny = Math.min(1, Math.max(0, (e.clientY - rect.top) / rect.height));
+      const localX = clientX - rect.left;
+      const localY = clientY - rect.top;
+      pointer.vx = localX - pointer.px;
+      pointer.vy = localY - pointer.py;
+      pointer.px = localX;
+      pointer.py = localY;
+      pointer.x = localX;
+      pointer.y = localY;
+
+      const nx = Math.min(1, Math.max(0, localX / rect.width));
+      const ny = Math.min(1, Math.max(0, localY / rect.height));
       target.nx = nx;
       target.ny = ny;
       target.z = 110 + Math.hypot(nx - 0.5, ny - 0.5) * 90;
+      updateTiles(localX, localY);
       startTick();
+    }
+
+    /* mousemove matches the custom cursor path — more reliable than pointer-only */
+    document.addEventListener('mousemove', (e) => onPointer(e.clientX, e.clientY), { passive: true });
+    document.addEventListener('pointermove', (e) => onPointer(e.clientX, e.clientY), { passive: true });
+    hero.addEventListener('pointerleave', () => setLit(false));
+    window.addEventListener('blur', () => setLit(false));
+    window.addEventListener('resize', () => {
+      setLit(false);
+      syncTileGrid();
     });
 
-    hero.addEventListener('pointerleave', () => setLit(false));
-    window.addEventListener('resize', syncTileGrid);
+    const readyObs = new MutationObserver(() => {
+      if (document.body.classList.contains('landing-ready')) {
+        syncTileGrid();
+      }
+    });
+    readyObs.observe(document.body, { attributes: true, attributeFilter: ['class'] });
 
     if (exact.complete) syncTileGrid();
     else exact.addEventListener('load', syncTileGrid, { once: true });
 
-    apply();
+    applyLight();
   })();
 
   function animateRing() {
