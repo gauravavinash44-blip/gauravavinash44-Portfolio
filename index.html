@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;1,9..144,300;1,9..144,400&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./loading-experience/dist/loading-screen.css?v=5">
 <link rel="stylesheet" href="./assets/design-playground/design-playground.css?v=2">
-<link rel="stylesheet" href="./assets/portfolio-assistant/portfolio-assistant.css?v=9">
+<link rel="stylesheet" href="./assets/portfolio-assistant/portfolio-assistant.css?v=11">
 <style>
   :root {
     --ink: #0f0e0c;
@@ -441,6 +441,11 @@
   /* Layered rebuild kept for later (hidden) */
   .hero-atmosphere__glow,
   .hero-atmosphere__pattern {
+    display: none;
+  }
+
+  /* Mobile hero glow — Figma node 1782:770 background layer */
+  .hero-atmosphere__mobile-glow {
     display: none;
   }
 
@@ -1156,17 +1161,59 @@
   }
 
   @media (max-width: 900px) {
-    .hero { grid-template-columns: 1fr; padding: 7.5rem 1.75rem 4.5rem; }
-    .hero-left { max-width: none; }
+    .hero {
+      grid-template-columns: 1fr;
+      align-items: start;
+      padding: 7.25rem 1.75rem max(3.5rem, 28vh);
+      min-height: 100svh;
+    }
+    .hero-left {
+      max-width: none;
+      padding-bottom: 0.5rem;
+    }
     .hero-atmosphere__stage {
       width: 100%;
-      height: 42%;
+      height: min(58vh, 480px);
+      min-height: 300px;
       top: auto;
       bottom: 0;
-      -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 28%, black 100%);
-      mask-image: linear-gradient(180deg, transparent 0%, black 28%, black 100%);
+      left: 0;
+      right: 0;
+      -webkit-mask-image: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(0, 0, 0, 0.18) 14%,
+        rgba(0, 0, 0, 0.72) 32%,
+        #000 48%,
+        #000 100%
+      );
+      mask-image: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(0, 0, 0, 0.18) 14%,
+        rgba(0, 0, 0, 0.72) 32%,
+        #000 48%,
+        #000 100%
+      );
     }
-    .hero-atmosphere__exact { animation: none !important; }
+    .hero-atmosphere__mobile-glow {
+      display: block;
+      position: absolute;
+      right: -14%;
+      bottom: -10%;
+      width: 125%;
+      height: 92%;
+      background: url('./assets/hero-atmosphere/mobile-hero-bg-2.svg') no-repeat right bottom / cover;
+      opacity: 0.98;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-atmosphere__exact {
+      animation: none !important;
+      object-fit: cover;
+      object-position: 82% 100%;
+      z-index: 1;
+    }
     .hero-atmosphere__tiles { display: none; }
     section { padding: 5rem 1.5rem; }
     nav { padding: 1.2rem 1.5rem; }
@@ -1218,6 +1265,7 @@
 <section class="hero" id="hero">
   <div class="hero-atmosphere" aria-hidden="true">
     <div class="hero-atmosphere__stage">
+      <div class="hero-atmosphere__mobile-glow" aria-hidden="true"></div>
       <img
         class="hero-atmosphere__exact"
         src="./assets/hero-atmosphere/figma-export-2x.png"
@@ -2042,9 +2090,18 @@
 </script>
 <button class="pa-fab" id="paFab" type="button" aria-label="Open Portfolio Assistant" aria-controls="paModal" aria-expanded="false">
   <span class="pa-fab-icon" aria-hidden="true">
-    <svg class="pa-fab-star" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path fill="currentColor" d="M12 1.2c.32 0 .58.22.66.53l1.62 6.58c.06.24.24.42.48.48l6.58 1.62c.31.08.53.34.53.66s-.22.58-.53.66l-6.58 1.62a.64.64 0 0 0-.48.48l-1.62 6.58c-.08.31-.34.53-.66.53s-.58-.22-.66-.53l-1.62-6.58a.64.64 0 0 0-.48-.48l-6.58-1.62A.68.68 0 0 1 1.2 12c0-.32.22-.58.53-.66l6.58-1.62a.64.64 0 0 0 .48-.48l1.62-6.58c.08-.31.34-.53.66-.53Z"/>
-    </svg>
+    <span class="pa-fab-chat">
+      <svg class="pa-fab-chat-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M20 0C21.812 0 23.566 0.244 25.234 0.696C24.1866 2.82195 23.7922 5.21044 24.1004 7.56027C24.4087 9.9101 25.4058 12.116 26.9661 13.8999C28.5265 15.6837 30.58 16.9656 32.8679 17.5839C35.1558 18.2022 37.5756 18.1291 39.822 17.374C39.938 18.234 39.9973 19.1093 40 20C40 31.046 31.046 40 20 40H1.51619e-05L5.85802 34.142C3.99818 32.2868 2.52323 30.0824 1.51793 27.6555C0.512627 25.2286 -0.00322417 22.6269 1.51619e-05 20C1.51619e-05 8.954 8.95402 0 20 0ZM12 22C12 24.1217 12.8429 26.1566 14.3432 27.6569C15.8435 29.1571 17.8783 30 20 30C22.1217 30 24.1566 29.1571 25.6569 27.6569C27.1572 26.1566 28 24.1217 28 22H12Z" fill="currentColor"/>
+      </svg>
+      <span class="pa-fab-star-wrap">
+        <span class="pa-fab-star-inner">
+          <svg class="pa-fab-star" viewBox="0 0 17.7346 17.7346" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M7.91649 0.430275C8.08894 -0.143426 9.64564 -0.143425 9.81808 0.430276C10.3596 2.23187 11.177 4.15467 12.3785 5.35611C13.5799 6.55755 15.5027 7.37498 17.3043 7.9165C17.878 8.08894 17.878 9.64564 17.3043 9.81808C15.5027 10.3596 13.5799 11.177 12.3785 12.3785C11.177 13.5799 10.3596 15.5027 9.81808 17.3043C9.64564 17.878 8.08894 17.878 7.91649 17.3043C7.37498 15.5027 6.55754 13.5799 5.35611 12.3785C4.15467 11.177 2.23187 10.3596 0.430275 9.81808C-0.143426 9.64564 -0.143425 8.08894 0.430276 7.91649C2.23187 7.37498 4.15467 6.55754 5.35611 5.35611C6.55754 4.15467 7.37498 2.23187 7.91649 0.430275Z" fill="currentColor"/>
+          </svg>
+        </span>
+      </span>
+    </span>
   </span>
   <span class="pa-fab-label">Portfolio Assistant</span>
 </button>

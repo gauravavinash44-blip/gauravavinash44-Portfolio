@@ -624,6 +624,9 @@
       padding: clamp(1rem, 2.5vw, 1.75rem);
       border-radius: 28px;
     }
+    .design-evolution-story--final .design-evolution-visual + .design-evolution-visual {
+      margin-top: clamp(0.85rem, 2vw, 1.25rem);
+    }
 
     .micro-grid {
       display: grid;
@@ -955,6 +958,16 @@
               loading="lazy"
             >
           </div>
+          <div class="design-evolution-visual">
+            <img
+              src="./assets/production-candidate-chat-involved.svg"
+              alt="Production candidate UI — active chat with history, structured responses, and in-workflow analysis"
+              width="1440"
+              height="838"
+              decoding="async"
+              loading="lazy"
+            >
+          </div>
         </article>
       </div>
     </div>
@@ -988,7 +1001,7 @@
               preload="metadata"
               aria-label="Screen recording of assistant micro-interactions in the product"
             >
-              <source src="./assets/systematic-agent-interaction-demo.mp4" type="video/mp4">
+              <source src="./assets/systematic-agent-interaction-demo.mp4?v=2" type="video/mp4">
             </video>
             <button type="button" class="interaction-demo-expand" id="interaction-demo-expand" aria-haspopup="dialog" aria-controls="interaction-demo-modal" aria-expanded="false">
               Expand
@@ -1012,7 +1025,7 @@
         preload="metadata"
         aria-label="Screen recording of assistant micro-interactions (expanded)"
       >
-        <source src="./assets/systematic-agent-interaction-demo.mp4" type="video/mp4">
+        <source src="./assets/systematic-agent-interaction-demo.mp4?v=2" type="video/mp4">
       </video>
     </div>
   </div>

@@ -91,8 +91,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.75);
   background:
@@ -109,6 +109,25 @@
     box-shadow 0.45s ease;
 }
 
+/* Figma node 1753:2729 — chat-smile-ai icon + animated star overlay */
+.pa-fab-chat {
+  --pa-icon-scale: 0.541667; /* 26px / 48px Figma artboard */
+  --pa-star-jump: -11.375px; /* -21px scaled to icon size */
+  position: relative;
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.pa-fab-chat-icon {
+  position: absolute;
+  left: 8.33%;
+  top: 8.33%;
+  width: 83.34%;
+  height: 83.34%;
+  display: block;
+}
+
 .pa-fab:hover .pa-fab-icon,
 .pa-fab:focus-visible .pa-fab-icon {
   transform: scale(1.06);
@@ -120,17 +139,37 @@
 }
 
 /* Figma node 1753:2739 “Star 1” — jump / squash / half-turn loop (~2.19s) */
-.pa-fab-star {
-  display: block;
-  width: 18px;
-  height: 18px;
+.pa-fab-star-wrap {
+  position: absolute;
+  left: 58.333%;
+  top: -8.333%;
+  width: 54.167%;
+  height: 54.167%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
   transform-origin: center center;
-  transform-box: fill-box;
   will-change: translate, scale, rotate;
   animation:
     pa-star-rotate 2.189449s linear infinite,
     pa-star-jump 2.189449s linear infinite,
     pa-star-squash 2.189449s linear infinite;
+}
+
+.pa-fab-star-inner {
+  width: 68.2%;
+  height: 68.2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(180deg);
+}
+
+.pa-fab-star {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 @keyframes pa-star-rotate {
@@ -148,10 +187,10 @@
     animation-timing-function: cubic-bezier(0.68, 0.004, 0.357, 0.993);
     translate: 0 0;
   }
-  27.447% { translate: 0 -12px; }
+  27.447% { translate: 0 var(--pa-star-jump, -11.375px); }
   28.21% {
     animation-timing-function: cubic-bezier(0.68, 0.004, 0.357, 0.993);
-    translate: 0 -12px;
+    translate: 0 var(--pa-star-jump, -11.375px);
   }
   54.964% { translate: 0 0; }
   100% { translate: 0 0; }
@@ -538,13 +577,13 @@ body.pa-modal-open {
 @media (prefers-reduced-motion: reduce) {
   .pa-fab,
   .pa-fab-icon,
-  .pa-fab-star,
+  .pa-fab-star-wrap,
   .pa-fab-label,
   .pa-modal-dialog {
     transition: none;
   }
 
-  .pa-fab-star {
+  .pa-fab-star-wrap {
     animation: none;
     translate: 0 0;
     scale: 1;
