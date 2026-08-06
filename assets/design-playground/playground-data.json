@@ -54,68 +54,20 @@
   ],
   "motion": [
     {
-      "id": "contextual-chat-demo",
-      "title": "Contextual Chat Motion Study",
-      "category": "Motion · AI Interaction",
-      "description": "Micro-interactions for AI response states—typing indicators, result reveal, and smooth panel transitions during discovery.",
-      "objective": "Communicate system intelligence through motion timing, not decoration—calm, premium, and legible.",
-      "thinking": "Easing curves tuned for readability. Staggered result cards reinforce scan order. Motion pauses on reduced-motion preference.",
-      "tools": ["Figma", "After Effects", "Prototyping"],
-      "prototype": null,
+      "id": "loading-range",
+      "title": "Loading Range",
+      "category": "Motion",
+      "description": "",
       "preview": {
-        "src": "./assets/systematic-agent-chat.png",
-        "width": 1368,
-        "height": 1090,
-        "alt": "Contextual chat motion study preview"
+        "src": "./assets/design-playground/loading-range-poster.png",
+        "width": 1280,
+        "height": 720,
+        "alt": "Loading Range motion study"
       },
       "media": {
         "type": "video",
-        "src": "./assets/contextual-chat-assistant-demo.mp4",
-        "poster": "./assets/systematic-agent-chat.png"
-      },
-      "gallery": []
-    },
-    {
-      "id": "systematic-agent-interaction",
-      "title": "Systematic Agent Interaction",
-      "category": "Motion · Product Demo",
-      "description": "End-to-end interaction demo showing query input, AI processing, and contextual result expansion in a single fluid sequence.",
-      "objective": "Demonstrate how motion supports comprehension in AI workflows—never competing with the content layer.",
-      "thinking": "Each transition maps to a system state change. Duration scaled to cognitive load: faster for confirmations, slower for new information.",
-      "tools": ["Figma", "Screen Recording", "Editing"],
-      "prototype": "./case-study-systematic-agent.html",
-      "preview": {
-        "src": "./assets/deal-room-dashboard-overview.png",
-        "width": 2400,
-        "height": 1500,
-        "alt": "Systematic agent interaction motion preview"
-      },
-      "media": {
-        "type": "video",
-        "src": "./assets/systematic-agent-interaction-demo.mp4",
-        "poster": "./assets/systematic-agent-chat.png"
-      },
-      "gallery": []
-    },
-    {
-      "id": "investor-workflow-friction",
-      "title": "Investor Workflow Friction Map",
-      "category": "Motion · Narrative",
-      "description": "Animated visualization of fragmented investor search—highlighting friction points that motivated the conversational redesign.",
-      "objective": "Use motion to tell a problem story quickly for stakeholders before diving into solution screens.",
-      "thinking": "Looping GIF with restrained palette. Motion draws attention to drop-off moments without flashy transitions.",
-      "tools": ["Figma", "GIF Export"],
-      "prototype": null,
-      "preview": {
-        "src": "./assets/journey-map-search-friction.png",
-        "width": 1920,
-        "height": 1080,
-        "alt": "Investor workflow friction motion study"
-      },
-      "media": {
-        "type": "gif",
-        "src": "./assets/systematic-investor-workflow-problem.gif",
-        "poster": "./assets/journey-map-search-friction.png"
+        "src": "./assets/design-playground/loading-range.mp4",
+        "poster": "./assets/design-playground/loading-range-poster.png"
       },
       "gallery": []
     }

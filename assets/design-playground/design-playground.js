@@ -14,7 +14,7 @@
   const modalBodyEl = modalEl && modalEl.querySelector('.pg-modal-body');
 
   const CINEMA_MS = 250;
-  const MOTION_LOCKED = true;
+  const MOTION_LOCKED = false;
   let data = null;
   let activeCategory = 'interface';
   let scrollAnchor = 0;
@@ -29,14 +29,24 @@
       .replace(/"/g, '&quot;');
   }
 
+  function renderEmbed(item, large) {
+    const src = (item.media && item.media.src) || item.preview.src;
+    const cls = large ? 'pg-motion-embed pg-motion-embed--cinema' : 'pg-motion-embed';
+    return `<iframe class="${cls}" src="${escapeHtml(src)}" title="${escapeHtml(item.title)}" loading="eager" tabindex="-1" aria-hidden="true"></iframe>`;
+  }
+
   function renderPreviewMedia(item, lazy) {
     const preview = item.preview;
     const attrs = lazy
       ? 'loading="lazy" decoding="async"'
       : 'loading="eager" decoding="async"';
 
+    if (item.media && item.media.type === 'embed') {
+      return renderEmbed(item, false);
+    }
+
     if (item.media && item.media.type === 'video') {
-      return `<video muted loop playsinline autoplay poster="${escapeHtml(item.media.poster || preview.src)}" ${attrs.replace('loading="lazy"', '')} aria-hidden="true"><source src="${escapeHtml(item.media.src)}" type="video/mp4"></video>`;
+      return `<video muted loop playsinline autoplay disablepictureinpicture poster="${escapeHtml(item.media.poster || preview.src)}" aria-hidden="true"><source src="${escapeHtml(item.media.src)}" type="video/mp4"></video>`;
     }
 
     if (item.media && item.media.type === 'gif') {
@@ -46,14 +56,13 @@
     return `<img src="${escapeHtml(preview.src)}" alt="${escapeHtml(preview.alt)}" width="${preview.width}" height="${preview.height}" ${attrs}>`;
   }
 
-  function renderMotionThumbnail(item) {
-    const poster = (item.media && item.media.poster) || item.preview.src;
-    return `<img src="${escapeHtml(poster)}" alt="${escapeHtml(item.preview.alt)}" width="${item.preview.width}" height="${item.preview.height}" loading="lazy" decoding="async">`;
-  }
-
   function renderCinemaMedia(item) {
+    if (item.media && item.media.type === 'embed') {
+      return renderEmbed(item, true);
+    }
+
     if (item.media && item.media.type === 'video') {
-      return `<video muted loop playsinline autoplay><source src="${escapeHtml(item.media.src)}" type="video/mp4"></video>`;
+      return `<video muted loop playsinline autoplay disablepictureinpicture poster="${escapeHtml(item.media.poster || item.preview.src)}" aria-label="${escapeHtml(item.title)}"><source src="${escapeHtml(item.media.src)}" type="video/mp4"></video>`;
     }
 
     if (item.media && item.media.type === 'gif') {
@@ -61,6 +70,25 @@
     }
 
     return `<img src="${escapeHtml(item.preview.src)}" alt="${escapeHtml(item.preview.alt)}" width="${item.preview.width}" height="${item.preview.height}">`;
+  }
+
+  function playVideosIn(container) {
+    if (!container) return;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    container.querySelectorAll('video').forEach((video) => {
+      video.muted = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.removeAttribute('controls');
+      if (reduce) {
+        video.pause();
+        video.removeAttribute('autoplay');
+        return;
+      }
+      const play = () => video.play().catch(() => {});
+      if (video.readyState >= 2) play();
+      else video.addEventListener('loadeddata', play, { once: true });
+    });
   }
 
   function createInterfaceCard(item, index) {
@@ -93,17 +121,16 @@
     card.type = 'button';
     card.className = `pg-card pg-card--motion reveal${index > 0 ? ` reveal-delay-${Math.min(index, 3)}` : ''}`;
     card.setAttribute('data-project-id', item.id);
-    card.setAttribute('aria-label', `Play ${item.title}`);
+    card.setAttribute('aria-label', `Expand ${item.title}`);
 
     card.innerHTML = `
       <div class="pg-card-media">
         <div class="pg-card-media-inner">
-          ${renderMotionThumbnail(item)}
+          ${renderPreviewMedia(item, false)}
         </div>
       </div>
       <div class="pg-card-body">
         <h3 class="pg-card-title">${escapeHtml(item.title)}</h3>
-        <p class="pg-card-desc">${escapeHtml(item.description)}</p>
       </div>
     `;
 
@@ -118,6 +145,7 @@
       gridEl.appendChild(card);
     });
     observeReveals(gridEl);
+    if (kind === 'motion') playVideosIn(gridEl);
   }
 
   function observeReveals(container) {
@@ -145,7 +173,11 @@
   }
 
   function updateMotionLock(isMotionActive) {
-    if (!motionPanel || !MOTION_LOCKED) return;
+    if (!motionPanel || !MOTION_LOCKED) {
+      if (motionPanel) motionPanel.classList.remove('is-locked');
+      if (motionLockEl) motionLockEl.setAttribute('aria-hidden', 'true');
+      return;
+    }
     motionPanel.classList.toggle('is-locked', isMotionActive);
     if (motionLockEl) {
       motionLockEl.setAttribute('aria-hidden', isMotionActive ? 'false' : 'true');
@@ -173,6 +205,7 @@
         nextPanel.classList.add('is-active');
         window.scrollTo(0, scrollAnchor);
         observeReveals(nextPanel);
+        if (category === 'motion') playVideosIn(motionPanel);
       });
     }, 200);
 
@@ -283,10 +316,7 @@
     modalEl.setAttribute('aria-hidden', 'false');
     modalEl.querySelector('.pg-modal-close').focus();
 
-    const video = modalBodyEl.querySelector('video');
-    if (video) {
-      video.play().catch(() => {});
-    }
+    playVideosIn(modalBodyEl);
   }
 
   function closeModal() {
@@ -306,6 +336,7 @@
         modalBodyEl.innerHTML = '';
         unlockScroll();
         cinemaClosing = false;
+        if (activeCategory === 'motion') playVideosIn(motionPanel);
       }, CINEMA_MS);
       return;
     }
@@ -332,6 +363,7 @@
     interfacePanel.classList.add('is-active');
     interfacePanel.style.display = 'block';
     motionPanel.style.display = 'none';
+    updateMotionLock(false);
 
     const firstTab = tabsEl.querySelector('[data-category="interface"]');
     updateIndicator(firstTab);
@@ -343,6 +375,12 @@
     window.addEventListener('resize', () => {
       const activeTab = tabsEl.querySelector('[aria-selected="true"]');
       updateIndicator(activeTab);
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible' && activeCategory === 'motion') {
+        playVideosIn(motionPanel);
+      }
     });
 
     if (modalEl) {
