@@ -1,5 +1,5 @@
 (function () {
-  const KB_URL = './assets/portfolio-assistant/knowledge-base.json?v=4';
+  const KB_URL = './assets/portfolio-assistant/knowledge-base.json?v=5';
   const TYPE_SPEED_MS = 14;
   const TYPE_CHUNK = 2;
 
@@ -11,6 +11,9 @@
   const sendBtn = document.querySelector('.pa-send');
   const closeBtn = modalEl && modalEl.querySelector('.pa-modal-close');
   const backdropEl = modalEl && modalEl.querySelector('.pa-modal-backdrop');
+  const speakerBtn = document.getElementById('paSpeaker');
+  const speakerMutedIcon = speakerBtn && speakerBtn.querySelector('.pa-speaker-icon--muted');
+  const speakerOnIcon = speakerBtn && speakerBtn.querySelector('.pa-speaker-icon--on');
 
   if (!fabEl || !modalEl || !messagesEl || !formEl || !inputEl) return;
 
@@ -20,6 +23,12 @@
   let hasStarted = false;
   let scrollY = 0;
   let reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* Always start muted — only speak after the user unmutes */
+  let voiceUnmuted = false;
+  let lastSpokenText = '';
+  let lastAudioUrl = '';
+  let activeAudio = null;
+  let preferredVoice = null;
 
   function normalize(text) {
     return text
@@ -41,6 +50,23 @@
     return html;
   }
 
+  /* Plain text for TTS — strip markdown and soften list cadence */
+  function speechText(text) {
+    return String(text || '')
+      .replace(/\*\*(.+?)\*\*/g, '$1')
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1')
+      .replace(/[→•▪︎]/g, '. ')
+      .replace(/^\s*[-–—]\s*/gm, '')
+      .replace(/\n{2,}/g, '. ')
+      .replace(/\n/g, '. ')
+      .replace(/\s*([:;])\s*/g, '. ')
+      .replace(/\s{2,}/g, ' ')
+      .replace(/(\.)\1+/g, '.')
+      .replace(/\s+\./g, '.')
+      .replace(/\.\s*\./g, '.')
+      .trim();
+  }
+
   function scrollToBottom() {
     requestAnimationFrame(() => {
       messagesEl.scrollTop = messagesEl.scrollHeight;
@@ -51,6 +77,120 @@
     isBusy = busy;
     inputEl.disabled = busy;
     if (sendBtn) sendBtn.disabled = busy;
+  }
+
+  function stopSpeech() {
+    if (window.speechSynthesis) {
+      window.speechSynthesis.cancel();
+    }
+    if (activeAudio) {
+      activeAudio.pause();
+      activeAudio.currentTime = 0;
+      activeAudio = null;
+    }
+  }
+
+  function scoreVoice(voice) {
+    const name = (voice.name || '') + ' ' + (voice.lang || '');
+    let score = 0;
+    if (/en[-_]?us/i.test(name)) score += 40;
+    else if (/en[-_]?gb/i.test(name)) score += 28;
+    else if (/^en/i.test(voice.lang || '')) score += 18;
+    if (/neural|natural|premium|enhanced|studio|online \(natural\)/i.test(name)) score += 55;
+    if (/google/i.test(name)) score += 30;
+    if (/microsoft (aria|jenny|guy|sara|sonia)/i.test(name)) score += 35;
+    if (/samantha|karen|moira|daniel|alex|zoe|ava/i.test(name)) score += 25;
+    if (/compact|eloquence|whisper|robot|novelty/i.test(name)) score -= 40;
+    if (voice.localService === false) score += 12; /* remote/cloud voices often sound better */
+    return score;
+  }
+
+  function pickPreferredVoice() {
+    if (!window.speechSynthesis) return null;
+    const voices = window.speechSynthesis.getVoices();
+    if (!voices.length) return null;
+
+    return voices.slice().sort((a, b) => scoreVoice(b) - scoreVoice(a))[0] || null;
+  }
+
+  function speakBrowser(text) {
+    if (!window.speechSynthesis || !text) return;
+
+    stopSpeech();
+    /* Chrome sometimes needs a tiny cancel/resume kick for reliable start */
+    window.speechSynthesis.cancel();
+
+    const utter = new SpeechSynthesisUtterance(text);
+    if (!preferredVoice) preferredVoice = pickPreferredVoice();
+    if (preferredVoice) utter.voice = preferredVoice;
+    /* Slightly slower + softer pitch reads less robotic than default */
+    utter.rate = 0.92;
+    utter.pitch = 0.95;
+    utter.volume = 1;
+    utter.lang = (preferredVoice && preferredVoice.lang) || 'en-US';
+    window.speechSynthesis.speak(utter);
+  }
+
+  function speakAudio(url) {
+    stopSpeech();
+    const audio = new Audio(url);
+    activeAudio = audio;
+    audio.play().catch((err) => {
+      console.warn('[Portfolio Assistant] audio play failed, falling back to browser voice', err);
+      speakBrowser(lastSpokenText);
+    });
+  }
+
+  function rememberSpeech(text, audioUrl) {
+    lastSpokenText = speechText(text);
+    lastAudioUrl = audioUrl || '';
+  }
+
+  function speakReply(text, audioUrl) {
+    rememberSpeech(text, audioUrl);
+    if (!voiceUnmuted || !lastSpokenText) return;
+
+    /* Optional per-topic clip (your cloned voice later): payload.audio */
+    if (lastAudioUrl) {
+      speakAudio(lastAudioUrl);
+      return;
+    }
+    speakBrowser(lastSpokenText);
+  }
+
+  function updateSpeakerUi() {
+    if (!speakerBtn) return;
+    speakerBtn.setAttribute('aria-pressed', voiceUnmuted ? 'true' : 'false');
+    speakerBtn.setAttribute(
+      'aria-label',
+      voiceUnmuted ? 'Mute voice narration' : 'Unmute voice narration'
+    );
+    speakerBtn.title = voiceUnmuted ? 'Voice narration on' : 'Voice narration (muted)';
+    if (speakerMutedIcon) speakerMutedIcon.hidden = voiceUnmuted;
+    if (speakerOnIcon) speakerOnIcon.hidden = !voiceUnmuted;
+  }
+
+  function muteVoice(options) {
+    const speakLast = !!(options && options.speakLast);
+    voiceUnmuted = false;
+    stopSpeech();
+    updateSpeakerUi();
+    if (speakLast) { /* no-op: muted */ }
+  }
+
+  function unmuteVoice() {
+    voiceUnmuted = true;
+    updateSpeakerUi();
+    /* User gesture: only now start narration for the latest reply */
+    if (lastSpokenText) {
+      if (lastAudioUrl) speakAudio(lastAudioUrl);
+      else speakBrowser(lastSpokenText);
+    }
+  }
+
+  function setVoiceUnmuted(next) {
+    if (next) unmuteVoice();
+    else muteVoice();
   }
 
   function findTopicId(query) {
@@ -174,8 +314,10 @@
   }
 
   async function respondWithTopic(topicId) {
+    stopSpeech();
     const payload = getTopicPayload(topicId);
     const row = await typeAssistantMessage(payload.response);
+    speakReply(payload.response, payload.audio || '');
     const limit = payload.suggestionLimit ?? 3;
     renderSuggestions(row, payload.suggestions, limit);
   }
@@ -200,6 +342,8 @@
     setBusy(true);
     const welcome = knowledge.welcome;
     const row = await typeAssistantMessage(welcome.message);
+    /* Remember text for later unmute — do not speak until user opts in */
+    rememberSpeech(welcome.message, welcome.audio || '');
     renderSuggestions(row, welcome.suggestions);
     setBusy(false);
   }
@@ -219,6 +363,7 @@
       const bubble = createBubble(row, 'assistant');
       bubble.textContent =
         'Welcome! Ask about Gaurav\'s experience, projects, or design process.';
+      rememberSpeech(bubble.textContent, '');
     }
   }
 
@@ -226,6 +371,9 @@
     if (isOpen) return;
     isOpen = true;
     scrollY = window.scrollY;
+
+    /* Never auto-speak on open — user must unmute */
+    muteVoice();
 
     modalEl.classList.add('is-open');
     modalEl.setAttribute('aria-hidden', 'false');
@@ -240,12 +388,30 @@
   function closeModal() {
     if (!isOpen) return;
     isOpen = false;
+    muteVoice();
 
     modalEl.classList.remove('is-open');
     modalEl.setAttribute('aria-hidden', 'true');
     fabEl.setAttribute('aria-expanded', 'false');
     document.body.classList.remove('pa-modal-open');
     fabEl.focus();
+  }
+
+  updateSpeakerUi();
+
+  try {
+    localStorage.removeItem('pa-voice-unmuted');
+  } catch (_) { /* ignore */ }
+
+  if (speakerBtn) {
+    speakerBtn.addEventListener('click', () => setVoiceUnmuted(!voiceUnmuted));
+  }
+
+  if (window.speechSynthesis) {
+    window.speechSynthesis.addEventListener('voiceschanged', () => {
+      preferredVoice = pickPreferredVoice();
+    });
+    preferredVoice = pickPreferredVoice();
   }
 
   fabEl.addEventListener('click', openModal);

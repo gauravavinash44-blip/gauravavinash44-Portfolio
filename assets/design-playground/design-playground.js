@@ -1,17 +1,17 @@
 (function () {
-  const DATA_URL = './assets/design-playground/playground-data.json';
+  const DATA_URL = './assets/design-playground/playground-data.json?v=11';
   const section = document.getElementById('design-playground');
-  if (!section) return;
-
-  const tabsEl = section.querySelector('.pg-tabs');
-  const indicatorEl = section.querySelector('.pg-tab-indicator');
-  const interfacePanel = section.querySelector('[data-panel="interface"]');
-  const motionPanel = section.querySelector('[data-panel="motion"]');
-  const motionLockEl = motionPanel && motionPanel.querySelector('.pg-motion-lock');
-  const interfaceGrid = section.querySelector('[data-grid="interface"]');
-  const motionGrid = section.querySelector('[data-grid="motion"]');
   const modalEl = document.getElementById('pgModal');
-  const modalBodyEl = modalEl && modalEl.querySelector('.pg-modal-body');
+  if (!modalEl) return;
+
+  const tabsEl = section && section.querySelector('.pg-tabs');
+  const indicatorEl = section && section.querySelector('.pg-tab-indicator');
+  const interfacePanel = section && section.querySelector('[data-panel="interface"]');
+  const motionPanel = section && section.querySelector('[data-panel="motion"]');
+  const motionLockEl = motionPanel && motionPanel.querySelector('.pg-motion-lock');
+  const interfaceGrid = section && section.querySelector('[data-grid="interface"]');
+  const motionGrid = section && section.querySelector('[data-grid="motion"]');
+  const modalBodyEl = modalEl.querySelector('.pg-modal-body');
 
   const CINEMA_MS = 250;
   const MOTION_LOCKED = false;
@@ -20,6 +20,7 @@
   let scrollAnchor = 0;
   let motionScrollY = 0;
   let cinemaClosing = false;
+  let pendingOpenId = null;
 
   function escapeHtml(str) {
     return String(str)
@@ -62,7 +63,11 @@
     }
 
     if (item.media && item.media.type === 'video') {
-      return `<video muted loop playsinline autoplay disablepictureinpicture poster="${escapeHtml(item.media.poster || item.preview.src)}" aria-label="${escapeHtml(item.title)}"><source src="${escapeHtml(item.media.src)}" type="video/mp4"></video>`;
+      const video = `<video muted loop playsinline autoplay disablepictureinpicture poster="${escapeHtml(item.media.poster || item.preview.src)}" aria-label="${escapeHtml(item.title)}"><source src="${escapeHtml(item.media.src)}" type="video/mp4"></video>`;
+      if (item.id === 'space-between') {
+        return `<div class="pg-cinema-crop pg-cinema-crop--space-between">${video}</div>`;
+      }
+      return video;
     }
 
     if (item.media && item.media.type === 'gif') {
@@ -237,10 +242,11 @@
   }
 
   function openInterfaceModal(item) {
-    if (!modalEl || !modalBodyEl) return;
+    if (!modalEl || !modalBodyEl || cinemaClosing) return;
 
     modalEl.classList.remove('pg-modal--cinema', 'is-closing');
     modalEl.setAttribute('aria-labelledby', 'pgModalTitle');
+    modalEl.removeAttribute('aria-label');
 
     const galleryHtml = (item.gallery || [])
       .filter(Boolean)
@@ -258,7 +264,7 @@
       ? `<a class="pg-modal-proto" href="${escapeHtml(item.prototype)}" target="_blank" rel="noreferrer">Open prototype →</a>`
       : '';
 
-    let heroMedia = renderPreviewMedia(item, false);
+    let heroMedia;
     if (item.media && item.media.type === 'video') {
       heroMedia = `<video controls playsinline poster="${escapeHtml(item.media.poster || item.preview.src)}"><source src="${escapeHtml(item.media.src)}" type="video/mp4"></video>`;
     } else if (item.media && item.media.type === 'gif') {
@@ -267,7 +273,7 @@
       heroMedia = `<img src="${escapeHtml(item.preview.src)}" alt="${escapeHtml(item.preview.alt)}" width="${item.preview.width}" height="${item.preview.height}">`;
     }
 
-    const darkMediaIds = { nomad: true, 'health-karma': true };
+    const darkMediaIds = { nomad: true, 'health-karma': true, splitly: true };
     const heroClass = darkMediaIds[item.id]
       ? 'pg-modal-hero pg-modal-hero--dark'
       : 'pg-modal-hero';
@@ -294,14 +300,15 @@
       </div>
     `;
 
+    lockScroll();
     modalEl.classList.add('is-open');
     modalEl.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('pg-modal-open');
-    modalEl.querySelector('.pg-modal-close').focus();
+    const closeBtn = modalEl.querySelector('.pg-modal-close');
+    if (closeBtn) closeBtn.focus();
   }
 
   function openMotionModal(item) {
-    if (MOTION_LOCKED) return;
+    if (MOTION_LOCKED || cinemaClosing) return;
     if (!modalEl || !modalBodyEl) return;
 
     modalEl.classList.add('pg-modal--cinema');
@@ -314,13 +321,15 @@
     lockScroll();
     modalEl.classList.add('is-open');
     modalEl.setAttribute('aria-hidden', 'false');
-    modalEl.querySelector('.pg-modal-close').focus();
+    const closeBtn = modalEl.querySelector('.pg-modal-close');
+    if (closeBtn) closeBtn.focus();
 
     playVideosIn(modalBodyEl);
   }
 
   function closeModal() {
     if (!modalEl || cinemaClosing) return;
+    if (!modalEl.classList.contains('is-open') && !modalEl.classList.contains('is-closing')) return;
 
     const isCinema = modalEl.classList.contains('pg-modal--cinema');
 
@@ -333,7 +342,7 @@
       setTimeout(() => {
         modalEl.classList.remove('is-closing', 'pg-modal--cinema');
         modalEl.setAttribute('aria-hidden', 'true');
-        modalBodyEl.innerHTML = '';
+        if (modalBodyEl) modalBodyEl.innerHTML = '';
         unlockScroll();
         cinemaClosing = false;
         if (activeCategory === 'motion') playVideosIn(motionPanel);
@@ -344,8 +353,32 @@
     pauseModalMedia();
     modalEl.classList.remove('is-open', 'pg-modal--cinema', 'is-closing');
     modalEl.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('pg-modal-open');
+    if (modalBodyEl) modalBodyEl.innerHTML = '';
+    unlockScroll();
   }
+
+  function openById(id) {
+    if (!id) return false;
+    if (!data) {
+      pendingOpenId = id;
+      return false;
+    }
+    const iface = (data.interface || []).find((item) => item.id === id);
+    if (iface) {
+      openInterfaceModal(iface);
+      return true;
+    }
+    const motion = (data.motion || []).find((item) => item.id === id);
+    if (motion) {
+      openMotionModal(motion);
+      return true;
+    }
+    return false;
+  }
+
+  window.DesignPlayground = {
+    open: openById,
+  };
 
   async function init() {
     try {
@@ -357,25 +390,29 @@
       return;
     }
 
-    renderGrid(interfaceGrid, data.interface, 'interface');
-    renderGrid(motionGrid, data.motion, 'motion');
+    if (interfaceGrid) renderGrid(interfaceGrid, data.interface, 'interface');
+    if (motionGrid) renderGrid(motionGrid, data.motion, 'motion');
 
-    interfacePanel.classList.add('is-active');
-    interfacePanel.style.display = 'block';
-    motionPanel.style.display = 'none';
+    if (interfacePanel) {
+      interfacePanel.classList.add('is-active');
+      interfacePanel.style.display = 'block';
+    }
+    if (motionPanel) motionPanel.style.display = 'none';
     updateMotionLock(false);
 
-    const firstTab = tabsEl.querySelector('[data-category="interface"]');
-    updateIndicator(firstTab);
+    if (tabsEl) {
+      const firstTab = tabsEl.querySelector('[data-category="interface"]');
+      updateIndicator(firstTab);
 
-    tabsEl.querySelectorAll('.pg-tab').forEach((tab) => {
-      tab.addEventListener('click', () => switchCategory(tab.dataset.category));
-    });
+      tabsEl.querySelectorAll('.pg-tab').forEach((tab) => {
+        tab.addEventListener('click', () => switchCategory(tab.dataset.category));
+      });
 
-    window.addEventListener('resize', () => {
-      const activeTab = tabsEl.querySelector('[aria-selected="true"]');
-      updateIndicator(activeTab);
-    });
+      window.addEventListener('resize', () => {
+        const activeTab = tabsEl.querySelector('[aria-selected="true"]');
+        updateIndicator(activeTab);
+      });
+    }
 
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState === 'visible' && activeCategory === 'motion') {
@@ -383,12 +420,41 @@
       }
     });
 
-    if (modalEl) {
-      modalEl.querySelector('.pg-modal-backdrop').addEventListener('click', closeModal);
-      modalEl.querySelector('.pg-modal-close').addEventListener('click', closeModal);
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modalEl.classList.contains('is-open')) closeModal();
+    const backdrop = modalEl.querySelector('.pg-modal-backdrop');
+    const dialog = modalEl.querySelector('.pg-modal-dialog');
+    const closeBtn = modalEl.querySelector('.pg-modal-close');
+
+    if (backdrop) {
+      backdrop.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeModal();
       });
+    }
+    if (closeBtn) {
+      closeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        closeModal();
+      });
+    }
+    if (dialog) {
+      dialog.addEventListener('click', (e) => e.stopPropagation());
+    }
+
+    modalEl.addEventListener('click', (e) => {
+      if (e.target === modalEl) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modalEl.classList.contains('is-open')) {
+        e.preventDefault();
+        closeModal();
+      }
+    });
+
+    if (pendingOpenId) {
+      openById(pendingOpenId);
+      pendingOpenId = null;
     }
   }
 

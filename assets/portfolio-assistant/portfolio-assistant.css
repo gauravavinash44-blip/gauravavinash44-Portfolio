@@ -3,7 +3,7 @@
   position: fixed;
   right: 2rem;
   bottom: 2rem;
-  z-index: 450;
+  z-index: 1100;
   display: grid;
   grid-template-columns: auto 0fr;
   align-items: center;
@@ -19,12 +19,12 @@
   );
   backdrop-filter: blur(28px) saturate(1.9);
   -webkit-backdrop-filter: blur(28px) saturate(1.9);
-  color: var(--ink);
-  font-family: var(--mono);
+  color: var(--green, #2ecc71);
+  font-family: var(--font-body, var(--sans));
   font-size: 0.7rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  cursor: none;
+  cursor: pointer;
   overflow: visible;
   box-shadow:
     inset 0 1px 1px rgba(255, 255, 255, 0.95),
@@ -96,7 +96,7 @@
   border-radius: 50%;
   border: 0.8px solid rgba(255, 255, 255, 0.75);
   background:
-    radial-gradient(circle at 32% 26%, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.5) 55%, rgba(249, 232, 225, 0.4) 100%);
+    radial-gradient(circle at 32% 26%, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.5) 55%, rgba(216, 243, 226, 0.45) 100%);
   box-shadow:
     inset 0 1px 1px rgba(255, 255, 255, 0.9),
     0 2px 6px rgba(15, 14, 12, 0.06);
@@ -236,58 +236,60 @@ body.pa-modal-open .pa-fab {
   transform: translateY(8px);
 }
 
-/* Modal shell — blurred backdrop, white frame */
+/* Bottom sheet — flush left / right / bottom, slides up like site covers */
 .pa-modal {
   position: fixed;
   inset: 0;
-  z-index: 600;
+  z-index: 1300;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
+  align-items: flex-end;
+  justify-content: stretch;
+  padding: 0;
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .pa-modal.is-open {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
 }
 
 .pa-modal-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(17, 21, 17, 0.28);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .pa-modal-dialog {
   position: relative;
   z-index: 1;
-  width: min(560px, 100%);
-  max-height: min(88vh, 760px);
-  transform: translateY(16px) scale(0.98);
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  width: 100%;
+  max-width: none;
+  max-height: min(92svh, 860px);
+  transform: translateY(110%);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
 
 .pa-modal.is-open .pa-modal-dialog {
-  transform: translateY(0) scale(1);
+  transform: translateY(0);
 }
 
 .pa-card {
   display: flex;
   flex-direction: column;
-  max-height: min(88vh, 760px);
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid rgba(15, 14, 12, 0.1);
-  border-radius: 20px;
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.65) inset,
-    0 32px 80px rgba(15, 14, 12, 0.12);
+  height: min(92svh, 860px);
+  max-height: min(92svh, 860px);
+  background: var(--paper, #f6f7f4);
+  border: 1px solid rgba(17, 21, 17, 0.1);
+  border-bottom: none;
+  border-radius: 44px 44px 0 0;
+  box-shadow: 0 -18px 48px rgba(17, 21, 17, 0.14);
   overflow: hidden;
 }
 
@@ -296,7 +298,7 @@ body.pa-modal-open .pa-fab {
   align-items: flex-start;
   justify-content: space-between;
   gap: 1rem;
-  padding: 1.35rem 1.35rem 1.15rem;
+  padding: 1.35rem clamp(1.25rem, 4vw, 2rem) 1.15rem;
   border-bottom: 1px solid rgba(15, 14, 12, 0.08);
   background: rgba(255, 255, 255, 0.55);
   flex-shrink: 0;
@@ -307,22 +309,32 @@ body.pa-modal-open .pa-fab {
 }
 
 .pa-card-title {
-  font-family: var(--sans);
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-family: var(--font-display, var(--serif));
+  font-stretch: 82%;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
   color: var(--ink);
   margin-bottom: 0.3rem;
 }
 
 .pa-card-caption {
-  font-family: var(--mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.08em;
+  font-family: var(--font-body, var(--sans));
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--mid);
+  color: var(--gray-3, var(--mid));
 }
 
+.pa-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-shrink: 0;
+}
+
+.pa-speaker,
 .pa-modal-close {
   flex-shrink: 0;
   width: 34px;
@@ -333,21 +345,47 @@ body.pa-modal-open .pa-fab {
   color: var(--ink);
   font-size: 1.1rem;
   line-height: 1;
-  cursor: none;
-  transition: border-color 0.2s, transform 0.2s;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: border-color 0.2s, transform 0.2s, background 0.2s, color 0.2s;
 }
 
+.pa-speaker:hover,
 .pa-modal-close:hover {
-  border-color: rgba(212, 65, 11, 0.4);
+  border-color: rgba(46, 204, 113, 0.55);
+  background: var(--ink);
+  color: var(--green, #2ecc71);
   transform: scale(1.05);
+}
+
+.pa-speaker[aria-pressed="true"] {
+  border-color: rgba(46, 204, 113, 0.45);
+  background: rgba(46, 204, 113, 0.16);
+  color: var(--ink);
+}
+
+.pa-speaker[aria-pressed="true"]:hover {
+  background: var(--ink);
+  color: var(--green, #2ecc71);
+}
+
+.pa-speaker-icon {
+  display: block;
+}
+
+.pa-modal-close {
+  font-size: 1.1rem;
 }
 
 .pa-messages {
   flex: 1;
-  min-height: 280px;
-  max-height: min(52vh, 480px);
+  min-height: 0;
+  max-height: none;
   overflow-y: auto;
-  padding: 1.35rem 1.35rem 0.75rem;
+  padding: 1.35rem clamp(1.25rem, 4vw, 2rem) 0.75rem;
   display: flex;
   flex-direction: column;
   gap: 1.15rem;
@@ -444,7 +482,7 @@ body.pa-modal-open .pa-fab {
   border: 1px solid rgba(15, 14, 12, 0.12);
   border-radius: 999px;
   padding: 0.5rem 0.85rem;
-  cursor: none;
+  cursor: pointer;
   transition:
     transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
     border-color 0.2s,
@@ -463,7 +501,7 @@ body.pa-modal-open .pa-fab {
   display: flex;
   align-items: center;
   gap: 0.65rem;
-  padding: 1rem 1.15rem 1.15rem;
+  padding: 1rem clamp(1.25rem, 4vw, 2rem) calc(1.15rem + env(safe-area-inset-bottom, 0px));
   border-top: 1px solid rgba(15, 14, 12, 0.08);
   background: rgba(255, 255, 255, 0.35);
   flex-shrink: 0;
@@ -487,8 +525,8 @@ body.pa-modal-open .pa-fab {
 }
 
 .pa-input:focus {
-  border-color: rgba(212, 65, 11, 0.45);
-  box-shadow: 0 0 0 3px rgba(212, 65, 11, 0.08);
+  border-color: rgba(46, 204, 113, 0.55);
+  box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.14);
 }
 
 .pa-send {
@@ -501,7 +539,7 @@ body.pa-modal-open .pa-fab {
   border: none;
   border-radius: 12px;
   padding: 0.85rem 1.1rem;
-  cursor: none;
+  cursor: pointer;
   transition: transform 0.2s, background 0.2s;
 }
 
@@ -538,30 +576,41 @@ body.pa-modal-open {
   50% { opacity: 0; }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .pa-fab {
     right: 1.25rem;
     bottom: 1.25rem;
   }
 
-  .pa-modal {
-    padding: 0.75rem;
-    align-items: flex-end;
-  }
-
-  .pa-modal-dialog {
-    width: 100%;
-    max-height: 92vh;
+  .pa-modal-dialog,
+  .pa-card {
+    height: min(94svh, 900px);
+    max-height: min(94svh, 900px);
   }
 
   .pa-card {
-    max-height: 92vh;
-    border-radius: 18px 18px 14px 14px;
+    border-radius: 32px 32px 0 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .pa-fab {
+    right: 1rem;
+    bottom: 1rem;
   }
 
-  .pa-messages {
-    min-height: 240px;
-    max-height: min(48vh, 420px);
+  .pa-fab-label {
+    display: none;
+  }
+
+  .pa-modal-dialog,
+  .pa-card {
+    height: min(96svh, 100%);
+    max-height: min(96svh, 100%);
+  }
+
+  .pa-card {
+    border-radius: 28px 28px 0 0;
   }
 
   .pa-input-row {

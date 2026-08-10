@@ -64,7 +64,7 @@
     },
     "deal_room": {
       "aliases": ["deal room", "deal execution", "structured deal"],
-      "response": "**Deal Room — structured deal execution**\n\nDeal work was fragmented across surfaces. Founders and investors lost context jumping between profiles, documents, and status updates.\n\nGaurav anchored deal creation on the **company profile**—where fundraising intent already lives—and designed a guided execution system with clear gates (setup, NDA, commitments).\n\n**Outcomes:** +32% deal creation adoption · −27% discovery-to-action friction.\n\n→ [Read the full case study](./deal-room-case-study.html)",
+      "response": "**Deal Room — structured deal execution**\n\nDeal work was fragmented across surfaces. Founders and investors lost context jumping between profiles, documents, and status updates.\n\nGaurav anchored deal creation on the **company profile**—where fundraising intent already lives—and designed a guided execution system with clear gates (setup, NDA, commitments).\n\n**Outcomes:** +32% deal creation adoption · −27% discovery-to-action friction.\n\n→ [Read the full case study](./deal-room.html)",
       "suggestions": [
         { "label": "Problem Statement", "topicId": "deal_room_problem" },
         { "label": "Research Process", "topicId": "deal_room_research" },
@@ -73,7 +73,7 @@
     },
     "ai_assistant": {
       "aliases": ["ai assistant", "systematic agent", "contextual chat", "ai search", "chat assistant"],
-      "response": "**Contextual chat assistant for investor company discovery**\n\nInvestors spent 3–4 minutes jumping across filters and pages to evaluate companies. Confidence dropped without conversational context.\n\nGaurav designed a contextual AI assistant using OpenAI + vector search—natural language discovery with transparent results and faster evaluation paths.\n\n**Outcomes:** Search under 30 seconds · +25% user engagement.\n\n→ [Read the case study](./case-study-systematic-agent.html)",
+      "response": "**Contextual chat assistant for investor company discovery**\n\nInvestors spent 3–4 minutes jumping across filters and pages to evaluate companies. Confidence dropped without conversational context.\n\nGaurav designed a contextual AI assistant using OpenAI + vector search—natural language discovery with transparent results and faster evaluation paths.\n\n**Outcomes:** Search under 30 seconds · +25% user engagement.\n\n→ [Read the case study](./contextual-chat.html)",
       "suggestions": [
         { "label": "Problem Statement", "topicId": "ai_assistant_problem" },
         { "label": "Design Decisions", "topicId": "ai_assistant_decisions" },

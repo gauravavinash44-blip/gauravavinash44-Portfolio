@@ -50,9 +50,44 @@
         "alt": "Swaply barter marketplace — product detail and seller profile mobile mockups"
       },
       "gallery": []
+    },
+    {
+      "id": "splitly",
+      "title": "Splitly",
+      "category": "Interface Exploration",
+      "description": "A concept for a shared-expense app that makes group spending feel clear, fair, and fast—from trip balances to equal splits and settle-up moments.",
+      "objective": "Design an end-to-end mobile experience where people can track group balances, split costs cleanly, and settle without spreadsheet chaos.",
+      "thinking": "Led with a balance-first home so money owed is instantly readable. Used progressive steps for amount, category, members, and split method. Kept confirmation and settle-up moments celebratory without losing clarity.",
+      "tools": ["Figma", "Mobile UI", "Prototyping", "Interaction Design"],
+      "prototype": null,
+      "preview": {
+        "src": "./assets/design-playground/splitly-expense-mockup.png",
+        "width": 1024,
+        "height": 576,
+        "alt": "Splitly expense-sharing app — multi-screen mobile interface collage"
+      },
+      "gallery": []
     }
   ],
   "motion": [
+    {
+      "id": "space-between",
+      "title": "Space Between",
+      "category": "Motion",
+      "description": "A looping study of soft red volume, rising light, and vertical shimmer—exploring the space between stillness and motion.",
+      "preview": {
+        "src": "./assets/design-playground/space-between-poster.png",
+        "width": 556,
+        "height": 556,
+        "alt": "Space Between motion study — red glow with vertical light streaks"
+      },
+      "media": {
+        "type": "video",
+        "src": "./assets/design-playground/space-between.mp4",
+        "poster": "./assets/design-playground/space-between-poster.png"
+      },
+      "gallery": []
+    },
     {
       "id": "loading-range",
       "title": "Loading Range",
