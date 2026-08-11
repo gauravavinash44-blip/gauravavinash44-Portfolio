@@ -295,6 +295,56 @@
     }, { passive: true });
   });
 
+  /* ---- View Case Study: progress loader before navigate ---- */
+  document.addEventListener('click', (event) => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+    const cta = target.closest('a.ga-case-cta');
+    if (!(cta instanceof HTMLAnchorElement)) return;
+    if (cta.target === '_blank' || cta.hasAttribute('download')) return;
+
+    const href = cta.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('javascript:')) {
+      return;
+    }
+
+    event.preventDefault();
+    if (document.body.classList.contains('ga-case-cta-leaving')) return;
+    document.body.classList.add('ga-case-cta-leaving');
+
+    try {
+      sessionStorage.setItem('ga-portfolio-internal-nav', '1');
+    } catch (_) { /* ignore */ }
+
+    const overlay = document.createElement('div');
+    overlay.className = 'ga-case-cta-loader';
+    overlay.setAttribute('role', 'status');
+    overlay.setAttribute('aria-label', 'Loading case study');
+    overlay.innerHTML = '<div class="ga-case-cta-loader__track"><span class="ga-case-cta-loader__bar"></span></div>';
+    document.body.appendChild(overlay);
+
+    requestAnimationFrame(() => {
+      overlay.classList.add('is-on');
+      const bar = overlay.querySelector('.ga-case-cta-loader__bar');
+      if (bar) {
+        requestAnimationFrame(() => {
+          bar.classList.add('is-fill');
+        });
+      }
+    });
+
+    const go = () => {
+      window.location.href = cta.href;
+    };
+
+    if (reduced) {
+      go();
+      return;
+    }
+
+    window.setTimeout(go, 780);
+  }, true);
+
   /* ---- Muted inline video autoplay ---- */
   document.querySelectorAll('video').forEach((v) => {
     v.muted = true;

@@ -1,0 +1,172 @@
+{
+  "version": 1,
+  "project": "deal-room",
+  "chapters": {
+    "intro": { "label": "Intro", "slides": ["title", "users", "hook"] },
+    "problem": { "label": "Problem", "slides": ["problem", "states"] },
+    "research": { "label": "Research", "slides": ["research", "insights"] },
+    "framing": { "label": "Framing", "slides": ["assumptions", "hmw", "tension"] },
+    "decision": { "label": "Decision", "slides": ["decision", "flow-host", "flow-participant", "solution"] },
+    "screens": {
+      "label": "Screens",
+      "slides": [
+        "screen-profile",
+        "screen-create",
+        "screen-confirm",
+        "screen-owner",
+        "screen-nda-picker",
+        "screen-share",
+        "screen-engagement",
+        "screen-notify",
+        "screen-nda-gate",
+        "screen-participant",
+        "screen-ladder"
+      ]
+    },
+    "close": { "label": "Close", "slides": ["principles", "impact", "learnings", "next", "close"] }
+  },
+  "themes": {
+    "intro": {
+      "accent": "#27ae60",
+      "wash": "#eceff6",
+      "grid": false
+    },
+    "problem": {
+      "accent": "#b45309",
+      "wash": "#fffaf5",
+      "grid": true
+    },
+    "research": {
+      "accent": "#2563eb",
+      "wash": "#f5f8ff",
+      "grid": true
+    },
+    "framing": {
+      "accent": "#6b7280",
+      "wash": "#f6f7f4",
+      "grid": false
+    },
+    "key-decision": {
+      "accent": "#2ecc71",
+      "wash": "#111511",
+      "grid": false
+    },
+    "decision": {
+      "accent": "#27ae60",
+      "wash": "#e8f8ef",
+      "grid": true
+    },
+    "flow": {
+      "accent": "#27ae60",
+      "wash": "#f6f7f4",
+      "grid": true
+    },
+    "solution": {
+      "accent": "#27ae60",
+      "wash": "#e8f8ef",
+      "grid": false
+    },
+    "screen-profile": {
+      "accent": "#27ae60",
+      "wash": "#f6f7f4",
+      "grid": false
+    },
+    "screen-create": {
+      "accent": "#27ae60",
+      "wash": "#eefbf3",
+      "grid": false
+    },
+    "screen-confirm": {
+      "accent": "#16a34a",
+      "wash": "#ecfdf3",
+      "grid": false
+    },
+    "screen-owner": {
+      "accent": "#374151",
+      "wash": "#f9fafb",
+      "grid": false
+    },
+    "screen-nda-picker": {
+      "accent": "#2563eb",
+      "wash": "#eff6ff",
+      "grid": false
+    },
+    "screen-share": {
+      "accent": "#7c3aed",
+      "wash": "#f5f3ff",
+      "grid": false
+    },
+    "screen-engagement": {
+      "accent": "#059669",
+      "wash": "#ecfdf5",
+      "grid": false
+    },
+    "screen-notify": {
+      "accent": "#0284c7",
+      "wash": "#f0f9ff",
+      "grid": false
+    },
+    "screen-nda-gate": {
+      "accent": "#2563eb",
+      "wash": "#eff6ff",
+      "grid": true
+    },
+    "screen-participant": {
+      "accent": "#27ae60",
+      "wash": "#f0fdf4",
+      "grid": false
+    },
+    "screen-ladder": {
+      "accent": "#27ae60",
+      "wash": "#e8f8ef",
+      "grid": false
+    },
+    "impact": {
+      "accent": "#27ae60",
+      "wash": "#e8f8ef",
+      "grid": false
+    },
+    "close": {
+      "accent": "#27ae60",
+      "wash": "#ffffff",
+      "grid": false
+    }
+  },
+  "slides": {
+    "title": { "theme": "intro", "illustration": null, "lottie": null, "screen": null },
+    "users": { "theme": "intro", "illustration": null, "lottie": null, "screen": null },
+    "hook": { "theme": "intro", "illustration": "illustrations/chapter-problem.svg", "lottie": null, "screen": null },
+    "problem": { "theme": "problem", "illustration": "illustrations/chapter-problem.svg", "lottie": null, "screen": null },
+    "states": { "theme": "problem", "illustration": null, "lottie": null, "screen": null },
+    "research": { "theme": "research", "illustration": null, "lottie": null, "screen": null },
+    "insights": { "theme": "research", "illustration": null, "lottie": null, "screen": null },
+    "assumptions": { "theme": "framing", "illustration": null, "lottie": null, "screen": null },
+    "hmw": { "theme": "framing", "illustration": null, "lottie": null, "screen": null },
+    "tension": { "theme": "key-decision", "illustration": null, "lottie": null, "screen": null },
+    "decision": { "theme": "decision", "illustration": "illustrations/chapter-decision.svg", "lottie": null, "screen": null },
+    "flow-host": { "theme": "flow", "illustration": null, "lottie": "lottie/host-workflow.json", "screen": null },
+    "flow-participant": { "theme": "flow", "illustration": null, "lottie": "lottie/participant-invite.json", "screen": null },
+    "solution": { "theme": "solution", "illustration": null, "lottie": null, "screen": null },
+    "screen-profile": { "theme": "screen-profile", "illustration": null, "lottie": null, "screen": "screens/screen-profile.png" },
+    "screen-create": { "theme": "screen-create", "illustration": null, "lottie": null, "screen": "screens/screen-create.png" },
+    "screen-confirm": { "theme": "screen-confirm", "illustration": null, "lottie": null, "screen": "screens/screen-confirm.png" },
+    "screen-owner": { "theme": "screen-owner", "illustration": null, "lottie": null, "screen": "screens/screen-owner.png" },
+    "screen-nda-picker": { "theme": "screen-nda-picker", "illustration": null, "lottie": "lottie/nda-lock.json", "screen": "screens/screen-nda-picker.png" },
+    "screen-share": { "theme": "screen-share", "illustration": null, "lottie": null, "screen": "screens/screen-share.png" },
+    "screen-engagement": { "theme": "screen-engagement", "illustration": null, "lottie": null, "screen": "screens/screen-engagement.png" },
+    "screen-notify": { "theme": "screen-notify", "illustration": null, "lottie": null, "screen": "screens/screen-notify.png" },
+    "screen-nda-gate": { "theme": "screen-nda-gate", "illustration": null, "lottie": "lottie/nda-sign.json", "screen": "screens/screen-nda-gate.png" },
+    "screen-participant": { "theme": "screen-participant", "illustration": null, "lottie": null, "screen": "screens/screen-participant.png" },
+    "screen-ladder": { "theme": "screen-ladder", "illustration": null, "lottie": null, "screen": "screens/screen-ladder.png" },
+    "principles": { "theme": "close", "illustration": null, "lottie": null, "screen": null },
+    "impact": { "theme": "impact", "illustration": null, "lottie": null, "screen": null },
+    "learnings": { "theme": "close", "illustration": null, "lottie": null, "screen": null },
+    "next": { "theme": "close", "illustration": null, "lottie": null, "screen": null },
+    "close": { "theme": "close", "illustration": null, "lottie": null, "screen": null }
+  },
+  "figma": {
+    "fileName": "Deal Room — Case Study Assets",
+    "pages": ["Intro", "Problem", "Research", "Decision", "Flows", "Screens A-J", "Close"],
+    "plugins": ["Iconify", "LottieFiles for Figma", "Streamline"]
+  }
+}

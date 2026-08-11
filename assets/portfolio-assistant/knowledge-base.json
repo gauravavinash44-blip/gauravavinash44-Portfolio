@@ -73,7 +73,7 @@
     },
     "ai_assistant": {
       "aliases": ["ai assistant", "systematic agent", "contextual chat", "ai search", "chat assistant"],
-      "response": "**Contextual chat assistant for investor company discovery**\n\nInvestors spent 3–4 minutes jumping across filters and pages to evaluate companies. Confidence dropped without conversational context.\n\nGaurav designed a contextual AI assistant using OpenAI + vector search—natural language discovery with transparent results and faster evaluation paths.\n\n**Outcomes:** Search under 30 seconds · +25% user engagement.\n\n→ [Read the case study](./contextual-chat.html)",
+      "response": "**Contextual chat assistant for investor company discovery**\n\nInvestors spent 30–40 minutes jumping across filters and pages to evaluate companies. Confidence dropped without conversational context.\n\nGaurav designed a contextual AI assistant using OpenAI + vector search—natural language discovery with transparent results and faster evaluation paths.\n\n**Outcomes:** Search under 30 seconds · +25% user engagement.\n\n→ [Read the case study](./contextual-chat.html)",
       "suggestions": [
         { "label": "Problem Statement", "topicId": "ai_assistant_problem" },
         { "label": "Design Decisions", "topicId": "ai_assistant_decisions" },
@@ -127,7 +127,7 @@
     },
     "ai_assistant_problem": {
       "aliases": ["ai problem", "search problem"],
-      "response": "Investors evaluated companies through fragmented filters and paginated results—3–4 minutes per search with low confidence in whether they'd seen everything relevant.\n\nThe problem wasn't missing data. It was **missing context**—users couldn't ask follow-up questions or refine intent naturally.",
+      "response": "Investors evaluated companies through fragmented filters and paginated results—30–40 minutes per search with low confidence in whether they'd seen everything relevant.\n\nThe problem wasn't missing data. It was **missing context**—users couldn't ask follow-up questions or refine intent naturally.",
       "suggestions": [
         { "label": "Design Decisions", "topicId": "ai_assistant_decisions" },
         { "label": "Final Outcome", "topicId": "ai_assistant_outcome" },
@@ -145,7 +145,7 @@
     },
     "ai_assistant_outcome": {
       "aliases": ["ai outcome", "ai results"],
-      "response": "**AI Assistant outcomes:**\n\n• Search completion **under 30 seconds** (down from 3–4 minutes)\n• **+25%** user engagement in company discovery\n• Deeper exploration with conversational follow-ups\n\nNatural language replaced fragmented filter-hopping without sacrificing precision.",
+      "response": "**AI Assistant outcomes:**\n\n• Search completion **under 30 seconds** (down from 30–40 minutes)\n• **+25%** user engagement in company discovery\n• Deeper exploration with conversational follow-ups\n\nNatural language replaced fragmented filter-hopping without sacrificing precision.",
       "suggestions": [
         { "label": "AI Assistant", "topicId": "ai_assistant" },
         { "label": "Deal Room", "topicId": "deal_room" },

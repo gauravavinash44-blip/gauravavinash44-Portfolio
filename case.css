@@ -188,6 +188,43 @@ body.mc-case.mc-case-splash-reveal .mc-case-splash {
   transition: transform 1.05s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* View Case Study outbound loader bar */
+.ga-case-cta-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 10050;
+  background: #ffffff;
+  opacity: 0;
+  pointer-events: auto;
+  transition: opacity 0.18s ease;
+}
+
+.ga-case-cta-loader.is-on {
+  opacity: 1;
+}
+
+.ga-case-cta-loader__track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(17, 21, 17, 0.08);
+}
+
+.ga-case-cta-loader__bar {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: #2ecc71;
+  transform-origin: left center;
+  transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ga-case-cta-loader__bar.is-fill {
+  width: 100%;
+}
+
 body.mc-case * {
   box-sizing: border-box;
 }

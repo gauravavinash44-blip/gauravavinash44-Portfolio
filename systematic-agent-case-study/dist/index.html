@@ -1,20 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Systematic Agent (Copy)</title>
+    <style>
+      html, body { height: 100%; margin: 0; }
+      #root { height: 100%; }
+      body.is-cs-loading #root { opacity: 0; }
+      .cs-entry-loader {
+        position: fixed; inset: 0; z-index: 10050; background: #ffffff;
+        transition: opacity 0.35s ease;
+      }
+      .cs-entry-loader.is-done { opacity: 0; pointer-events: none; }
+      .cs-entry-loader__track {
+        position: absolute; top: 0; left: 0; right: 0; height: 3px;
+        background: rgba(17, 21, 17, 0.08);
+      }
+      .cs-entry-loader__bar {
+        display: block; height: 100%; width: 0%; background: #2ecc71;
+        transition: width 0.85s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .cs-entry-loader__bar.is-fill { width: 100%; }
+    </style>
+    <script type="module" crossorigin src="./assets/index-C7YJtk-d.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/react-vendor-DKF_IuCQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/lucide-DLWIivbC.js">
+    <link rel="modulepreload" crossorigin href="./assets/motion-B0aiVIIH.js">
+    <link rel="stylesheet" crossorigin href="./assets/index-MAtYupRy.css">
+  </head>
 
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Systematic Agent (Copy)</title>
-      <style>html, body { height: 100%; margin: 0; } #root { height: 100%; }</style>
-      <script type="module" crossorigin src="./assets/index-C7YJtk-d.js"></script>
-      <link rel="modulepreload" crossorigin href="./assets/react-vendor-DKF_IuCQ.js">
-      <link rel="modulepreload" crossorigin href="./assets/lucide-DLWIivbC.js">
-      <link rel="modulepreload" crossorigin href="./assets/motion-B0aiVIIH.js">
-      <link rel="stylesheet" crossorigin href="./assets/index-MAtYupRy.css">
-    </head>
-
-    <body>
-      <div id="root"></div>
-    </body>
-  </html>
-  
+  <body class="is-cs-loading">
+    <div class="cs-entry-loader" id="cs-entry-loader" role="status" aria-label="Loading case study">
+      <div class="cs-entry-loader__track"><span class="cs-entry-loader__bar" id="cs-entry-bar"></span></div>
+    </div>
+    <div id="root"></div>
+    <script>
+      (function () {
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var loader = document.getElementById('cs-entry-loader');
+        var bar = document.getElementById('cs-entry-bar');
+        function finish() {
+          document.body.classList.remove('is-cs-loading');
+          if (!loader) return;
+          loader.classList.add('is-done');
+          window.setTimeout(function () {
+            if (loader && loader.parentNode) loader.parentNode.removeChild(loader);
+          }, 380);
+        }
+        if (reduced) { finish(); return; }
+        requestAnimationFrame(function () { if (bar) bar.classList.add('is-fill'); });
+        window.setTimeout(finish, 920);
+      })();
+    </script>
+  </body>
+</html>

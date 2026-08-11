@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deal Room Case Study — Presentation · Gaurav Avinash</title>
+  <meta name="description" content="Deal Room presentation case study — guided investment workflow from company profile to commitment.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,500..900&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/deal-room-presentation/deck.css?v=33">
+</head>
+<body class="deck-body is-deck-loading">
+  <div class="deck-entry-loader" id="deck-entry-loader" role="status" aria-label="Loading case study">
+    <div class="deck-entry-loader__track">
+      <span class="deck-entry-loader__bar" id="deck-entry-bar"></span>
+    </div>
+  </div>
+
+  <div class="deck" role="application" aria-label="Deal Room case study presentation">
+    <header class="deck-top">
+      <a class="deck-back" href="./deal-room.html">← Back to Deal Room</a>
+      <p class="deck-brand">Systematic · <strong>Deal Room</strong></p>
+    </header>
+
+    <div class="deck-mobile-hint" role="note" aria-label="Mobile hint">
+      For the best viewing experience, use Desktop (CTRL + click to open/continue).
+    </div>
+
+    <main class="deck-stage" id="deck-stage" tabindex="0" aria-live="polite"></main>
+
+    <footer class="deck-footer">
+      <div class="deck-progress-wrap">
+        <div class="deck-progress-track" aria-hidden="true">
+          <div class="deck-progress-bar" id="deck-progress"></div>
+        </div>
+        <div class="deck-counter" id="deck-counter">01 / 01</div>
+      </div>
+
+      <div class="deck-nav">
+        <button type="button" class="deck-btn" id="deck-prev" aria-label="Previous slide">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 6 9 12l6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button type="button" class="deck-btn" id="deck-next" aria-label="Next slide">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+
+      <p class="deck-hint">Scroll or <kbd>←</kbd> <kbd>→</kbd></p>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var loader = document.getElementById('deck-entry-loader');
+      var bar = document.getElementById('deck-entry-bar');
+      function finish() {
+        document.body.classList.remove('is-deck-loading');
+        if (!loader) return;
+        loader.classList.add('is-done');
+        window.setTimeout(function () {
+          if (loader && loader.parentNode) loader.parentNode.removeChild(loader);
+        }, 380);
+      }
+      if (reduced) {
+        finish();
+        return;
+      }
+      requestAnimationFrame(function () {
+        if (bar) bar.classList.add('is-fill');
+      });
+      window.setTimeout(finish, 920);
+    })();
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js" defer crossorigin="anonymous"></script>
+  <script src="./assets/deal-room-presentation/deck.js?v=45" defer></script>
+</body>
+</html>
