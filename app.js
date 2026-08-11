@@ -7,6 +7,8 @@
     profileFriends: "./assets/about-friends.png",
     dealRoom: "./assets/deal-room-engagement-showcase.png",
     chat: "./assets/contextual-chat-assistant-showcase.png",
+    chatMotion: "./assets/contextual-chat-motion/contextual-chat-motion.mp4?v=2",
+    chatMotionPoster: "./assets/contextual-chat-motion/poster.png?v=2",
     easyeat: "./assets/easyeat-customization-showcase.png",
     resume: "./assets/Resume-Gaurav.pdf",
     logo: "./assets/logo-ga.svg",
@@ -25,9 +27,10 @@
   const FEATURED = [
     {
       href: "./contextual-chat.html",
-      img: ASSETS.chat,
+      img: ASSETS.chatMotionPoster,
+      video: ASSETS.chatMotion,
       title: "Contextual chat for investor discovery",
-      sub: "Designed and launched an AI chat assistant so investors explore companies in natural language—replacing a fragmented multi-step search. OpenAI + vector search cut search from 3–4 minutes to under 30s and lifted engagement 25%.",
+      sub: "Designed and launched an AI chat assistant so investors explore companies in natural language—replacing a fragmented multi-step search. OpenAI + vector search cut search from 30–40 minutes to under 30s and lifted engagement 25%.",
       tags: ["AI Search", "B2B SaaS"],
       lead: true,
     },
@@ -481,13 +484,64 @@
   }
 
   function WorkCard({ item }) {
+    const videoRef = useRef(null);
+    const reducedMotion = typeof window !== "undefined"
+      && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const useVideo = Boolean(item.video) && !reducedMotion;
+
+    useEffect(() => {
+      const video = videoRef.current;
+      if (!useVideo || !video) return undefined;
+
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+      video.setAttribute("playsinline", "");
+      video.setAttribute("webkit-playsinline", "");
+
+      const play = () => {
+        const p = video.play();
+        if (p && typeof p.catch === "function") p.catch(() => {});
+      };
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) play();
+          else video.pause();
+        });
+      }, { threshold: 0.2 });
+
+      io.observe(video);
+      if (video.readyState >= 2) play();
+      else video.addEventListener("loadeddata", play, { once: true });
+
+      return () => {
+        io.disconnect();
+        video.pause();
+      };
+    }, [useVideo, item.video]);
+
+    const media = useVideo
+      ? e("video", {
+          ref: videoRef,
+          className: "ga-card-media-video",
+          src: item.video,
+          poster: item.img,
+          muted: true,
+          loop: true,
+          playsInline: true,
+          autoPlay: true,
+          preload: "auto",
+          disablePictureInPicture: true,
+          "aria-hidden": true,
+        })
+      : e("img", { src: item.img, alt: "", loading: "lazy", decoding: "async" });
+
     return e("a", {
       href: item.href,
-      className: "ga-card" + (item.lead ? " ga-card--lead" : ""),
+      className: "ga-card" + (item.lead ? " ga-card--lead" : "") + (useVideo ? " ga-card--motion" : ""),
     },
-      e("span", { className: "ga-card-media" },
-        e("img", { src: item.img, alt: "", loading: "lazy", decoding: "async" })
-      ),
+      e("span", { className: "ga-card-media" }, media),
       e("span", { className: "ga-card-body" },
         e("span", { className: "ga-card-copy" },
           e("span", { className: "ga-card-title" }, item.title),
