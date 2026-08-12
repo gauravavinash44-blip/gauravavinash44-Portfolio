@@ -26,7 +26,7 @@
 
   const FEATURED = [
     {
-      href: "./contextual-chat.html",
+      href: "./contextual-chat-short.html",
       img: ASSETS.chatMotionPoster,
       video: ASSETS.chatMotion,
       title: "Contextual chat for investor discovery",
@@ -35,7 +35,7 @@
       lead: true,
     },
     {
-      href: "./deal-room.html",
+      href: "./deal-room-short.html",
       img: ASSETS.dealRoom,
       title: "Deal Room — structured deal execution",
       sub: "Deal work was split across surfaces. We anchored creation on the company profile—where intent already lives. +32% deal creation adoption.",
