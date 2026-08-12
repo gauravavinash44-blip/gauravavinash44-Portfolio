@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./case.css?v=6">
+  <link rel="stylesheet" href="./case.css?v=7">
 </head>
 <body class="mc-case">
   <a class="ga-brand" href="./index.html" aria-label="Gaurav Avinash home" data-tip="Home">
@@ -101,13 +101,28 @@
         </div>
       </div>
 
-      <div class="mc-case-hero-img">
+      <div class="mc-case-hero-img mc-case-hero-img--motion">
+        <video
+          class="mc-case-hero-video"
+          src="./assets/contextual-chat-motion/contextual-chat-motion.mp4?v=2"
+          poster="./assets/contextual-chat-motion/poster.png?v=2"
+          muted
+          loop
+          playsinline
+          webkit-playsinline
+          autoplay
+          preload="auto"
+          disablepictureinpicture
+          aria-label="Motion preview of Contextual Chat Assistant for investor company discovery"
+        ></video>
         <img
+          class="mc-case-hero-fallback"
           src="./assets/contextual-chat-assistant-showcase.png"
           alt="Contextual Chat Assistant for investor company discovery"
           width="1024"
           height="759"
           decoding="async"
+          hidden
         >
       </div>
     </header>
@@ -318,6 +333,6 @@
     </section>
   </div>
 
-  <script src="./case.js?v=6"></script>
+  <script src="./case.js?v=7"></script>
 </body>
 </html>

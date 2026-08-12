@@ -346,12 +346,49 @@
   }, true);
 
   /* ---- Muted inline video autoplay ---- */
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   document.querySelectorAll('video').forEach((v) => {
+    const isHeroMotion = v.classList.contains('mc-case-hero-video');
+
+    if (reduceMotion && isHeroMotion) {
+      v.pause();
+      v.removeAttribute('autoplay');
+      const wrap = v.closest('.mc-case-hero-img--motion');
+      const fallback = wrap && wrap.querySelector('.mc-case-hero-fallback');
+      if (fallback) fallback.hidden = false;
+      v.style.display = 'none';
+      return;
+    }
+
     v.muted = true;
+    v.defaultMuted = true;
+    v.controls = false;
+    v.removeAttribute('controls');
     v.setAttribute('muted', '');
-    if (v.paused) {
+    v.setAttribute('autoplay', '');
+    v.playsInline = true;
+    v.setAttribute('playsinline', '');
+    v.setAttribute('webkit-playsinline', '');
+
+    const play = () => {
+      v.muted = true;
       const pr = v.play();
       if (pr && pr.catch) pr.catch(() => {});
+    };
+
+    if (isHeroMotion) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) play();
+          else v.pause();
+        });
+      }, { threshold: 0.15 });
+      io.observe(v);
     }
+
+    play();
+    v.addEventListener('loadeddata', play);
+    v.addEventListener('canplay', play);
   });
 })();

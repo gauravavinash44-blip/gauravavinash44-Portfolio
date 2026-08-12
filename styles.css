@@ -497,9 +497,23 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   image-rendering: auto;
   transform: translateZ(0);
   backface-visibility: hidden;
+  pointer-events: none;
+  object-fit: contain;
 }
 .ga-card--motion:hover .ga-card-media video {
   transform: none;
+}
+/* Kill Safari/WebKit big play overlay on muted autoplay cards */
+.ga-card--motion video::-webkit-media-controls,
+.ga-card--motion video::-webkit-media-controls-enclosure,
+.ga-card--motion video::-webkit-media-controls-panel,
+.ga-card--motion video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  pointer-events: none !important;
 }
 .ga-card-body {
   display: flex;

@@ -496,10 +496,18 @@
       video.muted = true;
       video.defaultMuted = true;
       video.playsInline = true;
+      video.autoplay = true;
+      video.loop = true;
+      video.controls = false;
+      video.removeAttribute("controls");
+      video.setAttribute("muted", "");
+      video.setAttribute("autoplay", "");
       video.setAttribute("playsinline", "");
       video.setAttribute("webkit-playsinline", "");
+      video.setAttribute("disablepictureinpicture", "");
 
       const play = () => {
+        video.muted = true;
         const p = video.play();
         if (p && typeof p.catch === "function") p.catch(() => {});
       };
@@ -509,14 +517,17 @@
           if (entry.isIntersecting) play();
           else video.pause();
         });
-      }, { threshold: 0.2 });
+      }, { threshold: 0.15 });
 
       io.observe(video);
-      if (video.readyState >= 2) play();
-      else video.addEventListener("loadeddata", play, { once: true });
+      play();
+      video.addEventListener("loadeddata", play);
+      video.addEventListener("canplay", play);
 
       return () => {
         io.disconnect();
+        video.removeEventListener("loadeddata", play);
+        video.removeEventListener("canplay", play);
         video.pause();
       };
     }, [useVideo, item.video]);
@@ -532,7 +543,9 @@
           playsInline: true,
           autoPlay: true,
           preload: "auto",
+          controls: false,
           disablePictureInPicture: true,
+          "webkit-playsinline": "true",
           "aria-hidden": true,
         })
       : e("img", { src: item.img, alt: "", loading: "lazy", decoding: "async" });
