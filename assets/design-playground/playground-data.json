@@ -67,6 +67,23 @@
         "alt": "Splitly expense-sharing app — multi-screen mobile interface collage"
       },
       "gallery": []
+    },
+    {
+      "id": "moov",
+      "title": "moov",
+      "category": "Interface Exploration",
+      "description": "A fitness subscription checkout concept focused on faster plan decisions—clearer plan comparison, billing frequency, and payment so users pick with confidence instead of second-guessing.",
+      "objective": "Make plan comparison simpler and clearer across choose-plan, billing frequency, and payment so users can commit in fewer steps.",
+      "thinking": "Surfaced savings and recommended options early. Separated plan tier from billing frequency so each decision stayed focused. Kept payment summary visible so the final CTA felt informed, not surprising.",
+      "tools": ["Figma", "Mobile UI", "Prototyping", "Interaction Design"],
+      "prototype": null,
+      "preview": {
+        "src": "./assets/design-playground/moov-payment-plan-mockup.png",
+        "width": 1024,
+        "height": 674,
+        "alt": "moov fitness app — plan selection, billing frequency, and payment method mobile mockups"
+      },
+      "gallery": []
     }
   ],
   "motion": [

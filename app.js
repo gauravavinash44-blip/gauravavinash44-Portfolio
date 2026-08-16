@@ -16,6 +16,7 @@
     health: "./assets/design-playground/health-karma-mockup.png",
     swaply: "./assets/design-playground/swaply-mockup.png",
     splitly: "./assets/design-playground/splitly-expense-mockup.png",
+    moov: "./assets/design-playground/moov-payment-plan-mockup.png",
     loadingPoster: "./assets/design-playground/loading-range-poster.png",
     loadingVideo: "./assets/design-playground/loading-range.mp4",
     spaceBetweenPoster: "./assets/design-playground/space-between-poster.png",
@@ -57,6 +58,7 @@
     { id: "loading-range", title: "Loading Range", img: ASSETS.loadingPoster, video: ASSETS.loadingVideo, tip: "Loading Range · Motion", kind: "motion" },
     { id: "swaply", title: "Swaply", img: ASSETS.swaply, tip: "Swaply · Interface", kind: "interface" },
     { id: "splitly", title: "Splitly", img: ASSETS.splitly, tip: "Splitly · Interface", kind: "interface" },
+    { id: "moov", title: "moov", img: ASSETS.moov, tip: "moov · Interface", kind: "interface" },
   ];
 
   const BRING = [

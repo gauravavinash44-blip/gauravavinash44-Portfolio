@@ -1,5 +1,5 @@
 (function () {
-  const DATA_URL = './assets/design-playground/playground-data.json?v=11';
+  const DATA_URL = './assets/design-playground/playground-data.json?v=12';
   const section = document.getElementById('design-playground');
   const modalEl = document.getElementById('pgModal');
   if (!modalEl) return;
