@@ -262,7 +262,7 @@
     },
     "resume": {
       "aliases": ["resume", "cv", "download resume"],
-      "response": "You can preview or download Gaurav's resume directly from the portfolio.\n\n→ [Preview Resume](./assets/Resume-Gaurav.pdf)\n→ [Download Resume](./assets/Resume-Gaurav.pdf)\n\nFor a conversation about fit, the Contact section includes email, LinkedIn, and phone.",
+      "response": "You can preview or download Gaurav's resume directly from the portfolio.\n\n→ [Preview Resume](./assets/Resume-Gaurav.pdf?v=20260822)\n→ [Download Resume](./assets/Resume-Gaurav.pdf?v=20260822)\n\nFor a conversation about fit, the Contact section includes email, LinkedIn, and phone.",
       "suggestions": [
         { "label": "Experience", "topicId": "experience" },
         { "label": "Tell me about Gaurav", "topicId": "about_gaurav" },

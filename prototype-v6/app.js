@@ -7,7 +7,7 @@
     dealRoom: "../assets/deal-room-engagement-showcase.png",
     chat: "../assets/contextual-chat-assistant-showcase.png",
     easyeat: "../assets/easyeat-customization-showcase.png",
-    resume: "../assets/Resume-Gaurav.pdf",
+    resume: "../assets/Resume-Gaurav.pdf?v=20260822",
     logo: "../assets/logo-ga.svg",
     nomad: "../assets/design-playground/nomad-mobile-mockup.png",
     health: "../assets/design-playground/health-karma-mockup.png",
