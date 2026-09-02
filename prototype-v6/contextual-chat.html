@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contextual Chat — Gaurav Avinash</title>
+  <meta name="description" content="Context-aware AI assistant for investor workflows — discovery from 30–40 minutes to under 30 seconds.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./case.css">
+</head>
+<body class="mc-case">
+  <div class="proto-badge" role="note">Prototype v6 · <a href="./index.html">home</a></div>
+
+  <a class="ga-brand" href="./index.html" aria-label="Gaurav Avinash home" data-tip="Home">
+    <img src="../assets/logo-ga.svg" alt="" width="112" height="61" decoding="async">
+  </a>
+
+  <div class="mc-root">
+    <nav class="mc-nav" aria-label="Primary">
+      <a href="./index.html" class="mc-nav-home" aria-label="Home" data-tip="Home">
+        <span data-eye="true" class="mc-eye-nav"><span data-pupil="true"></span></span>
+        <span data-eye="true" class="mc-eye-nav"><span data-pupil="true"></span></span>
+      </a>
+      <div class="mc-nav-links">
+        <a href="./index.html#work" class="mc-nav-link" aria-label="Work" data-tip="Work" aria-current="page">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="currentColor" stroke-width="1.7"/></svg>
+        </a>
+        <a href="./index.html#about" class="mc-nav-link" aria-label="About" data-tip="About">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="3.2" stroke="currentColor" stroke-width="1.7"/><path d="M5 19c1.5-3.2 4-4.8 7-4.8S17.5 15.8 19 19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        </a>
+        <a href="./index.html#contact" class="mc-nav-link" aria-label="Contact" data-tip="Contact">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="m4 8 8 6 8-6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Michelle-style chrome header; Gaurav project content -->
+    <header class="mc-case-header" data-screen-label="Case header">
+      <h1 class="mc-case-h1">Contextual Chat</h1>
+      <p class="mc-case-sub">Designing a context-aware AI assistant for investor workflows—so teams reach actionable insight under pressure, not just more data.</p>
+      <div class="mc-case-tags">
+        <span class="mc-case-tag">AI Search</span>
+        <span class="mc-case-tag">B2B SaaS</span>
+        <span class="mc-case-tag">Fintech</span>
+      </div>
+
+      <div class="ga-case-cta-row">
+        <a
+          class="ga-case-cta"
+          href="../systematic-agent-case-study/dist/index.html"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View Case Study
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+
+      <div class="mc-case-meta">
+        <div class="mc-meta-left">
+          <div class="mc-meta-facts">
+            <div>
+              <p class="mc-meta-label">Role</p>
+              <p class="mc-meta-value">Product Designer II<br>Systematic · Remote</p>
+            </div>
+            <div>
+              <p class="mc-meta-label">Timeline</p>
+              <p class="mc-meta-value">2023 — Present</p>
+            </div>
+            <div class="mc-meta-full">
+              <p class="mc-meta-label">Focus</p>
+              <div class="mc-tool-list" role="list">
+                <span role="listitem" class="mc-tool">Human–AI interaction</span>
+                <span role="listitem" class="mc-tool">Context systems</span>
+                <span role="listitem" class="mc-tool">Query states</span>
+                <span role="listitem" class="mc-tool">Inline assistance</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mc-stat-grid" aria-label="Impact summary">
+          <div>
+            <p class="mc-stat-label">Speed</p>
+            <p class="mc-stat-value" aria-label="Under 30 seconds">&lt;<span data-count="30">30</span><span class="mc-stat-unit">s</span></p>
+            <p class="mc-stat-caption">from 30–40 minutes</p>
+          </div>
+          <div>
+            <p class="mc-stat-label">Engagement</p>
+            <p class="mc-stat-value"><span data-count="25">25</span>%</p>
+            <p class="mc-stat-caption">session time up</p>
+          </div>
+          <div>
+            <p class="mc-stat-label">Preference</p>
+            <p class="mc-stat-value"><span data-count="70">70</span>%</p>
+            <p class="mc-stat-caption">preferred chat flow</p>
+          </div>
+          <div>
+            <p class="mc-stat-label">Before</p>
+            <p class="mc-stat-value"><span data-count="34">34</span>%</p>
+            <p class="mc-stat-caption">query failure rate</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mc-case-hero-img">
+        <img
+          src="../assets/contextual-chat-assistant-showcase.png"
+          alt="Contextual Chat Assistant for investor company discovery"
+          width="1600"
+          height="900"
+          decoding="async"
+        >
+      </div>
+    </header>
+
+    <div class="mc-case-body">
+      <nav class="mc-toc" aria-label="Case study sections">
+        <a class="mc-toc-link" href="#hook" data-spy="hook">The Hook</a>
+        <a class="mc-toc-link" href="#problem" data-spy="problem">Problem</a>
+        <a class="mc-toc-link" href="#research" data-spy="research">Research</a>
+        <a class="mc-toc-link" href="#tension" data-spy="tension">Tension</a>
+        <a class="mc-toc-link" href="#decision" data-spy="decision">Key Decision</a>
+        <a class="mc-toc-link" href="#solution" data-spy="solution">Solution</a>
+        <a class="mc-toc-link" href="#evolution" data-spy="evolution">Evolution</a>
+        <a class="mc-toc-link" href="#interaction" data-spy="interaction">Interaction</a>
+        <a class="mc-toc-link" href="#impact" data-spy="impact">Impact</a>
+        <a class="mc-toc-link" href="#learnings" data-spy="learnings">Learnings</a>
+        <a class="mc-toc-link" href="#role" data-spy="role">Role</a>
+        <a class="mc-toc-link" href="#next" data-spy="next">Next Steps</a>
+      </nav>
+
+      <div class="mc-sections">
+        <!-- YOUR hierarchy starts here -->
+        <section id="hook" data-spy-target="hook" class="mc-section">
+          <div class="ga-stack">
+            <p class="mc-eyebrow-bar">The Hook</p>
+            <h2 class="mc-section-h2">Investors didn’t lack data. They lacked speed to insight.</h2>
+            <p class="mc-lede">The existing experience rewarded users who already knew exact filters, taxonomy labels, and query structure. Everyone else kept re-running searches, reopening tabs, and trying to reconstruct context from memory. Data existed. Decision velocity didn’t.</p>
+          </div>
+        </section>
+
+        <section id="problem" data-spy-target="problem" class="mc-section">
+          <div class="ga-stack">
+            <p class="mc-eyebrow-bar">Problem Visualization</p>
+            <h2 class="mc-section-h2">Search workflows created friction exactly when confidence should increase.</h2>
+            <p class="mc-lede">The workflow looked functional on paper, but failed in real decision sessions:</p>
+            <ul class="ga-list">
+              <li>Filter fatigue from too many rigid query controls</li>
+              <li>Zero-result dead ends with no recovery guidance</li>
+              <li>No exploratory mode for uncertain or broad intent</li>
+              <li>Context loss between sessions and repeated comparison effort</li>
+            </ul>
+            <div class="ga-media">
+              <img
+                src="../assets/systematic-investor-workflow-problem.gif"
+                alt="Screen recording of filter-heavy discovery workflow across companies and profiles"
+                width="1200"
+                height="675"
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
+          </div>
+        </section>
+
+        <section id="research" data-spy-target="research" class="mc-section">
+          <div class="ga-stack">
+            <p class="mc-eyebrow-bar">Research &amp; Insights</p>
+            <h2 class="mc-section-h2">The issue wasn’t lack of data quality. It was how users navigated uncertainty.</h2>
+            <div class="ga-card-grid">
+              <article class="ga-card">
+                <strong>34% query failure</strong>
+                <p>More than one in three searches led to no usable output or forced query restarts.</p>
+              </article>
+              <article class="ga-card">
+                <strong>Broad to narrow behavior</strong>
+                <p>Users started with exploratory language, then got trapped by rigid filter-first architecture.</p>
+              </article>
+              <article class="ga-card">
+                <strong>Taxonomy fatigue</strong>
+                <p>Users spent too much effort translating intent into system vocabulary before finding signal.</p>
+              </article>
+            </div>
+            <div class="ga-chips">
+              <span class="ga-chip">Persona: Associate Analyst · speed over perfection</span>
+              <span class="ga-chip">Persona: Portfolio Lead · context continuity across sessions</span>
+            </div>
+            <div class="ga-media">
+              <img
+                src="../assets/journey-map-flow.svg"
+                alt="User journey map: broad query, system filters, refinement, poor results, and retry or drop-off"
+                width="1965"
+                height="889"
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
+          </div>
+        </section>
+
+        <section id="tension" data-spy-target="tension" class="mc-section">
+          <div class="ga-stack">
+            <p class="mc-eyebrow-bar">The Tension</p>
+            <h2 class="mc-section-h2">The team had two obvious solutions. Both were incomplete.</h2>
+            <div class="ga-option-grid">
+              <article class="ga-option">
+                <h4>Option A</h4>
+                <p>Improve filters. Better controls, better labels, better defaults.</p>
+              </article>
+              <article class="ga-option">
+                <h4>Option B</h4>
+                <p>Add a chatbot. Let users ask for insights conversationally.</p>
+              </article>
+            </div>
+            <p class="ga-turn">→ Filters without intelligence remain rigid. Chat without context becomes generic. Both fail in isolation.</p>
+          </div>
+        </section>
+
+        <section id="decision" data-spy-target="decision" class="mc-section">
+          <div class="ga-stack">
+            <p class="mc-eyebrow-bar">Key Decision</p>
+            <p class="ga-decision">We didn’t build a chatbot. We built a system that understands context.</p>
+            <p class="mc-lede">Context had a concrete definition in the product:</p>
+            <ul class="ga-list">
+              <li><strong>Screen state:</strong> what data, filters, and entities are already active</li>
+              <li><strong>Behavior:</strong> what patterns the user has shown in prior interactions</li>
+              <li><strong>Intent:</strong> what the current query implies, even when phrased ambiguously</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="solution" data-spy-target="solution" class="mc-section">
+          <div class="ga-stack">
+            <p class="mc-eyebrow-bar">Solution Approach</p>
+            <h2 class="mc-section-h2">Five design systems that made AI useful in live investor workflows.</h2>
+            <div class="ga-approach-grid">
+              <article class="ga-approach">
+                <h4>Context awareness</h4>
+                <p>Assistant reads current screen state so answers are tied to live workflow context, not generic summaries.</p>
+              </article>
+              <article class="ga-approach">
+                <h4>Inline assistance</h4>
+                <p>Support appears where decisions happen, reducing tab-switching and preserving cognitive flow.</p>
+              </article>
+              <article class="ga-approach">
+                <h4>Smart prompts</h4>
+                <p>Prompt chips guide users toward high-value actions without forcing rigid command syntax.</p>
+              </article>
+              <article class="ga-approach">
+                <h4>Memory across sessions</h4>
+                <p>System remembers prior exploration to avoid repetitive setup and repeated discovery loops.</p>
+              </article>
+              <article class="ga-approach">
+                <h4>Actionable outputs</h4>
+                <p>Responses produce next-step actions: compare, shortlist, export, and continue analysis.</p>
+              </article>
+            </div>
+            <div class="ga-media ga-media--dark">
+              <img
+                src="../assets/system-architecture.svg"
+                alt="System architecture diagram for the context-aware AI assistant"
+                width="2274"
+                height="1222"
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
+          </div>
+        </section>
+
+        <section id="evolution" data-spy-target="evolution" class="mc-section">
+          <div class="ga-stack">
+            <p class="mc-eyebrow-bar">Design Evolution</p>
+            <h2 class="mc-section-h2">From loose ideas to operational UI that teams could trust.</h2>
+
+            <div class="ga-evo">
+              <article class="ga-evo-block">
+                <p class="ga-evo-label">Early concepts</p>
+                <p class="ga-evo-desc">Existing workflow — fragmented, multi-step, and difficult to navigate.</p>
+                <div class="ga-media">
+                  <img
+                    src="../assets/existing-workflow-diagram.svg"
+                    alt="Existing investor workflow — fragmented, multi-step paths across systems"
+                    width="2048"
+                    height="716"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </div>
+              </article>
+
+              <article class="ga-evo-block">
+                <p class="ga-evo-label">Refined mid-fidelity</p>
+                <p class="ga-evo-desc">Explored ways to bring AI directly into the workflow and reduce navigation overhead.</p>
+                <div class="ga-media">
+                  <img
+                    src="../assets/refined-mid-fidelity-research-notes.svg"
+                    alt="Mid-fidelity exploration — research notes mapping inline assistant and layout patterns"
+                    width="1016"
+                    height="324"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </div>
+                <div class="ga-chips">
+                  <span class="ga-chip">Inline assistant</span>
+                  <span class="ga-chip">Unified search &amp; AI</span>
+                  <span class="ga-chip">Less context switching</span>
+                  <span class="ga-chip">Collapsible assistant</span>
+                </div>
+              </article>
+
+              <article class="ga-evo-block">
+                <p class="ga-evo-label">Production candidate</p>
+                <p class="ga-evo-desc">Final direction — a context-aware assistant embedded within the core experience.</p>
+                <div class="ga-media">
+                  <img
+                    src="../assets/production-candidate-ui.svg"
+                    alt="Production candidate UI — context-aware assistant integrated in the investor workflow"
+                    width="1440"
+                    height="838"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </div>
+                <div class="ga-media">
+                  <img
+                    src="../assets/production-candidate-chat-involved.svg"
+                    alt="Production candidate UI — active chat with history, structured responses, and in-workflow analysis"
+                    width="1440"
+                    height="838"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="interaction" data-spy-target="interaction" class="mc-section">
+          <div class="ga-stack">
+            <p class="mc-eyebrow-bar">Interaction Details</p>
+            <h2 class="mc-section-h2">Micro-interactions that removed friction without stealing attention.</h2>
+            <div class="ga-micro">
+              <article class="ga-card">
+                <strong>Chat expansion behavior</strong>
+                <p>Assistant opens progressively to preserve focus and avoid layout shock in dense data views.</p>
+              </article>
+              <article class="ga-card">
+                <strong>Prompt chips + dual-mode</strong>
+                <p>Users can move between classic search and AI mode without losing work-in-progress context.</p>
+              </article>
+              <article class="ga-card">
+                <strong>Notification states</strong>
+                <p>Subtle status updates communicate model progress and confidence without noisy interruptions.</p>
+              </article>
+            </div>
+            <div class="ga-media">
+              <video
+                controls
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                aria-label="Screen recording of assistant micro-interactions in the product"
+              >
+                <source src="../assets/systematic-agent-interaction-demo.mp4?v=2" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </section>
+
+        <section id="impact" data-spy-target="impact" class="mc-section">
+          <div class="ga-stack">
+            <p class="mc-eyebrow-bar">Impact</p>
+            <h2 class="mc-section-h2">Measured outcomes after launch</h2>
+            <div class="ga-impact-grid">
+              <div class="ga-impact">
+                <p class="ga-impact-num"><span data-count="70">70</span>%</p>
+                <p class="ga-impact-label">Users preferred chat-assisted workflow</p>
+              </div>
+              <div class="ga-impact">
+                <p class="ga-impact-num"><span data-count="25">25</span>%</p>
+                <p class="ga-impact-label">Increase in session time</p>
+              </div>
+              <div class="ga-impact">
+                <p class="ga-impact-num">&lt;<span data-count="30">30</span>s</p>
+                <p class="ga-impact-label">Time to insight</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="learnings" data-spy-target="learnings" class="mc-section">
+          <div class="ga-stack">
+            <div class="ga-two">
+              <div>
+                <p class="mc-eyebrow-bar">What Didn’t Work</p>
+                <ul class="ga-list">
+                  <li>Wall-of-text outputs were technically correct but operationally useless.</li>
+                  <li>Early chat felt detached from user context and repeated obvious information.</li>
+                  <li>Too much AI freedom made results feel inconsistent and hard to trust.</li>
+                </ul>
+              </div>
+              <div>
+                <p class="mc-eyebrow-bar">Learnings</p>
+                <ul class="ga-list">
+                  <li>AI is useless without context.</li>
+                  <li>Proactive systems outperform reactive ones.</li>
+                  <li>Structure builds trust in AI.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="role" data-spy-target="role" class="mc-section">
+          <div class="ga-stack">
+            <div class="ga-two">
+              <div>
+                <p class="mc-eyebrow-bar">My Role</p>
+                <p class="mc-lede" style="max-width:none">Led UX for the AI interaction model, defined the context-driven product experience, and translated ambiguous AI behavior into a predictable interaction system.</p>
+              </div>
+              <div>
+                <p class="mc-eyebrow-bar">Collaboration</p>
+                <p class="mc-lede" style="max-width:none">Worked tightly with PM and engineering on state architecture, interaction sequencing, response patterns, and launch measurement criteria.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="next" data-spy-target="next" class="mc-section">
+          <div class="ga-stack">
+            <p class="mc-eyebrow-bar">Next Steps</p>
+            <h2 class="mc-section-h2">Where this product can go next</h2>
+            <ul class="ga-list">
+              <li>Personalization layer that adapts prompt strategy by role and behavior.</li>
+              <li>Proactive alerts for key shifts in followed entities and portfolio signals.</li>
+              <li>Collaboration features for shared analyst notes and team-level context memory.</li>
+            </ul>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <section class="mc-next" data-screen-label="Next projects">
+      <div class="mc-next-inner">
+        <h2 class="mc-next-title">Next projects</h2>
+        <div class="mc-next-grid">
+          <a href="../deal-room-case-study.html" class="mc-next-card">
+            <span class="mc-next-media">
+              <img src="../assets/deal-room-engagement-showcase.png" alt="Deal Room">
+            </span>
+            <span class="mc-next-body">
+              <span class="mc-next-name">Deal Room</span>
+              <span class="mc-next-desc">Structured deal execution on the company profile</span>
+              <span class="mc-next-tags">
+                <span class="mc-next-tag">B2B SaaS</span>
+                <span class="mc-next-tag">Deal Room</span>
+              </span>
+            </span>
+          </a>
+          <a href="../easyeat-case-study.html" class="mc-next-card">
+            <span class="mc-next-media">
+              <img src="../assets/easyeat-customization-showcase.png" alt="EasyEat">
+            </span>
+            <span class="mc-next-body">
+              <span class="mc-next-name">EasyEat</span>
+              <span class="mc-next-desc">Customization redesign for multi-country ordering</span>
+              <span class="mc-next-tags">
+                <span class="mc-next-tag">FoodTech</span>
+                <span class="mc-next-tag">Mobile UX</span>
+              </span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="mc-cta" data-screen-label="Contact CTA">
+      <div class="mc-cta-inner">
+        <div class="mc-cta-eyes" aria-hidden="true">
+          <span data-eye="true" class="mc-eye-big"><span data-pupil="true"></span></span>
+          <span data-eye="true" class="mc-eye-big"><span data-pupil="true"></span></span>
+        </div>
+        <h2 class="mc-cta-title">Let's build smarter products together.</h2>
+        <div class="mc-cta-actions">
+          <a class="mc-icon-btn" href="https://www.linkedin.com/in/gauravavinash" target="_blank" rel="noreferrer" aria-label="LinkedIn" data-tip="LinkedIn">in</a>
+          <a class="mc-icon-btn" href="mailto:gauravavinash3@gmail.com" aria-label="Email" data-tip="Email">✉</a>
+          <a class="mc-cta-btn" href="../assets/Resume-Gaurav.pdf" target="_blank" rel="noreferrer">Resume <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="mc-footer">
+          Gaurav Avinash · Product Designer · UX/AI Design ·
+          <a href="./index.html">Back to portfolio</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="./case.js"></script>
+</body>
+</html>
