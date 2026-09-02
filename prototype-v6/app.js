@@ -667,7 +667,7 @@
               },
                 e("div", null,
                   e("div", { className: "ga-contact-link-label" }, "Download Resume"),
-                  e("div", { className: "ga-contact-link-meta" }, "Resume-Gaurav.pdf")
+                  e("div", { className: "ga-contact-link-meta" }, "Updated Aug 2026")
                 ),
                 e("span", null, "↓")
               )
