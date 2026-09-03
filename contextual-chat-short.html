@@ -16,22 +16,32 @@
       padding-bottom: clamp(168px, 18vw, 260px);
     }
     body.mc-case .ga-stack {
-      gap: clamp(40px, 4.5vw, 64px);
+      --sa-block-gap: clamp(34px, 3.8vw, 52px);
+      --sa-head-gap: 10px;
+      --sa-lead-gap: 20px;
+      gap: var(--sa-block-gap);
     }
-    body.mc-case .ga-stack > .ga-media,
-    body.mc-case .ga-stack > .ga-two,
-    body.mc-case .ga-stack > .sa-banner,
-    body.mc-case .ga-stack > .sa-callout,
-    body.mc-case .ga-stack > .ga-card-grid,
-    body.mc-case .ga-stack > .ga-option-grid,
-    body.mc-case .ga-stack > .ga-approach-grid,
-    body.mc-case .ga-stack > .ga-chips,
-    body.mc-case .ga-stack > .sa-journey,
-    body.mc-case .ga-stack > .sa-funnel,
-    body.mc-case .ga-stack > .sa-finding,
-    body.mc-case .ga-stack > .sa-iterations,
-    body.mc-case .ga-stack > .sa-part01 {
-      margin-top: 12px;
+    /* Nested stacks use a small gap — don't inherit section pull-up math */
+    body.mc-case .ga-stack .ga-stack {
+      --sa-block-gap: 14px;
+      --sa-head-gap: 8px;
+      --sa-lead-gap: 10px;
+    }
+    /* A header sits closer to the block it introduces than blocks sit to each other */
+    body.mc-case .mc-sections > .mc-section > .ga-stack > .mc-eyebrow-bar + *,
+    body.mc-case .mc-sections > .mc-section > .ga-stack > .mc-section-h2 + *,
+    body.mc-case .mc-sections > .mc-section > .ga-stack > .ga-decision + * {
+      margin-top: calc(var(--sa-lead-gap) - var(--sa-block-gap));
+    }
+    /* Eyebrow → title → lede read as one cluster, not three separate blocks */
+    body.mc-case .mc-sections > .mc-section > .ga-stack > .mc-eyebrow-bar + .mc-section-h2,
+    body.mc-case .mc-sections > .mc-section > .ga-stack > .mc-eyebrow-bar + .ga-decision,
+    body.mc-case .mc-sections > .mc-section > .ga-stack > .mc-eyebrow-bar + .mc-lede,
+    body.mc-case .mc-sections > .mc-section > .ga-stack > .mc-section-h2 + .ga-decision,
+    body.mc-case .mc-sections > .mc-section > .ga-stack > .mc-section-h2 + .mc-lede,
+    body.mc-case .mc-sections > .mc-section > .ga-stack > .ga-decision + .mc-lede,
+    body.mc-case .mc-sections > .mc-section > .ga-stack > .mc-lede + .mc-lede {
+      margin-top: calc(var(--sa-head-gap) - var(--sa-block-gap));
     }
     body.mc-case .ga-card-grid,
     body.mc-case .ga-option-grid,
@@ -80,26 +90,15 @@
       background: transparent;
       box-shadow: none;
     }
-    body.mc-case .mc-eyebrow-bar {
-      margin-bottom: 8px;
-    }
-    body.mc-case .mc-section-h2 {
-      margin-bottom: 12px;
-    }
     body.mc-case .mc-lede {
-      margin-top: 4px;
-      margin-bottom: 8px;
       max-width: 40em;
     }
-    body.mc-case .ga-decision {
-      margin-bottom: 8px;
-    }
     body.mc-case .sa-subsection {
-      margin-top: clamp(64px, 8vw, 108px);
-      padding-top: clamp(20px, 2.5vw, 36px);
+      margin-top: clamp(40px, 4.5vw, 64px);
+      padding-top: clamp(12px, 1.5vw, 20px);
     }
     body.mc-case #design-solutions .ga-stack {
-      gap: clamp(52px, 6vw, 80px);
+      --sa-block-gap: clamp(44px, 5vw, 68px);
     }
     body.mc-case .ga-card p,
     body.mc-case .ga-option p,
@@ -438,7 +437,7 @@
     .sa-final-block {
       display: flex;
       flex-direction: column;
-      gap: 28px;
+      gap: 10px;
       margin-top: clamp(64px, 8vw, 108px);
       padding-top: clamp(20px, 2.5vw, 36px);
     }
@@ -447,12 +446,12 @@
       margin: 0;
     }
     .sa-final-block .ga-media {
-      margin-top: 16px;
+      margin-top: 24px;
     }
     .sa-iterations-intro {
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 10px;
       margin-bottom: clamp(28px, 3.5vw, 44px);
     }
     .sa-iterations-intro .mc-eyebrow-bar,
@@ -544,7 +543,7 @@
     .sa-part-intro {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 10px;
       max-width: 42em;
     }
     .sa-part-intro .ga-decision {
@@ -586,7 +585,7 @@
     .sa-part-block {
       display: flex;
       flex-direction: column;
-      gap: 22px;
+      gap: 14px;
     }
     .sa-part-block .mc-eyebrow-bar {
       margin: 0;
@@ -636,12 +635,37 @@
     .sa-anno-list {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 10px;
+      align-self: start;
     }
     .sa-micro-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      gap: 10px;
+      align-items: start;
+    }
+    /* Compact annotation cards beside design screens — keep screens untouched */
+    body.mc-case .sa-anno-list > .ga-card,
+    body.mc-case .sa-micro-row > .ga-card {
+      padding: 14px 16px;
+      border-radius: 12px;
+      height: auto;
+    }
+    body.mc-case .sa-anno-list > .ga-card strong,
+    body.mc-case .sa-micro-row > .ga-card strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 14px;
+      line-height: 1.35;
+    }
+    body.mc-case .sa-anno-list > .ga-card p,
+    body.mc-case .sa-micro-row > .ga-card p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    body.mc-case .sa-anno-list > .ga-card p + p {
+      margin-top: 4px;
     }
     .sa-limit-rules {
       display: flex;
@@ -1853,20 +1877,22 @@
                     <li>Investment relevance</li>
                   </ul>
                 </article>
-                <p class="mc-eyebrow-bar">Design Principles</p>
-                <div class="ga-approach-grid">
-                  <article class="ga-approach">
-                    <h4>Scan-first, explainable</h4>
-                    <p>Users can quickly skim before diving deep.</p>
-                  </article>
-                  <article class="ga-approach">
-                    <h4>Structured, not conversational</h4>
-                    <p>Organized panels, not open-ended chat.</p>
-                  </article>
-                  <article class="ga-approach">
-                    <h4>Summary first, details later</h4>
-                    <p>Progressive disclosure reduces overwhelm.</p>
-                  </article>
+                <div class="sa-part-block">
+                  <p class="mc-eyebrow-bar">Design Principles</p>
+                  <div class="ga-approach-grid">
+                    <article class="ga-approach">
+                      <h4>Scan-first, explainable</h4>
+                      <p>Users can quickly skim before diving deep.</p>
+                    </article>
+                    <article class="ga-approach">
+                      <h4>Structured, not conversational</h4>
+                      <p>Organized panels, not open-ended chat.</p>
+                    </article>
+                    <article class="ga-approach">
+                      <h4>Summary first, details later</h4>
+                      <p>Progressive disclosure reduces overwhelm.</p>
+                    </article>
+                  </div>
                 </div>
                 <div class="sa-callout">
                   <p><strong>This reduced the need for manual synthesis while preserving access to deeper data.</strong></p>
