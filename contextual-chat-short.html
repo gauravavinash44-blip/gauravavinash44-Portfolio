@@ -358,40 +358,38 @@
       font-size: 13.5px;
       margin-bottom: 8px;
     }
-    /* Exact Figma Response Loader (node 2108:60196) */
+    /* Exact Figma Response Loader (node 2108:60196) on loading crop */
     .sa-figma-loading {
       position: relative;
       width: 100%;
       border-radius: 20px;
-      overflow: hidden;
+      overflow: visible;
       background: transparent;
     }
     .sa-figma-loading-base {
       display: block;
       width: 100%;
       height: auto;
+      border-radius: 20px;
     }
     .sa-response-loader {
       position: absolute;
-      left: 2.85%;
-      top: 40.6%;
-      width: 5.91%; /* 60 / 1016 */
-      aspect-ratio: 60 / 30;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      padding-left: 20%; /* 12 / 60 */
-      box-sizing: border-box;
+      left: 3.4%;
+      top: 40%;
+      width: clamp(36px, 4.2vw, 52px);
+      height: clamp(36px, 4.2vw, 52px);
+      display: grid;
+      place-items: center;
       pointer-events: none;
-      background: #fff;
+      z-index: 2;
     }
     .sa-response-loader-icon {
-      width: 37.7%; /* 22.627 / 60 */
-      height: auto;
+      width: 100%;
+      height: 100%;
       display: block;
       transform-origin: 50% 50%;
-      animation: sa-response-loader-spin 1.2s linear infinite;
-      filter: drop-shadow(0 0 4px rgba(6, 151, 38, 0.5));
+      animation: sa-response-loader-spin 1.15s linear infinite;
+      filter: drop-shadow(0 0 6px rgba(6, 151, 38, 0.45));
     }
     @keyframes sa-response-loader-spin {
       from { transform: rotate(0deg); }
@@ -1671,20 +1669,20 @@
                 <div class="sa-figma-loading">
                   <img
                     class="sa-figma-loading-base"
-                    src="./assets/systematic-agent/part01/screen-loading.png?v=hq2"
+                    src="./assets/systematic-agent/part01/screen-loading-base.png?v=hq3"
                     alt="Loading state — Ask Systematic Agent input with response loader from Figma"
                     width="1036"
                     height="245"
-                    loading="lazy"
+                    loading="eager"
                     decoding="async"
                   >
-                  <div class="sa-response-loader" aria-hidden="true">
+                  <div class="sa-response-loader" role="img" aria-label="Response loading">
                     <img
                       class="sa-response-loader-icon"
-                      src="./assets/systematic-agent/part01/response-loader.svg?v=hq2"
+                      src="./assets/systematic-agent/part01/response-loader.svg?v=hq3"
                       alt=""
-                      width="23"
-                      height="23"
+                      width="25"
+                      height="25"
                     >
                   </div>
                 </div>
