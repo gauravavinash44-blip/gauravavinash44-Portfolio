@@ -179,6 +179,175 @@
     scrollCounters.forEach((el) => countObserver.observe(el));
   }
 
+  /* ---- Scroll reveal: Part 01 blocks + auto-apply across case sections ---- */
+  const revealRoot = document.querySelector('.sa-part01, #design-solutions, .sa-reveal');
+  if (revealRoot && document.body.classList.contains('mc-case')) {
+    const stacks = document.querySelectorAll('.mc-section .ga-stack');
+    stacks.forEach((stack) => {
+      Array.from(stack.children).forEach((child, index) => {
+        if (child.classList.contains('sa-reveal')) return;
+        child.classList.add('sa-reveal');
+        const delay = (index % 3) + 1;
+        if (delay > 0 && index > 0) child.classList.add('sa-reveal-delay-' + Math.min(delay, 3));
+      });
+    });
+    document.querySelectorAll('.sa-iterations > .sa-iteration').forEach((el, index) => {
+      if (el.classList.contains('sa-reveal')) return;
+      el.classList.add('sa-reveal');
+      if (index > 0) el.classList.add('sa-reveal-delay-' + Math.min(index, 3));
+    });
+    document.querySelectorAll('.sa-final-block, .sa-iterations-intro, .sa-banner, .sa-callout').forEach((el) => {
+      if (!el.classList.contains('sa-reveal')) el.classList.add('sa-reveal');
+    });
+  }
+
+  const revealNodes = Array.from(document.querySelectorAll('.sa-reveal'));
+  if (revealNodes.length) {
+    if (reduced) {
+      revealNodes.forEach((el) => el.classList.add('is-in'));
+    } else {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-in');
+          revealObserver.unobserve(entry.target);
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+      revealNodes.forEach((el) => revealObserver.observe(el));
+    }
+  }
+
+  /* ---- Image lightbox (iteration designs + marked media) ---- */
+  (function initLightbox() {
+    const sources = [];
+
+    function collectFromImg(img, group) {
+      if (!img || !img.getAttribute('src')) return;
+      const titleEl = img.closest('.sa-iteration')?.querySelector('.sa-iteration-head h4');
+      sources.push({
+        src: img.currentSrc || img.getAttribute('src'),
+        alt: img.getAttribute('alt') || '',
+        caption: titleEl ? titleEl.textContent.trim() : (img.getAttribute('alt') || ''),
+        group: group || 'default',
+        el: img
+      });
+    }
+
+    document.querySelectorAll('.sa-iteration .ga-media img, .sa-part01 .ga-media img').forEach((img) => {
+      const group = img.closest('.sa-iteration') ? 'iterations' : 'part01';
+      collectFromImg(img, group);
+      const media = img.closest('.ga-media');
+      if (media) {
+        media.classList.add('sa-zoomable');
+        media.setAttribute('role', 'button');
+        media.setAttribute('tabindex', '0');
+        media.setAttribute('aria-label', 'View larger: ' + (img.getAttribute('alt') || 'design'));
+      }
+    });
+
+    document.querySelectorAll('[data-lightbox]').forEach((img) => {
+      if (img.tagName === 'IMG') collectFromImg(img, img.getAttribute('data-lightbox') || 'gallery');
+    });
+
+    if (!sources.length) return;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'sa-lightbox';
+    overlay.hidden = true;
+    overlay.innerHTML =
+      '<div class="sa-lightbox-backdrop" data-close="true"></div>' +
+      '<div class="sa-lightbox-dialog" role="dialog" aria-modal="true" aria-label="Design preview">' +
+      '<button type="button" class="sa-lightbox-close" aria-label="Close preview" data-close="true">×</button>' +
+      '<button type="button" class="sa-lightbox-nav is-prev" aria-label="Previous design">‹</button>' +
+      '<figure class="sa-lightbox-figure">' +
+      '<img class="sa-lightbox-img" alt="">' +
+      '<figcaption class="sa-lightbox-caption"></figcaption>' +
+      '</figure>' +
+      '<button type="button" class="sa-lightbox-nav is-next" aria-label="Next design">›</button>' +
+      '</div>';
+    document.body.appendChild(overlay);
+
+    const imgEl = overlay.querySelector('.sa-lightbox-img');
+    const captionEl = overlay.querySelector('.sa-lightbox-caption');
+    const prevBtn = overlay.querySelector('.sa-lightbox-nav.is-prev');
+    const nextBtn = overlay.querySelector('.sa-lightbox-nav.is-next');
+    let activeIndex = 0;
+    let lastFocus = null;
+
+    function groupIndices(group) {
+      return sources.map((s, i) => (s.group === group ? i : -1)).filter((i) => i >= 0);
+    }
+
+    function show(index) {
+      activeIndex = index;
+      const item = sources[index];
+      if (!item) return;
+      imgEl.src = item.src;
+      imgEl.alt = item.alt;
+      captionEl.textContent = item.caption;
+      const g = groupIndices(item.group);
+      const multi = g.length > 1;
+      prevBtn.hidden = !multi;
+      nextBtn.hidden = !multi;
+      overlay.hidden = false;
+      document.body.classList.add('sa-lightbox-open');
+      overlay.querySelector('.sa-lightbox-close').focus();
+    }
+
+    function close() {
+      overlay.hidden = true;
+      document.body.classList.remove('sa-lightbox-open');
+      imgEl.removeAttribute('src');
+      if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+    }
+
+    function step(dir) {
+      const item = sources[activeIndex];
+      if (!item) return;
+      const g = groupIndices(item.group);
+      const pos = g.indexOf(activeIndex);
+      if (pos < 0) return;
+      const next = g[(pos + dir + g.length) % g.length];
+      show(next);
+    }
+
+    function openFromImg(img) {
+      const index = sources.findIndex((s) => s.el === img);
+      if (index < 0) return;
+      lastFocus = document.activeElement;
+      show(index);
+    }
+
+    document.addEventListener('click', (e) => {
+      const media = e.target.closest('.sa-zoomable');
+      if (!media) return;
+      const img = media.querySelector('img');
+      if (!img) return;
+      e.preventDefault();
+      openFromImg(img);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (overlay.hidden) {
+        if ((e.key === 'Enter' || e.key === ' ') && e.target.classList?.contains('sa-zoomable')) {
+          e.preventDefault();
+          const img = e.target.querySelector('img');
+          if (img) openFromImg(img);
+        }
+        return;
+      }
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') step(-1);
+      if (e.key === 'ArrowRight') step(1);
+    });
+
+    overlay.addEventListener('click', (e) => {
+      if (e.target.closest('[data-close]')) close();
+    });
+    prevBtn.addEventListener('click', (e) => { e.stopPropagation(); step(-1); });
+    nextBtn.addEventListener('click', (e) => { e.stopPropagation(); step(1); });
+  })();
+
   /* ---- Scroll spy (table of contents) ---- */
   const links = {};
   document.querySelectorAll('[data-spy]').forEach((a) => {
