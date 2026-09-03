@@ -73,7 +73,7 @@
     },
     "ai_assistant": {
       "aliases": ["ai assistant", "systematic agent", "contextual chat", "ai search", "chat assistant"],
-      "response": "**Contextual chat assistant for investor company discovery**\n\nInvestors spent 30–40 minutes jumping across filters and pages to evaluate companies. Confidence dropped without conversational context.\n\nGaurav designed a contextual AI assistant using OpenAI + vector search—natural language discovery with transparent results and faster evaluation paths.\n\n**Outcomes:** Search under 30 seconds · +25% user engagement.\n\n→ [Read the case study](./contextual-chat.html)",
+      "response": "**Contextual chat assistant for investor company discovery**\n\nInvestors spent 30–40 minutes jumping across filters and pages to evaluate companies. Confidence dropped without conversational context.\n\nGaurav designed a contextual AI assistant using OpenAI + vector search—natural language discovery with transparent results and faster evaluation paths.\n\n**Outcomes:** Search under 30 seconds · +25% user engagement.\n\n→ [Read the case study](./contextual-chat-short.html)",
       "suggestions": [
         { "label": "Problem Statement", "topicId": "ai_assistant_problem" },
         { "label": "Design Decisions", "topicId": "ai_assistant_decisions" },
