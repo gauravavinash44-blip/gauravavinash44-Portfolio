@@ -348,55 +348,6 @@
     nextBtn.addEventListener('click', (e) => { e.stopPropagation(); step(1); });
   })();
 
-  /* ---- Live Systematic Agent loading prototype ---- */
-  (function initResponseLoaderDemo() {
-    const demos = Array.from(document.querySelectorAll('[data-sa-loader]'));
-    if (!demos.length) return;
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    demos.forEach((demo) => {
-      const label = demo.querySelector('[data-sa-loader-label]');
-      let timer = null;
-      let phase = 'loading';
-
-      function setPhase(next) {
-        phase = next;
-        demo.classList.toggle('is-loading', next === 'loading');
-        demo.classList.toggle('is-ready', next === 'ready');
-        if (label) {
-          label.textContent = next === 'loading'
-            ? 'Ask Systematic Agent or search'
-            : 'Ask Systematic Agent or search';
-        }
-      }
-
-      function loop() {
-        if (reducedMotion) {
-          setPhase('loading');
-          return;
-        }
-        setPhase('loading');
-        window.clearTimeout(timer);
-        timer = window.setTimeout(() => {
-          setPhase('ready');
-          timer = window.setTimeout(loop, 2200);
-        }, 2800);
-      }
-
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            loop();
-          } else {
-            window.clearTimeout(timer);
-            setPhase('loading');
-          }
-        });
-      }, { threshold: 0.35 });
-      io.observe(demo);
-    });
-  })();
-
   /* ---- Scroll spy (table of contents) ---- */
   const links = {};
   document.querySelectorAll('[data-spy]').forEach((a) => {

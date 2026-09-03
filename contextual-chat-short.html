@@ -358,180 +358,49 @@
       font-size: 13.5px;
       margin-bottom: 8px;
     }
-    /* Live loading prototype — mirrors Figma Response Loader + input loading state */
-    .sa-loading-demo {
+    /* Exact Figma Response Loader (node 2108:60196) */
+    .sa-figma-loading {
+      position: relative;
       width: 100%;
       border-radius: 20px;
-      background: #fff;
-      border: 1px solid rgba(79, 141, 252, 0.18);
-      box-shadow: 0 10px 28px rgba(79, 141, 252, 0.12);
-      padding: clamp(18px, 2.4vw, 28px);
       overflow: hidden;
-    }
-    .sa-loading-stage {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      align-items: stretch;
-      min-height: 168px;
-    }
-    .sa-loading-bubble {
-      align-self: flex-end;
-      max-width: min(465px, 92%);
-      padding: 10px 12px;
-      border-radius: 6px;
-      background: #edf3ff;
-      color: #1f2a3e;
-      font-size: 12px;
-      line-height: 1.4;
-      letter-spacing: 0.02em;
-    }
-    .sa-loading-response {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      min-height: 30px;
-    }
-    .sa-spark {
-      width: 60px;
-      height: 30px;
-      position: relative;
-      display: grid;
-      place-items: center start;
-      padding-left: 10px;
-    }
-    .sa-spark-main,
-    .sa-spark-mini {
-      position: absolute;
-      display: block;
-    }
-    .sa-spark-main {
-      width: 22px;
-      height: 22px;
-      left: 12px;
-      top: 4px;
-      background:
-        radial-gradient(circle at 50% 50%, rgba(46, 204, 113, 0.35), transparent 68%),
-        conic-gradient(from 200deg, #9747ff, #4f8dfc, #069726, #9747ff);
-      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 1.6c.35 0 .64.23.74.56l1.55 5.1a2.4 2.4 0 0 0 1.45 1.45l5.1 1.55c.33.1.56.39.56.74s-.23.64-.56.74l-5.1 1.55a2.4 2.4 0 0 0-1.45 1.45l-1.55 5.1a.77.77 0 0 1-1.48 0l-1.55-5.1a2.4 2.4 0 0 0-1.45-1.45l-5.1-1.55A.77.77 0 0 1 1.6 12c0-.35.23-.64.56-.74l5.1-1.55a2.4 2.4 0 0 0 1.45-1.45l1.55-5.1A.77.77 0 0 1 12 1.6Z'/%3E%3C/svg%3E") center / contain no-repeat;
-              mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 1.6c.35 0 .64.23.74.56l1.55 5.1a2.4 2.4 0 0 0 1.45 1.45l5.1 1.55c.33.1.56.39.56.74s-.23.64-.56.74l-5.1 1.55a2.4 2.4 0 0 0-1.45 1.45l-1.55 5.1a.77.77 0 0 1-1.48 0l-1.55-5.1a2.4 2.4 0 0 0-1.45-1.45l-5.1-1.55A.77.77 0 0 1 1.6 12c0-.35.23-.64.56-.74l5.1-1.55a2.4 2.4 0 0 0 1.45-1.45l1.55-5.1A.77.77 0 0 1 12 1.6Z'/%3E%3C/svg%3E") center / contain no-repeat;
-      filter: drop-shadow(0 0 6px rgba(6, 151, 38, 0.45));
-      animation: sa-spark-spin 2.2s linear infinite, sa-spark-pulse 1.1s ease-in-out infinite;
-    }
-    .sa-spark-mini {
-      width: 9px;
-      height: 9px;
-      left: 34px;
-      top: 2px;
-      background: linear-gradient(135deg, #4f8dfc, #2ec4b6);
-      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 1.6c.35 0 .64.23.74.56l1.55 5.1a2.4 2.4 0 0 0 1.45 1.45l5.1 1.55c.33.1.56.39.56.74s-.23.64-.56.74l-5.1 1.55a2.4 2.4 0 0 0-1.45 1.45l-1.55 5.1a.77.77 0 0 1-1.48 0l-1.55-5.1a2.4 2.4 0 0 0-1.45-1.45l-5.1-1.55A.77.77 0 0 1 1.6 12c0-.35.23-.64.56-.74l5.1-1.55a2.4 2.4 0 0 0 1.45-1.45l1.55-5.1A.77.77 0 0 1 12 1.6Z'/%3E%3C/svg%3E") center / contain no-repeat;
-              mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 1.6c.35 0 .64.23.74.56l1.55 5.1a2.4 2.4 0 0 0 1.45 1.45l5.1 1.55c.33.1.56.39.56.74s-.23.64-.56.74l-5.1 1.55a2.4 2.4 0 0 0-1.45 1.45l-1.55 5.1a.77.77 0 0 1-1.48 0l-1.55-5.1a2.4 2.4 0 0 0-1.45-1.45l-5.1-1.55A.77.77 0 0 1 1.6 12c0-.35.23-.64.56-.74l5.1-1.55a2.4 2.4 0 0 0 1.45-1.45l1.55-5.1A.77.77 0 0 1 12 1.6Z'/%3E%3C/svg%3E") center / contain no-repeat;
-      animation: sa-spark-blink 1.1s ease-in-out infinite;
-    }
-    .sa-loading-input {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      min-height: 46px;
-      padding: 5px 16px;
-      border-radius: 20px;
-      background: #fff;
-      border: 1px solid rgba(128, 139, 177, 0.35);
-      transition: border-color 0.25s ease, box-shadow 0.25s ease;
-    }
-    .sa-loading-demo.is-loading .sa-loading-input {
-      border-color: #9bbfff;
-      box-shadow: 0 0 0 3px rgba(79, 141, 252, 0.12), 0 0 10px rgba(79, 141, 252, 0.2);
-    }
-    .sa-loading-input span {
-      color: #8d9095;
-      font-size: 14px;
-      letter-spacing: 0.03em;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .sa-loading-action {
-      width: 24px;
-      height: 24px;
-      border-radius: 999px;
-      border: 0;
-      flex-shrink: 0;
-      display: grid;
-      place-items: center;
-      cursor: default;
-      transition: background 0.2s ease, transform 0.2s ease;
-    }
-    .sa-loading-demo.is-loading .sa-loading-action {
-      background: #4f8dfc;
-    }
-    .sa-loading-demo:not(.is-loading) .sa-loading-action {
       background: transparent;
     }
-    .sa-loading-stop {
-      width: 10px;
-      height: 10px;
-      border-radius: 2px;
-      background: #fff;
-      display: none;
+    .sa-figma-loading-base {
+      display: block;
+      width: 100%;
+      height: auto;
     }
-    .sa-loading-demo.is-loading .sa-loading-stop { display: block; }
-    .sa-loading-send {
-      width: 18px;
-      height: 18px;
-      display: none;
-      background: #8d9095;
-      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M3.4 20.6 21 12 3.4 3.4l.05 6.85L14.2 12 3.45 13.75z'/%3E%3C/svg%3E") center / contain no-repeat;
-              mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M3.4 20.6 21 12 3.4 3.4l.05 6.85L14.2 12 3.45 13.75z'/%3E%3C/svg%3E") center / contain no-repeat;
-    }
-    .sa-loading-demo:not(.is-loading) .sa-loading-send { display: block; }
-    .sa-loading-reply {
-      display: none;
-      max-width: min(527px, 100%);
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #e8f1ff;
-      background: #fff;
-      color: #2d3436;
-      font-size: 12px;
-      line-height: 1.45;
-    }
-    .sa-loading-demo.is-ready .sa-loading-reply { display: block; }
-    .sa-loading-demo.is-ready .sa-spark { display: none; }
-    .sa-loading-foot {
+    .sa-response-loader {
+      position: absolute;
+      left: 2.85%;
+      top: 40.6%;
+      width: 5.91%; /* 60 / 1016 */
+      aspect-ratio: 60 / 30;
       display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      color: #8c9fa7;
-      font-size: 11px;
-      line-height: 1.35;
+      align-items: center;
+      justify-content: flex-start;
+      padding-left: 20%; /* 12 / 60 */
+      box-sizing: border-box;
+      pointer-events: none;
+      background: #fff;
     }
-    .sa-loading-foot .right { font-size: 10px; }
-    .sa-loading-caption {
-      margin: 10px 0 0;
-      font-size: 13px;
-      line-height: 1.6;
-      color: rgba(17, 21, 17, 0.62);
+    .sa-response-loader-icon {
+      width: 37.7%; /* 22.627 / 60 */
+      height: auto;
+      display: block;
+      transform-origin: 50% 50%;
+      animation: sa-response-loader-spin 1.2s linear infinite;
+      filter: drop-shadow(0 0 4px rgba(6, 151, 38, 0.5));
     }
-    @keyframes sa-spark-spin {
-      from { transform: rotate(0deg) scale(0.92); }
-      50% { transform: rotate(180deg) scale(1.05); }
-      to { transform: rotate(360deg) scale(0.92); }
-    }
-    @keyframes sa-spark-pulse {
-      0%, 100% { filter: drop-shadow(0 0 4px rgba(6, 151, 38, 0.25)); opacity: 0.85; }
-      50% { filter: drop-shadow(0 0 10px rgba(79, 141, 252, 0.55)); opacity: 1; }
-    }
-    @keyframes sa-spark-blink {
-      0%, 100% { opacity: 0.35; transform: scale(0.8); }
-      50% { opacity: 1; transform: scale(1.15); }
+    @keyframes sa-response-loader-spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
     @media (prefers-reduced-motion: reduce) {
-      .sa-spark-main,
-      .sa-spark-mini { animation: none; }
+      .sa-response-loader-icon { animation: none; }
     }
+
     .sa-banner {
       padding: clamp(36px, 5vw, 56px);
       border-radius: 20px;
@@ -1799,34 +1668,26 @@
 
               <div class="sa-part-block sa-reveal sa-reveal-delay-1">
                 <p class="mc-eyebrow-bar">Loading...</p>
-                <div class="sa-loading-demo is-loading" data-sa-loader>
-                  <div class="sa-loading-stage">
-                    <div class="sa-loading-bubble">
-                      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                    </div>
-                    <div class="sa-loading-response">
-                      <div class="sa-spark" aria-hidden="true">
-                        <span class="sa-spark-main"></span>
-                        <span class="sa-spark-mini"></span>
-                      </div>
-                      <div class="sa-loading-reply">
-                        I’m pulling private-company data and funding signals for your query. This usually takes a moment while sources are checked.
-                      </div>
-                    </div>
-                    <div class="sa-loading-input" aria-live="polite">
-                      <span data-sa-loader-label>Ask Systematic Agent or search</span>
-                      <span class="sa-loading-action" aria-hidden="true">
-                        <span class="sa-loading-stop"></span>
-                        <span class="sa-loading-send"></span>
-                      </span>
-                    </div>
-                    <div class="sa-loading-foot">
-                      <span>Systematic Agent may make mistakes and isn't a substitute for professional advice.</span>
-                      <span class="right">Powered by OpenAI</span>
-                    </div>
+                <div class="sa-figma-loading">
+                  <img
+                    class="sa-figma-loading-base"
+                    src="./assets/systematic-agent/part01/screen-loading.png?v=hq2"
+                    alt="Loading state — Ask Systematic Agent input with response loader from Figma"
+                    width="1036"
+                    height="245"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                  <div class="sa-response-loader" aria-hidden="true">
+                    <img
+                      class="sa-response-loader-icon"
+                      src="./assets/systematic-agent/part01/response-loader.svg?v=hq2"
+                      alt=""
+                      width="23"
+                      height="23"
+                    >
                   </div>
                 </div>
-                <p class="sa-loading-caption">Live loading structure from Figma — response sparkle animates while the agent works; the input switches to a stop control, then returns when the answer lands.</p>
               </div>
 
               <div class="sa-part-block sa-reveal sa-reveal-delay-2">
@@ -2519,6 +2380,6 @@
     </section>
   </div>
 
-  <script src="./case.js?v=11"></script>
+  <script src="./case.js?v=12"></script>
 </body>
 </html>
