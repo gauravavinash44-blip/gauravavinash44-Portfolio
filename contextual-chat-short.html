@@ -12,35 +12,48 @@
   <style>
     /* Breathing room — this full study is denser than the short pages */
     body.mc-case .mc-sections {
-      gap: clamp(140px, 16vw, 220px);
-      padding-bottom: clamp(140px, 16vw, 220px);
+      gap: clamp(168px, 18vw, 260px);
+      padding-bottom: clamp(168px, 18vw, 260px);
     }
     body.mc-case .ga-stack {
-      gap: clamp(28px, 3.2vw, 44px);
+      gap: clamp(40px, 4.5vw, 64px);
     }
     body.mc-case .ga-stack > .ga-media,
     body.mc-case .ga-stack > .ga-two,
     body.mc-case .ga-stack > .sa-banner,
-    body.mc-case .ga-stack > .sa-callout {
-      margin-top: 8px;
+    body.mc-case .ga-stack > .sa-callout,
+    body.mc-case .ga-stack > .ga-card-grid,
+    body.mc-case .ga-stack > .ga-option-grid,
+    body.mc-case .ga-stack > .ga-approach-grid,
+    body.mc-case .ga-stack > .ga-chips,
+    body.mc-case .ga-stack > .sa-journey,
+    body.mc-case .ga-stack > .sa-funnel,
+    body.mc-case .ga-stack > .sa-finding,
+    body.mc-case .ga-stack > .sa-iterations,
+    body.mc-case .ga-stack > .sa-part01 {
+      margin-top: 12px;
     }
     body.mc-case .ga-card-grid,
     body.mc-case .ga-option-grid,
     body.mc-case .ga-approach-grid,
     body.mc-case .ga-two,
     body.mc-case .ga-impact-grid {
-      gap: 20px;
+      gap: 28px;
     }
     body.mc-case .ga-card,
     body.mc-case .ga-option,
     body.mc-case .ga-approach {
-      padding: 24px 22px 26px;
+      padding: 32px 28px 34px;
     }
     body.mc-case .ga-list {
-      gap: 14px;
+      gap: 18px;
+    }
+    body.mc-case .ga-chips {
+      gap: 12px;
+      margin-block: 4px;
     }
     body.mc-case .ga-media {
-      margin-block: 4px;
+      margin-block: 10px;
       background: transparent;
       box-shadow: none;
       align-self: start;
@@ -67,37 +80,71 @@
       background: transparent;
       box-shadow: none;
     }
+    body.mc-case .mc-eyebrow-bar {
+      margin-bottom: 8px;
+    }
     body.mc-case .mc-section-h2 {
-      margin-bottom: 4px;
+      margin-bottom: 12px;
     }
     body.mc-case .mc-lede {
-      margin-top: 0;
+      margin-top: 4px;
+      margin-bottom: 8px;
+      max-width: 40em;
+    }
+    body.mc-case .ga-decision {
+      margin-bottom: 8px;
     }
     body.mc-case .sa-subsection {
-      margin-top: clamp(48px, 6vw, 80px);
-      padding-top: clamp(12px, 1.5vw, 24px);
+      margin-top: clamp(64px, 8vw, 108px);
+      padding-top: clamp(20px, 2.5vw, 36px);
     }
     body.mc-case #design-solutions .ga-stack {
-      gap: clamp(36px, 4.5vw, 56px);
+      gap: clamp(52px, 6vw, 80px);
+    }
+    body.mc-case .ga-card p,
+    body.mc-case .ga-option p,
+    body.mc-case .ga-approach p {
+      line-height: 1.8;
+    }
+
+    /* Selected / final only — soft green accent, no page-wide tint */
+    .sa-tradeoff-tag.chosen {
+      background: rgba(46, 204, 113, 0.14);
+      color: #0a5c2f;
+      border-color: #2ecc71;
+    }
+    .ga-option:has(.sa-tradeoff-tag.chosen),
+    .ga-option.is-selected {
+      background: rgba(46, 204, 113, 0.06);
+      border: 1px solid rgba(46, 204, 113, 0.45);
+      box-shadow: inset 3px 0 0 #2ecc71;
+    }
+    .sa-iteration.is-final.is-selected,
+    .sa-iteration:has(.sa-tradeoff-tag.chosen) {
+      padding: 16px;
+      margin-inline: -16px;
+      border-radius: 16px;
+      background: rgba(46, 204, 113, 0.06);
+      border: 1px solid rgba(46, 204, 113, 0.4);
     }
 
     /* Minimal extras for structures not covered by case.css */
     .sa-quote {
       margin: 0;
-      padding: 22px 24px;
+      padding: 28px 30px;
       border-left: 3px solid #111511;
       background: rgba(17, 21, 17, 0.04);
       border-radius: 0 12px 12px 0;
     }
-    .sa-quote p { margin: 0 0 10px; font-size: 14.5px; line-height: 1.7; font-style: italic; color: rgba(17, 21, 17, 0.82); }
+    .sa-quote p { margin: 0 0 14px; font-size: 14.5px; line-height: 1.8; font-style: italic; color: rgba(17, 21, 17, 0.82); }
     .sa-quote cite { font-style: normal; font-size: 12px; font-weight: 600; color: rgba(17, 21, 17, 0.55); }
     .sa-journey {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      gap: 28px;
     }
     .sa-journey-step {
-      padding: 24px;
+      padding: 32px 28px;
       border-radius: 16px;
       background: rgba(17, 21, 17, 0.04);
       border: 1px solid rgba(17, 21, 17, 0.08);
@@ -134,7 +181,7 @@
     .sa-persona {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 18px;
       padding: 0;
       overflow: hidden;
       border-radius: 16px;
@@ -142,13 +189,13 @@
       background: #fff;
     }
     .sa-persona-head {
-      padding: 18px 20px;
+      padding: 22px 24px;
       background: #111511;
       color: #fff;
     }
     .sa-persona-head strong { display: block; font-size: 15px; margin-bottom: 4px; }
     .sa-persona-head span { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.7; }
-    .sa-persona-body { padding: 0 20px 20px; display: flex; flex-direction: column; gap: 14px; }
+    .sa-persona-body { padding: 0 24px 24px; display: flex; flex-direction: column; gap: 18px; }
     .sa-persona-workflow {
       padding: 12px 14px;
       border-radius: 12px;
@@ -169,11 +216,11 @@
     .sa-funnel {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 16px;
+      gap: 20px;
     }
     .sa-funnel-step {
       text-align: center;
-      padding: 20px 14px;
+      padding: 28px 16px;
       border-radius: 14px;
       border: 1px solid rgba(17, 21, 17, 0.1);
       background: #fff;
@@ -202,26 +249,34 @@
     }
     .sa-funnel-step p { margin: 0; font-size: 12px; line-height: 1.55; color: rgba(17, 21, 17, 0.65); }
     .sa-callout {
-      padding: 28px 28px;
+      padding: 36px 34px;
       border-radius: 16px;
       border: 1px solid rgba(17, 21, 17, 0.12);
       background: rgba(17, 21, 17, 0.04);
     }
-    .sa-callout p { margin: 0 0 10px; font-size: 14.5px; line-height: 1.7; color: rgba(17, 21, 17, 0.8); }
+    .sa-callout p { margin: 0 0 14px; font-size: 14.5px; line-height: 1.8; color: rgba(17, 21, 17, 0.8); }
     .sa-callout p:last-child { margin-bottom: 0; }
     .sa-screen {
-      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      background: transparent;
+      box-shadow: none;
+      align-self: start;
+      height: fit-content;
+    }
+    .sa-screen img {
+      display: block;
+      width: 100%;
+      height: auto;
       border-radius: 16px;
-      overflow: hidden;
       border: 1px solid rgba(17, 21, 17, 0.1);
     }
-    .sa-screen img { display: block; width: 100%; height: auto; }
     .sa-screen-label {
-      position: absolute;
-      top: 12px;
-      left: 12px;
+      position: static;
       display: inline-flex;
       align-items: center;
+      align-self: start;
       gap: 8px;
       padding: 6px 10px;
       border-radius: 8px;
@@ -229,6 +284,7 @@
       color: #fff;
       font-size: 11px;
       font-weight: 700;
+      line-height: 1.3;
     }
     .sa-screen-label .badge {
       width: 18px;
@@ -239,9 +295,10 @@
       align-items: center;
       justify-content: center;
       font-size: 10px;
+      flex-shrink: 0;
     }
     .sa-ba-col {
-      padding: 28px;
+      padding: 36px 32px;
       border-radius: 16px;
       border: 1px solid rgba(17, 21, 17, 0.1);
       background: #fff;
@@ -250,16 +307,17 @@
     .sa-ba-col h3 { margin: 0 0 4px; font-size: 20px; }
     .sa-ba-col .tag {
       display: inline-block;
-      margin-bottom: 18px;
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       padding: 4px 10px;
       border-radius: 999px;
+      margin-bottom: 14px;
       border: 1px solid rgba(17, 21, 17, 0.12);
+      background: #fff;
     }
-    .sa-ba-item { display: flex; gap: 12px; margin-bottom: 14px; }
+    .sa-ba-item { display: flex; gap: 12px; margin-bottom: 20px; }
     .sa-ba-item strong { display: block; font-size: 14px; margin-bottom: 2px; }
     .sa-ba-item span { font-size: 13px; color: rgba(17, 21, 17, 0.55); line-height: 1.5; }
     .sa-mock {
@@ -323,7 +381,7 @@
       overflow: hidden;
       background: #fff;
     }
-    .sa-finding > div { padding: 24px; }
+    .sa-finding > div { padding: 32px 28px; }
     .sa-finding > div + div { border-left: 1px solid rgba(17, 21, 17, 0.08); }
     .sa-finding-id { text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; background: rgba(17, 21, 17, 0.03); }
     .sa-finding-id .fid { font-family: Archivo, sans-serif; font-stretch: 82%; font-weight: 800; font-size: 24px; color: rgba(17, 21, 17, 0.2); }
@@ -348,7 +406,6 @@
       background: rgba(17, 21, 17, 0.04);
       margin-bottom: 12px;
     }
-    .sa-tradeoff-tag.chosen { background: #111511; color: #fff; border-color: #111511; }
     .sa-tradeoff-tag.partial { background: rgba(17, 21, 17, 0.08); }
     .sa-error-row {
       display: flex;
@@ -381,22 +438,22 @@
     .sa-final-block {
       display: flex;
       flex-direction: column;
-      gap: 18px;
-      margin-top: clamp(48px, 6vw, 80px);
-      padding-top: clamp(12px, 1.5vw, 24px);
+      gap: 28px;
+      margin-top: clamp(64px, 8vw, 108px);
+      padding-top: clamp(20px, 2.5vw, 36px);
     }
     .sa-final-block .mc-eyebrow-bar,
     .sa-final-block .ga-decision {
       margin: 0;
     }
     .sa-final-block .ga-media {
-      margin-top: 10px;
+      margin-top: 16px;
     }
     .sa-iterations-intro {
       display: flex;
       flex-direction: column;
-      gap: 14px;
-      margin-bottom: clamp(20px, 2.5vw, 32px);
+      gap: 18px;
+      margin-bottom: clamp(28px, 3.5vw, 44px);
     }
     .sa-iterations-intro .mc-eyebrow-bar,
     .sa-iterations-intro .ga-decision,
@@ -406,17 +463,17 @@
     .sa-iterations {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: clamp(20px, 2.4vw, 28px);
+      gap: clamp(28px, 3.2vw, 40px);
     }
     .sa-iteration {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 16px;
       min-width: 0;
     }
     .sa-iteration.is-final {
       grid-column: 1 / -1;
-      margin-top: clamp(12px, 1.5vw, 20px);
+      margin-top: clamp(20px, 2.5vw, 36px);
       max-width: min(100%, 920px);
     }
     .sa-iteration-head {
@@ -475,19 +532,19 @@
     .sa-part01 {
       display: flex;
       flex-direction: column;
-      gap: clamp(56px, 7vw, 96px);
-      margin-top: clamp(12px, 1.5vw, 24px);
-      padding-top: clamp(8px, 1vw, 16px);
+      gap: clamp(72px, 9vw, 120px);
+      margin-top: clamp(20px, 2.5vw, 36px);
+      padding-top: clamp(12px, 1.5vw, 24px);
     }
     .sa-part {
       display: flex;
       flex-direction: column;
-      gap: clamp(28px, 3.6vw, 48px);
+      gap: clamp(36px, 4.5vw, 56px);
     }
     .sa-part-intro {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 14px;
       max-width: 42em;
     }
     .sa-part-intro .ga-decision {
@@ -496,40 +553,40 @@
     .sa-part-intro p {
       margin: 0;
       font-size: 15px;
-      line-height: 1.7;
+      line-height: 1.8;
       color: rgba(17, 21, 17, 0.68);
     }
     .sa-flow-row {
       display: grid;
       grid-template-columns: minmax(210px, 0.95fr) auto minmax(0, 1.15fr);
-      gap: 24px 28px;
+      gap: 32px 36px;
       align-items: center;
     }
     .sa-flow-row.is-flip {
       grid-template-columns: minmax(0, 1.15fr) auto minmax(210px, 0.95fr);
     }
     .sa-flow-note {
-      padding: 18px 20px;
+      padding: 24px 22px;
       border-radius: 14px;
       border: 1px solid rgba(17, 21, 17, 0.1);
       background: rgba(17, 21, 17, 0.03);
     }
     .sa-flow-note strong {
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       font-size: 14px;
       line-height: 1.45;
     }
     .sa-flow-note p {
       margin: 0;
       font-size: 13.5px;
-      line-height: 1.65;
+      line-height: 1.75;
       color: rgba(17, 21, 17, 0.68);
     }
     .sa-part-block {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 22px;
     }
     .sa-part-block .mc-eyebrow-bar {
       margin: 0;
@@ -1145,33 +1202,33 @@
             </div>
 
             <div class="sa-screen ga-media">
+              <div class="sa-screen-label"><span class="badge">A</span> Search — Empty State</div>
               <img
                 src="./assets/systematic-agent/before-search.png"
                 alt="Old search interface — no guidance"
                 loading="lazy"
                 decoding="async"
               >
-              <div class="sa-screen-label"><span class="badge">A</span> Search — Empty State</div>
             </div>
 
             <div class="ga-two">
               <div class="sa-screen ga-media">
+                <div class="sa-screen-label"><span class="badge">B</span> Filter Panel — Filters remained cognitively heavy</div>
                 <img
                   src="./assets/systematic-agent/before-filters.png"
                   alt="Old filter panel — overwhelming complexity"
                   loading="lazy"
                   decoding="async"
                 >
-                <div class="sa-screen-label"><span class="badge">B</span> Filter Panel — Filters remained cognitively heavy</div>
               </div>
               <div class="sa-screen ga-media">
+                <div class="sa-screen-label"><span class="badge">C</span> Filter Panel — Filters remained cognitively heavy</div>
                 <img
                   src="./assets/systematic-agent/before-results.png"
                   alt="Old results view — cluttered and unscannable"
                   loading="lazy"
                   decoding="async"
                 >
-                <div class="sa-screen-label"><span class="badge">C</span> Filter Panel — Filters remained cognitively heavy</div>
               </div>
             </div>
           </div>
@@ -1309,7 +1366,7 @@
                 <p class="ga-turn" style="margin-top:14px">Decision: Good for retention loop, not for initial discovery. Parked for Phase 2.</p>
               </article>
 
-              <article class="ga-option">
+              <article class="ga-option is-selected">
                 <span class="sa-tradeoff-tag chosen">Chosen Direction</span>
                 <h4>Conversational AI Interface</h4>
                 <p>Natural language input that interprets investor intent and maps to structured company data in real time.</p>
@@ -1741,7 +1798,7 @@
                   </div>
                 </article>
 
-                <article class="sa-iteration is-final">
+                <article class="sa-iteration is-final is-selected">
                   <div class="sa-iteration-head">
                     <h4>Design v4 — Final</h4>
                     <span class="sa-tradeoff-tag chosen">Selected</span>
