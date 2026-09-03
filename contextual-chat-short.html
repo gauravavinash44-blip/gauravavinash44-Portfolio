@@ -54,6 +54,10 @@
       object-fit: contain;
       background: transparent;
     }
+    body.mc-case .sa-feedback-shadow img {
+      filter: drop-shadow(0 2px 8px rgba(16, 24, 40, 0.08))
+        drop-shadow(0 8px 24px rgba(16, 24, 40, 0.12));
+    }
     body.mc-case .ga-two {
       align-items: start;
     }
@@ -1647,7 +1651,7 @@
               <div class="sa-part-block sa-reveal sa-reveal-delay-3">
                 <p class="mc-eyebrow-bar">Feedback &amp; Copy</p>
                 <div class="ga-two">
-                  <div class="ga-media">
+                  <div class="ga-media sa-feedback-shadow">
                     <img src="./assets/systematic-agent/part01/screen-feedback-a.png?v=hq1" alt="Feedback controls from Figma" width="498" height="147" loading="lazy" decoding="async">
                   </div>
                   <div class="ga-media">
