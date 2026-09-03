@@ -358,47 +358,6 @@
       font-size: 13.5px;
       margin-bottom: 8px;
     }
-    /* Exact Figma Response Loader (node 2108:60196) on loading crop */
-    .sa-figma-loading {
-      position: relative;
-      width: 100%;
-      border-radius: 20px;
-      overflow: visible;
-      background: transparent;
-    }
-    .sa-figma-loading-base {
-      display: block;
-      width: 100%;
-      height: auto;
-      border-radius: 20px;
-    }
-    .sa-response-loader {
-      position: absolute;
-      left: 3.4%;
-      top: 40%;
-      width: clamp(36px, 4.2vw, 52px);
-      height: clamp(36px, 4.2vw, 52px);
-      display: grid;
-      place-items: center;
-      pointer-events: none;
-      z-index: 2;
-    }
-    .sa-response-loader-icon {
-      width: 100%;
-      height: 100%;
-      display: block;
-      transform-origin: 50% 50%;
-      animation: sa-response-loader-spin 1.15s linear infinite;
-      filter: drop-shadow(0 0 6px rgba(6, 151, 38, 0.45));
-    }
-    @keyframes sa-response-loader-spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .sa-response-loader-icon { animation: none; }
-    }
-
     .sa-banner {
       padding: clamp(36px, 5vw, 56px);
       border-radius: 20px;
@@ -1666,25 +1625,15 @@
 
               <div class="sa-part-block sa-reveal sa-reveal-delay-1">
                 <p class="mc-eyebrow-bar">Loading...</p>
-                <div class="sa-figma-loading">
+                <div class="ga-media">
                   <img
-                    class="sa-figma-loading-base"
-                    src="./assets/systematic-agent/part01/screen-loading-base.png?v=hq3"
+                    src="./assets/systematic-agent/part01/screen-loading.png?v=hq4"
                     alt="Loading state — Ask Systematic Agent input with response loader from Figma"
                     width="1036"
                     height="245"
-                    loading="eager"
+                    loading="lazy"
                     decoding="async"
                   >
-                  <div class="sa-response-loader" role="img" aria-label="Response loading">
-                    <img
-                      class="sa-response-loader-icon"
-                      src="./assets/systematic-agent/part01/response-loader.svg?v=hq3"
-                      alt=""
-                      width="25"
-                      height="25"
-                    >
-                  </div>
                 </div>
               </div>
 
