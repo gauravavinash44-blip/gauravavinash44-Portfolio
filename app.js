@@ -10,6 +10,7 @@
     chatMotion: "./assets/contextual-chat-motion/contextual-chat-motion.mp4?v=2",
     chatMotionPoster: "./assets/contextual-chat-motion/poster.png?v=2",
     easyeat: "./assets/easyeat-customization-showcase.png",
+    resonance: "./assets/resonance/resonance-poster.png?v=1",
     resume: "./assets/Resume-Gaurav.pdf?v=20260822",
     logo: "./assets/logo-ga.svg",
     nomad: "./assets/design-playground/nomad-mobile-mockup.png",
@@ -36,6 +37,13 @@
       lead: true,
     },
     {
+      href: "./easyeat-case-study.html",
+      img: ASSETS.easyeat,
+      title: "EasyEat customization redesign",
+      sub: "Multi-country launch across Android and iOS. Redesigned monetisation and customization flows for clearer CTAs and less friction. +8.3% QR adoption in 3 weeks.",
+      tags: ["FoodTech", "Mobile UX"],
+    },
+    {
       href: "./deal-room-short.html",
       img: ASSETS.dealRoom,
       title: "Deal Room — structured deal execution",
@@ -43,11 +51,14 @@
       tags: ["Deal Room", "B2B SaaS"],
     },
     {
-      href: "./easyeat-case-study.html",
-      img: ASSETS.easyeat,
-      title: "EasyEat customization redesign",
-      sub: "Multi-country launch across Android and iOS. Redesigned monetisation and customization flows for clearer CTAs and less friction. +8.3% QR adoption in 3 weeks.",
-      tags: ["FoodTech", "Mobile UX"],
+      locked: true,
+      wip: true,
+      resonance: true,
+      img: ASSETS.resonance,
+      title: "Resonance",
+      eyebrow: "Intelligent Music Playback",
+      sub: "For Spotify · Personal Project",
+      tags: ["AI", "Music Experience", "Product Design"],
     },
   ];
 
@@ -550,26 +561,58 @@
           "webkit-playsinline": "true",
           "aria-hidden": true,
         })
-      : e("img", { src: item.img, alt: "", loading: "lazy", decoding: "async" });
+      : e("img", {
+          src: item.img,
+          alt: item.locked ? item.title : "",
+          loading: "lazy",
+          decoding: "async",
+        });
+
+    const className = [
+      "ga-card",
+      item.lead ? "ga-card--lead" : "",
+      useVideo ? "ga-card--motion" : "",
+      item.locked ? "ga-card--locked" : "",
+      item.wip ? "ga-card--wip" : "",
+      item.resonance ? "ga-card--resonance" : "",
+    ].filter(Boolean).join(" ");
+
+    // Same card chrome as active work (Michelle pattern); WIP = Coming Soon badge + locked
+    const copy = e("span", { className: "ga-card-copy" },
+      e("span", { className: "ga-card-title" }, item.title),
+      e("span", { className: "ga-card-sub" }, item.sub),
+      e("span", { className: "ga-tags" },
+        item.tags.map((t) => e("span", { className: "ga-tag", key: t }, t))
+      )
+    );
+
+    const footer = e("span", { className: "ga-card-footer" },
+      e("span", { className: "ga-card-arrow", "aria-hidden": true }, "↑")
+    );
+
+    const mediaKids = item.wip
+      ? [
+          e("span", { className: "ga-card-badge", key: "badge" }, "Coming soon"),
+          media,
+        ]
+      : [media];
+
+    const kids = [
+      e("span", { className: "ga-card-media", key: "media" }, ...mediaKids),
+      e("span", { className: "ga-card-body", key: "body" }, copy, footer),
+    ];
+
+    if (item.locked) {
+      return e("article", {
+        className,
+        "aria-label": item.title + " — work in progress, locked",
+      }, kids);
+    }
 
     return e("a", {
       href: item.href,
-      className: "ga-card" + (item.lead ? " ga-card--lead" : "") + (useVideo ? " ga-card--motion" : ""),
-    },
-      e("span", { className: "ga-card-media" }, media),
-      e("span", { className: "ga-card-body" },
-        e("span", { className: "ga-card-copy" },
-          e("span", { className: "ga-card-title" }, item.title),
-          e("span", { className: "ga-card-sub" }, item.sub),
-          e("span", { className: "ga-tags" },
-            item.tags.map((t) => e("span", { className: "ga-tag", key: t }, t))
-          )
-        ),
-        e("span", { className: "ga-card-footer" },
-          e("span", { className: "ga-card-arrow", "aria-hidden": true }, "↑")
-        )
-      )
-    );
+      className,
+    }, kids);
   }
 
   function MarqueeTile({ item, index, hidden }) {
@@ -615,7 +658,7 @@
         )
       ),
       e("div", { className: "ga-featured-grid ga-reveal" },
-        FEATURED.map((item) => e(WorkCard, { item, key: item.href + item.title }))
+        FEATURED.map((item) => e(WorkCard, { item, key: (item.href || "locked") + item.title }))
       )
     );
   }

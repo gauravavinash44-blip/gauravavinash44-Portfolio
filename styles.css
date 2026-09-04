@@ -432,10 +432,10 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   color: var(--ink);
 }
 
-/* Featured — lead (chat) full width, Deal + EasyEat on second row */
+/* Featured — lead full width; EasyEat · Deal Room · Resonance (WIP) on second row */
 .ga-featured-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
 }
 .ga-card--lead {
@@ -477,6 +477,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 }
 .ga-card:hover { transform: translateY(-3px); }
 .ga-card-media {
+  position: relative;
   aspect-ratio: 16 / 10;
   overflow: hidden;
   background: #e8ebe4;
@@ -574,6 +575,49 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   background: var(--green);
   color: var(--ink);
   transform: rotate(45deg);
+}
+
+/* Resonance / WIP — same card proportions as active work; Coming Soon on media */
+.ga-card--resonance .ga-card-media {
+  background: #121212;
+}
+.ga-card--resonance .ga-card-media img {
+  object-fit: cover;
+  object-position: center top;
+}
+.ga-card-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(17, 21, 17, 0.88);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1;
+  pointer-events: none;
+}
+.ga-card--locked {
+  cursor: default;
+  user-select: none;
+}
+.ga-card--locked:hover {
+  transform: none;
+}
+.ga-card--locked:hover .ga-card-media img {
+  transform: none;
+}
+.ga-card--locked:hover .ga-card-arrow {
+  background: var(--ink);
+  color: var(--green);
+  transform: none;
+}
+.ga-card--locked .ga-card-arrow {
+  opacity: 0.45;
 }
 
 /* ═══════════════════════════════════════════
@@ -1219,6 +1263,11 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   }
 
   .ga-card--lead {
+    grid-column: 1 / -1;
+  }
+
+  /* Active pair on top row; Resonance (WIP) full-width below */
+  .ga-card--wip {
     grid-column: 1 / -1;
   }
 
