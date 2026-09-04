@@ -56,8 +56,8 @@
       wip: true,
       resonance: true,
       img: ASSETS.resonance,
-      title: "Resonance",
-      sub: "I actually prefer Intelligent Music Playback over Personalized Music Playback for this particular project because your concept isn’t only personalization. The interesting part is that the system understands listening behaviour and identifies meaningful moments.",
+      title: "Spotify Resonance - Intelligent Music Playback",
+      sub: "AI that understands how you listen and finds meaningful moments.",
       tags: ["AI", "Music Experience", "Product Design"],
     },
   ];
