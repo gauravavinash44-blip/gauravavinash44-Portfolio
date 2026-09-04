@@ -49,6 +49,7 @@
       title: "Deal Room — structured deal execution",
       sub: "Deal work was split across surfaces. We anchored creation on the company profile—where intent already lives. +32% deal creation adoption.",
       tags: ["Deal Room", "B2B SaaS"],
+      deal: true,
     },
     {
       locked: true,
@@ -575,6 +576,7 @@
       item.locked ? "ga-card--locked" : "",
       item.wip ? "ga-card--wip" : "",
       item.resonance ? "ga-card--resonance" : "",
+      item.deal ? "ga-card--deal" : "",
     ].filter(Boolean).join(" ");
 
     // Same card chrome as active work (Michelle pattern); WIP = Coming Soon badge + locked
@@ -586,9 +588,12 @@
       )
     );
 
-    const footer = e("span", { className: "ga-card-footer" },
-      e("span", { className: "ga-card-arrow", "aria-hidden": true }, "↑")
-    );
+    // Locked / Coming Soon cards have no enter arrow
+    const footer = item.locked
+      ? null
+      : e("span", { className: "ga-card-footer" },
+          e("span", { className: "ga-card-arrow", "aria-hidden": true }, "↑")
+        );
 
     const mediaKids = item.wip
       ? [

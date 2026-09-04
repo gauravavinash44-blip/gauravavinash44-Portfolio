@@ -482,6 +482,10 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   overflow: hidden;
   background: #e8ebe4;
 }
+/* Secondary featured cards — taller media so phone/UI screens read clearly */
+.ga-featured-grid > .ga-card:not(.ga-card--lead) .ga-card-media {
+  aspect-ratio: 3 / 4;
+}
 .ga-card-media img,
 .ga-card-media video {
   width: 100%;
@@ -577,13 +581,30 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   transform: rotate(45deg);
 }
 
-/* Resonance / WIP — same card proportions as active work; Coming Soon on media */
+/* Resonance / WIP — taller media shows full phone hierarchy; no enter arrow */
 .ga-card--resonance .ga-card-media {
   background: #121212;
 }
 .ga-card--resonance .ga-card-media img {
   object-fit: cover;
   object-position: center top;
+}
+.ga-card--locked .ga-card-body {
+  padding-bottom: 22px;
+}
+.ga-card--locked .ga-card-footer {
+  display: none;
+}
+/* Deal Room — zoom into UI center, crop excess from the right */
+.ga-card--deal .ga-card-media img {
+  object-fit: cover;
+  object-position: 58% 42%;
+  transform: scale(1.14);
+  transform-origin: 55% 45%;
+}
+.ga-card--deal:hover .ga-card-media img {
+  transform: scale(1.18);
+  transform-origin: 55% 45%;
 }
 .ga-card-badge {
   position: absolute;
@@ -610,14 +631,6 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 }
 .ga-card--locked:hover .ga-card-media img {
   transform: none;
-}
-.ga-card--locked:hover .ga-card-arrow {
-  background: var(--ink);
-  color: var(--green);
-  transform: none;
-}
-.ga-card--locked .ga-card-arrow {
-  opacity: 0.45;
 }
 
 /* ═══════════════════════════════════════════
