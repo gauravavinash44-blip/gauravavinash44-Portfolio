@@ -579,14 +579,22 @@
       item.deal ? "ga-card--deal" : "",
     ].filter(Boolean).join(" ");
 
-    // Same card chrome as active work (Michelle pattern); WIP = Coming Soon badge + locked
-    const copy = e("span", { className: "ga-card-copy" },
-      e("span", { className: "ga-card-title" }, item.title),
-      e("span", { className: "ga-card-sub" }, item.sub),
-      e("span", { className: "ga-tags" },
-        item.tags.map((t) => e("span", { className: "ga-tag", key: t }, t))
-      )
-    );
+    // Header / title / sub; Resonance keeps existing tags only (no extras)
+    const copyKids = [];
+    if (item.eyebrow) {
+      copyKids.push(e("span", { className: "ga-card-eyebrow", key: "eyebrow" }, item.eyebrow));
+    }
+    copyKids.push(e("span", { className: "ga-card-title", key: "title" }, item.title));
+    copyKids.push(e("span", { className: "ga-card-sub", key: "sub" }, item.sub));
+    if (item.tags && item.tags.length) {
+      copyKids.push(
+        e("span", { className: "ga-tags", key: "tags" },
+          item.tags.map((t) => e("span", { className: "ga-tag", key: t }, t))
+        )
+      );
+    }
+
+    const copy = e("span", { className: "ga-card-copy" }, ...copyKids);
 
     // Locked / Coming Soon cards have no enter arrow
     const footer = item.locked
