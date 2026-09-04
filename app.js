@@ -57,8 +57,7 @@
       resonance: true,
       img: ASSETS.resonance,
       title: "Resonance",
-      eyebrow: "Intelligent Music Playback",
-      sub: "For Spotify · Personal Project",
+      sub: "I actually prefer Intelligent Music Playback over Personalized Music Playback for this particular project because your concept isn’t only personalization. The interesting part is that the system understands listening behaviour and identifies meaningful moments.",
       tags: ["AI", "Music Experience", "Product Design"],
     },
   ];
