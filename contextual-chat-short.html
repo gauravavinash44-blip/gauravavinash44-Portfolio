@@ -231,7 +231,7 @@
     }
     /* Solution pair - clear 01 vs 02 hierarchy */
     body.mc-case .sa-solution-pair {
-      gap: 20px;
+      gap: 24px;
       align-items: stretch;
     }
     body.mc-case .sa-solution-card {
@@ -239,13 +239,13 @@
       display: flex;
       flex-direction: column;
       gap: 0;
-      padding: 22px 20px 20px;
+      padding: 28px 26px 24px;
       overflow: hidden;
     }
     body.mc-case .sa-solution-num {
       position: absolute;
-      top: 10px;
-      right: 14px;
+      top: 16px;
+      right: 18px;
       font-family: Archivo, sans-serif;
       font-stretch: 82%;
       font-weight: 800;
@@ -256,8 +256,8 @@
       pointer-events: none;
     }
     body.mc-case .sa-solution-label {
-      margin: 0 0 8px;
-      max-width: calc(100% - 48px);
+      margin: 0 0 12px;
+      max-width: calc(100% - 52px);
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.06em;
@@ -267,11 +267,11 @@
     body.mc-case .sa-solution-card > strong {
       font-size: 18px;
       font-weight: 800;
-      margin-bottom: 14px;
-      line-height: 1.25;
+      margin-bottom: 20px;
+      line-height: 1.3;
     }
     body.mc-case .sa-solution-kicker {
-      margin: 0 0 6px !important;
+      margin: 0 0 10px !important;
       font-size: 11px !important;
       font-weight: 700 !important;
       letter-spacing: 0.05em;
@@ -279,16 +279,16 @@
       color: rgba(17, 21, 17, 0.45) !important;
     }
     body.mc-case .sa-solution-card .ga-list {
-      gap: 8px;
-      margin: 0 0 16px;
+      gap: 12px;
+      margin: 0 0 22px;
       font-size: 13px;
-      line-height: 1.45;
+      line-height: 1.5;
     }
     body.mc-case .sa-solution-card .ga-turn {
       margin-top: auto;
-      padding: 12px 14px;
+      padding: 14px 16px;
       font-size: 13px;
-      line-height: 1.45;
+      line-height: 1.5;
       border-left: none;
       border-radius: 10px;
       background: rgba(46, 204, 113, 0.12);
@@ -483,6 +483,16 @@
       color: #0a5c2f;
       border-color: #2ecc71;
     }
+    .sa-tradeoff-tag.is-rejected {
+      background: rgba(196, 68, 68, 0.1);
+      border-color: rgba(196, 68, 68, 0.28);
+      color: #8f2f2f;
+    }
+    .sa-tradeoff-tag.partial {
+      background: rgba(210, 130, 45, 0.12);
+      border-color: rgba(210, 130, 45, 0.3);
+      color: #8a4f12;
+    }
     .ga-option:has(.sa-tradeoff-tag.chosen),
     .ga-option.is-selected {
       background: rgba(46, 204, 113, 0.06);
@@ -496,6 +506,82 @@
       border-radius: 16px;
       background: rgba(46, 204, 113, 0.06);
       border: 1px solid rgba(46, 204, 113, 0.4);
+    }
+
+    /* Explorations option cards - clearer hierarchy + orange decisions */
+    #explorations .ga-option-grid {
+      gap: 24px;
+    }
+    #explorations .ga-option {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding: 26px 24px 22px;
+      border: 1px solid rgba(17, 21, 17, 0.1);
+      background: #fff;
+      min-width: 0;
+    }
+    #explorations .ga-option .sa-tradeoff-tag {
+      margin-bottom: 14px;
+      align-self: flex-start;
+    }
+    #explorations .ga-option h4 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      color: #111511;
+    }
+    #explorations .sa-option-summary {
+      margin: 0 0 20px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: rgba(17, 21, 17, 0.55);
+    }
+    #explorations .sa-option-side {
+      margin: 0 0 18px;
+    }
+    #explorations .sa-option-label {
+      margin: 0 0 8px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(17, 21, 17, 0.45);
+    }
+    #explorations .sa-option-side .ga-list {
+      gap: 10px;
+      margin: 0;
+      padding-left: 1.15em;
+    }
+    #explorations .sa-option-side .ga-list li {
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: rgba(17, 21, 17, 0.68);
+    }
+    #explorations .sa-option-decision {
+      margin: 8px 0 0;
+      padding: 14px 14px;
+      border-radius: 0 10px 10px 0;
+      border-left: 3px solid #d9822b;
+      background: rgba(210, 130, 45, 0.12);
+      color: #6e3e0c;
+      font-size: 12.5px;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+    #explorations .sa-option-decision > span {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(110, 62, 12, 0.7);
+    }
+    #explorations .ga-option.is-selected {
+      background: rgba(46, 204, 113, 0.05);
     }
 
     /* Minimal extras for structures not covered by case.css */
@@ -1129,7 +1215,6 @@
       background: rgba(17, 21, 17, 0.04);
       margin-bottom: 12px;
     }
-    .sa-tradeoff-tag.partial { background: rgba(17, 21, 17, 0.08); }
     .sa-tradeoff-tag.is-phase {
       background: rgba(46, 204, 113, 0.14);
       border-color: rgba(46, 204, 113, 0.32);
@@ -2133,60 +2218,72 @@
 
             <div class="ga-option-grid" style="grid-template-columns:repeat(3,1fr)">
               <article class="ga-option">
-                <span class="sa-tradeoff-tag">Explored &amp; Rejected</span>
+                <span class="sa-tradeoff-tag is-rejected">Explored &amp; Rejected</span>
                 <h4>Enhanced Filter System</h4>
-                <p>Smarter filter groups, saved templates, and contextual tooltips.</p>
-                <p style="margin-top:12px"><strong>For</strong></p>
-                <ul class="ga-list">
-                  <li>Familiar pattern - no learning curve</li>
-                  <li>Fast to ship with existing infrastructure</li>
-                  <li>Predictable results</li>
-                </ul>
-                <p style="margin-top:12px"><strong>Against</strong></p>
-                <ul class="ga-list">
-                  <li>Requires upfront knowledge to use correctly</li>
-                  <li>Doesn't handle ambiguity or exploratory intent</li>
-                  <li>More filters ≠ less cognitive load</li>
-                </ul>
-                <p class="ga-turn" style="margin-top:14px">Decision: Filters demand precision. Our users didn't have it yet.</p>
+                <p class="sa-option-summary">Smarter filter groups, saved templates, and contextual tooltips.</p>
+                <div class="sa-option-side">
+                  <p class="sa-option-label">For</p>
+                  <ul class="ga-list">
+                    <li>Familiar pattern - no learning curve</li>
+                    <li>Fast to ship with existing infrastructure</li>
+                    <li>Predictable results</li>
+                  </ul>
+                </div>
+                <div class="sa-option-side">
+                  <p class="sa-option-label">Against</p>
+                  <ul class="ga-list">
+                    <li>Requires upfront knowledge to use correctly</li>
+                    <li>Doesn't handle ambiguity or exploratory intent</li>
+                    <li>More filters ≠ less cognitive load</li>
+                  </ul>
+                </div>
+                <p class="sa-option-decision"><span>Decision</span>Filters demand precision. Our users didn't have it yet.</p>
               </article>
 
               <article class="ga-option">
                 <span class="sa-tradeoff-tag partial">Considered → Phased</span>
                 <h4>AI-Powered Dashboard</h4>
-                <p>Home-screen recommendations from portfolio and behaviour signals.</p>
-                <p style="margin-top:12px"><strong>For</strong></p>
-                <ul class="ga-list">
-                  <li>Reduces blank-slate problem</li>
-                  <li>Passive - no effort required from user</li>
-                  <li>High-impact if signals are accurate</li>
-                </ul>
-                <p style="margin-top:12px"><strong>Against</strong></p>
-                <ul class="ga-list">
-                  <li>Cold-start failure for new investors</li>
-                  <li>Opaque - users don't trust "magic" suggestions</li>
-                  <li>Doesn't support thesis-driven exploration</li>
-                </ul>
-                <p class="ga-turn" style="margin-top:14px">Decision: Good for retention loop, not for initial discovery. Parked for Phase 2.</p>
+                <p class="sa-option-summary">Home-screen recommendations from portfolio and behaviour signals.</p>
+                <div class="sa-option-side">
+                  <p class="sa-option-label">For</p>
+                  <ul class="ga-list">
+                    <li>Reduces blank-slate problem</li>
+                    <li>Passive - no effort required from user</li>
+                    <li>High-impact if signals are accurate</li>
+                  </ul>
+                </div>
+                <div class="sa-option-side">
+                  <p class="sa-option-label">Against</p>
+                  <ul class="ga-list">
+                    <li>Cold-start failure for new investors</li>
+                    <li>Opaque - users don't trust "magic" suggestions</li>
+                    <li>Doesn't support thesis-driven exploration</li>
+                  </ul>
+                </div>
+                <p class="sa-option-decision"><span>Decision</span>Good for retention loop, not for initial discovery. Parked for Phase 2.</p>
               </article>
 
               <article class="ga-option is-selected">
                 <span class="sa-tradeoff-tag chosen">Chosen Direction</span>
                 <h4>Conversational AI Interface</h4>
-                <p>Natural language that maps investor intent to company data in real time.</p>
-                <p style="margin-top:12px"><strong>For</strong></p>
-                <ul class="ga-list">
-                  <li>Meets investors at the exploration stage - not after</li>
-                  <li>Handles ambiguous, fuzzy intent naturally</li>
-                  <li>Progressive disclosure reduces blank-slate anxiety</li>
-                </ul>
-                <p style="margin-top:12px"><strong>Against</strong></p>
-                <ul class="ga-list">
-                  <li>FTUE is critical - poor first run kills adoption</li>
-                  <li>Higher engineering complexity vs filter rebuild</li>
-                  <li>Requires careful error state design</li>
-                </ul>
-                <p class="ga-turn" style="margin-top:14px">Decision: Best fit. Investors explore before they can specify. Chat mirrors that naturally.</p>
+                <p class="sa-option-summary">Natural language that maps investor intent to company data in real time.</p>
+                <div class="sa-option-side">
+                  <p class="sa-option-label">For</p>
+                  <ul class="ga-list">
+                    <li>Meets investors at the exploration stage - not after</li>
+                    <li>Handles ambiguous, fuzzy intent naturally</li>
+                    <li>Progressive disclosure reduces blank-slate anxiety</li>
+                  </ul>
+                </div>
+                <div class="sa-option-side">
+                  <p class="sa-option-label">Against</p>
+                  <ul class="ga-list">
+                    <li>FTUE is critical - poor first run kills adoption</li>
+                    <li>Higher engineering complexity vs filter rebuild</li>
+                    <li>Requires careful error state design</li>
+                  </ul>
+                </div>
+                <p class="sa-option-decision"><span>Decision</span>Best fit. Investors explore before they can specify. Chat mirrors that naturally.</p>
               </article>
             </div>
 
