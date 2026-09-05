@@ -12,7 +12,7 @@
   <link rel="dns-prefetch" href="https://drop-mode.vercel.app">
   <link rel="stylesheet" href="./case.css?v=8">
   <style>
-    /* Prototype section: left copy · right white iPhone */
+    /* Prototype section: left copy · right Figma iPhone mockup */
     .rs-proto-panel {
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) auto;
@@ -35,49 +35,45 @@
       justify-self: center;
     }
     /*
-      White iPhone frame.
-      App renders at 390×844, then scales into the frame (no crushed reflow).
+      Figma black iPhone mockup (node 2157:4609).
+      Frame PNG overlays the screen; app renders at 390×844 then scales into the cutout.
     */
     .rs-phone {
+      --rs-phone-w: 286;
       --rs-design-w: 390;
       --rs-design-h: 844;
-      --rs-scale: 0.72;
-      --rs-bezel: 10px;
-      width: calc(var(--rs-design-w) * 1px * var(--rs-scale) + var(--rs-bezel) * 2);
-      height: calc(var(--rs-design-h) * 1px * var(--rs-scale) + var(--rs-bezel) * 2 + 16px);
-      border-radius: 44px;
-      padding: var(--rs-bezel);
-      padding-top: calc(var(--rs-bezel) + 16px);
-      background: linear-gradient(160deg, #ffffff 0%, #f2f2f4 45%, #e6e6ea 100%);
-      box-shadow:
-        0 0 0 1px #d0d0d5,
-        0 0 0 2px #f7f7f8,
-        0 22px 60px rgba(0, 0, 0, 0.18),
-        inset 0 1px 0 #fff,
-        inset 0 -1px 0 rgba(0, 0, 0, 0.06);
+      /* Screen cutout ≈ 91.12% of frame width (Figma insets 4.4% / 4.48%) */
+      --rs-scale: calc(var(--rs-phone-w) * 0.9112 / var(--rs-design-w));
+      width: calc(var(--rs-phone-w) * 1px);
       position: relative;
       box-sizing: border-box;
+      filter: drop-shadow(0 28px 48px rgba(0, 0, 0, 0.28));
     }
-    .rs-phone-island {
+    .rs-phone-shell {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1294 / 2656;
+    }
+    .rs-phone-frame {
       position: absolute;
-      top: 14px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 92px;
-      height: 26px;
-      border-radius: 999px;
-      background: #0a0a0a;
-      z-index: 6;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
       pointer-events: none;
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+      z-index: 5;
+      user-select: none;
     }
     .rs-phone-screen {
-      width: calc(var(--rs-design-w) * 1px * var(--rs-scale));
-      height: calc(var(--rs-design-h) * 1px * var(--rs-scale));
-      border-radius: 34px;
+      position: absolute;
+      top: 1.88%;
+      right: 4.48%;
+      bottom: 1.88%;
+      left: 4.4%;
       overflow: hidden;
+      border-radius: 11.5% / 5.4%;
       background: #000;
-      position: relative;
+      z-index: 1;
     }
     .rs-phone-screen iframe {
       position: absolute;
@@ -91,7 +87,7 @@
       transform-origin: top left;
     }
 
-    /* Home-screen “Open app” — wallpaper + exact Spotify icon */
+    /* Figma home screen export — tap Spotify (or anywhere) to open */
     .rs-home {
       position: absolute;
       inset: 0;
@@ -101,161 +97,23 @@
       border: 0;
       cursor: pointer;
       border-radius: inherit;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
-      color: #fff;
-      background: #1c2a1c;
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      justify-content: space-between;
+      background: #000;
       overflow: hidden;
     }
     .rs-home[hidden] {
       display: none !important;
     }
-    .rs-home::before {
-      content: "";
-      position: absolute;
-      inset: -16px;
-      background: url("./assets/resonance/homescreen-wallpaper.jpg") center / cover no-repeat;
-      filter: blur(22px) saturate(1.15) brightness(0.92);
-      transform: scale(1.06);
-      pointer-events: none;
-    }
-    .rs-home::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.18);
-      pointer-events: none;
-    }
-    .rs-home-status {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 16px 0;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-    }
-    .rs-home-status-right {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      opacity: 0.95;
-    }
-    .rs-home-status-right svg {
-      display: block;
-    }
-    .rs-home-apps {
-      position: relative;
-      z-index: 2;
-      flex: 1;
-      display: grid;
-      place-items: center;
-    }
-    .rs-home-app {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 6px;
-      width: 64px;
-      pointer-events: none;
-    }
-    .rs-home-app-icon {
-      width: 54px;
-      height: 54px;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.32);
-      flex-shrink: 0;
-      background: #121212;
-    }
-    .rs-home-app-icon img {
+    .rs-home img {
       display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
-    }
-    .rs-home-app span {
-      display: block;
-      width: 100%;
-      text-align: center;
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
-      line-height: 1.15;
-      white-space: nowrap;
-    }
-    .rs-home-bottom {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 9px;
-      padding: 0 12px 12px;
+      object-position: center top;
       pointer-events: none;
     }
-    .rs-home-search {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 6px 14px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.22);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      font-size: 11px;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.92);
-    }
-    .rs-home-dock {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      padding: 10px 12px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.22);
-      backdrop-filter: blur(22px);
-      -webkit-backdrop-filter: blur(22px);
-      box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.25);
-    }
-    .rs-home-dock-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      position: relative;
-      display: grid;
-      place-items: center;
-      overflow: visible;
-      flex-shrink: 0;
-    }
-    .rs-home-dock-icon > svg {
-      width: 100%;
-      height: 100%;
-      border-radius: 10px;
-    }
-    .rs-home-badge {
-      position: absolute;
-      top: -4px;
-      right: -4px;
-      min-width: 15px;
-      height: 15px;
-      padding: 0 4px;
-      border-radius: 999px;
-      background: #ff3b30;
-      color: #fff;
-      font-size: 8px;
-      font-weight: 700;
-      line-height: 15px;
-      text-align: center;
-      box-shadow: 0 0 0 1.5px rgba(0, 0, 0, 0.15);
+    .rs-home:focus-visible {
+      outline: 2px solid #1db954;
+      outline-offset: -2px;
     }
     .rs-proto-fallback {
       font-size: 12px;
@@ -319,7 +177,7 @@
         order: 2;
       }
       .rs-phone {
-        --rs-scale: 0.68;
+        --rs-phone-w: 268;
       }
     }
     @media (max-width: 720px) {
@@ -327,7 +185,7 @@
     }
     @media (max-width: 420px) {
       .rs-phone {
-        --rs-scale: 0.62;
+        --rs-phone-w: 240;
       }
     }
   </style>
@@ -413,7 +271,7 @@
       </div>
 
       <div class="mc-case-hero-img">
-        <img src="./assets/resonance/resonance-poster.png?v=1" alt="Resonance Now Playing mock with orbit icon and timeline moment markers" width="1200" height="1500" decoding="async">
+        <img src="./assets/resonance/resonance-poster.png?v=2" alt="Resonance cover — Spotify Now Playing on iPhone with intelligent music playback" width="1920" height="1080" decoding="async">
       </div>
     </header>
 
@@ -529,56 +387,34 @@
                 <a class="rs-proto-fallback" id="rs-proto-external" href="https://drop-mode.vercel.app/?fresh=1" target="_blank" rel="noreferrer">Open full screen ↗</a>
               </div>
               <div class="rs-proto-device">
-                <div class="rs-phone" aria-label="Resonance live prototype in white iPhone frame">
-                  <div class="rs-phone-island" aria-hidden="true"></div>
-                  <div class="rs-phone-screen">
-                    <iframe
-                      id="rs-proto-frame"
-                      title="Resonance live prototype"
-                      allow="autoplay; encrypted-media"
-                      referrerpolicy="no-referrer-when-downgrade"
-                    ></iframe>
-                    <button type="button" class="rs-home" id="rs-open-app" aria-label="Open Spotify">
-                      <div class="rs-home-status">
-                        <span>9:41</span>
-                        <span class="rs-home-status-right" aria-hidden="true">
-                          <svg width="14" height="10" viewBox="0 0 14 10"><rect x="0" y="6" width="2.2" height="4" rx="0.4" fill="#fff"/><rect x="3.2" y="4" width="2.2" height="6" rx="0.4" fill="#fff"/><rect x="6.4" y="2" width="2.2" height="8" rx="0.4" fill="#fff"/><rect x="9.6" y="0" width="2.2" height="10" rx="0.4" fill="#fff"/></svg>
-                          <svg width="13" height="10" viewBox="0 0 13 10"><path d="M6.5 3.2c1.7 0 3.2.7 4.3 1.7l1.1-1.2A7.4 7.4 0 0 0 6.5 1.4 7.4 7.4 0 0 0 1.1 3.7l1.1 1.2A5.7 5.7 0 0 1 6.5 3.2zm0 2.4c1 0 1.9.4 2.6 1.1l1.1-1.2A5 5 0 0 0 6.5 4 5 5 0 0 0 2.8 5.5l1.1 1.2A3.5 3.5 0 0 1 6.5 5.6zm0 2.5a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8z" fill="#fff"/></svg>
-                          <svg width="22" height="10" viewBox="0 0 22 10"><rect x="0.5" y="1" width="18" height="8" rx="2" stroke="#fff" stroke-opacity="0.45" fill="none"/><rect x="2" y="2.5" width="12" height="5" rx="1" fill="#ffe14a"/><rect x="19" y="3.2" width="2" height="3.6" rx="0.6" fill="#fff" fill-opacity="0.45"/></svg>
-                        </span>
-                      </div>
-                      <div class="rs-home-apps">
-                        <div class="rs-home-app">
-                          <span class="rs-home-app-icon">
-                            <img src="./assets/resonance/icons/spotify-app-logo.webp?v=1" alt="" width="54" height="54" decoding="async">
-                          </span>
-                          <span>Spotify</span>
-                        </div>
-                      </div>
-                      <div class="rs-home-bottom">
-                        <div class="rs-home-search" aria-hidden="true">
-                          <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><circle cx="5.2" cy="5.2" r="3.6" stroke="currentColor" stroke-width="1.4"/><path d="m8 8 2.4 2.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-                          Search
-                        </div>
-                        <div class="rs-home-dock" aria-hidden="true">
-                          <div class="rs-home-dock-icon" style="background:linear-gradient(180deg,#64d266,#24c04a)">
-                            <svg viewBox="0 0 36 36" width="36" height="36"><path d="M18 8.5c-2.4 0-4.2 1.6-4.2 4 0 2.6 1.6 4.8 4.2 8.2 2.6-3.4 4.2-5.6 4.2-8.2 0-2.4-1.8-4-4.2-4zm0 18.2c-6.4-5.2-9.5-8.4-9.5-12.6C8.5 9.7 12.6 6 18 6s9.5 3.7 9.5 8.1c0 4.2-3.1 7.4-9.5 12.6z" fill="#fff"/><circle cx="18" cy="12.2" r="2.2" fill="#24c04a"/></svg>
-                            <span class="rs-home-badge">123</span>
-                          </div>
-                          <div class="rs-home-dock-icon" style="background:linear-gradient(160deg,#fff,#d7e4f5)">
-                            <svg viewBox="0 0 36 36" width="36" height="36"><circle cx="18" cy="18" r="11" fill="none" stroke="#1b6ef5" stroke-width="2.2"/><circle cx="18" cy="18" r="4.5" fill="none" stroke="#34c3f0" stroke-width="2"/><path d="M18 7v22M7 18h22" stroke="#1b6ef5" stroke-width="1.4" opacity="0.55"/></svg>
-                          </div>
-                          <div class="rs-home-dock-icon" style="background:#111">
-                            <svg viewBox="0 0 36 36" width="36" height="36"><path d="M12 18c0-5 3-9 8.5-10.2A8.4 8.4 0 0 0 10.5 18 8.4 8.4 0 0 0 20.5 28.2C15 27 12 23 12 18zm12 0c0 5-3 9-8.5 10.2A8.4 8.4 0 0 0 25.5 18 8.4 8.4 0 0 0 15.5 7.8C21 9 24 13 24 18z" fill="#fff"/></svg>
-                            <span class="rs-home-badge">2</span>
-                          </div>
-                          <div class="rs-home-dock-icon" style="background:linear-gradient(180deg,#5af06a,#20b83a)">
-                            <svg viewBox="0 0 36 36" width="36" height="36"><path d="M10 26.5c1.8 1.4 4.1 2.2 6.7 2.2 6.3 0 11.3-4.4 11.3-9.9S23 8.9 16.7 8.9 5.4 13.3 5.4 18.8c0 2 .7 3.9 1.9 5.4L6 28l4-1.5z" fill="#fff"/></svg>
-                            <span class="rs-home-badge">3</span>
-                          </div>
-                        </div>
-                      </div>
-                    </button>
+                <div class="rs-phone" aria-label="Resonance live prototype in iPhone mockup">
+                  <div class="rs-phone-shell">
+                    <div class="rs-phone-screen">
+                      <iframe
+                        id="rs-proto-frame"
+                        title="Resonance live prototype"
+                        allow="autoplay; encrypted-media"
+                        referrerpolicy="no-referrer-when-downgrade"
+                      ></iframe>
+                      <button type="button" class="rs-home" id="rs-open-app" aria-label="Open Spotify">
+                        <img
+                          src="./assets/resonance/mockup/screen-homescreen.png"
+                          alt=""
+                          width="693"
+                          height="1502"
+                          decoding="async"
+                        >
+                      </button>
+                    </div>
+                    <img
+                      class="rs-phone-frame"
+                      src="./assets/resonance/mockup/iphone-frame.png"
+                      alt=""
+                      width="1294"
+                      height="2656"
+                      decoding="async"
+                      aria-hidden="true"
+                    >
                   </div>
                 </div>
               </div>
@@ -663,37 +499,24 @@
       var external = document.getElementById("rs-proto-external");
       if (!btn || !frame) return;
 
-      var sessionUrl = "https://drop-mode.vercel.app/?fresh=1&embed=1&t=" + Date.now();
-      var ready = false;
-
-      function freshUrl() {
-        return "https://drop-mode.vercel.app/?fresh=1&embed=1&t=" + Date.now();
+      function freshUrl(embed) {
+        var q = "fresh=1&t=" + Date.now();
+        if (embed) q += "&embed=1";
+        return "https://drop-mode.vercel.app/?" + q;
       }
-
-      // Warm the prototype under the home screen so Open feels instant
-      frame.addEventListener("load", function () { ready = true; });
-      frame.src = sessionUrl;
 
       if (external) {
         external.addEventListener("click", function () {
-          external.href = freshUrl();
+          external.href = freshUrl(false);
         });
       }
 
+      // Do not preload the app under the home cover — splash (~1.6s) would finish
+      // before the tap. Load only on open so launch → splash → education → NP.
       btn.addEventListener("click", function () {
+        frame.src = freshUrl(true);
         btn.hidden = true;
-        if (!frame.src) frame.src = sessionUrl;
       });
-
-      // Prefetch if user scrolls near prototype before opening
-      if ("IntersectionObserver" in window) {
-        var io = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting && !frame.src) frame.src = sessionUrl;
-          });
-        }, { rootMargin: "200px" });
-        io.observe(btn.closest(".rs-phone") || btn);
-      }
     })();
   </script>
 </body>
