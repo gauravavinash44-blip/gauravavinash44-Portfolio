@@ -10,7 +10,7 @@
     chatMotion: "./assets/contextual-chat-motion/contextual-chat-motion.mp4?v=2",
     chatMotionPoster: "./assets/contextual-chat-motion/poster.png?v=2",
     easyeat: "./assets/easyeat-customization-showcase.png",
-    resonance: "./assets/resonance/resonance-poster.png?v=2",
+    resonance: "./assets/resonance/resonance-featured.png?v=1",
     resume: "./assets/Resume-Gaurav.pdf?v=20260822",
     logo: "./assets/logo-ga.svg",
     nomad: "./assets/design-playground/nomad-mobile-mockup.png",
