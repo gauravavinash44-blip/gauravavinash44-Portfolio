@@ -1,0 +1,7 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="29" height="30" viewBox="0 0 29 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="icon-content">
+<circle id="circle-outline" cx="14.5" cy="15.5" r="13.5" stroke="#1DB954" stroke-width="2"/>
+<circle id="inner-dot" cx="24" cy="5" r="4.5" fill="#1DB954" stroke="#121212" stroke-width="1"/>
+<path id="play-arrow" d="M19 15.134C19.6667 15.5189 19.6667 16.4811 19 16.866L13 20.3301C12.3333 20.715 11.5 20.2339 11.5 19.4641V12.5359C11.5 11.7661 12.3333 11.285 13 11.6699L19 15.134Z" fill="#1DB954"/>
+</g>
+</svg>

@@ -16,7 +16,7 @@
       html: `
         <div class="deck-hero-head">
           <h1 class="deck-title deck-title--brand">Deal Room</h1>
-          <p class="deck-title-secondary">Designing a guided investment workflow - so founders and investors move from intent to commitment inside one structured path.</p>
+          <p class="deck-title-secondary">Founders and investors were already talking. The paperwork and status lived somewhere else.</p>
         </div>
         <div class="deck-hero-meta">
           <p class="deck-sub">B2B SaaS  Fintech  Deal Room</p>
@@ -35,23 +35,23 @@
       html: `
         <div class="deck-hero-head">
           <p class="deck-eyebrow">U X  C H A L L E N G E</p>
-          <h2 class="deck-title">Fundraising broke outside the product - exactly when trust should compound.</h2>
+          <h2 class="deck-title">Deal creation was off the company profile. NDAs were in email. Status was a rumor.</h2>
         </div>
         <div class="deck-hero-body">
           <div class="deck-grid deck-grid--challenge">
             <article class="deck-card">
               <h3>Scenario</h3>
               <p class="deck-sub">
-                Deal creation sat buried away from the company profile, where fundraising intent already lived. NDAs, documents, and permissions were scattered across email and Drive. There was no single answer to who viewed, signed, downloaded, or showed interest, so founders kept repeating the same context across calls and threads.
+                People hung out on the company profile. Create Deal lived elsewhere. NDAs bounced through DocuSign-ish email threads and Drive folders. On the next call, founders still had to say who opened what, who signed, who ghosted.
               </p>
             </article>
             <article class="deck-card">
               <h3>Task</h3>
               <ul class="deck-list">
-                <li>Anchor deal creation where intent already exists, the company profile</li>
-                <li>Bring NDA review and signing inside the product, not an email attachment</li>
-                <li>Give founders and investors one shared source of truth for deal status</li>
-                <li>Design for both sides of the table: founders creating, investors reviewing</li>
+                <li>Put create on the company profile</li>
+                <li>NDA review and sign inside the product</li>
+                <li>One place for deal status both sides could trust</li>
+                <li>Design for creators and reviewers, not one hero user</li>
               </ul>
             </article>
           </div>
@@ -63,12 +63,11 @@
       html: `
         <div class="deck-hero-head">
           <p class="deck-eyebrow">T H E  H O O K</p>
-          <h2 class="deck-title deck-title--wide">Deal interest existed. A reliable path to commitment did not.</h2>
+          <h2 class="deck-title deck-title--wide">Interest showed up. Commitment got stuck between tools.</h2>
         </div>
         <div class="deck-hero-body">
-          <p class="deck-sub">Founders and investors already had profiles, documents, NDAs, and conversations - but they lived in email, Drive, WhatsApp, and disconnected product surfaces.</p>
-          <p class="deck-sub">Momentum died between tools, not from a lack of intent.</p>
-          <p class="deck-sub">Every handoff between tools reintroduced uncertainty for both sides.</p>
+          <p class="deck-sub">Profiles in Systematic. Docs in Drive. NDAs in email. Chats in WhatsApp. Same deal, four places.</p>
+          <p class="deck-sub">Nobody said the product was bad. They just stopped mid-path and never quite came back the same day.</p>
         </div>
       `,
     },
@@ -77,10 +76,10 @@
       html: `
         <div class="deck-hero-head">
           <p class="deck-eyebrow">Research · Secondary Research</p>
-          <h2 class="deck-title">Quick study: how existing tools handle confidentiality.</h2>
+          <h2 class="deck-title">DocSend and DocuSign, for the parts we might steal.</h2>
         </div>
         <div class="deck-hero-body">
-          <p class="deck-sub">Studied DocSend and DocuSign to understand how they structure NDA and document-sharing flows: how simple the signing process is, their pricing model, and their end-to-end UX from upload to signed access. The goal was to see what a lightweight, trustworthy NDA gate could look like living inside a product, instead of a separate legal tool.</p>
+          <p class="deck-sub">Not a competitive teardown. More like: how short is the path from upload to signed access, and what does free vs paid force you to eat. We needed a light gate inside Systematic, not another legal destination.</p>
           <div class="deck-grid deck-grid--research">
             <article class="deck-card">
               <h3>What we looked for</h3>
@@ -110,17 +109,17 @@
       html: `
         <div class="deck-hero-head">
           <p class="deck-eyebrow">Research · User Conversations</p>
-          <h2 class="deck-title">Gathering insights on deal execution and NDA friction.</h2>
+          <h2 class="deck-title">Six or seven calls. Same three sticking points.</h2>
         </div>
         <div class="deck-hero-body">
-          <p class="deck-sub">To understand where deal creation and document sharing were breaking down, we spoke with founders, partner investors, and our internal PM through calls and working sessions. We connected with 6-7 partner investors and founders, plus regular check-ins with our PM to align on what was buildable.</p>
+          <p class="deck-sub">Founders, partner investors, and Partha on the PM side. Not a polished research program. Working sessions and calls until the same frictions stopped surprising us.</p>
           <div class="deck-grid deck-grid--conversations">
             <article class="deck-card">
               <h3>Questions asked</h3>
               <ol class="deck-list deck-list--in-card">
-                <li>Where do you drop off when creating or setting up a deal?</li>
-                <li>How do you currently sign NDAs when reviewing a deal?</li>
-                <li>Once a deal is shared, how do you track who has access, who's signed, and what stage each person is at?</li>
+                <li>Where do you drop off when creating a deal?</li>
+                <li>How do you sign NDAs when reviewing one?</li>
+                <li>Once it's shared, how do you track who has access and who's signed?</li>
               </ol>
             </article>
             <article class="deck-card deck-participants">
@@ -158,7 +157,7 @@
       html: `
         <div class="deck-hero-head">
           <p class="deck-eyebrow">Research · Identified Insights</p>
-          <h2 class="deck-title">What the conversations surfaced.</h2>
+          <h2 class="deck-title">What they said, mostly unedited.</h2>
         </div>
         <div class="deck-hero-body">
           <div class="deck-insights">
@@ -167,21 +166,21 @@
               <p class="deck-insight__quote">When I want to check out a company, I still have to sign an NDA somewhere else before I can even see the documents.</p>
               <p class="deck-insight__who">Hisham Kissim, VC</p>
               <hr class="deck-insight__rule" />
-              <p class="deck-insight__context">Investors expect confidentiality handled in the same place they're evaluating a deal, not as an external step.</p>
+              <p class="deck-insight__context">NDA outside the place he's evaluating. That gap kept coming up.</p>
             </article>
             <article class="deck-insight">
               <span class="deck-insight__mark" aria-hidden="true">“</span>
               <p class="deck-insight__quote">If someone wants me to sign an NDA, I usually end up doing it on a completely different platform.</p>
               <p class="deck-insight__who">Peter Marchioni, Investor Partner</p>
               <hr class="deck-insight__rule" />
-              <p class="deck-insight__context">NDA signing is disconnected from deal review, adding a tool switch at the exact moment trust needs to build.</p>
+              <p class="deck-insight__context">Different platform. Same deal. He shrugged when he said it.</p>
             </article>
             <article class="deck-insight">
               <span class="deck-insight__mark" aria-hidden="true">“</span>
               <p class="deck-insight__quote">We were losing people right at deal creation. Get them past that step, and tracking becomes the real value.</p>
               <p class="deck-insight__who">Partha Panwala, PM</p>
               <hr class="deck-insight__rule" />
-              <p class="deck-insight__context">The earliest drop-off was creating the deal itself. The entry point had to get simpler first.</p>
+              <p class="deck-insight__context">Creation first. Tracking second. He was blunt about the order.</p>
             </article>
           </div>
         </div>
@@ -192,29 +191,29 @@
       html: `
         <div class="deck-hero-head">
           <p class="deck-eyebrow">Analysis · Assumptions</p>
-          <h2 class="deck-title">What we assumed going in, and why.</h2>
+          <h2 class="deck-title">Bets we made before we had a full answer.</h2>
         </div>
         <div class="deck-hero-body">
           <div class="deck-assumptions">
             <article class="deck-assumption">
               <span class="deck-assumption__num" aria-hidden="true">1</span>
               <div class="deck-assumption__copy">
-                <h3 class="deck-assumption__title">Deal creation happens from the company profile.</h3>
-                <p class="deck-assumption__body">Investors and founders both start from a company's profile, not a separate dashboard. Anchoring creation there keeps context intact from the moment the deal exists.</p>
+                <h3 class="deck-assumption__title">Creation belongs on the company profile.</h3>
+                <p class="deck-assumption__body">That's where people already open the tab. A separate deal dashboard felt clean in sketches and wrong in practice.</p>
               </div>
             </article>
             <article class="deck-assumption">
               <span class="deck-assumption__num" aria-hidden="true">2</span>
               <div class="deck-assumption__copy">
-                <h3 class="deck-assumption__title">NDA signing needs to happen inside the platform.</h3>
-                <p class="deck-assumption__body">Feedback from Hisham and Peter made this clear: being sent elsewhere to sign an NDA breaks trust at the exact moment it should be building.</p>
+                <h3 class="deck-assumption__title">NDA signing stays in-product.</h3>
+                <p class="deck-assumption__body">Hisham and Peter named the tool-switch without prompting. We treated that as non-negotiable, even when legal wanted more ceremony.</p>
               </div>
             </article>
             <article class="deck-assumption">
               <span class="deck-assumption__num" aria-hidden="true">3</span>
               <div class="deck-assumption__copy">
-                <h3 class="deck-assumption__title">Deal profiles can be shared, and access granted or revoked anytime.</h3>
-                <p class="deck-assumption__body">An investor can create multiple deals for the same company and share any deal with others. The owner needs control over who sees what, and the ability to pull access back.</p>
+                <h3 class="deck-assumption__title">Owners can share, grant, and revoke anytime.</h3>
+                <p class="deck-assumption__body">Same company, multiple deals. Access is messy. Better to design for revoke than pretend every share is permanent.</p>
               </div>
             </article>
           </div>
@@ -226,19 +225,19 @@
       html: `
         <div class="deck-hero-head">
           <p class="deck-eyebrow">Analysis · Problem Solving</p>
-          <h2 class="deck-title">Two HMWs shaped everything that followed.</h2>
+          <h2 class="deck-title">Two HMWs. We kept circling them.</h2>
         </div>
         <div class="deck-hero-body">
           <div class="deck-grid">
             <article class="deck-card">
               <h3>HMW</h3>
-              <p><strong>How might we let deal creators track document engagement without manually following up?</strong></p>
-              <p>An engagement tab surfaces automatically when a deal is shared, showing document access level and how the deal is performing against everyone it's shared with.</p>
+              <p><strong>How might we let creators see document engagement without pinging people?</strong></p>
+              <p>After share, an engagement tab: who's in, access level, whether anything moved. Incomplete on purpose. No fake “heat score.”</p>
             </article>
             <article class="deck-card">
               <h3>HMW</h3>
-              <p><strong>How might we let creators and signers handle NDAs without ever leaving the platform?</strong></p>
-              <p>Three paths: a default Systematic NDA template (recommended, fastest), a custom document the creator uploads for digital signature, or a pre-approved template reusable across deals.</p>
+              <p><strong>How might we handle NDAs without leaving Systematic?</strong></p>
+              <p>Three paths we could ship: default Systematic template, custom upload, or a pre-approved template reused across deals. Default was fastest. Custom was the one legal actually used.</p>
             </article>
           </div>
         </div>
@@ -249,19 +248,19 @@
       html: `
         <div class="deck-hero-head">
           <p class="deck-eyebrow">The Tension</p>
-          <h2 class="deck-title">Two incomplete paths kept showing up in critiques.</h2>
+          <h2 class="deck-title">Both “easy” options left something broken.</h2>
         </div>
         <div class="deck-hero-body">
           <div class="deck-grid">
             <article class="deck-card deck-card--warn">
               <span class="deck-badge">Option A</span>
-              <h3>Add more deal dashboard widgets and status labels on top of the existing sprawl.</h3>
-              <p>More status without a guided path still confuses.</p>
+              <h3>More widgets and status labels on the old layout.</h3>
+              <p>Looked productive in a critique. Still no path. Still four places for one deal.</p>
             </article>
             <article class="deck-card deck-card--warn">
               <span class="deck-badge">Option B</span>
-              <h3>Ship a standalone Deal Room object, disconnected from the company profile.</h3>
-              <p>A room without profile context still forces context switching.</p>
+              <h3>A standalone Deal Room, cut off from the profile.</h3>
+              <p>Cleaner room. Worse memory. People would still bounce back to the profile for context.</p>
             </article>
           </div>
         </div>
@@ -272,26 +271,26 @@
       html: `
         <div class="deck-hero-head">
           <p class="deck-eyebrow">K E Y D E C I S I O N</p>
-          <h2 class="deck-title deck-title--wide">We didn't add another destination. We anchored deal execution where intent already lives - the company profile.</h2>
+          <h2 class="deck-title deck-title--wide">We put execution on the company profile. Not a new home. A path through the one they already used.</h2>
         </div>
         <div class="deck-hero-body">
           <div class="deck-decision-flow" aria-label="Commitment ladder">
             <article class="deck-decision-step">
               <span class="deck-decision-step__num">1</span>
               <h3 class="deck-decision-step__title">Setup</h3>
-              <p class="deck-decision-step__body">Create the room from the profile with shared context</p>
+              <p class="deck-decision-step__body">Create from the profile. Company context rides along.</p>
             </article>
             <span class="deck-decision-flow__arrow" aria-hidden="true">→</span>
             <article class="deck-decision-step">
               <span class="deck-decision-step__num">2</span>
               <h3 class="deck-decision-step__title">NDA</h3>
-              <p class="deck-decision-step__body">Confidentiality as a product gate, not an email attachment</p>
+              <p class="deck-decision-step__body">Gate inside the product. Not an attachment waiting in inbox zero.</p>
             </article>
             <span class="deck-decision-flow__arrow" aria-hidden="true">→</span>
             <article class="deck-decision-step">
               <span class="deck-decision-step__num">3</span>
               <h3 class="deck-decision-step__title">Commitments</h3>
-              <p class="deck-decision-step__body">Documents, access, and interest tracked in one flow</p>
+              <p class="deck-decision-step__body">Docs, access, interest. Same flow, still unfinished edges.</p>
             </article>
           </div>
         </div>
@@ -302,7 +301,7 @@
       html: `
         <div class="deck-hero-head">
           <p class="deck-eyebrow">IDEATION · USER FLOW</p>
-          <h2 class="deck-title">Two flows, one shared source of truth.</h2>
+          <h2 class="deck-title">Host path and investor path. Same deal object.</h2>
         </div>
         <div class="deck-hero-body">
           <div class="deck-flowmap">
@@ -363,25 +362,25 @@
       html: `
         <div class="deck-hero-head">
           <p class="deck-eyebrow">SOLUTION APPROACH</p>
-          <h2 class="deck-title">Four systems that turned fragmented fundraising into guided execution.</h2>
+          <h2 class="deck-title">Four pieces we shipped. Not a manifesto.</h2>
         </div>
         <div class="deck-hero-body">
           <div class="deck-grid">
             <article class="deck-card">
               <h3>1 - Profile-anchored entry</h3>
-              <p>“Create Deal Room” lives where fundraising intent already exists, so context travels with the action.</p>
+              <p>“Create Deal Room” on the company profile. One less place to hunt.</p>
             </article>
             <article class="deck-card">
               <h3>2 - Guided gates</h3>
-              <p>Setup → NDA → Commitments as a visible ladder, not hidden states buried in navigation.</p>
+              <p>Setup, then NDA, then commitments. Visible order. People still skipped steps when they could.</p>
             </article>
             <article class="deck-card">
               <h3>3 - In-product confidentiality</h3>
-              <p>NDA review and signing stay inside the deal path, so access unlocks without leaving the product.</p>
+              <p>Sign in the deal path. Access unlocks after. Some still asked for a PDF copy afterward.</p>
             </article>
             <article class="deck-card">
               <h3>4 - Progress visibility</h3>
-              <p>Dashboards surface who viewed, signed, downloaded, and showed interest, so follow-ups become intentional.</p>
+              <p>Viewed, signed, downloaded, interest. Follow-ups got shorter. They didn't disappear.</p>
             </article>
           </div>
         </div>
@@ -395,7 +394,7 @@
           <h2 class="deck-title">Create the deal, set the rule</h2>
         </div>
         <div class="deck-hero-body">
-          <p class="deck-sub">Scenario: As an investor, I want to create a deal and set a rule that no one can view my documents until they've signed an NDA.</p>
+          <p class="deck-sub">Investor creates a deal from the company profile and flips NDA required. Docs stay dark until someone signs.</p>
           <div class="deck-grid deck-grid--screens">
             <article class="deck-card deck-card--screen">
               <h3>Deal creation from company profile</h3>
@@ -421,7 +420,7 @@
           <h2 class="deck-title">Share it, sign it</h2>
         </div>
         <div class="deck-hero-body">
-          <p class="deck-sub">Scenario: As the person receiving a shared deal, I want to know immediately what's expected of me before I see anything sensitive, then get instant access once I sign.</p>
+          <p class="deck-sub">Invite lands. Before any sensitive file opens, the NDA prompt. Sign, then the room unlocks. No third-tab detour.</p>
           <div class="deck-grid deck-grid--screens">
             <article class="deck-card deck-card--screen">
               <h3>Notification with deal invite</h3>
@@ -447,7 +446,7 @@
           <h2 class="deck-title">Manage and track access</h2>
         </div>
         <div class="deck-hero-body">
-          <p class="deck-sub">Scenario: As the deal owner, I want to grant or revoke access at any point, and see who's signed and who hasn't, without chasing anyone.</p>
+          <p class="deck-sub">Owner side: grant, revoke, see who signed. Still some chasing. Less blind chasing.</p>
           <div class="deck-grid deck-grid--screens">
             <article class="deck-card deck-card--screen">
               <h3>Engagement dashboard, per-person status</h3>
@@ -470,22 +469,21 @@
       html: `
         <div class="deck-hero-head">
           <p class="deck-eyebrow">IMPACT</p>
-          <h2 class="deck-title">Measured outcomes after launch.</h2>
+          <h2 class="deck-title">Numbers after launch. Caveats included.</h2>
         </div>
         <div class="deck-hero-body">
           <div class="deck-grid">
             <article class="deck-card">
               <h3>+32%</h3>
-              <p>Deal creation adoption after anchoring entry to the company profile.</p>
+              <p>Deal creation after entry moved onto the company profile.</p>
             </article>
             <article class="deck-card">
               <h3>-27%</h3>
-              <p>Discovery-to-action friction across the guided commitment path.</p>
+              <p>Measured friction from discovery to action on the guided path.</p>
             </article>
           </div>
-          <h3>Clearer next steps</h3>
-          <p>Fewer dead ends between interest, NDA, and investor commitment.</p>
-          <p class="deck-sub">[ Mark: insert real analytics screenshot or metric source here if you have one, e.g. dashboard export or PM report ]</p>
+          <h3>What the metrics don't say</h3>
+          <p>Some deals still stalled at NDA. We could see the stall now. Fixing it is a different project.</p>
         </div>
       `,
     },
@@ -494,23 +492,23 @@
       html: `
         <div class="deck-hero-head">
           <p class="deck-eyebrow">LEARNINGS &amp; ROLE</p>
-          <h2 class="deck-title">What I'd carry into the next one.</h2>
+          <h2 class="deck-title">What stuck. What I'd argue about again.</h2>
         </div>
         <div class="deck-hero-body">
           <div class="deck-grid">
             <article class="deck-card">
               <h3>LEARNINGS</h3>
               <ul class="deck-list">
-                <li>Entry points beat dashboards when intent already lives somewhere else.</li>
-                <li>Gates create trust when they're visible, not when they're legal afterthoughts.</li>
-                <li>Status is only useful if it answers “what do I do next?”</li>
+                <li>If people already live on a surface, fight hard before inventing a new one.</li>
+                <li>Gates only help if they're visible in the path. Hidden legal steps just move the drop-off.</li>
+                <li>Status without a next action is decoration. We shipped some of that early and had to cut it.</li>
               </ul>
             </article>
             <article class="deck-card">
               <h3>MY ROLE</h3>
-              <p>Led research synthesis, IA, flow design, UI, and handoff for Deal Room, working with product, engineering, and legal on gated commitment paths and adoption metrics.</p>
+              <p>Research synthesis, IA, flows, UI, handoff. Product, eng, and legal on sequencing and what we could measure after ship.</p>
               <h3 style="margin-top: 14px;">Collaboration</h3>
-              <p>Partnered tightly on NDA sequencing, permission models, and dashboard definitions so progress stayed measurable after ship.</p>
+              <p>Most of the friction was NDA order and permissions language. “Progress” on the dashboard meant three different things until we picked one and lived with it.</p>
             </article>
           </div>
         </div>
@@ -521,13 +519,13 @@
       html: `
         <div class="deck-hero-head">
           <p class="deck-eyebrow">NEXT STEPS</p>
-          <h2 class="deck-title">Where this product can go next.</h2>
+          <h2 class="deck-title">Open threads, not a roadmap speech.</h2>
         </div>
         <div class="deck-hero-body">
           <ul class="deck-list">
-            <li>Deeper investor interest signals tied to follow-up playbooks</li>
-            <li>Reusable gate patterns across deal types for faster team learning</li>
-            <li>Stronger founder coaching moments when a gate stalls</li>
+            <li>Interest signals that actually trigger a follow-up move, not another badge</li>
+            <li>Same gate patterns on other deal types without copy-paste IA</li>
+            <li>When a gate stalls, help the founder. Right now we mostly show the stall</li>
           </ul>
         </div>
       `,
@@ -540,7 +538,7 @@
           <h2 class="deck-title deck-title--wide">Thanks.</h2>
         </div>
         <div class="deck-hero-body">
-          <p class="deck-sub">Thank you for reading. Let's build smarter products together.</p>
+          <p class="deck-sub">Happy to talk through the messy parts, not just the +32%.</p>
           <dl class="deck-meta">
             <div><dt>gauravavinash3@gmail.com</dt><dd></dd></div>
             <div><dt>linkedin.com/in/gauravavinash</dt><dd></dd></div>

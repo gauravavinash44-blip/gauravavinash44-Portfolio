@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resonance - Gaurav Avinash</title>
+  <meta name="description" content="Resonance — a speculative Spotify playback feature that starts songs closer to the moments you actually want to hear.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://drop-mode.vercel.app" crossorigin>
+  <link rel="dns-prefetch" href="https://drop-mode.vercel.app">
+  <link rel="stylesheet" href="./case.css?v=8">
+  <style>
+    /* Prototype section: left copy · right white iPhone */
+    .rs-proto-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) auto;
+      gap: clamp(24px, 3.5vw, 48px);
+      align-items: center;
+      margin-top: 8px;
+    }
+    .rs-proto-copy .mc-section-h2 {
+      margin: 0 0 12px;
+    }
+    .rs-proto-copy .mc-lede {
+      margin: 0 0 14px;
+      max-width: 32em;
+    }
+    .rs-proto-device {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      justify-self: center;
+    }
+    /*
+      White iPhone frame.
+      App renders at 390×844, then scales into the frame (no crushed reflow).
+    */
+    .rs-phone {
+      --rs-design-w: 390;
+      --rs-design-h: 844;
+      --rs-scale: 0.72;
+      --rs-bezel: 10px;
+      width: calc(var(--rs-design-w) * 1px * var(--rs-scale) + var(--rs-bezel) * 2);
+      height: calc(var(--rs-design-h) * 1px * var(--rs-scale) + var(--rs-bezel) * 2 + 16px);
+      border-radius: 44px;
+      padding: var(--rs-bezel);
+      padding-top: calc(var(--rs-bezel) + 16px);
+      background: linear-gradient(160deg, #ffffff 0%, #f2f2f4 45%, #e6e6ea 100%);
+      box-shadow:
+        0 0 0 1px #d0d0d5,
+        0 0 0 2px #f7f7f8,
+        0 22px 60px rgba(0, 0, 0, 0.18),
+        inset 0 1px 0 #fff,
+        inset 0 -1px 0 rgba(0, 0, 0, 0.06);
+      position: relative;
+      box-sizing: border-box;
+    }
+    .rs-phone-island {
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 92px;
+      height: 26px;
+      border-radius: 999px;
+      background: #0a0a0a;
+      z-index: 6;
+      pointer-events: none;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+    .rs-phone-screen {
+      width: calc(var(--rs-design-w) * 1px * var(--rs-scale));
+      height: calc(var(--rs-design-h) * 1px * var(--rs-scale));
+      border-radius: 34px;
+      overflow: hidden;
+      background: #000;
+      position: relative;
+    }
+    .rs-phone-screen iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: calc(var(--rs-design-w) * 1px);
+      height: calc(var(--rs-design-h) * 1px);
+      border: 0;
+      background: #121212;
+      transform: scale(var(--rs-scale));
+      transform-origin: top left;
+    }
+
+    /* Home-screen “Open app” — wallpaper + exact Spotify icon */
+    .rs-home {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      cursor: pointer;
+      border-radius: inherit;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+      color: #fff;
+      background: #1c2a1c;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+    .rs-home[hidden] {
+      display: none !important;
+    }
+    .rs-home::before {
+      content: "";
+      position: absolute;
+      inset: -16px;
+      background: url("./assets/resonance/homescreen-wallpaper.jpg") center / cover no-repeat;
+      filter: blur(22px) saturate(1.15) brightness(0.92);
+      transform: scale(1.06);
+      pointer-events: none;
+    }
+    .rs-home::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.18);
+      pointer-events: none;
+    }
+    .rs-home-status {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px 0;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .rs-home-status-right {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      opacity: 0.95;
+    }
+    .rs-home-status-right svg {
+      display: block;
+    }
+    .rs-home-apps {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      display: grid;
+      place-items: center;
+    }
+    .rs-home-app {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 6px;
+      width: 64px;
+      pointer-events: none;
+    }
+    .rs-home-app-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.32);
+      flex-shrink: 0;
+      background: #121212;
+    }
+    .rs-home-app-icon img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .rs-home-app span {
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+      line-height: 1.15;
+      white-space: nowrap;
+    }
+    .rs-home-bottom {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+      padding: 0 12px 12px;
+      pointer-events: none;
+    }
+    .rs-home-search {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      font-size: 11px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.92);
+    }
+    .rs-home-dock {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 10px 12px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.25);
+    }
+    .rs-home-dock-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      position: relative;
+      display: grid;
+      place-items: center;
+      overflow: visible;
+      flex-shrink: 0;
+    }
+    .rs-home-dock-icon > svg {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+    }
+    .rs-home-badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      min-width: 15px;
+      height: 15px;
+      padding: 0 4px;
+      border-radius: 999px;
+      background: #ff3b30;
+      color: #fff;
+      font-size: 8px;
+      font-weight: 700;
+      line-height: 15px;
+      text-align: center;
+      box-shadow: 0 0 0 1.5px rgba(0, 0, 0, 0.15);
+    }
+    .rs-proto-fallback {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: rgba(17, 21, 17, 0.5);
+      text-decoration: none;
+    }
+    .rs-proto-fallback:hover {
+      color: #111511;
+    }
+
+    .rs-principle-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .rs-principle-grid article {
+      padding: 16px 18px;
+      border: 1px solid rgba(17, 21, 17, 0.1);
+      border-radius: 14px;
+      background: rgba(17, 21, 17, 0.02);
+    }
+    .rs-principle-grid strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+    .rs-principle-grid p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.55;
+      color: rgba(17, 21, 17, 0.68);
+    }
+    .rs-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(17, 21, 17, 0.75);
+    }
+    .rs-flow span {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(46, 204, 113, 0.12);
+      border: 1px solid rgba(46, 204, 113, 0.35);
+    }
+    .rs-flow i {
+      font-style: normal;
+      color: rgba(17, 21, 17, 0.35);
+    }
+
+    @media (max-width: 900px) {
+      .rs-proto-panel {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+      .rs-proto-device {
+        order: 2;
+      }
+      .rs-phone {
+        --rs-scale: 0.68;
+      }
+    }
+    @media (max-width: 720px) {
+      .rs-principle-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 420px) {
+      .rs-phone {
+        --rs-scale: 0.62;
+      }
+    }
+  </style>
+</head>
+<body class="mc-case">
+  <a class="ga-brand" href="./index.html" aria-label="Gaurav Avinash home" data-tip="Home">
+    <img src="./assets/logo-ga.svg" alt="" width="112" height="61" decoding="async">
+  </a>
+
+  <div class="mc-root">
+    <nav class="mc-nav" aria-label="Primary">
+      <a href="./index.html" class="mc-nav-home" aria-label="Home" data-tip="Home">
+        <span data-eye="true" class="mc-eye-nav"><span data-pupil="true"></span></span>
+        <span data-eye="true" class="mc-eye-nav"><span data-pupil="true"></span></span>
+      </a>
+      <div class="mc-nav-links">
+        <a href="./index.html#work" class="mc-nav-link" aria-label="Work" data-tip="Work" aria-current="page">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="currentColor" stroke-width="1.7"/></svg>
+        </a>
+        <a href="./index.html#about" class="mc-nav-link" aria-label="About" data-tip="About">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="3.2" stroke="currentColor" stroke-width="1.7"/><path d="M5 19c1.5-3.2 4-4.8 7-4.8S17.5 15.8 19 19" stroke="currentColor" stroke-width="1.7"/></svg>
+        </a>
+        <a href="./index.html#contact" class="mc-nav-link" aria-label="Contact" data-tip="Contact">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="m4 8 8 6 8-6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </nav>
+
+    <header class="mc-case-header" data-screen-label="Case header">
+      <h1 class="mc-case-h1">Resonance</h1>
+      <p class="mc-case-sub">Intelligent music playback for Spotify — a personal exploration of starting songs closer to the moments you already know you want.</p>
+      <div class="mc-case-tags">
+        <span class="mc-case-tag">AI</span>
+        <span class="mc-case-tag">Music Experience</span>
+        <span class="mc-case-tag">Product Design</span>
+      </div>
+
+      <div class="mc-case-meta">
+        <div class="mc-meta-left">
+          <div class="mc-meta-facts">
+            <div>
+              <p class="mc-meta-label">Context</p>
+              <p class="mc-meta-value">For Spotify<br>Personal project</p>
+            </div>
+            <div>
+              <p class="mc-meta-label">Type</p>
+              <p class="mc-meta-value">Speculative product<br>Medium prototype</p>
+            </div>
+            <div class="mc-meta-full">
+              <p class="mc-meta-label">Focus</p>
+              <div class="mc-tool-list" role="list">
+                <span role="listitem" class="mc-tool">Playback intelligence</span>
+                <span role="listitem" class="mc-tool">Moment signals</span>
+                <span role="listitem" class="mc-tool">Subtle AI UX</span>
+                <span role="listitem" class="mc-tool">Listener control</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mc-stat-grid" aria-label="Concept summary">
+          <div>
+            <p class="mc-stat-label">Surface</p>
+            <p class="mc-stat-value">Now Playing</p>
+            <p class="mc-stat-caption">not a new tab</p>
+          </div>
+          <div>
+            <p class="mc-stat-label">Unit</p>
+            <p class="mc-stat-value">Moment</p>
+            <p class="mc-stat-caption">inside the song</p>
+          </div>
+          <div>
+            <p class="mc-stat-label">AI</p>
+            <p class="mc-stat-value">Quiet</p>
+            <p class="mc-stat-caption">behavior over branding</p>
+          </div>
+          <div>
+            <p class="mc-stat-label">Control</p>
+            <p class="mc-stat-value">Yours</p>
+            <p class="mc-stat-caption">on, off, seek, skip</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mc-case-hero-img">
+        <img src="./assets/resonance/resonance-poster.png?v=1" alt="Resonance Now Playing mock with orbit icon and timeline moment markers" width="1200" height="1500" decoding="async">
+      </div>
+    </header>
+
+    <div class="mc-case-body">
+      <nav class="mc-toc" aria-label="Case study sections">
+        <a class="mc-toc-link" href="#overview" data-spy="overview">Overview</a>
+        <a class="mc-toc-link" href="#problem" data-spy="problem">Problem</a>
+        <a class="mc-toc-link" href="#opportunity" data-spy="opportunity">Opportunity</a>
+        <a class="mc-toc-link" href="#principle" data-spy="principle">Principle</a>
+        <a class="mc-toc-link" href="#solution" data-spy="solution">Solution</a>
+        <a class="mc-toc-link" href="#prototype" data-spy="prototype">Prototype</a>
+        <a class="mc-toc-link" href="#outcome" data-spy="outcome">Reflection</a>
+      </nav>
+
+      <div class="mc-sections">
+        <section id="overview" data-spy-target="overview" class="mc-section">
+          <div class="ga-stack">
+            <p class="mc-eyebrow-bar">Overview</p>
+            <h2 class="mc-section-h2">What if Spotify knew which part of the song you were actually after?</h2>
+            <p class="mc-lede">Weekend trip. Friends. Someone picks a track, waits through the intro, then drags the scrubber to the bit everyone already knows. Same move, song after song.</p>
+            <p class="mc-lede">Resonance is a speculative playback option that lives inside Spotify’s existing Now Playing — not a new feed, not a chatbot, not a separate destination. One capability on play.</p>
+          </div>
+        </section>
+
+        <section id="problem" data-spy-target="problem" class="mc-section">
+          <div class="ga-stack">
+            <p class="mc-eyebrow-bar">Problem</p>
+            <h2 class="mc-section-h2">People don’t always love the whole song. They love a moment.</h2>
+            <ul class="ga-list">
+              <li>A lyric. A bassline. A drop. A vocal run. A build they always replay.</li>
+              <li>Different listeners can want completely different seconds of the same track.</li>
+              <li>There’s no universal “best part.” There can be a best moment for a particular listener.</li>
+              <li>The friction isn’t discovery. It’s dragging the timeline again when you already know where you’re going.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="opportunity" data-spy-target="opportunity" class="mc-section">
+          <div class="ga-stack">
+            <p class="mc-eyebrow-bar">Opportunity</p>
+            <h2 class="mc-section-h2">From “songs you like” to “moments you respond to.”</h2>
+            <p class="mc-lede">Spotify already learns from skips, seeks, replays, saves, and returns. Resonance explores stretching that learning inside the track — lyrics, vocals, beat, bass, energy, structure, plus how you actually behave.</p>
+            <p class="mc-lede">Song understanding + listening behaviour = a personalised start. Collective signals can help (“2.5K listeners started here”) without pretending that’s everyone’s favourite.</p>
+          </div>
+        </section>
+
+        <section id="principle" data-spy-target="principle" class="mc-section">
+          <div class="ga-stack">
+            <p class="mc-eyebrow-bar">Principle</p>
+            <h2 class="mc-section-h2">Spotify, with one smarter play — not a new app.</h2>
+            <div class="rs-principle-grid">
+              <article>
+                <strong>Inside Now Playing</strong>
+                <p>Orbit icon beside title and add. Not inside shuffle. Not a new tab.</p>
+              </article>
+              <article>
+                <strong>AI stays quiet</strong>
+                <p>Communicate “understands how you listen,” not “AI is analysing your music.”</p>
+              </article>
+              <article>
+                <strong>Personal vs popular</strong>
+                <p>“Your moment.” “Most replayed.” No P1/P2/P3 in the UI.</p>
+              </article>
+              <article>
+                <strong>Listener decides</strong>
+                <p>On, off, skip, seek, start from zero. Suggest, don’t commandeer.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="solution" data-spy-target="solution" class="mc-section">
+          <div class="ga-stack">
+            <p class="mc-eyebrow-bar">Solution</p>
+            <h2 class="mc-section-h2">A short path from first open to an active Resonance start.</h2>
+            <div class="rs-flow" aria-label="Core flow">
+              <span>Splash</span><i>→</i>
+              <span>Home</span><i>→</i>
+              <span>Bottom-sheet intro</span><i>→</i>
+              <span>Now Playing</span><i>→</i>
+              <span>Icon on</span><i>→</i>
+              <span>Moment start</span>
+            </div>
+            <div class="ga-card-grid">
+              <article class="ga-card">
+                <strong>First-time education</strong>
+                <p>Home sheet: Resonance, short benefit, Got it. Now Playing gets a small tooltip on the icon — not another sheet.</p>
+              </article>
+              <article class="ga-card">
+                <strong>Activation motion</strong>
+                <p>Dot merges into the ring, icon goes Spotify green. ~500ms. No sparkles, no bounce.</p>
+              </article>
+              <article class="ga-card">
+                <strong>Timeline markers</strong>
+                <p>Subtle dots for meaningful moments. Tap for natural labels: your moment, popular, listener counts.</p>
+              </article>
+              <article class="ga-card">
+                <strong>Preference + skip nudge</strong>
+                <p>Optional “what do you wait for?” multi-select. Repeated skips can ask: Looking for a moment?</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="prototype" data-spy-target="prototype" class="mc-section">
+          <div class="ga-stack">
+            <p class="mc-eyebrow-bar">Prototype</p>
+            <div class="rs-proto-panel">
+              <div class="rs-proto-copy">
+                <h2 class="mc-section-h2">Live Resonance build — try it in the phone.</h2>
+                <p class="mc-lede">Tap the Spotify icon on the home screen to open the live prototype from the start — splash, first-time education, then Now Playing with Resonance.</p>
+                <p class="mc-lede">Prefer full screen on a real phone if you want more room.</p>
+                <a class="rs-proto-fallback" id="rs-proto-external" href="https://drop-mode.vercel.app/?fresh=1" target="_blank" rel="noreferrer">Open full screen ↗</a>
+              </div>
+              <div class="rs-proto-device">
+                <div class="rs-phone" aria-label="Resonance live prototype in white iPhone frame">
+                  <div class="rs-phone-island" aria-hidden="true"></div>
+                  <div class="rs-phone-screen">
+                    <iframe
+                      id="rs-proto-frame"
+                      title="Resonance live prototype"
+                      allow="autoplay; encrypted-media"
+                      referrerpolicy="no-referrer-when-downgrade"
+                    ></iframe>
+                    <button type="button" class="rs-home" id="rs-open-app" aria-label="Open Spotify">
+                      <div class="rs-home-status">
+                        <span>9:41</span>
+                        <span class="rs-home-status-right" aria-hidden="true">
+                          <svg width="14" height="10" viewBox="0 0 14 10"><rect x="0" y="6" width="2.2" height="4" rx="0.4" fill="#fff"/><rect x="3.2" y="4" width="2.2" height="6" rx="0.4" fill="#fff"/><rect x="6.4" y="2" width="2.2" height="8" rx="0.4" fill="#fff"/><rect x="9.6" y="0" width="2.2" height="10" rx="0.4" fill="#fff"/></svg>
+                          <svg width="13" height="10" viewBox="0 0 13 10"><path d="M6.5 3.2c1.7 0 3.2.7 4.3 1.7l1.1-1.2A7.4 7.4 0 0 0 6.5 1.4 7.4 7.4 0 0 0 1.1 3.7l1.1 1.2A5.7 5.7 0 0 1 6.5 3.2zm0 2.4c1 0 1.9.4 2.6 1.1l1.1-1.2A5 5 0 0 0 6.5 4 5 5 0 0 0 2.8 5.5l1.1 1.2A3.5 3.5 0 0 1 6.5 5.6zm0 2.5a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8z" fill="#fff"/></svg>
+                          <svg width="22" height="10" viewBox="0 0 22 10"><rect x="0.5" y="1" width="18" height="8" rx="2" stroke="#fff" stroke-opacity="0.45" fill="none"/><rect x="2" y="2.5" width="12" height="5" rx="1" fill="#ffe14a"/><rect x="19" y="3.2" width="2" height="3.6" rx="0.6" fill="#fff" fill-opacity="0.45"/></svg>
+                        </span>
+                      </div>
+                      <div class="rs-home-apps">
+                        <div class="rs-home-app">
+                          <span class="rs-home-app-icon">
+                            <img src="./assets/resonance/icons/spotify-app-logo.webp?v=1" alt="" width="54" height="54" decoding="async">
+                          </span>
+                          <span>Spotify</span>
+                        </div>
+                      </div>
+                      <div class="rs-home-bottom">
+                        <div class="rs-home-search" aria-hidden="true">
+                          <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><circle cx="5.2" cy="5.2" r="3.6" stroke="currentColor" stroke-width="1.4"/><path d="m8 8 2.4 2.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                          Search
+                        </div>
+                        <div class="rs-home-dock" aria-hidden="true">
+                          <div class="rs-home-dock-icon" style="background:linear-gradient(180deg,#64d266,#24c04a)">
+                            <svg viewBox="0 0 36 36" width="36" height="36"><path d="M18 8.5c-2.4 0-4.2 1.6-4.2 4 0 2.6 1.6 4.8 4.2 8.2 2.6-3.4 4.2-5.6 4.2-8.2 0-2.4-1.8-4-4.2-4zm0 18.2c-6.4-5.2-9.5-8.4-9.5-12.6C8.5 9.7 12.6 6 18 6s9.5 3.7 9.5 8.1c0 4.2-3.1 7.4-9.5 12.6z" fill="#fff"/><circle cx="18" cy="12.2" r="2.2" fill="#24c04a"/></svg>
+                            <span class="rs-home-badge">123</span>
+                          </div>
+                          <div class="rs-home-dock-icon" style="background:linear-gradient(160deg,#fff,#d7e4f5)">
+                            <svg viewBox="0 0 36 36" width="36" height="36"><circle cx="18" cy="18" r="11" fill="none" stroke="#1b6ef5" stroke-width="2.2"/><circle cx="18" cy="18" r="4.5" fill="none" stroke="#34c3f0" stroke-width="2"/><path d="M18 7v22M7 18h22" stroke="#1b6ef5" stroke-width="1.4" opacity="0.55"/></svg>
+                          </div>
+                          <div class="rs-home-dock-icon" style="background:#111">
+                            <svg viewBox="0 0 36 36" width="36" height="36"><path d="M12 18c0-5 3-9 8.5-10.2A8.4 8.4 0 0 0 10.5 18 8.4 8.4 0 0 0 20.5 28.2C15 27 12 23 12 18zm12 0c0 5-3 9-8.5 10.2A8.4 8.4 0 0 0 25.5 18 8.4 8.4 0 0 0 15.5 7.8C21 9 24 13 24 18z" fill="#fff"/></svg>
+                            <span class="rs-home-badge">2</span>
+                          </div>
+                          <div class="rs-home-dock-icon" style="background:linear-gradient(180deg,#5af06a,#20b83a)">
+                            <svg viewBox="0 0 36 36" width="36" height="36"><path d="M10 26.5c1.8 1.4 4.1 2.2 6.7 2.2 6.3 0 11.3-4.4 11.3-9.9S23 8.9 16.7 8.9 5.4 13.3 5.4 18.8c0 2 .7 3.9 1.9 5.4L6 28l4-1.5z" fill="#fff"/></svg>
+                            <span class="rs-home-badge">3</span>
+                          </div>
+                        </div>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="outcome" data-spy-target="outcome" class="mc-section">
+          <div class="ga-stack">
+            <p class="mc-eyebrow-bar">Reflection</p>
+            <h2 class="mc-section-h2">What this exploration is arguing for.</h2>
+            <ul class="ga-list">
+              <li>Personalisation can go one layer deeper than the track list — into time inside the song.</li>
+              <li>Confidence should be honest: your moment, popular moment, or just explore.</li>
+              <li>The interesting design problem isn’t the model. It’s keeping Spotify familiar while the start position quietly gets smarter.</li>
+            </ul>
+            <p class="mc-lede">Song + listener + moment = personalised playback.</p>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <section class="mc-next" data-screen-label="Next projects">
+      <div class="mc-next-inner">
+        <h2 class="mc-next-title">Next projects</h2>
+        <div class="mc-next-grid">
+          <a href="./contextual-chat-short.html" class="mc-next-card">
+            <span class="mc-next-media">
+              <img src="./assets/contextual-chat-assistant-showcase.png" alt="Contextual Chat">
+            </span>
+            <span class="mc-next-body">
+              <span class="mc-next-name">Contextual Chat</span>
+              <span class="mc-next-desc">Context-aware AI for investor discovery</span>
+              <span class="mc-next-tags">
+                <span class="mc-next-tag">AI Search</span>
+                <span class="mc-next-tag">B2B SaaS</span>
+              </span>
+            </span>
+          </a>
+          <a href="./deal-room-short.html" class="mc-next-card">
+            <span class="mc-next-media">
+              <img src="./assets/deal-room-engagement-showcase.png" alt="Deal Room">
+            </span>
+            <span class="mc-next-body">
+              <span class="mc-next-name">Deal Room</span>
+              <span class="mc-next-desc">Guided deal execution on the company profile</span>
+              <span class="mc-next-tags">
+                <span class="mc-next-tag">Deal Room</span>
+                <span class="mc-next-tag">B2B SaaS</span>
+              </span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="mc-cta" data-screen-label="Contact CTA">
+      <div class="mc-cta-inner">
+        <div class="mc-cta-eyes" aria-hidden="true">
+          <span data-eye="true" class="mc-eye-big"><span data-pupil="true"></span></span>
+          <span data-eye="true" class="mc-eye-big"><span data-pupil="true"></span></span>
+        </div>
+        <h2 class="mc-cta-title">Let's build smarter products together.</h2>
+        <div class="mc-cta-actions">
+          <a class="mc-icon-btn" href="https://www.linkedin.com/in/gauravavinash" target="_blank" rel="noreferrer" aria-label="LinkedIn" data-tip="LinkedIn">in</a>
+          <a class="mc-icon-btn" href="mailto:gauravavinash3@gmail.com" aria-label="Email" data-tip="Email">✉</a>
+          <a class="mc-cta-btn" href="./assets/Resume-Gaurav.pdf?v=20260822" target="_blank" rel="noreferrer">Resume <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="mc-footer">
+          Gaurav Avinash · Product Designer · UX/AI Design ·
+          <a href="./index.html">Back to portfolio</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="./case.js?v=6"></script>
+  <script>
+    (function () {
+      var btn = document.getElementById("rs-open-app");
+      var frame = document.getElementById("rs-proto-frame");
+      var external = document.getElementById("rs-proto-external");
+      if (!btn || !frame) return;
+
+      var sessionUrl = "https://drop-mode.vercel.app/?fresh=1&embed=1&t=" + Date.now();
+      var ready = false;
+
+      function freshUrl() {
+        return "https://drop-mode.vercel.app/?fresh=1&embed=1&t=" + Date.now();
+      }
+
+      // Warm the prototype under the home screen so Open feels instant
+      frame.addEventListener("load", function () { ready = true; });
+      frame.src = sessionUrl;
+
+      if (external) {
+        external.addEventListener("click", function () {
+          external.href = freshUrl();
+        });
+      }
+
+      btn.addEventListener("click", function () {
+        btn.hidden = true;
+        if (!frame.src) frame.src = sessionUrl;
+      });
+
+      // Prefetch if user scrolls near prototype before opening
+      if ("IntersectionObserver" in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting && !frame.src) frame.src = sessionUrl;
+          });
+        }, { rootMargin: "200px" });
+        io.observe(btn.closest(".rs-phone") || btn);
+      }
+    })();
+  </script>
+</body>
+</html>
