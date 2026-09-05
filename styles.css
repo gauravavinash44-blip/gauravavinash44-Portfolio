@@ -1,4 +1,4 @@
-/* Prototype v6 — Michelle scroll-cover pattern, Gaurav content
+/* Prototype v6 - Michelle scroll-cover pattern, Gaurav content
    Primary: #2ecc71 (green) · Neutrals: black/gray/paper */
 
 :root {
@@ -58,7 +58,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .ga-root {
   min-height: 100vh;
   background: var(--green);
-  /* Do NOT set overflow-x/y here — any non-visible overflow makes this a
+  /* Do NOT set overflow-x/y here - any non-visible overflow makes this a
      scrollport and kills position:sticky cover stacking (Michelle pattern). */
 }
 
@@ -136,7 +136,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   filter: brightness(0);
 }
 
-/* Top-right brand — white pill/disc, black GD mark (mirrors nav) */
+/* Top-right brand - white pill/disc, black GD mark (mirrors nav) */
 .ga-brand {
   position: fixed;
   top: 1.15rem;
@@ -326,7 +326,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   position: relative;
   z-index: 3;
   background: var(--paper);
-  /* Square bottom edge — rounded corners leaked body green into the join */
+  /* Square bottom edge - rounded corners leaked body green into the join */
   border-radius: 0;
   padding: 0 6vw clamp(56px, 7vw, 88px);
   overflow: hidden;
@@ -432,7 +432,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   color: var(--ink);
 }
 
-/* Featured — lead full width; EasyEat · Deal Room · Resonance (WIP) on second row */
+/* Featured - lead full width; EasyEat · Deal Room · Resonance (WIP) on second row */
 .ga-featured-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -444,7 +444,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .ga-card--lead .ga-card-media {
   aspect-ratio: 16 / 8;
 }
-/* Figma motion frame 1859:69135 = 1324×682 — exact landing crop, no stretch */
+/* Figma motion frame 1859:69135 = 1324×682 - exact landing crop, no stretch */
 .ga-card--lead.ga-card--motion .ga-card-media {
   aspect-ratio: 1324 / 682;
   background: linear-gradient(180deg, #ebf8f4 0%, #f3f1fc 100%);
@@ -482,7 +482,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   overflow: hidden;
   background: #e8ebe4;
 }
-/* Secondary featured cards — taller media so phone/UI screens read clearly */
+/* Secondary featured cards - taller media so phone/UI screens read clearly */
 .ga-featured-grid > .ga-card:not(.ga-card--lead) .ga-card-media {
   aspect-ratio: 3 / 4;
 }
@@ -594,7 +594,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   transform: rotate(45deg);
 }
 
-/* Resonance / WIP — taller media shows full phone hierarchy; no enter arrow */
+/* Resonance / WIP - taller media shows full phone hierarchy; no enter arrow */
 .ga-card--resonance .ga-card-media {
   background: #121212;
 }
@@ -608,7 +608,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .ga-card--locked .ga-card-footer {
   display: none;
 }
-/* Deal Room — zoom into UI center, crop excess from the right */
+/* Deal Room - zoom into UI center, crop excess from the right */
 .ga-card--deal .ga-card-media img {
   object-fit: cover;
   object-position: 58% 42%;
@@ -660,7 +660,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   transform-origin: center center;
 }
 
-/* More work — green band + marquee of playground tiles */
+/* More work - green band + marquee of playground tiles */
 .ga-more-work {
   background: var(--green);
   z-index: 3;
@@ -749,7 +749,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   object-fit: cover;
 }
 
-/* Figma export is a full dark board — zoom into the white card face (inset past rounded corners so no dark crescent) */
+/* Figma export is a full dark board - zoom into the white card face (inset past rounded corners so no dark crescent) */
 .ga-marquee-tile[data-pg-id="space-between"] {
   background: #fff;
 }
@@ -776,7 +776,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .ga-marquee-tile--5 { transform: rotate(-3deg); }
 .ga-marquee-tile--6 { transform: rotate(2deg); }
 
-/* Bring — sage sticky cover */
+/* Bring - sage sticky cover */
 .ga-bring {
   background: var(--sage);
   border-radius: 44px 44px 0 0;
@@ -833,7 +833,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   color: var(--gray-2);
 }
 
-/* About — taller runway so Contact can slide over with a proper cover feel */
+/* About - taller runway so Contact can slide over with a proper cover feel */
 .ga-about {
   background: var(--paper);
   border-radius: 44px 44px 0 0;
@@ -981,7 +981,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   text-justify: inter-word;
 }
 
-/* Contact — sticky green cover, climbs further onto About for the sheet overlap */
+/* Contact - sticky green cover, climbs further onto About for the sheet overlap */
 .ga-contact {
   background: var(--green);
   border-radius: 44px 44px 0 0;
@@ -1106,7 +1106,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 }
 
 /* ═══════════════════════════════════════════
-   Responsive — desktop / tablet / mobile
+   Responsive - desktop / tablet / mobile
    Breakpoints: tablet ≤1024 · phone ≤640
    ═══════════════════════════════════════════ */
 
@@ -1232,7 +1232,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   }
 }
 
-/* Michelle ≤900px: normal flow — no sticky cover overlap; About photo unsticks */
+/* Michelle ≤900px: normal flow - no sticky cover overlap; About photo unsticks */
 @media (max-width: 900px) {
   .ga-more-work,
   .ga-bring,
@@ -1363,7 +1363,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   }
 }
 
-/* Phone ONLY — Michelle-style fold: left nav, peeking eyes under white panel */
+/* Phone ONLY - Michelle-style fold: left nav, peeking eyes under white panel */
 @media (max-width: 640px) {
   /* Michelle-style mobile fold: left nav, bold title, eyes under white sheet */
   .ga-nav {

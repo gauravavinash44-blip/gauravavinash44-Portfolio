@@ -21,15 +21,15 @@
       href: "./contextual-chat.html",
       img: ASSETS.chat,
       title: "Contextual chat for investor discovery",
-      sub: "Designed and launched an AI chat assistant so investors explore companies in natural language—replacing a fragmented multi-step search. OpenAI + vector search cut search from 30–40 minutes to under 30s and lifted engagement 25%.",
+      sub: "Designed and launched an AI chat assistant so investors explore companies in natural language - replacing a fragmented multi-step search. OpenAI + vector search cut search from 30–40 minutes to under 30s and lifted engagement 25%.",
       tags: ["AI Search", "B2B SaaS"],
       lead: true,
     },
     {
       href: "../deal-room-case-study.html",
       img: ASSETS.dealRoom,
-      title: "Deal Room — structured deal execution",
-      sub: "Deal work was split across surfaces. We anchored creation on the company profile—where intent already lives. +32% deal creation adoption.",
+      title: "Deal Room - structured deal execution",
+      sub: "Deal work was split across surfaces. We anchored creation on the company profile - where intent already lives. +32% deal creation adoption.",
       tags: ["Deal Room", "B2B SaaS"],
     },
     {
@@ -63,7 +63,7 @@
     {
       icon: "03",
       title: "Measurable outcomes",
-      body: "Adoption, speed, and decision quality—design choices tied to proof, not decoration.",
+      body: "Adoption, speed, and decision quality - design choices tied to proof, not decoration.",
     },
   ];
 
@@ -74,7 +74,7 @@
         {
           date: "Mar 2023 – Present",
           title: "Product Designer II · Systematic",
-          body: "New York, United States · Remote. AI-powered B2B SaaS—contextual chat, AI profile creation, search, data room, and templates for fundraising workflows.",
+          body: "New York, United States · Remote. AI-powered B2B SaaS - contextual chat, AI profile creation, search, data room, and templates for fundraising workflows.",
         },
         {
           date: "Aug 2022 – Nov 2022",
@@ -89,7 +89,7 @@
         {
           date: "Jan 2021 – Dec 2021",
           title: "Visual Designer · LA FUORI",
-          body: "New Delhi, India. Sole designer on a B2B website—IA, wireframes, and visual execution—plus campaigns, motion, and brand assets.",
+          body: "New Delhi, India. Sole designer on a B2B website - IA, wireframes, and visual execution - plus campaigns, motion, and brand assets.",
         },
       ],
     },
@@ -520,7 +520,7 @@
               }, "Resume")
             ),
             e("p", { className: "ga-intro-copy" },
-              "Product designer with 4+ years crafting AI-powered B2B SaaS products. I specialise in Human–AI interaction, complex data workflows, and 0→1 builds—turning ambiguous problems into intuitive, measurable experiences."
+              "Product designer with 4+ years crafting AI-powered B2B SaaS products. I specialise in Human–AI interaction, complex data workflows, and 0→1 builds - turning ambiguous problems into intuitive, measurable experiences."
             )
           )
         ),
@@ -547,7 +547,7 @@
         e("div", { className: "ga-cover-inner" },
           e("div", { className: "ga-more-work-head" },
             e("h2", null, "More work"),
-            e("p", null, "Design playground — interface explorations and motion studies beyond full case studies.")
+            e("p", null, "Design playground - interface explorations and motion studies beyond full case studies.")
           ),
           e("div", { className: "ga-marquee-viewport", "aria-label": "Design playground projects" },
             e("div", { className: "ga-marquee-track" },
@@ -587,8 +587,8 @@
         e("div", { className: "ga-about-grid ga-reveal" },
           e("div", { className: "ga-about-col" },
             e("div", { className: "ga-about-copy" },
-              e("p", null, "Product Designer II at Systematic—remote with a New York team on AI-powered B2B SaaS. I specialise in Human–AI interaction design, complex data workflows, and 0→1 product builds."),
-              e("p", null, "Known for translating ambiguous problems into intuitive, measurable experiences—improving engagement, reducing drop-off, and accelerating user workflows."),
+              e("p", null, "Product Designer II at Systematic - remote with a New York team on AI-powered B2B SaaS. I specialise in Human–AI interaction design, complex data workflows, and 0→1 product builds."),
+              e("p", null, "Known for translating ambiguous problems into intuitive, measurable experiences - improving engagement, reducing drop-off, and accelerating user workflows."),
               e("p", null, "Open to Product Designer roles in B2B SaaS. I solve complex workflows where clarity and measurable outcomes both matter.")
             ),
             TIMELINE.map((block) => e("div", { className: "ga-timeline", key: block.heading },

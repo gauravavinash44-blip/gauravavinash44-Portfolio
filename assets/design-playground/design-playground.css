@@ -236,7 +236,7 @@
   transform: scale(1.04);
 }
 
-/* Nomad + Health Karma + Splitly cards — cropped hero preview; dark plane only in modal */
+/* Nomad + Health Karma + Splitly cards - cropped hero preview; dark plane only in modal */
 .pg-card[data-project-id="nomad"] .pg-card-media img,
 .pg-card[data-project-id="health-karma"] .pg-card-media img,
 .pg-card[data-project-id="splitly"] .pg-card-media img {
@@ -517,7 +517,7 @@ body.pg-modal-open.pg-scroll-locked {
   width: 100%;
 }
 
-/* Motion study cards — minimal preview */
+/* Motion study cards - minimal preview */
 .pg-card--motion {
   cursor: pointer;
 }
@@ -626,7 +626,7 @@ body.pg-modal-open.pg-scroll-locked {
   pointer-events: none;
 }
 
-/* Cinematic motion preview — same bottom sheet, dark surface */
+/* Cinematic motion preview - same bottom sheet, dark surface */
 .pg-modal--cinema {
   padding: 0;
   transition: opacity 0.25s ease-out, visibility 0.25s ease-out;

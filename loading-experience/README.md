@@ -8,7 +8,7 @@ Premium React loading screen for the portfolio homepage.
 |------|---------|
 | `src/components/LoadingLogo.tsx` | Cursor-style dot + animated ring (the loader) |
 | `src/components/LoadingText.tsx` | Philosophy lines with fade transitions |
-| `src/components/LoadingProgress.tsx` | Optional 2px bottom bar (unused — ring is the loader) |
+| `src/components/LoadingProgress.tsx` | Optional 2px bottom bar (unused - ring is the loader) |
 | `src/components/LoadingScreen.tsx` | Orchestrates timing, exit, and page handoff |
 
 ## Build

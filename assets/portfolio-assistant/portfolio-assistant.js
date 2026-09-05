@@ -23,7 +23,7 @@
   let hasStarted = false;
   let scrollY = 0;
   let reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  /* Always start muted — only speak after the user unmutes */
+  /* Always start muted - only speak after the user unmutes */
   let voiceUnmuted = false;
   let lastSpokenText = '';
   let lastAudioUrl = '';
@@ -50,13 +50,13 @@
     return html;
   }
 
-  /* Plain text for TTS — strip markdown and soften list cadence */
+  /* Plain text for TTS - strip markdown and soften list cadence */
   function speechText(text) {
     return String(text || '')
       .replace(/\*\*(.+?)\*\*/g, '$1')
       .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1')
       .replace(/[→•▪︎]/g, '. ')
-      .replace(/^\s*[-–—]\s*/gm, '')
+      .replace(/^\s*[-– - ]\s*/gm, '')
       .replace(/\n{2,}/g, '. ')
       .replace(/\n/g, '. ')
       .replace(/\s*([:;])\s*/g, '. ')
@@ -342,7 +342,7 @@
     setBusy(true);
     const welcome = knowledge.welcome;
     const row = await typeAssistantMessage(welcome.message);
-    /* Remember text for later unmute — do not speak until user opts in */
+    /* Remember text for later unmute - do not speak until user opts in */
     rememberSpeech(welcome.message, welcome.audio || '');
     renderSuggestions(row, welcome.suggestions);
     setBusy(false);
@@ -372,7 +372,7 @@
     isOpen = true;
     scrollY = window.scrollY;
 
-    /* Never auto-speak on open — user must unmute */
+    /* Never auto-speak on open - user must unmute */
     muteVoice();
 
     modalEl.classList.add('is-open');

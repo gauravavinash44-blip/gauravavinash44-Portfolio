@@ -146,9 +146,9 @@ const NAV_ITEMS = [
   { type: 'nav', title: 'About', hint: 'Section', action: () => scrollToTarget('#about') },
   { type: 'nav', title: 'Contact', hint: 'Section', action: () => scrollToTarget('#contact') },
   { type: 'nav', title: 'Back to top', hint: 'Section', action: () => scrollToTarget('#hero') },
-  { type: 'nav', title: 'Deal Room — case study', hint: 'Open page', action: () => { window.location.href = '../deal-room-case-study.html'; } },
-  { type: 'nav', title: 'Contextual Chat Assistant — case study', hint: 'Open page', action: () => { window.location.href = '../case-study-systematic-agent.html'; } },
-  { type: 'nav', title: 'EasyEat — case study', hint: 'Open page', action: () => { window.location.href = '../easyeat-case-study.html'; } },
+  { type: 'nav', title: 'Deal Room - case study', hint: 'Open page', action: () => { window.location.href = '../deal-room-case-study.html'; } },
+  { type: 'nav', title: 'Contextual Chat Assistant - case study', hint: 'Open page', action: () => { window.location.href = '../case-study-systematic-agent.html'; } },
+  { type: 'nav', title: 'EasyEat - case study', hint: 'Open page', action: () => { window.location.href = '../easyeat-case-study.html'; } },
   { type: 'nav', title: 'Email Gaurav', hint: 'mailto', action: () => { window.location.href = 'mailto:gauravavinash3@gmail.com'; } },
   { type: 'nav', title: 'View current live site', hint: 'Open page', action: () => { window.location.href = '../index.html'; } },
 ];

@@ -1,4 +1,4 @@
-/* Prototype v3 — family.co-inspired direction */
+/* Prototype v3 - family.co-inspired direction */
 (function () {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduced) document.documentElement.classList.add('reduced');

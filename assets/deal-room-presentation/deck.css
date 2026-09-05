@@ -1,4 +1,4 @@
-/* Deal Room presentation — aligned to main portfolio tokens */
+/* Deal Room presentation - aligned to main portfolio tokens */
 :root {
   --green: #2ecc71;
   --green-deep: #27ae60;
@@ -916,7 +916,7 @@ body.deck-body.is-deck-loading .deck {
   font-weight: 400;
 }
 
-/* Key Decision — highlighted three-step ladder */
+/* Key Decision - highlighted three-step ladder */
 #slide-tension .deck-title {
   color: #ffffff;
 }
@@ -982,7 +982,7 @@ body.deck-body.is-deck-loading .deck {
   line-height: 1;
 }
 
-/* Ideation user flow — Host then Investor, top to bottom */
+/* Ideation user flow - Host then Investor, top to bottom */
 .deck-flowmap {
   display: grid;
   gap: 18px;
@@ -1157,7 +1157,7 @@ body.deck-body.is-deck-loading .deck {
   font-weight: 700;
 }
 
-/* Screen upload placeholder — portfolio-aligned frame */
+/* Screen upload placeholder - portfolio-aligned frame */
 .deck-slot {
   width: 100%;
   max-width: 920px;

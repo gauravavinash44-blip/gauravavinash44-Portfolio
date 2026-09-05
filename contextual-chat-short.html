@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Systematic Agent — Gaurav Avinash</title>
-  <meta name="description" content="Designing a context-aware AI system that helps investors move from information overload to confident decisions.">
+  <title>Systematic Agent - Gaurav Avinash</title>
+  <meta name="description" content="An AI system that helps investors cut through noise and decide with more confidence.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./case.css?v=8">
   <style>
-    /* Breathing room — this full study is denser than the short pages */
+    /* Breathing room - this full study is denser than the short pages */
     body.mc-case .mc-sections {
       gap: clamp(168px, 18vw, 260px);
       padding-bottom: clamp(168px, 18vw, 260px);
@@ -21,7 +21,7 @@
       --sa-lead-gap: 20px;
       gap: var(--sa-block-gap);
     }
-    /* Nested stacks use a small gap — don't inherit section pull-up math */
+    /* Nested stacks use a small gap - don't inherit section pull-up math */
     body.mc-case .ga-stack .ga-stack {
       --sa-block-gap: 14px;
       --sa-head-gap: 8px;
@@ -53,7 +53,12 @@
     body.mc-case .ga-card,
     body.mc-case .ga-option,
     body.mc-case .ga-approach {
-      padding: 32px 28px 34px;
+      padding: 16px 18px 18px;
+    }
+    body.mc-case .ga-card strong,
+    body.mc-case .ga-option strong {
+      margin-bottom: 6px;
+      line-height: 1.35;
     }
     body.mc-case .ga-list {
       gap: 18px;
@@ -61,6 +66,247 @@
     body.mc-case .ga-chips {
       gap: 12px;
       margin-block: 4px;
+    }
+    body.mc-case .ga-chip--highlight {
+      background: #2ecc71;
+      border-color: #2ecc71;
+      color: #111511;
+      font-weight: 700;
+    }
+    body.mc-case .ga-chip--soft {
+      background: rgba(46, 204, 113, 0.14);
+      border-color: rgba(46, 204, 113, 0.45);
+      color: #0a5c2f;
+      font-weight: 700;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    body.mc-case .ga-chip--soft:hover {
+      background: rgba(46, 204, 113, 0.22);
+      border-color: #2ecc71;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(46, 204, 113, 0.18);
+    }
+    body.mc-case .ga-chip--tint-retention,
+    body.mc-case .ga-chip--tint-discovery,
+    body.mc-case .ga-chip--tint-csat {
+      font-weight: 700;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+    }
+    body.mc-case .ga-chip--tint-retention {
+      background: rgba(59, 107, 168, 0.14);
+      border-color: rgba(59, 107, 168, 0.32);
+      color: #2c4f7c;
+    }
+    body.mc-case .ga-chip--tint-retention:hover {
+      background: rgba(59, 107, 168, 0.24);
+      border-color: rgba(59, 107, 168, 0.55);
+      color: #1e3f66;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(59, 107, 168, 0.22);
+    }
+    body.mc-case .ga-chip--tint-discovery {
+      background: rgba(46, 204, 113, 0.14);
+      border-color: rgba(46, 204, 113, 0.32);
+      color: #0a5c2f;
+    }
+    body.mc-case .ga-chip--tint-discovery:hover {
+      background: rgba(46, 204, 113, 0.24);
+      border-color: rgba(46, 204, 113, 0.55);
+      color: #074a25;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(46, 204, 113, 0.22);
+    }
+    body.mc-case .ga-chip--tint-csat {
+      background: rgba(210, 130, 45, 0.14);
+      border-color: rgba(210, 130, 45, 0.32);
+      color: #8a4f12;
+    }
+    body.mc-case .ga-chip--tint-csat:hover {
+      background: rgba(210, 130, 45, 0.24);
+      border-color: rgba(210, 130, 45, 0.55);
+      color: #6e3e0c;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(210, 130, 45, 0.22);
+    }
+    body.mc-case .ga-chip--ink {
+      background: #111511;
+      border-color: #111511;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    body.mc-case .ga-chip--tint-impact {
+      background: rgba(46, 204, 113, 0.14);
+      border-color: rgba(46, 204, 113, 0.32);
+      color: #0a5c2f;
+      font-weight: 700;
+    }
+    body.mc-case .ga-chip--tint-workaround {
+      background: rgba(59, 107, 168, 0.14);
+      border-color: rgba(59, 107, 168, 0.32);
+      color: #2c4f7c;
+      font-weight: 700;
+    }
+    body.mc-case .ga-chip--tint-scope {
+      background: rgba(210, 130, 45, 0.14);
+      border-color: rgba(210, 130, 45, 0.32);
+      color: #8a4f12;
+      font-weight: 700;
+    }
+    /* Soft personality tints - muted, not saturated fills */
+    body.mc-case .sa-trait-chips .ga-chip {
+      font-weight: 600;
+    }
+    body.mc-case .ga-chip--tint-hierarchy {
+      background: rgba(59, 107, 168, 0.12);
+      border-color: rgba(59, 107, 168, 0.28);
+      color: #2c4f7c;
+    }
+    body.mc-case .ga-chip--tint-readability {
+      background: rgba(180, 132, 58, 0.12);
+      border-color: rgba(180, 132, 58, 0.28);
+      color: #7a5620;
+    }
+    body.mc-case .ga-chip--tint-ai {
+      background: rgba(46, 204, 113, 0.12);
+      border-color: rgba(46, 204, 113, 0.28);
+      color: #0a5c2f;
+    }
+    body.mc-case .ga-chip--tint-trust {
+      background: rgba(56, 148, 148, 0.12);
+      border-color: rgba(56, 148, 148, 0.28);
+      color: #1f6a6a;
+    }
+    body.mc-case .ga-chip--tint-decision {
+      background: rgba(140, 90, 168, 0.12);
+      border-color: rgba(140, 90, 168, 0.28);
+      color: #5c3a72;
+    }
+    body.mc-case .ga-chip--tint-critical {
+      background: rgba(196, 68, 68, 0.12);
+      border-color: rgba(196, 68, 68, 0.28);
+      color: #8f2f2f;
+      font-weight: 600;
+    }
+    body.mc-case .ga-chip--tint-priority {
+      background: rgba(210, 130, 45, 0.12);
+      border-color: rgba(210, 130, 45, 0.28);
+      color: #8a4f12;
+      font-weight: 600;
+    }
+    body.mc-case .ga-chip--tint-iterate {
+      background: rgba(59, 107, 168, 0.12);
+      border-color: rgba(59, 107, 168, 0.28);
+      color: #2c4f7c;
+      font-weight: 600;
+    }
+    body.mc-case .ga-chip--tint-sus {
+      background: rgba(46, 204, 113, 0.12);
+      border-color: rgba(46, 204, 113, 0.28);
+      color: #0a5c2f;
+      font-weight: 600;
+    }
+    /* Market landscape - bigger titles, lighter detail rows */
+    body.mc-case .sa-market-grid .ga-card > strong {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+    body.mc-case .sa-market-grid .ga-card p {
+      font-size: 12.5px;
+      font-weight: 400;
+      line-height: 1.5;
+      color: rgba(17, 21, 17, 0.62);
+    }
+    body.mc-case .sa-market-grid .ga-card p + p {
+      margin-top: 6px;
+    }
+    body.mc-case .sa-market-grid .ga-card p strong {
+      display: inline;
+      font-size: inherit;
+      font-weight: 500;
+      margin: 0;
+      color: rgba(17, 21, 17, 0.78);
+    }
+    /* Solution pair - clear 01 vs 02 hierarchy */
+    body.mc-case .sa-solution-pair {
+      gap: 20px;
+      align-items: stretch;
+    }
+    body.mc-case .sa-solution-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding: 22px 20px 20px;
+      overflow: hidden;
+    }
+    body.mc-case .sa-solution-num {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      font-family: Archivo, sans-serif;
+      font-stretch: 82%;
+      font-weight: 800;
+      font-size: 42px;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      opacity: 0.12;
+      pointer-events: none;
+    }
+    body.mc-case .sa-solution-label {
+      margin: 0 0 8px;
+      max-width: calc(100% - 48px);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.35;
+    }
+    body.mc-case .sa-solution-card > strong {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 14px;
+      line-height: 1.25;
+    }
+    body.mc-case .sa-solution-kicker {
+      margin: 0 0 6px !important;
+      font-size: 11px !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: rgba(17, 21, 17, 0.45) !important;
+    }
+    body.mc-case .sa-solution-card .ga-list {
+      gap: 8px;
+      margin: 0 0 16px;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    body.mc-case .sa-solution-card .ga-turn {
+      margin-top: auto;
+      padding: 12px 14px;
+      font-size: 13px;
+      line-height: 1.45;
+      border-left: none;
+      border-radius: 10px;
+      background: rgba(46, 204, 113, 0.12);
+    }
+    body.mc-case .sa-solution-card.is-one,
+    body.mc-case .sa-solution-card.is-two {
+      background: #fff;
+      border: 1px solid rgba(17, 21, 17, 0.14);
+      box-shadow: none;
+    }
+    body.mc-case .sa-solution-card.is-one .sa-solution-label,
+    body.mc-case .sa-solution-card.is-two .sa-solution-label {
+      color: rgba(17, 21, 17, 0.55);
+    }
+    body.mc-case .sa-solution-card.is-one .sa-solution-num,
+    body.mc-case .sa-solution-card.is-two .sa-solution-num {
+      color: #111511;
+      opacity: 0.12;
     }
     body.mc-case .ga-media {
       margin-block: 10px;
@@ -84,6 +330,81 @@
     body.mc-case .ga-two {
       align-items: start;
     }
+    body.mc-case .ga-two.sa-equal-cards {
+      align-items: stretch;
+    }
+    body.mc-case .ga-two.sa-equal-cards > .ga-card {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
+    body.mc-case .ga-two.sa-equal-cards > .ga-card > strong {
+      min-height: 2.6em;
+      margin-bottom: 10px;
+    }
+    body.mc-case .ga-two.sa-equal-cards > .ga-card > .ga-list {
+      margin-top: 0;
+    }
+    /* AI Insights column - even stack, no L-shaped principle grid */
+    body.mc-case .sa-insights-layout {
+      align-items: start;
+      gap: 24px;
+    }
+    body.mc-case .sa-insights-copy {
+      gap: 14px;
+    }
+    body.mc-case .sa-principles-block {
+      margin: 0;
+      padding: 0;
+    }
+    body.mc-case .sa-principles-block > .mc-eyebrow-bar {
+      margin: 0 0 10px;
+    }
+    body.mc-case .ga-approach-grid.sa-principles-stack {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    body.mc-case .sa-principles-stack .ga-approach {
+      padding: 14px 16px;
+      background: #fff;
+      border: 1px solid rgba(17, 21, 17, 0.12);
+      border-radius: 12px;
+      min-height: 0;
+    }
+    body.mc-case .sa-principles-stack .ga-approach h4 {
+      margin: 0 0 4px;
+      font-size: 13.5px;
+      line-height: 1.3;
+    }
+    body.mc-case .sa-principles-stack .ga-approach p {
+      margin: 0;
+      font-size: 12.5px;
+      line-height: 1.45;
+    }
+    body.mc-case .sa-insights-callout {
+      padding: 16px 18px;
+      margin: 0;
+    }
+    body.mc-case .sa-insights-callout p {
+      margin: 0 0 8px;
+      font-size: 13.5px;
+      line-height: 1.5;
+    }
+    body.mc-case .sa-insights-callout p:last-child {
+      margin-bottom: 0;
+    }
+    body.mc-case .sa-insights-media {
+      margin: 0;
+      position: sticky;
+      top: 96px;
+    }
+    body.mc-case .sa-insights-media img {
+      border-radius: 12px;
+      filter: drop-shadow(0 2px 8px rgba(16, 24, 40, 0.08))
+        drop-shadow(0 10px 28px rgba(16, 24, 40, 0.14));
+    }
     body.mc-case .sa-flow-visual .ga-media,
     body.mc-case .sa-iteration .ga-media,
     body.mc-case .sa-zoomable {
@@ -92,6 +413,10 @@
     }
     body.mc-case .mc-lede {
       max-width: 40em;
+    }
+    body.mc-case .sa-h2-prefix {
+      font-weight: 500;
+      color: rgba(17, 21, 17, 0.55);
     }
     body.mc-case .sa-subsection {
       margin-top: clamp(40px, 4.5vw, 64px);
@@ -103,10 +428,56 @@
     body.mc-case .ga-card p,
     body.mc-case .ga-option p,
     body.mc-case .ga-approach p {
-      line-height: 1.8;
+      line-height: 1.55;
     }
 
-    /* Selected / final only — soft green accent, no page-wide tint */
+    /* Impact results - numbers lead, explanation recedes */
+    #impact .sa-impact-grid {
+      gap: 16px;
+    }
+    #impact .sa-impact-grid > .ga-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding: 18px 18px 16px;
+      min-width: 0;
+    }
+    #impact .sa-impact-grid .ga-impact-num {
+      margin: 0 0 6px;
+      font-family: Archivo, sans-serif;
+      font-stretch: 84%;
+      font-weight: 800;
+      font-size: clamp(36px, 4.2vw, 48px);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: #111511;
+    }
+    #impact .sa-impact-grid > .ga-card > strong {
+      margin: 0 0 4px;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #111511;
+    }
+    #impact .sa-impact-grid .sa-impact-meta {
+      margin: 0 0 12px;
+      font-size: 11px;
+      line-height: 1.4;
+      color: rgba(17, 21, 17, 0.45);
+    }
+    #impact .sa-impact-grid .mc-eyebrow-bar {
+      margin: 0 0 4px !important;
+      font-size: 9px;
+      letter-spacing: 0.08em;
+    }
+    #impact .sa-impact-grid .sa-impact-means {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.45;
+      color: rgba(17, 21, 17, 0.58);
+    }
+
+    /* Selected / final only - soft green accent, no page-wide tint */
     .sa-tradeoff-tag.chosen {
       background: rgba(46, 204, 113, 0.14);
       color: #0a5c2f;
@@ -130,52 +501,100 @@
     /* Minimal extras for structures not covered by case.css */
     .sa-quote {
       margin: 0;
-      padding: 28px 30px;
+      padding: 14px 18px;
       border-left: 3px solid #111511;
       background: rgba(17, 21, 17, 0.04);
       border-radius: 0 12px 12px 0;
     }
-    .sa-quote p { margin: 0 0 14px; font-size: 14.5px; line-height: 1.8; font-style: italic; color: rgba(17, 21, 17, 0.82); }
-    .sa-quote cite { font-style: normal; font-size: 12px; font-weight: 600; color: rgba(17, 21, 17, 0.55); }
+    .sa-quote p { margin: 0 0 6px; font-size: 14.5px; line-height: 1.55; font-style: italic; color: rgba(17, 21, 17, 0.82); }
+    .sa-quote p:last-child { margin-bottom: 0; }
+    .sa-quote .mc-eyebrow-bar { margin-bottom: 6px !important; }
+    .sa-quote cite { display: block; font-style: normal; font-size: 12px; font-weight: 600; color: rgba(17, 21, 17, 0.55); line-height: 1.35; }
     .sa-journey {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
+      gap: 20px;
     }
     .sa-journey-step {
-      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 24px 22px;
       border-radius: 16px;
-      background: rgba(17, 21, 17, 0.04);
+      background: rgba(17, 21, 17, 0.03);
       border: 1px solid rgba(17, 21, 17, 0.08);
     }
+    .sa-journey-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      width: 100%;
+    }
     .sa-journey-num {
+      margin: 0;
       font-family: Archivo, sans-serif;
       font-stretch: 82%;
       font-weight: 800;
-      font-size: 28px;
-      color: rgba(17, 21, 17, 0.18);
-      margin: 0 0 8px;
+      font-size: clamp(26px, 2.8vw, 32px);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: rgba(17, 21, 17, 0.2);
     }
     .sa-journey-emotion {
-      display: inline-block;
-      font-size: 11px;
+      display: inline-flex;
+      flex-shrink: 0;
+      font-size: 10px;
       font-weight: 700;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.07em;
       text-transform: uppercase;
       padding: 4px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(17, 21, 17, 0.12);
-      background: #fff;
-      margin-bottom: 12px;
+      border: 1px solid transparent;
+      margin: 0;
+    }
+    .sa-journey-emotion.is-confused {
+      background: rgba(196, 68, 68, 0.12);
+      border-color: rgba(196, 68, 68, 0.28);
+      color: #8f2f2f;
+    }
+    .sa-journey-emotion.is-overwhelmed {
+      background: rgba(210, 130, 45, 0.12);
+      border-color: rgba(210, 130, 45, 0.28);
+      color: #8a4f12;
+    }
+    .sa-journey-emotion.is-stuck {
+      background: rgba(59, 107, 168, 0.12);
+      border-color: rgba(59, 107, 168, 0.28);
+      color: #2c4f7c;
+    }
+    .sa-journey-title {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #111511;
+      text-align: left;
     }
     .sa-journey-pain {
-      margin: 10px 0 12px;
+      margin: 0;
+      width: 100%;
       padding: 10px 12px;
       border-radius: 10px;
       background: rgba(196, 60, 40, 0.08);
       color: #9a2f22;
       font-size: 13px;
       font-weight: 600;
+      line-height: 1.4;
+      text-align: left;
+    }
+    .sa-journey-copy {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.6;
+      color: rgba(17, 21, 17, 0.58);
+      text-align: left;
     }
     .sa-persona {
       display: flex;
@@ -188,12 +607,45 @@
       background: #fff;
     }
     .sa-persona-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
       padding: 22px 24px;
       background: #111511;
       color: #fff;
     }
-    .sa-persona-head strong { display: block; font-size: 15px; margin-bottom: 4px; }
-    .sa-persona-head span { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.7; }
+    .sa-persona-copy {
+      min-width: 0;
+      flex: 1;
+    }
+    .sa-persona-copy strong {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 0;
+      line-height: 1.3;
+    }
+    .sa-persona-copy span {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 4px;
+    }
+    .sa-persona-icon {
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      color: rgba(255, 255, 255, 0.38);
+    }
+    .sa-persona-icon svg {
+      width: 28px;
+      height: 28px;
+      display: block;
+    }
     .sa-persona-body { padding: 0 24px 24px; display: flex; flex-direction: column; gap: 18px; }
     .sa-persona-workflow {
       padding: 12px 14px;
@@ -223,10 +675,28 @@
       border-radius: 14px;
       border: 1px solid rgba(17, 21, 17, 0.1);
       background: #fff;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .sa-funnel-step:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(17, 21, 17, 0.07);
     }
     .sa-funnel-step.is-peak {
-      border-color: #111511;
-      background: rgba(17, 21, 17, 0.04);
+      background: rgba(46, 204, 113, 0.1);
+      border-color: rgba(46, 204, 113, 0.55);
+      box-shadow: inset 3px 0 0 #2ecc71;
+    }
+    .sa-funnel-step.is-peak .num {
+      color: rgba(10, 92, 47, 0.55);
+    }
+    .sa-funnel-step.is-peak .sub {
+      color: #0a5c2f;
+    }
+    .sa-funnel-step.is-peak:hover {
+      background: rgba(46, 204, 113, 0.16);
+      border-color: #2ecc71;
+      transform: translateY(-2px);
+      box-shadow: inset 3px 0 0 #2ecc71, 0 8px 18px rgba(46, 204, 113, 0.18);
     }
     .sa-funnel-step .num {
       font-family: Archivo, sans-serif;
@@ -303,6 +773,15 @@
       background: #fff;
     }
     .sa-ba-col.before { background: rgba(17, 21, 17, 0.03); }
+    .sa-ba-col.after {
+      background: rgba(46, 204, 113, 0.1);
+      border-color: rgba(46, 204, 113, 0.22);
+    }
+    .sa-ba-col.after .tag {
+      background: rgba(46, 204, 113, 0.16);
+      border-color: rgba(46, 204, 113, 0.28);
+      color: #0a5c2f;
+    }
     .sa-ba-col h3 { margin: 0 0 4px; font-size: 20px; }
     .sa-ba-col .tag {
       display: inline-block;
@@ -373,17 +852,87 @@
     .sa-compare th { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(17, 21, 17, 0.45); background: rgba(17, 21, 17, 0.03); }
     .sa-finding {
       display: grid;
-      grid-template-columns: 100px 1fr 1fr;
+      grid-template-columns: 92px minmax(0, 1fr) minmax(0, 1fr);
       gap: 0;
-      border: 1px solid rgba(17, 21, 17, 0.1);
-      border-radius: 16px;
+      border: 1px solid rgba(17, 21, 17, 0.12);
+      border-radius: 14px;
       overflow: hidden;
       background: #fff;
+      align-items: stretch;
     }
-    .sa-finding > div { padding: 32px 28px; }
-    .sa-finding > div + div { border-left: 1px solid rgba(17, 21, 17, 0.08); }
-    .sa-finding-id { text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; background: rgba(17, 21, 17, 0.03); }
-    .sa-finding-id .fid { font-family: Archivo, sans-serif; font-stretch: 82%; font-weight: 800; font-size: 24px; color: rgba(17, 21, 17, 0.2); }
+    .sa-finding + .sa-finding {
+      margin-top: 14px;
+    }
+    .sa-finding-id,
+    .sa-finding-body,
+    .sa-finding-change {
+      display: flex;
+      flex-direction: column;
+      padding: 18px 16px;
+      min-width: 0;
+      box-sizing: border-box;
+    }
+    .sa-finding-body,
+    .sa-finding-change {
+      border-left: 1px solid rgba(17, 21, 17, 0.08);
+    }
+    .sa-finding-id {
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: rgba(17, 21, 17, 0.03);
+      padding: 18px 12px;
+    }
+    .sa-finding-id .fid {
+      font-family: Archivo, sans-serif;
+      font-stretch: 82%;
+      font-weight: 800;
+      font-size: 22px;
+      line-height: 1;
+      color: rgba(17, 21, 17, 0.28);
+    }
+    .sa-finding .mc-eyebrow-bar {
+      margin: 0 0 8px;
+    }
+    .sa-finding-title {
+      margin: 0 0 8px;
+      font-size: 14.5px;
+      font-weight: 700;
+      line-height: 1.35;
+      min-height: 2.7em;
+    }
+    .sa-finding-copy {
+      margin: 0 0 10px;
+      font-size: 13px;
+      line-height: 1.55;
+      color: rgba(17, 21, 17, 0.65);
+      flex: 1;
+    }
+    .sa-finding-insight {
+      margin: 0;
+      margin-top: auto;
+      font-size: 12.5px;
+      line-height: 1.45;
+      color: #8f2f2f;
+      font-style: italic;
+    }
+    .sa-finding-change .sa-tradeoff-tag {
+      align-self: flex-start;
+      margin: 0 0 8px;
+      min-height: 2.7em;
+      display: inline-flex;
+      align-items: center;
+      box-sizing: border-box;
+    }
+    .sa-finding-status {
+      margin: 0;
+      margin-top: auto;
+      font-size: 12px;
+      font-weight: 600;
+      color: #1a7a45;
+      line-height: 1.35;
+    }
     .sa-sev {
       font-size: 10px;
       font-weight: 700;
@@ -392,6 +941,181 @@
       padding: 4px 8px;
       border-radius: 999px;
       border: 1px solid rgba(17, 21, 17, 0.12);
+      background: rgba(17, 21, 17, 0.04);
+      color: rgba(17, 21, 17, 0.7);
+    }
+    .sa-sev.is-critical {
+      background: rgba(196, 68, 68, 0.12);
+      border-color: rgba(196, 68, 68, 0.28);
+      color: #8f2f2f;
+    }
+    .sa-sev.is-high {
+      background: rgba(210, 130, 45, 0.12);
+      border-color: rgba(210, 130, 45, 0.28);
+      color: #8a4f12;
+    }
+    .sa-sev.is-medium {
+      background: rgba(59, 107, 168, 0.12);
+      border-color: rgba(59, 107, 168, 0.28);
+      color: #2c4f7c;
+    }
+    /* Usability metric graphs */
+    .sa-metric-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .sa-metric-card {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(17, 21, 17, 0.12);
+      background: #fff;
+      min-width: 0;
+    }
+    .sa-metric-label {
+      margin: 0;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: rgba(17, 21, 17, 0.5);
+    }
+    .sa-metric-values {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 4px 6px;
+    }
+    .sa-metric-from {
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(17, 21, 17, 0.4);
+      text-decoration: line-through;
+      text-decoration-thickness: 1px;
+    }
+    .sa-metric-arrow {
+      font-size: 12px;
+      color: rgba(17, 21, 17, 0.35);
+    }
+    .sa-metric-to {
+      font-family: Archivo, sans-serif;
+      font-stretch: 84%;
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: #111511;
+    }
+    .sa-metric-delta {
+      margin-left: auto;
+      padding: 2px 6px;
+      border-radius: 999px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .sa-metric-delta.is-up {
+      background: rgba(46, 204, 113, 0.14);
+      color: #0a5c2f;
+    }
+    .sa-metric-delta.is-down {
+      background: rgba(46, 204, 113, 0.14);
+      color: #0a5c2f;
+    }
+    .sa-metric-graph {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .sa-metric-track {
+      position: relative;
+      display: flex;
+      align-items: stretch;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(17, 21, 17, 0.06);
+      overflow: hidden;
+    }
+    .sa-metric-fill {
+      display: block;
+      height: 100%;
+      width: 0;
+      flex: 0 0 auto;
+      border-radius: 0;
+      transition: width 1.15s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: width;
+    }
+    .sa-metric-fill.is-before {
+      background: rgba(17, 21, 17, 0.28);
+      transition-delay: 0.08s;
+    }
+    .sa-metric-fill.is-after {
+      background: #2ecc71;
+      transition-delay: 0.42s;
+    }
+    .sa-metric-graph.is-down .sa-metric-fill.is-before {
+      position: absolute;
+      inset: 0 auto 0 0;
+      background: rgba(17, 21, 17, 0.12);
+      transition-delay: 0.05s;
+    }
+    .sa-metric-graph.is-down .sa-metric-fill.is-after {
+      position: relative;
+      z-index: 1;
+      background: #2ecc71;
+      transition-delay: 0.2s;
+      border-radius: 999px;
+    }
+    .sa-reveal.is-in .sa-metric-graph.is-up .sa-metric-fill.is-before {
+      width: var(--from);
+    }
+    .sa-reveal.is-in .sa-metric-graph.is-up .sa-metric-fill.is-after {
+      width: var(--gain);
+    }
+    .sa-reveal.is-in .sa-metric-graph.is-down .sa-metric-fill.is-before {
+      width: var(--from);
+    }
+    .sa-reveal.is-in .sa-metric-graph.is-down .sa-metric-fill.is-after {
+      width: var(--to);
+    }
+    .sa-metric-key {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 9px;
+      font-weight: 600;
+      color: rgba(17, 21, 17, 0.42);
+    }
+    .sa-metric-key i {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 2px;
+      margin-right: 4px;
+      vertical-align: -1px;
+    }
+    .sa-metric-key .is-before i { background: rgba(17, 21, 17, 0.28); }
+    .sa-metric-key .is-after i { background: #2ecc71; }
+    .sa-metric-note {
+      margin: 0;
+      margin-top: auto;
+      font-size: 9px;
+      line-height: 1.35;
+      color: rgba(17, 21, 17, 0.45);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .sa-metric-fill {
+        transition: none !important;
+      }
+    }
+    @media (max-width: 900px) {
+      .sa-metric-grid {
+        grid-template-columns: 1fr;
+      }
     }
     .sa-tradeoff-tag {
       display: inline-block;
@@ -406,6 +1130,21 @@
       margin-bottom: 12px;
     }
     .sa-tradeoff-tag.partial { background: rgba(17, 21, 17, 0.08); }
+    .sa-tradeoff-tag.is-phase {
+      background: rgba(46, 204, 113, 0.14);
+      border-color: rgba(46, 204, 113, 0.32);
+      color: #0a5c2f;
+    }
+    .sa-tradeoff-tag.is-scale {
+      background: rgba(59, 107, 168, 0.14);
+      border-color: rgba(59, 107, 168, 0.32);
+      color: #2c4f7c;
+    }
+    .sa-tradeoff-tag.is-feature {
+      background: rgba(210, 130, 45, 0.14);
+      border-color: rgba(210, 130, 45, 0.32);
+      color: #8a4f12;
+    }
     .sa-error-row {
       display: flex;
       align-items: center;
@@ -483,9 +1222,10 @@
     }
     .sa-iteration-head h4 {
       margin: 0;
-      font-size: 16px;
-      font-weight: 700;
+      font-size: 14px;
+      font-weight: 500;
       letter-spacing: -0.01em;
+      color: rgba(17, 21, 17, 0.72);
     }
     .sa-iteration-copy {
       margin: 0;
@@ -506,7 +1246,7 @@
       }
     }
 
-    /* Design Solution Part 01 — annotated flow + scroll reveal */
+    /* Design Solution Part 01 - annotated flow + scroll reveal */
     .sa-reveal {
       opacity: 0;
       transform: translateY(28px);
@@ -629,6 +1369,8 @@
       height: auto;
       max-width: 100%;
       width: auto;
+      filter: drop-shadow(0 2px 8px rgba(16, 24, 40, 0.08))
+        drop-shadow(0 8px 20px rgba(16, 24, 40, 0.12));
     }
     .sa-figma-cta.is-sm { max-height: 54px; }
     .sa-figma-cta.is-md { max-height: 72px; width: min(100%, 420px); }
@@ -644,7 +1386,7 @@
       gap: 10px;
       align-items: start;
     }
-    /* Compact annotation cards beside design screens — keep screens untouched */
+    /* Compact annotation cards beside design screens - keep screens untouched */
     body.mc-case .sa-anno-list > .ga-card,
     body.mc-case .sa-micro-row > .ga-card {
       padding: 14px 16px;
@@ -837,7 +1579,10 @@
 
     @media (max-width: 900px) {
       .sa-journey, .sa-funnel, .sa-finding { grid-template-columns: 1fr; }
-      .sa-finding > div + div { border-left: 0; border-top: 1px solid rgba(17, 21, 17, 0.08); }
+      .sa-finding-body,
+      .sa-finding-change { border-left: 0; border-top: 1px solid rgba(17, 21, 17, 0.08); }
+      .sa-finding-title,
+      .sa-finding-change .sa-tradeoff-tag { min-height: 0; }
     }
   </style>
 </head>
@@ -969,37 +1714,37 @@
         <!-- OVERVIEW -->
         <section id="overview" data-spy-target="overview" class="mc-section">
           <div class="ga-stack">
-            <p class="mc-eyebrow-bar">01 — Introduction</p>
+            <p class="mc-eyebrow-bar">01 - Introduction</p>
             <h2 class="mc-section-h2">What This Product Had to Solve</h2>
             <p class="mc-lede">A fintech platform where the data was never the problem but getting investors to trust it and act on it was.</p>
 
             <div class="ga-card-grid">
               <article class="ga-card">
                 <strong>Context · The Product</strong>
-                <p>Systematic is a US-based fintech platform that helps institutional and angel investors discover, evaluate, and track companies — replacing fragmented Excel workflows with a unified data-driven system.</p>
+                <p>Systematic is a US fintech platform for investors to discover, evaluate, and track companies - one place instead of scattered Excel workflows.</p>
               </article>
               <article class="ga-card">
                 <strong>My Contribution · My Role</strong>
-                <p>Product Designer &amp; UX Researcher. End-to-end ownership: user research, problem framing, concepting, high-fidelity UI, and engineering handoff. Managed stakeholder alignment across product, data, and ML teams.</p>
+                <p>Product Designer &amp; UX Researcher. I owned research through UI and handoff, and kept product, data, and ML aligned.</p>
               </article>
               <article class="ga-card">
                 <strong>Challenge · The Problem</strong>
-                <p>Investors had access to data but couldn't act on it. Search was too rigid, filters required upfront expertise, and evaluation took hours of manual synthesis — causing analysis paralysis and session abandonment.</p>
+                <p>Investors had data, but not a clear next step. Rigid search and long manual evaluation led to analysis paralysis - and abandoned sessions.</p>
               </article>
               <article class="ga-card">
                 <strong>Result · The Outcome</strong>
-                <p>A two-part AI system: conversational discovery (chat-based search) and an AI insights engine (auto-generated company summaries). Reduced discovery time 3× and improved CSAT to 85%.</p>
+                <p>A two-part AI system: chat for discovery, and auto-generated insights for evaluation. Discovery got 3× faster; CSAT hit 85%.</p>
               </article>
             </div>
 
             <div class="sa-callout">
               <p class="mc-eyebrow-bar" style="margin:0 0 12px">Why This Mattered</p>
               <p>Investors weren't failing because of bad data. They were failing because the interface demanded precision they didn't yet have.</p>
-              <p>Fixing this wasn't just a UX problem it was a product moat. Platforms that reduce time-to-insight in investment research command significantly higher retention and willingness to pay.</p>
+              <p>This wasn’t only a UX fix - faster time-to-insight became a real product advantage for retention and willingness to pay.</p>
               <div class="ga-chips" style="margin-top:14px">
-                <span class="ga-chip">Retention +12%</span>
-                <span class="ga-chip">Discovery Speed 3× Faster</span>
-                <span class="ga-chip">CSAT 85%</span>
+                <span class="ga-chip ga-chip--tint-retention">Retention +12%</span>
+                <span class="ga-chip ga-chip--tint-discovery">Discovery Speed 3× Faster</span>
+                <span class="ga-chip ga-chip--tint-csat">CSAT 85%</span>
               </div>
             </div>
           </div>
@@ -1008,31 +1753,37 @@
         <!-- PROBLEM -->
         <section id="problem" data-spy-target="problem" class="mc-section">
           <div class="ga-stack">
-            <p class="mc-eyebrow-bar">02 — Problem Discovery</p>
+            <p class="mc-eyebrow-bar">02 - Problem Discovery</p>
             <h2 class="mc-section-h2">The Discovery Trap</h2>
             <p class="mc-lede">The typical investor research journey</p>
 
             <div class="sa-journey">
               <article class="sa-journey-step">
-                <p class="sa-journey-num">01</p>
-                <span class="sa-journey-emotion">Confused</span>
-                <h3 style="margin:0 0 8px;font-size:16px">Start with keywords</h3>
+                <div class="sa-journey-top">
+                  <p class="sa-journey-num">01</p>
+                  <span class="sa-journey-emotion is-confused">Confused</span>
+                </div>
+                <h3 class="sa-journey-title">Start with keywords</h3>
                 <p class="sa-journey-pain">↳ No results matched intent</p>
-                <p style="margin:0;font-size:13.5px;line-height:1.65;color:rgba(17,21,17,0.65)">Investors typed broad terms like "innovative fintech" — but the database only matched exact strings. Results were either too broad or empty.</p>
+                <p class="sa-journey-copy">Investors typed broad terms like "innovative fintech" - but the database only matched exact strings. Results were either too broad or empty.</p>
               </article>
               <article class="sa-journey-step">
-                <p class="sa-journey-num">02</p>
-                <span class="sa-journey-emotion">Overwhelmed</span>
-                <h3 style="margin:0 0 8px;font-size:16px">Try advanced filters</h3>
+                <div class="sa-journey-top">
+                  <p class="sa-journey-num">02</p>
+                  <span class="sa-journey-emotion is-overwhelmed">Overwhelmed</span>
+                </div>
+                <h3 class="sa-journey-title">Try advanced filters</h3>
                 <p class="sa-journey-pain">↳ 40+ parameters, no guidance</p>
-                <p style="margin:0;font-size:13.5px;line-height:1.65;color:rgba(17,21,17,0.65)">Filters existed for sector, revenue, geography, growth rate — but users didn't know which parameters mattered for their thesis.</p>
+                <p class="sa-journey-copy">Filters existed for sector, revenue, geography, growth rate - but users didn't know which parameters mattered for their thesis.</p>
               </article>
               <article class="sa-journey-step">
-                <p class="sa-journey-num">03</p>
-                <span class="sa-journey-emotion">Stuck</span>
-                <h3 style="margin:0 0 8px;font-size:16px">Review results, still lost</h3>
+                <div class="sa-journey-top">
+                  <p class="sa-journey-num">03</p>
+                  <span class="sa-journey-emotion is-stuck">Stuck</span>
+                </div>
+                <h3 class="sa-journey-title">Review results, still lost</h3>
                 <p class="sa-journey-pain">↳ No way to evaluate quickly</p>
-                <p style="margin:0;font-size:13.5px;line-height:1.65;color:rgba(17,21,17,0.65)">Even after finding companies, there was no quick way to understand fit. Users manually read 10–15 profiles before shortlisting anyone.</p>
+                <p class="sa-journey-copy">Even after finding companies, there was no quick way to understand fit. Users manually read 10–15 profiles before shortlisting anyone.</p>
               </article>
             </div>
 
@@ -1046,18 +1797,18 @@
               <div class="ga-impact">
                 <p class="ga-impact-num"><span data-count="12">12</span>+</p>
                 <p class="ga-impact-label">profiles opened</p>
-                <p class="mc-lede" style="margin-top:10px">On average, investors browsed 12 or more company profiles before shortlisting even a single one.</p>
+                <p class="mc-lede" style="margin-top:10px">Investors opened 12+ profiles before shortlisting even one company.</p>
               </div>
               <div class="ga-impact">
                 <p class="ga-impact-num"><span data-count="73">73</span>%</p>
                 <p class="ga-impact-label">sessions ended without a decision</p>
-                <p class="mc-lede" style="margin-top:10px">Nearly three in four research sessions ended with no shortlist, no action — just closed tabs.</p>
+                <p class="mc-lede" style="margin-top:10px">Nearly 3 in 4 sessions ended with no shortlist - just closed tabs.</p>
               </div>
             </div>
 
             <blockquote class="sa-quote">
               <p class="mc-eyebrow-bar" style="margin:0 0 10px">Design POV</p>
-              <p>"The problem wasn't that investors lacked data, it's that they couldn't translate their instincts into a structured query. The interface forced precision before they had it."</p>
+              <p>"Investors didn’t lack data - they couldn’t turn instinct into a query. The UI asked for precision before they had it."</p>
             </blockquote>
           </div>
         </section>
@@ -1065,24 +1816,33 @@
         <!-- PERSONAS -->
         <section id="personas" data-spy-target="personas" class="mc-section">
           <div class="ga-stack">
-            <p class="mc-eyebrow-bar">01.5 — Users</p>
+            <p class="mc-eyebrow-bar">01.5 - Users</p>
             <h2 class="mc-section-h2">Who Are the Users?</h2>
 
             <div class="ga-card-grid">
               <article class="sa-persona">
                 <div class="sa-persona-head">
-                  <span>Investor</span>
-                  <strong>VC / Angel Investor</strong>
+                  <div class="sa-persona-copy">
+                    <span>Investor</span>
+                    <strong>VC / Angel Investor</strong>
+                  </div>
+                  <span class="sa-persona-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3.5" y="7" width="17" height="13" rx="2"/>
+                      <path d="M8 7V5.8A1.8 1.8 0 0 1 9.8 4h4.4A1.8 1.8 0 0 1 16 5.8V7"/>
+                      <path d="M3.5 12h17"/>
+                    </svg>
+                  </span>
                 </div>
                 <div class="sa-persona-body">
                   <div class="sa-persona-workflow">
                     <small>Typical Workflow</small>
-                    Reviews 30–50 companies per week. Starts with a market thesis, uses search to identify targets, then deep-dives on shortlisted companies before partner meetings.
+                    Reviews 30–50 companies a week: thesis → search → shortlist → partner meeting.
                   </div>
                   <div>
                     <p class="mc-eyebrow-bar" style="margin:0 0 8px">Pain Points</p>
                     <ul class="ga-list">
-                      <li>Can't express a thesis as a search query — keywords return noise</li>
+                      <li>Can't express a thesis as a search query - keywords return noise</li>
                       <li>Evaluation takes 45 min per company across 5–7 tabs</li>
                       <li>Misses deals because research takes longer than the round</li>
                     </ul>
@@ -1092,19 +1852,29 @@
 
               <article class="sa-persona">
                 <div class="sa-persona-head">
-                  <span>Analyst</span>
-                  <strong>Investment Analyst</strong>
+                  <div class="sa-persona-copy">
+                    <span>Analyst</span>
+                    <strong>Investment Analyst</strong>
+                  </div>
+                  <span class="sa-persona-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M4 19V9"/>
+                      <path d="M10 19V5"/>
+                      <path d="M16 19v-7"/>
+                      <path d="M22 19H2"/>
+                    </svg>
+                  </span>
                 </div>
                 <div class="sa-persona-body">
                   <div class="sa-persona-workflow">
                     <small>Typical Workflow</small>
-                    Assigned a sector or thesis. Deep-dives into a cohort of companies, builds analysis docs, and synthesises findings into a partner-readable format — often overnight.
+                    Owns a sector or thesis, digs into a cohort, and turns findings into a partner-ready brief - often overnight.
                   </div>
                   <div>
                     <p class="mc-eyebrow-bar" style="margin:0 0 8px">Pain Points</p>
                     <ul class="ga-list">
                       <li>Manual copy-paste from profiles into spreadsheets</li>
-                      <li>Profiles have inconsistent structure — hard to compare</li>
+                      <li>Profiles have inconsistent structure - hard to compare</li>
                       <li>No way to generate a structured brief without starting from scratch</li>
                     </ul>
                   </div>
@@ -1113,18 +1883,28 @@
 
               <article class="sa-persona">
                 <div class="sa-persona-head">
-                  <span>VC / PE Team</span>
-                  <strong>PE Researcher / VC Team</strong>
+                  <div class="sa-persona-copy">
+                    <span>VC / PE Team</span>
+                    <strong>PE Researcher / VC Team</strong>
+                  </div>
+                  <span class="sa-persona-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="9" cy="8" r="3"/>
+                      <circle cx="17" cy="9.5" r="2.4"/>
+                      <path d="M3.5 19c.6-3 2.8-4.8 5.5-4.8S14 16 14.6 19"/>
+                      <path d="M14.2 14.6c1.3-.7 2.7-.8 4.3-.2 1.5.6 2.5 1.9 2.9 3.6"/>
+                    </svg>
+                  </span>
                 </div>
                 <div class="sa-persona-body">
                   <div class="sa-persona-workflow">
                     <small>Typical Workflow</small>
-                    Runs periodic screens across hundreds of companies. Monitors watchlists, flags new signals, and builds pattern recognition across cohorts rather than single-company depth.
+                    Screens hundreds of companies, watches lists for new signals, and looks for patterns across cohorts.
                   </div>
                   <div>
                     <p class="mc-eyebrow-bar" style="margin:0 0 8px">Pain Points</p>
                     <ul class="ga-list">
-                      <li>AI outputs are unverifiable — no source attribution</li>
+                      <li>AI outputs are unverifiable - no source attribution</li>
                       <li>No watchlist or portfolio-level monitoring view</li>
                       <li>Fundamental filters (EBITDA, margins) are imprecise or missing</li>
                     </ul>
@@ -1133,7 +1913,7 @@
               </article>
             </div>
 
-            <p class="mc-eyebrow-bar sa-subsection">Cross-Persona Research Findings — The Cost of the Broken Workflow</p>
+            <p class="mc-eyebrow-bar sa-subsection">Cross-Persona Research Findings - The Cost of the Broken Workflow</p>
             <div class="ga-impact-grid">
               <div class="ga-impact">
                 <p class="ga-impact-num">45–90 min</p>
@@ -1158,9 +1938,9 @@
         <!-- RESEARCH BLINDNESS -->
         <section id="research-blindness" data-spy-target="research-blindness" class="mc-section">
           <div class="ga-stack">
-            <p class="mc-eyebrow-bar">02.1 — User Research</p>
+            <p class="mc-eyebrow-bar">02.1 - User Research</p>
             <h2 class="mc-section-h2">Discovery Blindness</h2>
-            <p class="mc-lede">Users reported that traditional keyword search felt like <em>"looking for a needle in a haystack where the needle is invisible."</em></p>
+            <p class="mc-lede">Keyword search felt like <em>“looking for a needle in a haystack where the needle is invisible.”</em></p>
 
             <div class="ga-stack" style="gap:12px">
               <blockquote class="sa-quote">
@@ -1172,11 +1952,11 @@
                 <cite>Angel Investor, Tech Focus</cite>
               </blockquote>
               <blockquote class="sa-quote">
-                <p>"I spend more time configuring filters than actually evaluating companies. The tool is supposed to help me move faster — it does the opposite."</p>
+                <p>"I spend more time configuring filters than actually evaluating companies. The tool is supposed to help me move faster - it does the opposite."</p>
                 <cite>VC Partner, Growth Stage</cite>
               </blockquote>
               <blockquote class="sa-quote">
-                <p>"The search returns names. What I need is context — stage, traction, why it's even relevant to my current thesis. None of that comes through."</p>
+                <p>"The search returns names. What I need is context - stage, traction, why it's even relevant to my current thesis. None of that comes through."</p>
                 <cite>Investment Associate, Early-stage VC</cite>
               </blockquote>
               <blockquote class="sa-quote">
@@ -1203,33 +1983,33 @@
             <div class="ga-card-grid">
               <article class="ga-card">
                 <strong>What the research revealed · Search UX</strong>
-                <p>No guidance, no intent recognition — users started from zero every session.</p>
+                <p>No guidance or intent recognition - every session started from zero.</p>
               </article>
               <article class="ga-card">
                 <strong>Filter Panel</strong>
-                <p>40+ undifferentiated parameters with no hierarchy or investment-aware grouping.</p>
+                <p>40+ filters with no hierarchy or investment-aware grouping.</p>
               </article>
               <article class="ga-card">
                 <strong>Results View</strong>
-                <p>Flat, cluttered rows with no signal-to-noise differentiation or AI synthesis.</p>
+                <p>Flat, cluttered rows - little signal, no AI synthesis.</p>
               </article>
             </div>
 
             <div class="sa-callout">
               <p>"The average session involved 3 separate screens, 20+ minutes, and still ended without a shortlist."</p>
-              <p style="font-size:12px;color:rgba(17,21,17,0.5)">— Synthesised from 18 user interviews</p>
+              <p style="font-size:12px;color:rgba(17,21,17,0.5)"> -  Synthesised from 18 user interviews</p>
             </div>
 
             <div class="ga-chips">
-              <span class="ga-chip">Before — Fragmented UX</span>
-              <span class="ga-chip">3 problem screens · annotated</span>
+              <span class="ga-chip ga-chip--soft">Before - Fragmented UX</span>
+              <span class="ga-chip ga-chip--soft">3 problem screens · annotated</span>
             </div>
 
             <div class="sa-screen ga-media">
-              <div class="sa-screen-label"><span class="badge">A</span> Search — Empty State</div>
+              <div class="sa-screen-label"><span class="badge">A</span> Search - Empty State</div>
               <img
                 src="./assets/systematic-agent/before-search.png"
-                alt="Old search interface — no guidance"
+                alt="Old search interface - no guidance"
                 loading="lazy"
                 decoding="async"
               >
@@ -1237,19 +2017,19 @@
 
             <div class="ga-two">
               <div class="sa-screen ga-media">
-                <div class="sa-screen-label"><span class="badge">B</span> Filter Panel — Filters remained cognitively heavy</div>
+                <div class="sa-screen-label"><span class="badge">B</span> Filter Panel - Filters remained cognitively heavy</div>
                 <img
                   src="./assets/systematic-agent/before-filters.png"
-                  alt="Old filter panel — overwhelming complexity"
+                  alt="Old filter panel - overwhelming complexity"
                   loading="lazy"
                   decoding="async"
                 >
               </div>
               <div class="sa-screen ga-media">
-                <div class="sa-screen-label"><span class="badge">C</span> Filter Panel — Filters remained cognitively heavy</div>
+                <div class="sa-screen-label"><span class="badge">C</span> Filter Panel - Filters remained cognitively heavy</div>
                 <img
                   src="./assets/systematic-agent/before-results.png"
-                  alt="Old results view — cluttered and unscannable"
+                  alt="Old results view - cluttered and unscannable"
                   loading="lazy"
                   decoding="async"
                 >
@@ -1261,11 +2041,11 @@
         <!-- MARKET -->
         <section id="market" data-spy-target="market" class="mc-section">
           <div class="ga-stack">
-            <p class="mc-eyebrow-bar">03 — Competitive Landscape</p>
+            <p class="mc-eyebrow-bar">03 - Competitive Landscape</p>
             <h2 class="mc-section-h2">Market Landscape</h2>
-            <p class="mc-lede">Understanding what exists and where the gap lives.</p>
+            <p class="mc-lede">What exists today - and where the gap still is.</p>
 
-            <div class="ga-card-grid">
+            <div class="ga-card-grid sa-market-grid">
               <article class="ga-card">
                 <strong>Manual Tools</strong>
                 <p><strong>Approach:</strong> Keyword search + rigid filters</p>
@@ -1291,50 +2071,50 @@
         <!-- FUNNEL -->
         <section id="funnel" data-spy-target="funnel" class="mc-section">
           <div class="ga-stack">
-            <p class="mc-eyebrow-bar">04 — Strategic Insight</p>
+            <p class="mc-eyebrow-bar">04 - Strategic Insight</p>
             <h2 class="mc-section-h2">Where the Real Friction Lives</h2>
-            <p class="mc-lede">Mapping the investment funnel revealed something critical: the problem wasn't at the top it was in the middle.</p>
+            <p class="mc-lede">Mapping the funnel showed the real pain wasn’t at the top - it was in the middle.</p>
 
             <div class="sa-funnel">
               <article class="sa-funnel-step">
                 <div class="num">01</div>
                 <h4>Search</h4>
                 <div class="sub">The Query</div>
-                <p>Investor articulates initial intent via keyword or natural language</p>
+                <p>Investor states intent in keywords or plain language</p>
               </article>
               <article class="sa-funnel-step">
                 <div class="num">02</div>
                 <h4>Exploratory Filtering</h4>
                 <div class="sub">Defining Parameters</div>
-                <p>Users refine scope through filters — sector, growth, geography</p>
+                <p>Users refine by sector, growth, geography, and more</p>
               </article>
               <article class="sa-funnel-step is-peak">
                 <div class="num">03</div>
                 <h4>Insight Evaluation</h4>
                 <div class="sub">AI Pivot Point</div>
-                <p>The critical moment where AI-generated insights reduce manual effort</p>
+                <p>Where AI insights can cut the manual work</p>
               </article>
               <article class="sa-funnel-step">
                 <div class="num">04</div>
                 <h4>Shortlisting</h4>
                 <div class="sub">Building the Case</div>
-                <p>Promising companies are saved and organized for comparison</p>
+                <p>Save and organize promising companies to compare</p>
               </article>
               <article class="sa-funnel-step">
                 <div class="num">05</div>
                 <h4>Deep Analysis</h4>
                 <div class="sub">The Deep Dive</div>
-                <p>Final validation with structured data before investment decisions</p>
+                <p>Final check with structured data before deciding</p>
               </article>
             </div>
 
             <div class="sa-callout">
-              <p><strong>Friction Peak:</strong> Stage 3 — Insight Evaluation.</p>
-              <p>This is where investors stall. They have a shortlist but no fast way to assess fit. They read entire profiles, cross-reference tabs, and still feel unsure. It's not a data problem, it's a synthesis problem.</p>
+              <p><strong>Friction Peak:</strong> Stage 3 - Insight Evaluation.</p>
+              <p>This is where investors stall: a shortlist, but no fast way to judge fit. They read profiles, jump tabs, and still feel unsure. It’s a synthesis problem, not a data problem.</p>
               <div class="ga-chips" style="margin-top:12px">
-                <span class="ga-chip">Highest drop-off point</span>
-                <span class="ga-chip">Where AI creates maximum value</span>
-                <span class="ga-chip">Our primary design opportunity</span>
+                <span class="ga-chip ga-chip--soft">Highest drop-off point</span>
+                <span class="ga-chip ga-chip--soft">Where AI creates maximum value</span>
+                <span class="ga-chip ga-chip--soft">Our primary design opportunity</span>
               </div>
             </div>
           </div>
@@ -1343,9 +2123,9 @@
         <!-- EXPLORATIONS -->
         <section id="explorations" data-spy-target="explorations" class="mc-section">
           <div class="ga-stack">
-            <p class="mc-eyebrow-bar">05.1 — Design Explorations</p>
+            <p class="mc-eyebrow-bar">05.1 - Design Explorations</p>
             <h2 class="mc-section-h2">Explorations &amp; Trade-offs</h2>
-            <p class="mc-lede">We didn't land on chat immediately. Three directions were fully explored before committing.</p>
+            <p class="mc-lede">We didn’t jump straight to chat. We fully explored three directions first.</p>
             <div class="ga-chips">
               <span class="ga-chip">Design sprint</span>
               <span class="ga-chip">2 weeks ideation · 3 concepts</span>
@@ -1355,10 +2135,10 @@
               <article class="ga-option">
                 <span class="sa-tradeoff-tag">Explored &amp; Rejected</span>
                 <h4>Enhanced Filter System</h4>
-                <p>Rebuild filters with smarter groupings, saved templates, and contextual tooltips.</p>
+                <p>Smarter filter groups, saved templates, and contextual tooltips.</p>
                 <p style="margin-top:12px"><strong>For</strong></p>
                 <ul class="ga-list">
-                  <li>Familiar pattern — no learning curve</li>
+                  <li>Familiar pattern - no learning curve</li>
                   <li>Fast to ship with existing infrastructure</li>
                   <li>Predictable results</li>
                 </ul>
@@ -1374,17 +2154,17 @@
               <article class="ga-option">
                 <span class="sa-tradeoff-tag partial">Considered → Phased</span>
                 <h4>AI-Powered Dashboard</h4>
-                <p>Surface pre-computed recommendations on a personalized home screen based on portfolio + behaviour signals.</p>
+                <p>Home-screen recommendations from portfolio and behaviour signals.</p>
                 <p style="margin-top:12px"><strong>For</strong></p>
                 <ul class="ga-list">
                   <li>Reduces blank-slate problem</li>
-                  <li>Passive — no effort required from user</li>
+                  <li>Passive - no effort required from user</li>
                   <li>High-impact if signals are accurate</li>
                 </ul>
                 <p style="margin-top:12px"><strong>Against</strong></p>
                 <ul class="ga-list">
                   <li>Cold-start failure for new investors</li>
-                  <li>Opaque — users don't trust "magic" suggestions</li>
+                  <li>Opaque - users don't trust "magic" suggestions</li>
                   <li>Doesn't support thesis-driven exploration</li>
                 </ul>
                 <p class="ga-turn" style="margin-top:14px">Decision: Good for retention loop, not for initial discovery. Parked for Phase 2.</p>
@@ -1393,16 +2173,16 @@
               <article class="ga-option is-selected">
                 <span class="sa-tradeoff-tag chosen">Chosen Direction</span>
                 <h4>Conversational AI Interface</h4>
-                <p>Natural language input that interprets investor intent and maps to structured company data in real time.</p>
+                <p>Natural language that maps investor intent to company data in real time.</p>
                 <p style="margin-top:12px"><strong>For</strong></p>
                 <ul class="ga-list">
-                  <li>Meets investors at the exploration stage — not after</li>
+                  <li>Meets investors at the exploration stage - not after</li>
                   <li>Handles ambiguous, fuzzy intent naturally</li>
                   <li>Progressive disclosure reduces blank-slate anxiety</li>
                 </ul>
                 <p style="margin-top:12px"><strong>Against</strong></p>
                 <ul class="ga-list">
-                  <li>FTUE is critical — poor first run kills adoption</li>
+                  <li>FTUE is critical - poor first run kills adoption</li>
                   <li>Higher engineering complexity vs filter rebuild</li>
                   <li>Requires careful error state design</li>
                 </ul>
@@ -1415,17 +2195,17 @@
               <article class="ga-approach">
                 <p class="mc-eyebrow-bar" style="margin:0 0 8px">Trade-off</p>
                 <h4>Exploration speed vs precision</h4>
-                <p>We prioritized exploration — accepting that results would be less precise than filter-based search in exchange for reducing the barrier to start.</p>
+                <p>We chose exploration over perfect precision so investors could start without knowing every filter.</p>
               </article>
               <article class="ga-approach">
                 <p class="mc-eyebrow-bar" style="margin:0 0 8px">Trade-off</p>
                 <h4>AI flexibility vs trust</h4>
-                <p>Trade-off: full autonomy vs explainability. We chose to surface reasoning ("Here's why I surfaced these companies") to build trust with skeptical institutional investors.</p>
+                <p>We chose explainability over full autonomy - showing why companies surfaced, to earn trust.</p>
               </article>
               <article class="ga-approach">
                 <p class="mc-eyebrow-bar" style="margin:0 0 8px">Trade-off</p>
                 <h4>Full redesign vs chat overlay</h4>
-                <p>We prioritized a chat overlay pattern — preserving the existing search as fallback. This reduced adoption risk while allowing the new system to prove itself.</p>
+                <p>We shipped chat as an overlay and kept classic search as a fallback - lower adoption risk while the new flow proved itself.</p>
               </article>
             </div>
           </div>
@@ -1434,31 +2214,31 @@
         <!-- CONSTRAINTS -->
         <section id="constraints" data-spy-target="constraints" class="mc-section">
           <div class="ga-stack">
-            <p class="mc-eyebrow-bar">05.2 — Constraints &amp; Scope</p>
+            <p class="mc-eyebrow-bar">05.2 - Constraints &amp; Scope</p>
             <h2 class="mc-section-h2">Constraints &amp; Prioritization</h2>
-            <p class="mc-lede">Good design isn't just what you ship — it's what you decide not to ship, and why.</p>
+            <p class="mc-lede">Good design is also what you choose not to ship - and why.</p>
 
             <div class="ga-card-grid">
               <article class="ga-card">
                 <strong>Time Challenge</strong>
                 <p><strong>Only 8 weeks to ship</strong></p>
-                <p>We had a hard deadline tied to a board review. There was no time to do things one step at a time — design, research, and building all had to happen at once.</p>
-                <p class="ga-chip" style="display:inline-block;margin:10px 0">High Impact</p>
-                <p>We tested with real users in Week 3 instead of waiting. It wasn't perfect, but it gave us feedback fast enough to act on.</p>
+                <p>A board deadline meant design, research, and build had to run in parallel.</p>
+                <p class="ga-chip ga-chip--tint-impact" style="display:inline-block;margin:10px 0">High Impact</p>
+                <p>We tested with real users in Week 3 - imperfect, but fast enough to steer the work.</p>
               </article>
               <article class="ga-card">
                 <strong>Data Challenge</strong>
                 <p><strong>The AI wasn't fully ready yet</strong></p>
-                <p>The AI could understand most questions, but not all. It got things right about 74% of the time at the start — which meant it would sometimes miss the mark.</p>
-                <p class="ga-chip" style="display:inline-block;margin:10px 0">Design Workaround</p>
-                <p>We designed the product to handle AI mistakes gracefully. Every response showed how confident the AI was, and users could easily rephrase if something didn't look right.</p>
+                <p>Early AI accuracy sat around 74% - good on many queries, wrong often enough to plan for.</p>
+                <p class="ga-chip ga-chip--tint-workaround" style="display:inline-block;margin:10px 0">Design Workaround</p>
+                <p>We designed for imperfect AI: show confidence, and make it easy to rephrase.</p>
               </article>
               <article class="ga-card">
                 <strong>Engineering Challenge</strong>
                 <p><strong>Engineering had limited capacity</strong></p>
-                <p>The AI chat and the existing search ran on the same backend. Adding new features required the ML team — and they were already stretched thin.</p>
-                <p class="ga-chip" style="display:inline-block;margin:10px 0">MVP Scope Cut</p>
-                <p>We kept the first version simple and used what already existed. Features like memory across conversations were saved for a later release.</p>
+                <p>Chat and search shared a backend. New ML work competed with an already stretched team.</p>
+                <p class="ga-chip ga-chip--tint-scope" style="display:inline-block;margin:10px 0">MVP Scope Cut</p>
+                <p>v1 stayed simple and reused what we had. Cross-session memory waited for a later release.</p>
               </article>
             </div>
           </div>
@@ -1467,37 +2247,39 @@
         <!-- SOLUTION -->
         <section id="solution" data-spy-target="solution" class="mc-section">
           <div class="ga-stack">
-            <p class="mc-eyebrow-bar">06 — The Solution</p>
+            <p class="mc-eyebrow-bar">06 - The Solution</p>
             <h2 class="mc-section-h2">A Two-Part Response</h2>
-            <p class="mc-lede">Each part of the solution directly targets a specific friction point revealed in the funnel analysis.</p>
+            <p class="mc-lede">Each part targets a specific friction we saw in the funnel.</p>
 
             <div class="sa-callout">
               <p class="mc-eyebrow-bar" style="margin:0 0 8px">So we designed two focused interventions</p>
-              <p>The funnel showed <strong>discovery friction</strong> at Stage 1–2 and  at Stage 3. Rather than one universal solution, we built two complementary systems each tackling a distinct failure mode.<strong>evaluation friction</strong></p>
+              <p>The funnel showed <strong>discovery friction</strong> at Stages 1–2 and <strong>evaluation friction</strong> at Stage 3. Instead of one catch-all fix, we built two complementary systems.</p>
             </div>
 
-            <div class="ga-two">
-              <article class="ga-card">
-                <p class="mc-eyebrow-bar" style="margin:0 0 8px">01 · Problem addressed: Analysis paralysis at the search stage</p>
+            <div class="ga-two sa-solution-pair">
+              <article class="ga-card sa-solution-card is-one">
+                <span class="sa-solution-num" aria-hidden="true">01</span>
+                <p class="sa-solution-label">Search stage · Analysis paralysis</p>
                 <strong>Conversational Discovery</strong>
-                <p style="margin-top:12px"><strong>Key Features</strong></p>
+                <p class="sa-solution-kicker">Key Features</p>
                 <ul class="ga-list">
                   <li>Natural language queries instead of rigid filters</li>
                   <li>Progressive disclosure of options</li>
                   <li>Context-aware suggestions based on intent</li>
                 </ul>
-                <p class="ga-turn" style="margin-top:14px">Expected Impact: Moves users from blank-slate anxiety to confident exploration in under 60 seconds.</p>
+                <p class="ga-turn">Impact: from blank-slate anxiety to confident exploration in under 60 seconds.</p>
               </article>
-              <article class="ga-card">
-                <p class="mc-eyebrow-bar" style="margin:0 0 8px">02 · Problem addressed: Manual synthesis at the evaluation stage</p>
+              <article class="ga-card sa-solution-card is-two">
+                <span class="sa-solution-num" aria-hidden="true">02</span>
+                <p class="sa-solution-label">Evaluation stage · Manual synthesis</p>
                 <strong>AI Insights Engine</strong>
-                <p style="margin-top:12px"><strong>Key Features</strong></p>
+                <p class="sa-solution-kicker">Key Features</p>
                 <ul class="ga-list">
                   <li>Auto-generated company summaries</li>
                   <li>Risk assessment highlighting</li>
                   <li>Investment relevance scoring</li>
                 </ul>
-                <p class="ga-turn" style="margin-top:14px">Expected Impact: Converts a 2-hour profile analysis into a 10-minute structured evaluation.</p>
+                <p class="ga-turn">Impact: turns a ~2-hour profile read into a ~10-minute structured evaluation.</p>
               </article>
             </div>
           </div>
@@ -1507,18 +2289,18 @@
         <!-- DESIGN SOLUTIONS -->
         <section id="design-solutions" data-spy-target="design-solutions" class="mc-section">
           <div class="ga-stack">
-            <p class="mc-eyebrow-bar">05 — Design Solutions</p>
-            <h2 class="mc-section-h2">Solution Part 1<br>Conversational Discovery</h2>
+            <p class="mc-eyebrow-bar">05 - Design Solutions</p>
+            <h2 class="mc-section-h2"><span class="sa-h2-prefix">Solution Part 1:</span> Conversational Discovery</h2>
 
-            <div class="ga-two sa-reveal">
+            <div class="ga-two sa-equal-cards sa-reveal">
               <article class="ga-card">
                 <strong>Why Chat?</strong>
                 <ul class="ga-list">
                   <li>Investors start with vague, exploratory questions</li>
-                  <li>Chat allowed ambiguity as valid input — no rigid filters needed</li>
+                  <li>Chat allowed ambiguity as valid input - no rigid filters needed</li>
                 </ul>
               </article>
-              <article class="ga-card sa-reveal sa-reveal-delay-1">
+              <article class="ga-card">
                 <strong>What made this different from generic chat?</strong>
                 <ul class="ga-list">
                   <li>Grounded in Systematic's internal database</li>
@@ -1528,7 +2310,7 @@
               </article>
             </div>
 
-            <!-- Design Solution Part 01 — Figma components in annotated flow -->
+            <!-- Design Solution Part 01 - Figma components in annotated flow -->
             <div class="sa-part01">
             <div class="sa-part sa-reveal">
               <div class="sa-part-intro">
@@ -1565,7 +2347,7 @@
                 <h3 class="ga-decision">FTUE Design</h3>
               </div>
               <div class="ga-media sa-reveal sa-reveal-delay-1">
-                <img src="./assets/systematic-agent/part01/screen-ftue.png?v=hq1" alt="FTUE Design — Systematic Agent first-time experience" width="687" height="400" loading="lazy" decoding="async">
+                <img src="./assets/systematic-agent/part01/screen-ftue.png?v=hq1" alt="FTUE Design - Systematic Agent first-time experience" width="687" height="400" loading="lazy" decoding="async">
               </div>
             </div>
 
@@ -1593,15 +2375,15 @@
                 </div>
                 <div class="sa-flow-arrow" aria-hidden="true"></div>
                 <div class="sa-flow-note">
-                  <strong>Click on the Search Bar</strong>
-                  <p>Opens the recent searches (if available), or allows the user to begin typing a query. This action also enables direct access to the AI chat mode.</p>
+                  <strong>Click the search bar</strong>
+                  <p>Shows recent searches when available - or lets people type and jump into AI chat.</p>
                 </div>
               </div>
 
               <div class="sa-flow-row sa-reveal sa-reveal-delay-3">
                 <div class="sa-flow-note">
-                  <strong>When the chat is collapsed and a new AI response is received, the “Ask Agent” button changes:</strong>
-                  <p>A bell icon with a highlighted border and sound alert, notifying users of updates without interrupting their flow.</p>
+                  <strong>When chat is collapsed and a new reply arrives</strong>
+                  <p>Ask Agent shows a bell + highlight so updates don’t interrupt the current flow.</p>
                 </div>
                 <div class="sa-flow-arrow" aria-hidden="true"></div>
                 <div class="sa-flow-visual">
@@ -1623,15 +2405,14 @@
                   <article class="ga-card">
                     <strong>Header Icons:</strong>
                     <p>Collapse · History · New Chat</p>
-                    <p style="margin-top:8px;font-size:13px;color:rgba(17,21,17,0.5)">Hover states exist for all icons.</p>
                   </article>
                   <article class="ga-card">
                     <strong>Chat Response Format</strong>
                     <p>Supports: Text, Tables, and Links.</p>
                   </article>
                   <article class="ga-card">
-                    <strong>If the answer is long:</strong>
-                    <p>Add “View All” → redirects to specific tab (Investor, Competitor, etc.)</p>
+                    <strong>If the answer is long</strong>
+                    <p>“View all” opens the relevant profile tab.</p>
                   </article>
                 </div>
               </div>
@@ -1654,19 +2435,20 @@
               <div class="ga-two sa-reveal sa-reveal-delay-1">
                 <div class="sa-anno-list">
                   <article class="ga-card">
-                    <strong>Clicking on any chat:</strong>
-                    <p>Opens last message, allows scroll to older ones</p>
+                    <strong>Open any chat</strong>
+                    <p>Jumps to the latest message; older ones stay scrollable.</p>
                   </article>
                   <article class="ga-card">
-                    <strong>History sorted by most recent first</strong>
-                    <p>Clicking History icon expands sidebar</p>
+                    <strong>Most recent first</strong>
+                    <p>History icon opens the sidebar.</p>
                   </article>
                   <article class="ga-card">
                     <strong>3 Dot Options</strong>
                     <p>Rename · Delete</p>
                   </article>
                   <article class="ga-card">
-                    <strong>Pagination or “Load More” if chat list is long</strong>
+                    <strong>Load more</strong>
+                    <p>Long histories don’t dump everything at once.</p>
                   </article>
                 </div>
                 <div class="ga-media">
@@ -1684,14 +2466,13 @@
                   <img src="./assets/systematic-agent/part01/screen-limits.png?v=hq1" alt="Free chat limits UI from Figma" width="457" height="414" loading="lazy" decoding="async">
                 </div>
                 <div class="sa-limit-rules">
-                  <p><strong>Access Rules:</strong><br>Total Free Messages: 7 across all time<br>Weekly Limit: 3 (resets every Monday)<br>Subscribed Users / Trial Users: Unlimited access<br>Hover states exist for all icons.</p>
-                  <p><strong>UX Behavior:</strong><br>Show banner before chat and after each chat</p>
-                  <p><strong>Show limit messages:</strong><br>3/week: “You’ve used 3 chats this week. Come back next week or subscribe.”<br>7/total: “Free chats used up. Subscribe for unlimited access.”</p>
+                  <p>Free users get a small weekly allowance (and a hard total cap). Paid and trial users get unlimited chats.</p>
+                  <p>We show a clear banner before and after each chat, so limits never feel like a surprise dead end.</p>
                 </div>
               </div>
               <div class="sa-part-block sa-reveal sa-reveal-delay-2">
                 <p class="mc-eyebrow-bar">Bonus: UX Micro-interactions</p>
-                <p class="mc-lede" style="margin-bottom:12px">We didn’t want a boring chat box. We designed:</p>
+                <p class="mc-lede" style="margin-bottom:12px">A few details that kept the chat feeling useful, not generic:</p>
                 <div class="sa-micro-row">
                   <article class="ga-card">
                     <strong>Threaded responses (with loading &amp; typing states)</strong>
@@ -1713,7 +2494,7 @@
                 <div class="ga-media">
                   <img
                     src="./assets/systematic-agent/part01/screen-loading.png?v=hq4"
-                    alt="Loading state — Ask Systematic Agent input with response loader from Figma"
+                    alt="Loading state - Ask Systematic Agent input with response loader from Figma"
                     width="1036"
                     height="245"
                     loading="lazy"
@@ -1764,20 +2545,19 @@
               <div class="sa-iterations-intro">
                 <p class="mc-eyebrow-bar">Design Iterations</p>
                 <h3 class="ga-decision">Four directions before we locked the final interaction</h3>
-                <p class="mc-lede">Each version taught us something. We cut the ones that stalled discovery — and shipped the one that matched how investors actually work.</p>
+                <p class="mc-lede">Each version taught us something. We cut what stalled discovery and shipped what matched how investors actually work.</p>
               </div>
 
               <div class="sa-iterations">
                 <article class="sa-iteration">
                   <div class="sa-iteration-head">
                     <h4>Design v1</h4>
-                    <span class="sa-tradeoff-tag">Removed</span>
                   </div>
-                  <p class="sa-iteration-copy">Empty “Systematic Answers” panel with only a Let’s Chat CTA and no prompts or history.<br>We removed it — the blank slate left investors unsure how to start a useful query.</p>
+                  <p class="sa-iteration-copy">Empty panel with only a Let’s Chat CTA - no prompts or history.<br>Removed: the blank slate left investors unsure how to start.</p>
                   <div class="ga-media">
                     <img
                       src="./assets/systematic-agent/iteration-v1.png?v=hq1"
-                      alt="Design v1 — empty Systematic Answers chat panel over company profile"
+                      alt="Design v1 - empty Systematic Answers chat panel over company profile"
                       width="1400"
                       height="815"
                       loading="lazy"
@@ -1789,13 +2569,12 @@
                 <article class="sa-iteration">
                   <div class="sa-iteration-head">
                     <h4>Design v2</h4>
-                    <span class="sa-tradeoff-tag">Removed</span>
                   </div>
-                  <p class="sa-iteration-copy">Added prompt chips and an ask field, but the body stayed empty and floated without session structure.<br>We removed it — better entry, still no support for ongoing research.</p>
+                  <p class="sa-iteration-copy">Prompt chips helped entry, but the body stayed empty with no session structure.<br>Removed: better start, still weak for ongoing research.</p>
                   <div class="ga-media">
                     <img
                       src="./assets/systematic-agent/iteration-v2.png?v=hq1"
-                      alt="Design v2 — chat panel with prompt chips and empty conversation body"
+                      alt="Design v2 - chat panel with prompt chips and empty conversation body"
                       width="1400"
                       height="815"
                       loading="lazy"
@@ -1807,13 +2586,12 @@
                 <article class="sa-iteration">
                   <div class="sa-iteration-head">
                     <h4>Design v3</h4>
-                    <span class="sa-tradeoff-tag">Removed</span>
                   </div>
-                  <p class="sa-iteration-copy">Added a history sidebar and table-style answers, but topics were placeholders and the agent stayed a heavy overlay.<br>We removed it — closer on structure, not yet scannable or trusted enough for diligence.</p>
+                  <p class="sa-iteration-copy">History sidebar and table answers helped, but topics were placeholders and the overlay still felt heavy.<br>Removed: closer structurally, not trusted enough for diligence yet.</p>
                   <div class="ga-media">
                     <img
                       src="./assets/systematic-agent/iteration-v3.png?v=hq1"
-                      alt="Design v3 — chat with history sidebar and structured table responses"
+                      alt="Design v3 - chat with history sidebar and structured table responses"
                       width="1400"
                       height="815"
                       loading="lazy"
@@ -1824,14 +2602,13 @@
 
                 <article class="sa-iteration is-final is-selected">
                   <div class="sa-iteration-head">
-                    <h4>Design v4 — Final</h4>
-                    <span class="sa-tradeoff-tag chosen">Selected</span>
+                    <h4>Design v4 - Final</h4>
                   </div>
-                  <p class="sa-iteration-copy">Real session history, sourced insight cards, loading states, and search/agent entry in the top nav.<br>We selected it — it matched how investors explore companies and build conviction in-flow.</p>
+                  <p class="sa-iteration-copy">Real history, sourced insight cards, loading states, and search/agent in the top nav.<br>Selected: it matched how investors explore and build conviction in-flow.</p>
                   <div class="ga-media">
                     <img
                       src="./assets/systematic-agent/iteration-v4.png?v=hq1"
-                      alt="Design v4 Final — mature Systematic Agent with history, sourced insights, and nav search"
+                      alt="Design v4 Final - mature Systematic Agent with history, sourced insights, and nav search"
                       width="1400"
                       height="815"
                       loading="lazy"
@@ -1843,8 +2620,8 @@
             </div>
 
             <div class="sa-banner">
-              <p class="eyebrow">Problem 2 — Emerging from the data</p>
-              <h3>Chat solved discovery. But evaluation was still broken.</h3>
+              <p class="eyebrow">Problem 2 - Emerging from the data</p>
+              <h3>Chat fixed discovery. Evaluation was still broken.</h3>
               <p>Investors could now find companies, but still struggled to answer the critical question: <em>"Is this company worth my time and investment?"</em></p>
               <div class="ga-card-grid">
                 <div class="issue">
@@ -1857,17 +2634,17 @@
                 </div>
                 <div class="issue">
                   <strong>Comparison required heavy manual effort</strong>
-                  <span>No synthesis — just raw data dumps</span>
+                  <span>No synthesis - just raw data dumps</span>
                 </div>
               </div>
             </div>
 
-            <p class="mc-eyebrow-bar">05 — Design Solutions</p>
-            <h2 class="mc-section-h2">Solution Part 2<br>AI Insights Engine</h2>
-            <p class="mc-lede">We introduced AI Insights directly on company profiles to support fast, confident evaluation.</p>
+            <p class="mc-eyebrow-bar">05 - Design Solutions</p>
+            <h2 class="mc-section-h2"><span class="sa-h2-prefix">Solution Part 2:</span> AI Insights Engine</h2>
+            <p class="mc-lede">AI Insights live on the company profile - so evaluation is faster and clearer.</p>
 
-            <div class="ga-two">
-              <div class="ga-stack" style="gap:14px">
+            <div class="ga-two sa-insights-layout">
+              <div class="ga-stack sa-insights-copy">
                 <article class="ga-card">
                   <strong>What AI Insights Surfaced</strong>
                   <ul class="ga-list">
@@ -1877,9 +2654,9 @@
                     <li>Investment relevance</li>
                   </ul>
                 </article>
-                <div class="sa-part-block">
+                <div class="sa-part-block sa-principles-block">
                   <p class="mc-eyebrow-bar">Design Principles</p>
-                  <div class="ga-approach-grid">
+                  <div class="ga-approach-grid sa-principles-stack">
                     <article class="ga-approach">
                       <h4>Scan-first, explainable</h4>
                       <p>Users can quickly skim before diving deep.</p>
@@ -1894,12 +2671,12 @@
                     </article>
                   </div>
                 </div>
-                <div class="sa-callout">
-                  <p><strong>This reduced the need for manual synthesis while preserving access to deeper data.</strong></p>
+                <div class="sa-callout sa-insights-callout">
+                  <p><strong>Less manual synthesis, without hiding the deeper data.</strong></p>
                   <p>Better context → better insights → higher trust → better decisions</p>
                 </div>
               </div>
-              <div class="ga-media">
+              <div class="ga-media sa-insights-media">
                 <img
                   src="./assets/systematic-agent/ai-insights.png"
                   alt="AI Insights panel"
@@ -1909,16 +2686,16 @@
               </div>
             </div>
 
-            <p class="mc-eyebrow-bar sa-subsection">Before vs After — Company Profile</p>
+            <p class="mc-eyebrow-bar sa-subsection">Before vs After - Company Profile</p>
             <h3 class="ga-decision">What the evaluation experience transformed into</h3>
-            <p class="mc-lede">Five key design improvements: visual hierarchy, readability, AI explainability, trust signals, and decision support — all addressed in a single redesigned profile view.</p>
+            <p class="mc-lede">One profile redesign covered hierarchy, readability, AI explainability, trust, and decision support.</p>
 
-            <div class="ga-chips">
-              <span class="ga-chip">Hierarchy</span>
-              <span class="ga-chip">Readability</span>
-              <span class="ga-chip">AI Explainability</span>
-              <span class="ga-chip">Trust</span>
-              <span class="ga-chip">Decision Support</span>
+            <div class="ga-chips sa-trait-chips">
+              <span class="ga-chip ga-chip--tint-hierarchy">Hierarchy</span>
+              <span class="ga-chip ga-chip--tint-readability">Readability</span>
+              <span class="ga-chip ga-chip--tint-ai">AI Explainability</span>
+              <span class="ga-chip ga-chip--tint-trust">Trust</span>
+              <span class="ga-chip ga-chip--tint-decision">Decision Support</span>
             </div>
 
             <div class="ga-two">
@@ -1949,10 +2726,10 @@
                       <div><small style="color:rgba(17,21,17,0.4)">Founded</small><br><strong>2019</strong></div>
                       <div><small style="color:rgba(17,21,17,0.4)">HQ</small><br><strong>San Francisco</strong></div>
                     </div>
-                    <p style="margin:12px 0 0;font-size:11px;color:rgba(17,21,17,0.35)">Investment Potential — see Financials tab for more</p>
+                    <p style="margin:12px 0 0;font-size:11px;color:rgba(17,21,17,0.35)">Investment Potential - see Financials tab for more</p>
                   </div>
                   <div class="sa-mock-footer before">
-                    No hierarchy — all data presented equally<br>
+                    No hierarchy - all data presented equally<br>
                     Key signals buried in unstructured text<br>
                     No AI synthesis or investment context<br>
                     Requires 5+ tab switches for a full view
@@ -1978,14 +2755,14 @@
                   </div>
                   <div class="sa-mock-body">
                     <p class="mc-eyebrow-bar" style="margin:0 0 8px">AI Summary · 47 signals</p>
-                    <p style="margin:0 0 14px;line-height:1.6">NeuralFlow builds real-time ML inference infrastructure. Strong NRR (142%), expanding enterprise contracts, and capital-efficient growth signal clear product-market fit in a high-demand category.</p>
+                    <p style="margin:0 0 14px;line-height:1.6">NeuralFlow builds real-time ML inference infra. Strong NRR, growing enterprise deals, and efficient growth point to clear product-market fit.</p>
                     <p class="mc-eyebrow-bar" style="margin:0 0 8px">Investment Signals</p>
                     <ul class="ga-list">
-                      <li>142% NRR — strong product retention</li>
+                      <li>142% NRR - strong product retention</li>
                       <li>Enterprise ACV growing 3x YoY</li>
                       <li>Founding team: 2x ML infra, 1x enterprise SaaS</li>
                       <li>△ Cloud provider competition entering segment</li>
-                      <li>✕ Runway: 14 months — raise likely in Q2</li>
+                      <li>✕ Runway: 14 months - raise likely in Q2</li>
                     </ul>
                     <div class="ga-chips" style="margin-top:12px">
                       <span class="ga-chip">ARR $12M</span>
@@ -1996,18 +2773,18 @@
                     <p style="margin:12px 0 0;font-size:11px;color:rgba(17,21,17,0.55)">AI confidence: High · Based on verified data · View sources</p>
                   </div>
                   <div class="sa-mock-footer after">
-                    Clear hierarchy — scan in under 60 seconds<br>
+                    Clear hierarchy - scan in under 60 seconds<br>
                     AI summary surfaces key signals upfront<br>
-                    Sourced outputs — usable in formal memos<br>
-                    All context in one view — no tab switching
+                    Sourced outputs - usable in formal memos<br>
+                    All context in one view - no tab switching
                   </div>
                 </div>
               </div>
             </div>
 
-            <p class="mc-eyebrow-bar sa-subsection">Premium Interaction — Compare Companies</p>
+            <p class="mc-eyebrow-bar sa-subsection">Premium Interaction - Compare Companies</p>
             <h3 class="ga-decision">Side-by-Side AI Comparison</h3>
-            <p class="mc-lede">Investors can select companies from their results and compare them across standardised dimensions — including an AI-generated fit score tied to their original thesis query.</p>
+            <p class="mc-lede">Pick companies from results and compare them side by side - including an AI fit score tied to the original thesis.</p>
 
             <div class="ga-media" style="overflow-x:auto">
               <div class="sa-mock">
@@ -2043,29 +2820,29 @@
         <!-- USABILITY -->
         <section id="usability" data-spy-target="usability" class="mc-section">
           <div class="ga-stack">
-            <p class="mc-eyebrow-bar">07 — Usability Testing &amp; Iteration</p>
+            <p class="mc-eyebrow-bar">07 - Usability Testing &amp; Iteration</p>
             <h2 class="mc-section-h2">What We Tested.<br>What We Changed.</h2>
-            <p class="mc-lede">Two rounds of testing with investors surfaced critical issues — and drove the most impactful design iterations.</p>
+            <p class="mc-lede">Two test rounds with investors surfaced the issues that drove the biggest design changes.</p>
 
             <div class="ga-chips">
-              <span class="ga-chip">Critical issues fixed 1</span>
-              <span class="ga-chip">High-priority changes 2</span>
-              <span class="ga-chip">Design iterations between rounds 3</span>
-              <span class="ga-chip">SUS score improvement +18pt</span>
+              <span class="ga-chip ga-chip--tint-critical">Critical issues fixed 1</span>
+              <span class="ga-chip ga-chip--tint-priority">High-priority changes 2</span>
+              <span class="ga-chip ga-chip--tint-iterate">Design iterations between rounds 3</span>
+              <span class="ga-chip ga-chip--tint-sus">SUS score improvement +18pt</span>
             </div>
 
             <div class="ga-two">
               <article class="ga-card">
-                <strong>Round 1 · Guerrilla testing — Week 3</strong>
-                <p>Unmoderated prototype test with 6 internal users (analysts + ops). Figma prototype, 3 tasks.</p>
+                <strong>Round 1 · Guerrilla testing - Week 3</strong>
+                <p>Unmoderated Figma test with 6 internal users. Three tasks.</p>
                 <div class="ga-chips" style="margin-top:10px">
                   <span class="ga-chip">6 participants</span>
                   <span class="ga-chip">Focus: FTUE + first chat query</span>
                 </div>
               </article>
               <article class="ga-card">
-                <strong>Round 2 · Moderated sessions — Week 6</strong>
-                <p>45-min moderated sessions with 8 external investors. Think-aloud protocol. Live staging environment.</p>
+                <strong>Round 2 · Moderated sessions - Week 6</strong>
+                <p>45-min moderated sessions with 8 investors on staging. Think-aloud.</p>
                 <div class="ga-chips" style="margin-top:10px">
                   <span class="ga-chip">8 participants</span>
                   <span class="ga-chip">Focus: Full flow + AI insights panel</span>
@@ -2076,94 +2853,142 @@
             <div class="sa-finding">
               <div class="sa-finding-id">
                 <span class="fid">F1</span>
-                <span class="sa-sev">Critical</span>
+                <span class="sa-sev is-critical">Critical</span>
               </div>
-              <div>
-                <p class="mc-eyebrow-bar" style="margin:0 0 8px">Finding</p>
-                <p style="font-weight:700;margin:0 0 8px">Blank chat input caused paralysis</p>
-                <p style="margin:0 0 10px;font-size:13.5px;line-height:1.65;color:rgba(17,21,17,0.65)">4 of 6 users in Round 1 stalled at the empty chat input for 15+ seconds. The open-ended "Ask anything" prompt was too vague for professional users with a specific research context.</p>
-                <p style="margin:0;font-size:13.5px;color:#9a2f22;font-style:italic">We assumed investors would know how to start. They didn't.</p>
+              <div class="sa-finding-body">
+                <p class="mc-eyebrow-bar">Finding</p>
+                <p class="sa-finding-title">Blank chat input caused paralysis</p>
+                <p class="sa-finding-copy">4 of 6 users in Round 1 stalled at the empty chat input for 15+ seconds. The open-ended "Ask anything" prompt was too vague for professional users with a specific research context.</p>
+                <p class="sa-finding-insight">We assumed investors would know how to start. They didn't.</p>
               </div>
-              <div>
-                <p class="mc-eyebrow-bar" style="margin:0 0 8px">What Changed</p>
+              <div class="sa-finding-change">
+                <p class="mc-eyebrow-bar">What Changed</p>
                 <span class="sa-tradeoff-tag">Redesign</span>
-                <p style="margin:0 0 10px;font-size:13.5px;line-height:1.65">Added contextual prompt suggestions (3 pre-filled query starters based on user role). Redesigned empty state to feel like an invitation, not a blank form.</p>
-                <p style="margin:0;font-size:12px;font-weight:600;color:#1a7a45">Validated in next round</p>
+                <p class="sa-finding-copy">Added contextual prompt suggestions (3 pre-filled query starters based on user role). Redesigned empty state to feel like an invitation, not a blank form.</p>
+                <p class="sa-finding-status">Validated in next round</p>
               </div>
             </div>
 
             <div class="sa-finding">
               <div class="sa-finding-id">
                 <span class="fid">F2</span>
-                <span class="sa-sev">High</span>
+                <span class="sa-sev is-high">High</span>
               </div>
-              <div>
-                <p class="mc-eyebrow-bar" style="margin:0 0 8px">Finding</p>
-                <p style="font-weight:700;margin:0 0 8px">AI response format was unreadable at speed</p>
-                <p style="margin:0 0 10px;font-size:13.5px;line-height:1.65;color:rgba(17,21,17,0.65)">In Round 2, investors wanted to scan results in under 10 seconds. Prose-style AI responses required reading, not scanning — users skipped them entirely and went straight to the company list.</p>
-                <p style="margin:0;font-size:13.5px;color:#9a2f22;font-style:italic">We over-indexed on narrative response quality and under-indexed on scan-ability.</p>
+              <div class="sa-finding-body">
+                <p class="mc-eyebrow-bar">Finding</p>
+                <p class="sa-finding-title">AI response format was unreadable at speed</p>
+                <p class="sa-finding-copy">In Round 2, investors wanted to scan results in under 10 seconds. Prose-style AI responses required reading, not scanning - users skipped them entirely and went straight to the company list.</p>
+                <p class="sa-finding-insight">We over-indexed on narrative response quality and under-indexed on scan-ability.</p>
               </div>
-              <div>
-                <p class="mc-eyebrow-bar" style="margin:0 0 8px">What Changed</p>
+              <div class="sa-finding-change">
+                <p class="mc-eyebrow-bar">What Changed</p>
                 <span class="sa-tradeoff-tag">Format overhaul</span>
-                <p style="margin:0 0 10px;font-size:13.5px;line-height:1.65">Restructured all AI responses to lead with a bolded summary line followed by scannable bullets. Tables replaced prose for comparative data.</p>
-                <p style="margin:0;font-size:12px;font-weight:600;color:#1a7a45">Validated in next round</p>
+                <p class="sa-finding-copy">Restructured all AI responses to lead with a bolded summary line followed by scannable bullets. Tables replaced prose for comparative data.</p>
+                <p class="sa-finding-status">Validated in next round</p>
               </div>
             </div>
 
             <div class="sa-finding">
               <div class="sa-finding-id">
                 <span class="fid">F3</span>
-                <span class="sa-sev">High</span>
+                <span class="sa-sev is-high">High</span>
               </div>
-              <div>
-                <p class="mc-eyebrow-bar" style="margin:0 0 8px">Finding</p>
-                <p style="font-weight:700;margin:0 0 8px">"New Chat" created unexpected anxiety</p>
-                <p style="margin:0 0 10px;font-size:13.5px;line-height:1.65;color:rgba(17,21,17,0.65)">3 users hesitated before clicking "New Chat" — they feared losing the current context or search history. One user said: "If I start over, I lose everything I've done."</p>
-                <p style="margin:0;font-size:13.5px;color:#9a2f22;font-style:italic">The "New Chat" interaction was treated as a reset, not as a fork.</p>
+              <div class="sa-finding-body">
+                <p class="mc-eyebrow-bar">Finding</p>
+                <p class="sa-finding-title">"New Chat" created unexpected anxiety</p>
+                <p class="sa-finding-copy">3 users hesitated before clicking "New Chat" - they feared losing the current context or search history. One user said: "If I start over, I lose everything I've done."</p>
+                <p class="sa-finding-insight">The "New Chat" interaction was treated as a reset, not as a fork.</p>
               </div>
-              <div>
-                <p class="mc-eyebrow-bar" style="margin:0 0 8px">What Changed</p>
+              <div class="sa-finding-change">
+                <p class="mc-eyebrow-bar">What Changed</p>
                 <span class="sa-tradeoff-tag">Copy + interaction</span>
-                <p style="margin:0 0 10px;font-size:13.5px;line-height:1.65">Added a confirmation tooltip ("Your history is saved — this just starts a fresh thread") and ensured history sidebar was always visible before the action. Renamed to "Start new thread."</p>
-                <p style="margin:0;font-size:12px;font-weight:600;color:#1a7a45">Validated in next round</p>
+                <p class="sa-finding-copy">Added a confirmation tooltip ("Your history is saved - this just starts a fresh thread") and ensured history sidebar was always visible before the action. Renamed to "Start new thread."</p>
+                <p class="sa-finding-status">Validated in next round</p>
               </div>
             </div>
 
             <div class="sa-finding">
               <div class="sa-finding-id">
                 <span class="fid">F4</span>
-                <span class="sa-sev">Medium</span>
+                <span class="sa-sev is-medium">Medium</span>
               </div>
-              <div>
-                <p class="mc-eyebrow-bar" style="margin:0 0 8px">Finding</p>
-                <p style="font-weight:700;margin:0 0 8px">AI Insights panel felt disconnected from company data</p>
-                <p style="margin:0 0 10px;font-size:13.5px;line-height:1.65;color:rgba(17,21,17,0.65)">Users praised the AI insight summary but then struggled to reconcile it with raw data in other tabs. They wanted to fact-check — but the path back was unclear.</p>
-                <p style="margin:0;font-size:13.5px;color:#9a2f22;font-style:italic">We didn't bridge the gap between AI synthesis and raw data trust.</p>
+              <div class="sa-finding-body">
+                <p class="mc-eyebrow-bar">Finding</p>
+                <p class="sa-finding-title">AI Insights panel felt disconnected from company data</p>
+                <p class="sa-finding-copy">Users praised the AI insight summary but then struggled to reconcile it with raw data in other tabs. They wanted to fact-check - but the path back was unclear.</p>
+                <p class="sa-finding-insight">We didn't bridge the gap between AI synthesis and raw data trust.</p>
               </div>
-              <div>
-                <p class="mc-eyebrow-bar" style="margin:0 0 8px">What Changed</p>
+              <div class="sa-finding-change">
+                <p class="mc-eyebrow-bar">What Changed</p>
                 <span class="sa-tradeoff-tag">Navigation + trust</span>
-                <p style="margin:0 0 10px;font-size:13.5px;line-height:1.65">Added inline "See source data" links within the insight panel. Each AI claim now links to the specific tab and section where the underlying data lives.</p>
-                <p style="margin:0;font-size:12px;font-weight:600;color:#1a7a45">Validated in next round</p>
+                <p class="sa-finding-copy">Added inline "See source data" links within the insight panel. Each AI claim now links to the specific tab and section where the underlying data lives.</p>
+                <p class="sa-finding-status">Validated in next round</p>
               </div>
             </div>
 
             <div class="sa-callout">
               <p class="mc-eyebrow-bar" style="margin:0 0 10px">Testing Philosophy</p>
-              <p>"We didn't test to validate our assumptions — we tested to <strong>break them</strong>. The most valuable findings came when investors did something we didn't expect."</p>
-              <div class="ga-card-grid" style="margin-top:14px">
-                <article class="ga-card">
-                  <strong>SUS Score</strong>
-                  <p><s>54</s> → <strong>72</strong> <span style="color:#1a7a45;font-weight:700">+18pt</span></p>
+              <p>"We didn’t test to confirm our assumptions - we tested to <strong>break</strong> them. The best findings came when investors did something unexpected."</p>
+              <div class="sa-metric-grid">
+                <article class="sa-metric-card">
+                  <p class="sa-metric-label">SUS Score</p>
+                  <div class="sa-metric-values">
+                    <span class="sa-metric-from">54</span>
+                    <span class="sa-metric-arrow" aria-hidden="true">→</span>
+                    <span class="sa-metric-to">72</span>
+                    <span class="sa-metric-delta is-up">+18pt</span>
+                  </div>
+                  <div class="sa-metric-graph is-up" style="--from:54%;--gain:18%" aria-hidden="true">
+                    <div class="sa-metric-track">
+                      <span class="sa-metric-fill is-before"></span>
+                      <span class="sa-metric-fill is-after"></span>
+                    </div>
+                    <div class="sa-metric-key">
+                      <span class="is-before"><i></i>Before</span>
+                      <span class="is-after"><i></i>After</span>
+                    </div>
+                  </div>
+                  <p class="sa-metric-note">Out of 100 · usability rose after the empty-state and scan fixes</p>
                 </article>
-                <article class="ga-card">
-                  <strong>Task Completion</strong>
-                  <p><s>61%</s> → <strong>89%</strong> <span style="color:#1a7a45;font-weight:700">+28%</span></p>
+                <article class="sa-metric-card">
+                  <p class="sa-metric-label">Task Completion</p>
+                  <div class="sa-metric-values">
+                    <span class="sa-metric-from">61%</span>
+                    <span class="sa-metric-arrow" aria-hidden="true">→</span>
+                    <span class="sa-metric-to">89%</span>
+                    <span class="sa-metric-delta is-up">+28%</span>
+                  </div>
+                  <div class="sa-metric-graph is-up" style="--from:61%;--gain:28%" aria-hidden="true">
+                    <div class="sa-metric-track">
+                      <span class="sa-metric-fill is-before"></span>
+                      <span class="sa-metric-fill is-after"></span>
+                    </div>
+                    <div class="sa-metric-key">
+                      <span class="is-before"><i></i>Before</span>
+                      <span class="is-after"><i></i>After</span>
+                    </div>
+                  </div>
+                  <p class="sa-metric-note">More investors finished the flow without getting stuck</p>
                 </article>
-                <article class="ga-card">
-                  <strong>Time on Task</strong>
-                  <p><s>4m 20s</s> → <strong>1m 55s</strong> <span style="color:#1a7a45;font-weight:700">−55%</span></p>
+                <article class="sa-metric-card">
+                  <p class="sa-metric-label">Time on Task</p>
+                  <div class="sa-metric-values">
+                    <span class="sa-metric-from">4m 20s</span>
+                    <span class="sa-metric-arrow" aria-hidden="true">→</span>
+                    <span class="sa-metric-to">1m 55s</span>
+                    <span class="sa-metric-delta is-down">−55%</span>
+                  </div>
+                  <div class="sa-metric-graph is-down" style="--from:100%;--to:44%" aria-hidden="true">
+                    <div class="sa-metric-track">
+                      <span class="sa-metric-fill is-before"></span>
+                      <span class="sa-metric-fill is-after"></span>
+                    </div>
+                    <div class="sa-metric-key">
+                      <span class="is-before"><i></i>Before</span>
+                      <span class="is-after"><i></i>After</span>
+                    </div>
+                  </div>
+                  <p class="sa-metric-note">Shorter green = faster task · nearly half the time</p>
                 </article>
               </div>
             </div>
@@ -2173,9 +2998,9 @@
         <!-- BEFORE AFTER -->
         <section id="before-after" data-spy-target="before-after" class="mc-section">
           <div class="ga-stack">
-            <p class="mc-eyebrow-bar">08 — Transformation</p>
+            <p class="mc-eyebrow-bar">08 - Transformation</p>
             <h2 class="mc-section-h2">Before vs After</h2>
-            <p class="mc-lede">Transforming the user experience from friction to flow</p>
+            <p class="mc-lede">From friction to a calmer, faster flow.</p>
 
             <div class="ga-two">
               <div class="sa-ba-col before">
@@ -2197,10 +3022,10 @@
                 <div class="sa-ba-item">
                   <div><strong>Buried insights across sections</strong><span>Key info hidden behind multiple clicks</span></div>
                 </div>
-                <p style="margin-top:16px;font-size:13.5px;color:#9a2f22;font-weight:600">→ High cognitive load, slow decision-making, low confidence</p>
+                <p style="margin-top:16px;font-size:13.5px;color:#9a2f22;font-weight:600">→ High load, slow decisions, low confidence</p>
               </div>
 
-              <div class="sa-ba-col">
+              <div class="sa-ba-col after">
                 <h3>AFTER</h3>
                 <p style="margin:0 0 4px;font-size:13px;color:rgba(17,21,17,0.45)">Systematic Agent</p>
                 <span class="tag">Confident Flow</span>
@@ -2219,7 +3044,7 @@
                 <div class="sa-ba-item">
                   <div><strong>Risk &amp; relevance front and center</strong><span>Critical signals visible at a glance</span></div>
                 </div>
-                <p style="margin-top:16px;font-size:13.5px;font-weight:600">✨ Reduced cognitive load, confident decisions at speed</p>
+                <p style="margin-top:16px;font-size:13.5px;font-weight:600">Reduced load. Faster, more confident decisions.</p>
               </div>
             </div>
 
@@ -2230,23 +3055,23 @@
         <!-- COLLABORATION -->
         <section id="collaboration" data-spy-target="collaboration" class="mc-section">
           <div class="ga-stack">
-            <p class="mc-eyebrow-bar">08 — Collaboration &amp; Leadership</p>
+            <p class="mc-eyebrow-bar">08 - Collaboration &amp; Leadership</p>
             <h2 class="mc-section-h2">How I Led &amp;<br>Worked With Others</h2>
-            <p class="mc-lede">Design doesn't happen in isolation. Here's how I drove alignment and navigated ambiguity.</p>
+            <p class="mc-lede">How I drove alignment and cut through ambiguity with the team.</p>
             <p class="mc-eyebrow-bar">Cross-functional collaboration</p>
 
             <div class="ga-card-grid">
               <article class="ga-card">
                 <strong>Product Manager</strong>
-                <p>Weekly alignment on scope + priority. I drove design strategy; PM owned business framing and stakeholder narrative.</p>
+                <p>Weekly scope and priority sync. I owned design strategy; PM owned business framing.</p>
               </article>
               <article class="ga-card">
                 <strong>ML / Engineering</strong>
-                <p>Embedded in bi-weekly ML reviews. I translated user needs into API constraints early — avoiding rework in build phase.</p>
+                <p>Joined bi-weekly ML reviews and turned user needs into API constraints early - less rework later.</p>
               </article>
               <article class="ga-card">
                 <strong>Data / Analytics</strong>
-                <p>Worked with data team to define which signals to surface in AI insights. Avoided vanity metrics; prioritised investor-relevant signals.</p>
+                <p>Partnered with data to pick insight signals investors actually use - not vanity metrics.</p>
               </article>
             </div>
           </div>
@@ -2255,38 +3080,38 @@
         <!-- IMPACT -->
         <section id="impact" data-spy-target="impact" class="mc-section">
           <div class="ga-stack">
-            <p class="mc-eyebrow-bar">09 — Impact &amp; Results</p>
+            <p class="mc-eyebrow-bar">09 - Impact &amp; Results</p>
             <h2 class="mc-section-h2">Measuring What<br>Actually Mattered</h2>
-            <p class="mc-lede">Numbers alone don't tell the story. Here's what the metrics meant for users and the business.</p>
+            <p class="mc-lede">What the numbers meant for users - and for the business.</p>
 
-            <div class="ga-card-grid">
+            <div class="ga-card-grid sa-impact-grid">
               <article class="ga-card">
-                <p class="ga-impact-num" style="margin:0 0 8px"><span data-count="40">40</span>%</p>
+                <p class="ga-impact-num"><span data-count="40">40</span>%</p>
                 <strong>Reduction in cognitive load</strong>
-                <p style="font-size:12px;color:rgba(17,21,17,0.45);margin:4px 0 10px">Measured via task completion &amp; SUS scores</p>
-                <p class="mc-eyebrow-bar" style="margin:0 0 6px">What this means</p>
-                <p>Users moved from information overload to confident shortlisting in under 3 minutes — down from an average of 8.</p>
+                <p class="sa-impact-meta">Measured via task completion &amp; SUS scores</p>
+                <p class="mc-eyebrow-bar">What this means</p>
+                <p class="sa-impact-means">Confident shortlisting in under 3 minutes - down from about 8.</p>
               </article>
               <article class="ga-card">
-                <p class="ga-impact-num" style="margin:0 0 8px">+<span data-count="12">12</span>%</p>
+                <p class="ga-impact-num">+<span data-count="12">12</span>%</p>
                 <strong>User retention</strong>
-                <p style="font-size:12px;color:rgba(17,21,17,0.45);margin:4px 0 10px">Month-over-month active users</p>
-                <p class="mc-eyebrow-bar" style="margin:0 0 6px">What this means</p>
-                <p>Feature adoption drove weekly active usage among investors who previously churned after 2 sessions.</p>
+                <p class="sa-impact-meta">Month-over-month active users</p>
+                <p class="mc-eyebrow-bar">What this means</p>
+                <p class="sa-impact-means">Investors who used to churn after ~2 sessions started coming back weekly.</p>
               </article>
               <article class="ga-card">
-                <p class="ga-impact-num" style="margin:0 0 8px"><span data-count="3">3</span>x</p>
+                <p class="ga-impact-num"><span data-count="3">3</span>x</p>
                 <strong>Faster discovery</strong>
-                <p style="font-size:12px;color:rgba(17,21,17,0.45);margin:4px 0 10px">From query to shortlist</p>
-                <p class="mc-eyebrow-bar" style="margin:0 0 6px">What this means</p>
-                <p>The query-to-insight pipeline compressed a 2-hour research workflow into approximately 35 minutes.</p>
+                <p class="sa-impact-meta">From query to shortlist</p>
+                <p class="mc-eyebrow-bar">What this means</p>
+                <p class="sa-impact-means">Query-to-insight went from ~2 hours to about 35 minutes.</p>
               </article>
               <article class="ga-card">
-                <p class="ga-impact-num" style="margin:0 0 8px"><span data-count="85">85</span>%</p>
+                <p class="ga-impact-num"><span data-count="85">85</span>%</p>
                 <strong>User satisfaction (CSAT)</strong>
-                <p style="font-size:12px;color:rgba(17,21,17,0.45);margin:4px 0 10px">Post-launch survey, n=120</p>
-                <p class="mc-eyebrow-bar" style="margin:0 0 6px">What this means</p>
-                <p>Satisfaction driven primarily by AI transparency and structured summaries — users trusted the output because they could see the reasoning.</p>
+                <p class="sa-impact-meta">Post-launch survey, n=120</p>
+                <p class="mc-eyebrow-bar">What this means</p>
+                <p class="sa-impact-means">CSAT rose mainly from transparent AI and structured summaries - people could see the reasoning.</p>
               </article>
             </div>
           </div>
@@ -2295,23 +3120,23 @@
         <!-- REFLECTION -->
         <section id="reflection" data-spy-target="reflection" class="mc-section">
           <div class="ga-stack">
-            <p class="mc-eyebrow-bar">10 — Reflection</p>
+            <p class="mc-eyebrow-bar">10 - Reflection</p>
             <h2 class="mc-section-h2">Looking Back. Looking Forward.</h2>
-            <p class="mc-lede">What worked, what I'd change, and where I'd take this next with the benefit of hindsight.</p>
+            <p class="mc-lede">What worked, what I’d change, and where this goes next.</p>
 
             <h3 class="ga-decision">What worked well</h3>
             <div class="ga-card-grid">
               <article class="ga-card">
                 <strong>Starting with the funnel, not the feature</strong>
-                <p>Mapping the full investor research journey before touching UI revealed that evaluation was the real bottleneck — not discovery. This reframe shaped every design decision downstream.</p>
+                <p>Mapping the journey before UI work showed evaluation - not discovery - was the real bottleneck. That reframe shaped everything after.</p>
               </article>
               <article class="ga-card">
                 <strong>Keeping traditional search as a fallback</strong>
-                <p>AI chat was the headline feature, but retaining keyword search as a parallel path reduced adoption risk. Users who trusted the existing flow weren't forced into a new paradigm on day one.</p>
+                <p>Chat was the headline, but keeping keyword search cut adoption risk. Nobody was forced into a new paradigm on day one.</p>
               </article>
               <article class="ga-card">
                 <strong>AI transparency in the insight engine</strong>
-                <p>Linking every AI claim to a source data tab wasn't a nice-to-have — it was a prerequisite for professional trust. Investors needed to see the reasoning, not just the conclusion.</p>
+                <p>Source links weren’t optional. Professionals needed the reasoning, not just the conclusion.</p>
               </article>
             </div>
 
@@ -2319,40 +3144,40 @@
             <div class="ga-card-grid">
               <article class="ga-card">
                 <strong>Earlier usability testing on FTUE</strong>
-                <p>We underestimated how cognitively demanding the first chat interaction would be for expert users. Earlier testing on the empty-state experience would have saved an entire design iteration.</p>
+                <p>We underestimated how hard the first chat felt - even for experts. Earlier empty-state tests would have saved a full iteration.</p>
               </article>
               <article class="ga-card">
                 <strong>More involvement from investors in ideation</strong>
-                <p>We ran research sessions but ideated internally. Co-design workshops with 2–3 investors during the concept phase would have surfaced the "natural language thesis" insight earlier.</p>
+                <p>We researched with users, then ideated alone. Co-design with 2–3 investors earlier would have unlocked the “natural language thesis” insight sooner.</p>
               </article>
               <article class="ga-card">
                 <strong>Clearer success metrics from day one</strong>
-                <p>We measured CSAT and retention, but "confidence in AI outputs" wasn't formalized as a KPI until midway through. Defining that metric upfront would have focused the trust design work.</p>
+                <p>We tracked CSAT and retention, but “AI confidence” only became a KPI midstream. Defining it earlier would have focused the trust work.</p>
               </article>
             </div>
 
             <h3 class="ga-decision">Where I would take this next</h3>
             <div class="ga-card-grid">
               <article class="ga-card">
-                <span class="sa-tradeoff-tag">Phase 2</span>
+                <span class="sa-tradeoff-tag is-phase">Phase 2</span>
                 <strong>Proactive AI suggestions</strong>
-                <p>Move from reactive chat to proactive signals — e.g. "3 companies matching your last query have new funding rounds." This shifts the product from search to intelligence.</p>
+                <p>Go from reactive chat to proactive signals - e.g. new funding on companies that match your last query. Search becomes intelligence.</p>
               </article>
               <article class="ga-card">
-                <span class="sa-tradeoff-tag">Scale</span>
+                <span class="sa-tradeoff-tag is-scale">Scale</span>
                 <strong>Portfolio-level AI analysis</strong>
-                <p>Expand insights from individual companies to the investor's existing portfolio — surfacing overlaps, risks, and diversification opportunities across their holdings.</p>
+                <p>Bring insights up to portfolio level - overlaps, risks, and diversification across holdings.</p>
               </article>
               <article class="ga-card">
-                <span class="sa-tradeoff-tag">Feature</span>
+                <span class="sa-tradeoff-tag is-feature">Feature</span>
                 <strong>Collaborative discovery</strong>
-                <p>Enable team-based research — shared chat sessions, comment threads on AI insights, and co-shortlisting. Investment decisions are rarely made alone.</p>
+                <p>Support team research: shared chats, comments on insights, co-shortlisting. Decisions rarely happen alone.</p>
               </article>
             </div>
 
             <blockquote class="sa-quote">
               <p class="mc-eyebrow-bar" style="margin:0 0 10px">Key Takeaway</p>
-              <p>"The most important design decision wasn't the chat interface — it was choosing to <strong>reframe the problem</strong> from 'how do we improve search' to 'how do we reduce the cost of forming a view.' That shift changed everything."</p>
+              <p>"The biggest decision wasn’t the chat UI - it was <strong>reframing the problem</strong> from ‘better search’ to ‘lower cost of forming a view.’ That changed everything."</p>
             </blockquote>
           </div>
         </section>

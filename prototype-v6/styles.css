@@ -1,4 +1,4 @@
-/* Prototype v6 — Michelle scroll-cover pattern, Gaurav content
+/* Prototype v6 - Michelle scroll-cover pattern, Gaurav content
    Primary: #2ecc71 (green) · Neutrals: black/gray/paper */
 
 :root {
@@ -26,7 +26,7 @@ body {
   color: var(--ink);
   background: var(--green);
   -webkit-font-smoothing: antialiased;
-  /* Avoid overflow-x:hidden on body — it breaks position:sticky cover stack */
+  /* Avoid overflow-x:hidden on body - it breaks position:sticky cover stack */
   overflow-y: auto;
 }
 
@@ -127,7 +127,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   filter: brightness(0);
 }
 
-/* Top-right brand — white pill/disc, black GD mark (mirrors nav) */
+/* Top-right brand - white pill/disc, black GD mark (mirrors nav) */
 .ga-brand {
   position: fixed;
   top: 1.15rem;
@@ -413,7 +413,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   color: var(--ink);
 }
 
-/* Featured — lead (chat) full width, Deal + EasyEat on second row */
+/* Featured - lead (chat) full width, Deal + EasyEat on second row */
 .ga-featured-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -532,7 +532,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   transform-origin: center center;
 }
 
-/* More work — green band + marquee of playground tiles */
+/* More work - green band + marquee of playground tiles */
 .ga-more-work {
   background: var(--green);
   z-index: 3;
@@ -624,7 +624,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .ga-marquee-tile--5 { transform: rotate(-3deg); }
 .ga-marquee-tile--6 { transform: rotate(2deg); }
 
-/* Bring — sage sticky cover */
+/* Bring - sage sticky cover */
 .ga-bring {
   background: var(--sage);
   border-radius: 44px 44px 0 0;
@@ -680,7 +680,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   color: var(--gray-2);
 }
 
-/* About — paper cover */
+/* About - paper cover */
 .ga-about {
   background: var(--paper);
   border-radius: 44px 44px 0 0;
@@ -772,7 +772,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   line-height: 1.6;
 }
 
-/* Contact — sticky green cover */
+/* Contact - sticky green cover */
 .ga-contact {
   background: var(--green);
   border-radius: 44px 44px 0 0;

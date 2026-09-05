@@ -165,7 +165,7 @@
     "close": { "theme": "close", "illustration": null, "lottie": null, "screen": null }
   },
   "figma": {
-    "fileName": "Deal Room — Case Study Assets",
+    "fileName": "Deal Room - Case Study Assets",
     "pages": ["Intro", "Problem", "Research", "Decision", "Flows", "Screens A-J", "Close"],
     "plugins": ["Iconify", "LottieFiles for Figma", "Streamline"]
   }

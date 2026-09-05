@@ -1,4 +1,4 @@
-/* Prototype v4 — rauno.me-inspired direction */
+/* Prototype v4 - rauno.me-inspired direction */
 (function () {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

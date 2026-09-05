@@ -16,14 +16,14 @@
       html: `
         <div class="deck-hero-head">
           <h1 class="deck-title deck-title--brand">Deal Room</h1>
-          <p class="deck-title-secondary">Designing a guided investment workflow — so founders and investors move from intent to commitment inside one structured path.</p>
+          <p class="deck-title-secondary">Designing a guided investment workflow - so founders and investors move from intent to commitment inside one structured path.</p>
         </div>
         <div class="deck-hero-meta">
           <p class="deck-sub">B2B SaaS  Fintech  Deal Room</p>
           <dl class="deck-meta">
             <div><dt>ROLE</dt><dd>Product Designer II</dd></div>
             <div><dt>SYSTEMATIC</dt><dd>Remote</dd></div>
-            <div><dt>TIMELINE</dt><dd>2023 — 2024</dd></div>
+            <div><dt>TIMELINE</dt><dd>2023 - 2024</dd></div>
             <div><dt>ADOPTION</dt><dd>+32% deal creation</dd></div>
             <div><dt>FRICTION</dt><dd>-27% discovery to action</dd></div>
           </dl>
@@ -35,7 +35,7 @@
       html: `
         <div class="deck-hero-head">
           <p class="deck-eyebrow">U X  C H A L L E N G E</p>
-          <h2 class="deck-title">Fundraising broke outside the product — exactly when trust should compound.</h2>
+          <h2 class="deck-title">Fundraising broke outside the product - exactly when trust should compound.</h2>
         </div>
         <div class="deck-hero-body">
           <div class="deck-grid deck-grid--challenge">
@@ -66,7 +66,7 @@
           <h2 class="deck-title deck-title--wide">Deal interest existed. A reliable path to commitment did not.</h2>
         </div>
         <div class="deck-hero-body">
-          <p class="deck-sub">Founders and investors already had profiles, documents, NDAs, and conversations — but they lived in email, Drive, WhatsApp, and disconnected product surfaces.</p>
+          <p class="deck-sub">Founders and investors already had profiles, documents, NDAs, and conversations - but they lived in email, Drive, WhatsApp, and disconnected product surfaces.</p>
           <p class="deck-sub">Momentum died between tools, not from a lack of intent.</p>
           <p class="deck-sub">Every handoff between tools reintroduced uncertainty for both sides.</p>
         </div>
@@ -272,7 +272,7 @@
       html: `
         <div class="deck-hero-head">
           <p class="deck-eyebrow">K E Y D E C I S I O N</p>
-          <h2 class="deck-title deck-title--wide">We didn't add another destination. We anchored deal execution where intent already lives — the company profile.</h2>
+          <h2 class="deck-title deck-title--wide">We didn't add another destination. We anchored deal execution where intent already lives - the company profile.</h2>
         </div>
         <div class="deck-hero-body">
           <div class="deck-decision-flow" aria-label="Commitment ladder">
@@ -368,19 +368,19 @@
         <div class="deck-hero-body">
           <div class="deck-grid">
             <article class="deck-card">
-              <h3>1 — Profile-anchored entry</h3>
+              <h3>1 - Profile-anchored entry</h3>
               <p>“Create Deal Room” lives where fundraising intent already exists, so context travels with the action.</p>
             </article>
             <article class="deck-card">
-              <h3>2 — Guided gates</h3>
+              <h3>2 - Guided gates</h3>
               <p>Setup → NDA → Commitments as a visible ladder, not hidden states buried in navigation.</p>
             </article>
             <article class="deck-card">
-              <h3>3 — In-product confidentiality</h3>
+              <h3>3 - In-product confidentiality</h3>
               <p>NDA review and signing stay inside the deal path, so access unlocks without leaving the product.</p>
             </article>
             <article class="deck-card">
-              <h3>4 — Progress visibility</h3>
+              <h3>4 - Progress visibility</h3>
               <p>Dashboards surface who viewed, signed, downloaded, and showed interest, so follow-ups become intentional.</p>
             </article>
           </div>
@@ -568,7 +568,7 @@
                 <div class="deck-slot-icon">${ICON_IMAGE}</div>
                 <p class="deck-slot-tag">Screen placeholder</p>
                 <strong>${slotTitle}</strong>
-                <span>Drop a screen export in assets/deal-room-presentation/screens/ — wired via themes.json.</span>
+                <span>Drop a screen export in assets/deal-room-presentation/screens/ - wired via themes.json.</span>
               </div>
             </figure>
           </div>
@@ -765,7 +765,7 @@
       counter.textContent = `${String(current).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
       btnPrev.disabled = index === 0;
       btnNext.disabled = index === total - 1;
-      document.title = `Deal Room — ${SLIDES[index].id} (${current}/${total}) · Gaurav Avinash`;
+      document.title = `Deal Room - ${SLIDES[index].id} (${current}/${total}) · Gaurav Avinash`;
     }
 
     function goTo(next, dir = 1) {

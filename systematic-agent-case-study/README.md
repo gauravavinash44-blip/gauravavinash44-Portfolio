@@ -1,4 +1,4 @@
-# Systematic Agent — standalone case study (Vite + React)
+# Systematic Agent - standalone case study (Vite + React)
 
 Figma reference: https://www.figma.com/design/Mxe41CWO5ROsv5uYFG6xi4/Systematic-Agent--Copy-
 
@@ -30,7 +30,7 @@ The first run downloads Node + npm into `.node-tools` (no system install require
 ### Cursor: Run Task
 
 1. **Terminal → Run Task…** → **Systematic Agent: npm install** (first time only).
-2. **Run Task…** → **Systematic Agent: dev server (preview)** — leave that terminal open.
+2. **Run Task…** → **Systematic Agent: dev server (preview)** - leave that terminal open.
 
 ### If you already have Node.js installed
 
@@ -46,8 +46,8 @@ Then open **http://127.0.0.1:5173** (include `http://`, not `https://`).
 
 That only happens when **no dev server is listening** on that port. Fix it like this:
 
-1. **Use Terminal** (or Cursor’s integrated terminal — same folder must be active).
-2. **Install deps once** — this folder needs a `node_modules` directory (`npm install` creates it).
+1. **Use Terminal** (or Cursor’s integrated terminal - same folder must be active).
+2. **Install deps once** - this folder needs a `node_modules` directory (`npm install` creates it).
 3. **Start Vite** and **leave that terminal tab open**:
 
    ```bash
@@ -56,9 +56,9 @@ That only happens when **no dev server is listening** on that port. Fix it like 
    npm run dev
    ```
 
-4. In Safari open **`http://127.0.0.1:5173`** (recommended) or **`http://localhost:5173`** — include **`http://`**, not `https://`.
+4. In Safari open **`http://127.0.0.1:5173`** (recommended) or **`http://localhost:5173`** - include **`http://`**, not `https://`.
 
 If `npm install` fails with **`command not found: npm`**, install [Node.js LTS](https://nodejs.org/), then reopen the terminal and repeat step 3.
 
-While `npm run dev` is running, the terminal shows something like `Local: http://localhost:5173/` — use that exact URL if the port differs.
+While `npm run dev` is running, the terminal shows something like `Local: http://localhost:5173/` - use that exact URL if the port differs.
   

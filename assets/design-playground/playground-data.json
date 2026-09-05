@@ -13,7 +13,7 @@
         "src": "./assets/design-playground/nomad-mobile-mockup.png",
         "width": 1024,
         "height": 665,
-        "alt": "Nomad travel app — Leh Ladakh three-screen interface mockup"
+        "alt": "Nomad travel app - Leh Ladakh three-screen interface mockup"
       },
       "gallery": []
     },
@@ -30,7 +30,7 @@
         "src": "./assets/design-playground/health-karma-mockup.png",
         "width": 1024,
         "height": 576,
-        "alt": "Health Karma credit health app — four-screen mobile interface mockup"
+        "alt": "Health Karma credit health app - four-screen mobile interface mockup"
       },
       "gallery": []
     },
@@ -47,7 +47,7 @@
         "src": "./assets/design-playground/swaply-mockup.png",
         "width": 1024,
         "height": 576,
-        "alt": "Swaply barter marketplace — product detail and seller profile mobile mockups"
+        "alt": "Swaply barter marketplace - product detail and seller profile mobile mockups"
       },
       "gallery": []
     },
@@ -55,7 +55,7 @@
       "id": "splitly",
       "title": "Splitly",
       "category": "Interface Exploration",
-      "description": "A concept for a shared-expense app that makes group spending feel clear, fair, and fast—from trip balances to equal splits and settle-up moments.",
+      "description": "A concept for a shared-expense app that makes group spending feel clear, fair, and fast - from trip balances to equal splits and settle-up moments.",
       "objective": "Design an end-to-end mobile experience where people can track group balances, split costs cleanly, and settle without spreadsheet chaos.",
       "thinking": "Led with a balance-first home so money owed is instantly readable. Used progressive steps for amount, category, members, and split method. Kept confirmation and settle-up moments celebratory without losing clarity.",
       "tools": ["Figma", "Mobile UI", "Prototyping", "Interaction Design"],
@@ -64,7 +64,7 @@
         "src": "./assets/design-playground/splitly-expense-mockup.png",
         "width": 1024,
         "height": 576,
-        "alt": "Splitly expense-sharing app — multi-screen mobile interface collage"
+        "alt": "Splitly expense-sharing app - multi-screen mobile interface collage"
       },
       "gallery": []
     },
@@ -72,7 +72,7 @@
       "id": "moov",
       "title": "moov",
       "category": "Interface Exploration",
-      "description": "A fitness subscription checkout concept focused on faster plan decisions—clearer plan comparison, billing frequency, and payment so users pick with confidence instead of second-guessing.",
+      "description": "A fitness subscription checkout concept focused on faster plan decisions - clearer plan comparison, billing frequency, and payment so users pick with confidence instead of second-guessing.",
       "objective": "Make plan comparison simpler and clearer across choose-plan, billing frequency, and payment so users can commit in fewer steps.",
       "thinking": "Surfaced savings and recommended options early. Separated plan tier from billing frequency so each decision stayed focused. Kept payment summary visible so the final CTA felt informed, not surprising.",
       "tools": ["Figma", "Mobile UI", "Prototyping", "Interaction Design"],
@@ -81,7 +81,7 @@
         "src": "./assets/design-playground/moov-payment-plan-mockup.png",
         "width": 1024,
         "height": 674,
-        "alt": "moov fitness app — plan selection, billing frequency, and payment method mobile mockups"
+        "alt": "moov fitness app - plan selection, billing frequency, and payment method mobile mockups"
       },
       "gallery": []
     }
@@ -91,12 +91,12 @@
       "id": "space-between",
       "title": "Space Between",
       "category": "Motion",
-      "description": "A looping study of soft red volume, rising light, and vertical shimmer—exploring the space between stillness and motion.",
+      "description": "A looping study of soft red volume, rising light, and vertical shimmer - exploring the space between stillness and motion.",
       "preview": {
         "src": "./assets/design-playground/space-between-poster.png",
         "width": 556,
         "height": 556,
-        "alt": "Space Between motion study — red glow with vertical light streaks"
+        "alt": "Space Between motion study - red glow with vertical light streaks"
       },
       "media": {
         "type": "video",

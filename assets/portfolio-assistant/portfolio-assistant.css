@@ -1,4 +1,4 @@
-/* Floating action button — liquid glass, icon-only until hover/focus */
+/* Floating action button - liquid glass, icon-only until hover/focus */
 .pa-fab {
   position: fixed;
   right: 2rem;
@@ -43,7 +43,7 @@
     grid-template-columns 0.55s cubic-bezier(0.34, 1.25, 0.64, 1);
 }
 
-/* Specular highlight — the "liquid" sheen */
+/* Specular highlight - the "liquid" sheen */
 .pa-fab::before {
   content: '';
   position: absolute;
@@ -109,7 +109,7 @@
     box-shadow 0.45s ease;
 }
 
-/* Figma node 1753:2729 — chat-smile-ai icon + animated star overlay */
+/* Figma node 1753:2729 - chat-smile-ai icon + animated star overlay */
 .pa-fab-chat {
   --pa-icon-scale: 0.541667; /* 26px / 48px Figma artboard */
   --pa-star-jump: -11.375px; /* -21px scaled to icon size */
@@ -138,7 +138,7 @@
     0 3px 8px rgba(15, 14, 12, 0.08);
 }
 
-/* Figma node 1753:2739 “Star 1” — jump / squash / half-turn loop (~2.19s) */
+/* Figma node 1753:2739 “Star 1” - jump / squash / half-turn loop (~2.19s) */
 .pa-fab-star-wrap {
   position: absolute;
   left: 58.333%;
@@ -236,7 +236,7 @@ body.pa-modal-open .pa-fab {
   transform: translateY(8px);
 }
 
-/* Bottom sheet — flush left / right / bottom, slides up like site covers */
+/* Bottom sheet - flush left / right / bottom, slides up like site covers */
 .pa-modal {
   position: fixed;
   inset: 0;

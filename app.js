@@ -32,7 +32,7 @@
       img: ASSETS.chatMotionPoster,
       video: ASSETS.chatMotion,
       title: "Contextual chat for investor discovery",
-      sub: "Designed and launched an AI chat assistant so investors explore companies in natural language—replacing a fragmented multi-step search. OpenAI + vector search cut search from 30–40 minutes to under 30s and lifted engagement 25%.",
+      sub: "Designed and launched an AI chat assistant so investors explore companies in natural language - replacing a fragmented multi-step search. OpenAI + vector search cut search from 30–40 minutes to under 30s and lifted engagement 25%.",
       tags: ["AI Search", "B2B SaaS"],
       lead: true,
     },
@@ -46,8 +46,8 @@
     {
       href: "./deal-room-short.html",
       img: ASSETS.dealRoom,
-      title: "Deal Room — structured deal execution",
-      sub: "Deal work was split across surfaces. We anchored creation on the company profile—where intent already lives. +32% deal creation adoption.",
+      title: "Deal Room - structured deal execution",
+      sub: "Deal work was split across surfaces. We anchored creation on the company profile - where intent already lives. +32% deal creation adoption.",
       tags: ["Deal Room", "B2B SaaS"],
       deal: true,
     },
@@ -86,7 +86,7 @@
     {
       icon: "03",
       title: "Measurable outcomes",
-      body: "Adoption, speed, and decision quality—design choices tied to proof, not decoration.",
+      body: "Adoption, speed, and decision quality - design choices tied to proof, not decoration.",
     },
   ];
 
@@ -107,7 +107,7 @@
         {
           date: "Mar 2023 – Present",
           title: "Product Designer II at Systematic",
-          body: "New York, United States · Remote. AI-powered B2B SaaS—contextual chat, AI profile creation, search, data room, and templates for fundraising workflows.",
+          body: "New York, United States · Remote. AI-powered B2B SaaS - contextual chat, AI profile creation, search, data room, and templates for fundraising workflows.",
         },
         {
           date: "Aug 2022 – Nov 2022",
@@ -122,7 +122,7 @@
         {
           date: "Jan 2021 – Dec 2021",
           title: "Visual Designer at LA FUORI",
-          body: "New Delhi, India. Sole designer on a B2B website—IA, wireframes, and visual execution—plus campaigns, motion, and brand assets.",
+          body: "New Delhi, India. Sole designer on a B2B website - IA, wireframes, and visual execution - plus campaigns, motion, and brand assets.",
         },
       ],
     },
@@ -617,7 +617,7 @@
     if (item.locked) {
       return e("article", {
         className,
-        "aria-label": item.title + " — work in progress, locked",
+        "aria-label": item.title + " - work in progress, locked",
       }, kids);
     }
 
@@ -783,7 +783,7 @@
         )
       ),
 
-      /* About — relative scroll (not sticky). cover-inner + plx like Michelle; photo sticks inside. */
+      /* About - relative scroll (not sticky). cover-inner + plx like Michelle; photo sticks inside. */
       e("section", {
         className: "ga-about",
         id: "about",
@@ -796,8 +796,8 @@
           e("div", { className: "ga-about-grid ga-reveal" },
             e("div", { className: "ga-about-col" },
               e("div", { className: "ga-about-copy" },
-                e("p", null, "Product Designer II at Systematic—remote with a New York team on AI-powered B2B SaaS. I specialise in Human–AI interaction design, complex data workflows, and 0→1 product builds."),
-                e("p", null, "Known for translating ambiguous problems into intuitive, measurable experiences—improving engagement, reducing drop-off, and accelerating user workflows."),
+                e("p", null, "Product Designer II at Systematic - remote with a New York team on AI-powered B2B SaaS. I specialise in Human–AI interaction design, complex data workflows, and 0→1 product builds."),
+                e("p", null, "Known for translating ambiguous problems into intuitive, measurable experiences - improving engagement, reducing drop-off, and accelerating user workflows."),
                 e("p", null, "Open to Product Designer roles in B2B SaaS. I solve complex workflows where clarity and measurable outcomes both matter.")
               ),
               e("div", { className: "ga-timeline" },

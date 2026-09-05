@@ -1,5 +1,5 @@
 /* ============================================
- * Pic2Split case study — Michelle Chen portfolio
+ * Pic2Split case study - Michelle Chen portfolio
  * Shared chrome (nav pill, eyes, tooltip, icon buttons,
  * footer) mirrors home.css so pages read as one system.
  * ============================================ */
@@ -525,7 +525,7 @@ body.mc-case * {
   font-weight: 600;
 }
 
-/* overview lives in the left meta column, under the facts row —
+/* overview lives in the left meta column, under the facts row - 
    the column's flex gap provides the spacing */
 .mc-meta-left .mc-case-overview {
   margin-top: 0;
@@ -1394,7 +1394,7 @@ body.mc-case .mc-sections--legacy .case-overview-hero-text {
 }
 
 /* the global `*` reset (Montserrat) matches inner spans directly and would
-   override the inherited Archivo — force the highlight spans to follow the title */
+   override the inherited Archivo - force the highlight spans to follow the title */
 .mc-twist-title span,
 .mc-stat-value span {
   font-family: inherit;
@@ -1603,7 +1603,7 @@ body.mc-case .mc-sections--legacy .case-overview-hero-text {
   border: none;
 }
 
-/* benchmark card (competitor benchmark — borderless) */
+/* benchmark card (competitor benchmark - borderless) */
 .mc-bench {
   border: none;
   border-radius: 20px;
@@ -3058,7 +3058,7 @@ body.mc-case .mc-sections--legacy .case-overview-hero-text {
   }
 }
 
-/* ============ GA case content — stack media below copy ============ */
+/* ============ GA case content - stack media below copy ============ */
 .ga-stack {
   display: flex;
   flex-direction: column;
