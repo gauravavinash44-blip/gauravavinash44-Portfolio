@@ -59,7 +59,7 @@
       "objective": "Design an end-to-end mobile experience where people can track group balances, split costs cleanly, and settle without spreadsheet chaos.",
       "thinking": "Led with a balance-first home so money owed is instantly readable. Used progressive steps for amount, category, members, and split method. Kept confirmation and settle-up moments celebratory without losing clarity.",
       "tools": ["Figma", "Mobile UI", "Prototyping", "Interaction Design"],
-      "prototype": null,
+      "prototype": "https://splitmate-blue-five.vercel.app/",
       "preview": {
         "src": "./assets/design-playground/splitly-expense-mockup.png",
         "width": 1024,

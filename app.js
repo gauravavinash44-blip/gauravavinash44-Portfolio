@@ -55,7 +55,7 @@
       href: "./resonance-short.html",
       resonance: true,
       img: ASSETS.resonance,
-      title: "Resonance - Intelligent Music Playback",
+      title: "Spotify Resonance - AI Intelligent Music Playback",
       sub: "Speculative Spotify playback that starts songs closer to the moments you actually want to hear.",
       tags: ["AI", "Music Experience", "Product Design"],
     },

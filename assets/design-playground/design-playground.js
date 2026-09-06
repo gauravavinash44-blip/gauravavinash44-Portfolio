@@ -1,5 +1,5 @@
 (function () {
-  const DATA_URL = './assets/design-playground/playground-data.json?v=12';
+  const DATA_URL = './assets/design-playground/playground-data.json?v=13';
   const section = document.getElementById('design-playground');
   const modalEl = document.getElementById('pgModal');
   if (!modalEl) return;
@@ -21,6 +21,7 @@
   let motionScrollY = 0;
   let cinemaClosing = false;
   let pendingOpenId = null;
+  let protoReturnItem = null;
 
   function escapeHtml(str) {
     return String(str)
@@ -261,7 +262,11 @@
       .join('');
 
     const protoHtml = item.prototype
-      ? `<a class="pg-modal-proto" href="${escapeHtml(item.prototype)}" target="_blank" rel="noreferrer">Open prototype →</a>`
+      ? `<div class="pg-modal-block pg-modal-block--proto">
+          <div class="pg-modal-label">Prototype</div>
+          <p class="pg-modal-text">Click the link to view the full prototype.</p>
+          <button type="button" class="pg-modal-proto" data-pg-open-proto>View full prototype →</button>
+        </div>`
       : '';
 
     let heroMedia;
@@ -277,6 +282,9 @@
     const heroClass = darkMediaIds[item.id]
       ? 'pg-modal-hero pg-modal-hero--dark'
       : 'pg-modal-hero';
+
+    modalEl.classList.remove('pg-modal--proto');
+    protoReturnItem = null;
 
     modalBodyEl.innerHTML = `
       <div class="${heroClass}">${heroMedia}</div>
@@ -300,6 +308,14 @@
       </div>
     `;
 
+    const protoBtn = modalBodyEl.querySelector('[data-pg-open-proto]');
+    if (protoBtn) {
+      protoBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openPrototypeViewer(item);
+      });
+    }
+
     lockScroll();
     modalEl.classList.add('is-open');
     modalEl.setAttribute('aria-hidden', 'false');
@@ -307,12 +323,46 @@
     if (closeBtn) closeBtn.focus();
   }
 
+  function openPrototypeViewer(item) {
+    if (!modalEl || !modalBodyEl || !item || !item.prototype) return;
+
+    protoReturnItem = item;
+    pauseModalMedia();
+    modalEl.classList.add('pg-modal--proto');
+    modalEl.classList.remove('pg-modal--cinema', 'is-closing');
+    modalEl.setAttribute('aria-labelledby', 'pgProtoTitle');
+
+    modalBodyEl.innerHTML = `
+      <div class="pg-proto-shell">
+        <div class="pg-proto-toolbar">
+          <button type="button" class="pg-proto-back" data-pg-proto-back>← Back to details</button>
+          <h2 class="pg-proto-title" id="pgProtoTitle">${escapeHtml(item.title)} · Live prototype</h2>
+        </div>
+        <iframe
+          class="pg-proto-frame"
+          src="${escapeHtml(item.prototype)}"
+          title="${escapeHtml(item.title)} live prototype"
+          allow="fullscreen"
+        ></iframe>
+      </div>
+    `;
+
+    const backBtn = modalBodyEl.querySelector('[data-pg-proto-back]');
+    if (backBtn) {
+      backBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openInterfaceModal(protoReturnItem || item);
+      });
+      backBtn.focus();
+    }
+  }
+
   function openMotionModal(item) {
     if (MOTION_LOCKED || cinemaClosing) return;
     if (!modalEl || !modalBodyEl) return;
 
     modalEl.classList.add('pg-modal--cinema');
-    modalEl.classList.remove('is-closing');
+    modalEl.classList.remove('is-closing', 'pg-modal--proto');
     modalEl.removeAttribute('aria-labelledby');
     modalEl.setAttribute('aria-label', item.title);
 
@@ -327,9 +377,15 @@
     playVideosIn(modalBodyEl);
   }
 
-  function closeModal() {
+  function closeModal(force) {
     if (!modalEl || cinemaClosing) return;
     if (!modalEl.classList.contains('is-open') && !modalEl.classList.contains('is-closing')) return;
+
+    // Escape / Back: leave prototype viewer and restore project details
+    if (!force && modalEl.classList.contains('pg-modal--proto') && protoReturnItem) {
+      openInterfaceModal(protoReturnItem);
+      return;
+    }
 
     const isCinema = modalEl.classList.contains('pg-modal--cinema');
 
@@ -340,7 +396,7 @@
       modalEl.classList.remove('is-open');
 
       setTimeout(() => {
-        modalEl.classList.remove('is-closing', 'pg-modal--cinema');
+        modalEl.classList.remove('is-closing', 'pg-modal--cinema', 'pg-modal--proto');
         modalEl.setAttribute('aria-hidden', 'true');
         if (modalBodyEl) modalBodyEl.innerHTML = '';
         unlockScroll();
@@ -351,7 +407,8 @@
     }
 
     pauseModalMedia();
-    modalEl.classList.remove('is-open', 'pg-modal--cinema', 'is-closing');
+    protoReturnItem = null;
+    modalEl.classList.remove('is-open', 'pg-modal--cinema', 'pg-modal--proto', 'is-closing');
     modalEl.setAttribute('aria-hidden', 'true');
     if (modalBodyEl) modalBodyEl.innerHTML = '';
     unlockScroll();
@@ -427,14 +484,14 @@
     if (backdrop) {
       backdrop.addEventListener('click', (e) => {
         e.preventDefault();
-        closeModal();
+        closeModal(true);
       });
     }
     if (closeBtn) {
       closeBtn.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        closeModal();
+        closeModal(true);
       });
     }
     if (dialog) {
@@ -442,13 +499,13 @@
     }
 
     modalEl.addEventListener('click', (e) => {
-      if (e.target === modalEl) closeModal();
+      if (e.target === modalEl) closeModal(true);
     });
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && modalEl.classList.contains('is-open')) {
         e.preventDefault();
-        closeModal();
+        closeModal(false);
       }
     });
 
