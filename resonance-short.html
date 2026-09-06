@@ -10,6 +10,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://drop-mode.vercel.app" crossorigin>
   <link rel="dns-prefetch" href="https://drop-mode.vercel.app">
+  <link rel="preconnect" href="https://gauravavinash44-blip.github.io" crossorigin>
+  <link rel="dns-prefetch" href="https://gauravavinash44-blip.github.io">
   <link rel="stylesheet" href="./case.css?v=8">
   <style>
     /* Prototype section: left copy · right Figma iPhone mockup */
@@ -499,13 +501,21 @@
       var external = document.getElementById("rs-proto-external");
       if (!btn || !frame) return;
 
+      // Match prototype host to portfolio host:
+      // GitHub Pages portfolio → GitHub drop-mode; otherwise Vercel.
+      var onGitHubPages = /\.github\.io$/i.test(location.hostname);
+      var protoBase = onGitHubPages
+        ? "https://gauravavinash44-blip.github.io/drop-mode/"
+        : "https://drop-mode.vercel.app/";
+
       function freshUrl(embed) {
         var q = "fresh=1&t=" + Date.now();
         if (embed) q += "&embed=1";
-        return "https://drop-mode.vercel.app/?" + q;
+        return protoBase + "?" + q;
       }
 
       if (external) {
+        external.href = freshUrl(false);
         external.addEventListener("click", function () {
           external.href = freshUrl(false);
         });
