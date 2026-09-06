@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Resonance - Gaurav Avinash</title>
-  <meta name="description" content="Resonance — a speculative Spotify playback feature that starts songs closer to the moments you actually want to hear.">
+  <meta name="description" content="Resonance: a speculative Spotify playback feature that starts songs closer to the moments you actually want to hear.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -28,6 +28,10 @@
     .rs-proto-copy .mc-lede {
       margin: 0 0 14px;
       max-width: 32em;
+    }
+    .rs-proto-copy .mc-lede strong {
+      font-weight: 700;
+      color: #111511;
     }
     .rs-proto-device {
       display: flex;
@@ -218,7 +222,7 @@
 
     <header class="mc-case-header" data-screen-label="Case header">
       <h1 class="mc-case-h1">Resonance</h1>
-      <p class="mc-case-sub">Intelligent music playback for Spotify — a personal exploration of starting songs closer to the moments you already know you want.</p>
+      <p class="mc-case-sub">Intelligent music playback for Spotify: a personal exploration of starting songs closer to the moments you already know you want.</p>
       <div class="mc-case-tags">
         <span class="mc-case-tag">AI</span>
         <span class="mc-case-tag">Music Experience</span>
@@ -273,7 +277,7 @@
       </div>
 
       <div class="mc-case-hero-img">
-        <img src="./assets/resonance/resonance-cover.png?v=20260905" alt="Resonance cover — Spotify Now Playing on iPhone with intelligent music playback" width="1920" height="1080" decoding="async">
+        <img src="./assets/resonance/resonance-cover.png?v=20260905" alt="Resonance cover: Spotify Now Playing on iPhone with intelligent music playback" width="1920" height="1080" decoding="async">
       </div>
     </header>
 
@@ -294,7 +298,7 @@
             <p class="mc-eyebrow-bar">Overview</p>
             <h2 class="mc-section-h2">What if Spotify knew which part of the song you were actually after?</h2>
             <p class="mc-lede">Weekend trip. Friends. Someone picks a track, waits through the intro, then drags the scrubber to the bit everyone already knows. Same move, song after song.</p>
-            <p class="mc-lede">Resonance is a speculative playback option that lives inside Spotify’s existing Now Playing — not a new feed, not a chatbot, not a separate destination. One capability on play.</p>
+            <p class="mc-lede">Resonance is a speculative playback option that lives inside Spotify’s existing Now Playing, not a new feed, not a chatbot, not a separate destination. One capability on play.</p>
           </div>
         </section>
 
@@ -315,7 +319,7 @@
           <div class="ga-stack">
             <p class="mc-eyebrow-bar">Opportunity</p>
             <h2 class="mc-section-h2">From “songs you like” to “moments you respond to.”</h2>
-            <p class="mc-lede">Spotify already learns from skips, seeks, replays, saves, and returns. Resonance explores stretching that learning inside the track — lyrics, vocals, beat, bass, energy, structure, plus how you actually behave.</p>
+            <p class="mc-lede">Spotify already learns from skips, seeks, replays, saves, and returns. Resonance explores stretching that learning inside the track: lyrics, vocals, beat, bass, energy, structure, plus how you actually behave.</p>
             <p class="mc-lede">Song understanding + listening behaviour = a personalised start. Collective signals can help (“2.5K listeners started here”) without pretending that’s everyone’s favourite.</p>
           </div>
         </section>
@@ -323,7 +327,7 @@
         <section id="principle" data-spy-target="principle" class="mc-section">
           <div class="ga-stack">
             <p class="mc-eyebrow-bar">Principle</p>
-            <h2 class="mc-section-h2">Spotify, with one smarter play — not a new app.</h2>
+            <h2 class="mc-section-h2">Spotify, with one smarter play, not a new app.</h2>
             <div class="rs-principle-grid">
               <article>
                 <strong>Inside Now Playing</strong>
@@ -360,7 +364,7 @@
             <div class="ga-card-grid">
               <article class="ga-card">
                 <strong>First-time education</strong>
-                <p>Home sheet: Resonance, short benefit, Got it. Now Playing gets a small tooltip on the icon — not another sheet.</p>
+                <p>Home sheet: Resonance, short benefit, Got it. Now Playing gets a small tooltip on the icon, not another sheet.</p>
               </article>
               <article class="ga-card">
                 <strong>Activation motion</strong>
@@ -383,8 +387,8 @@
             <p class="mc-eyebrow-bar">Prototype</p>
             <div class="rs-proto-panel">
               <div class="rs-proto-copy">
-                <h2 class="mc-section-h2">Live Resonance build — try it in the phone.</h2>
-                <p class="mc-lede">Tap the Spotify icon on the home screen to open the live prototype from the start — splash, first-time education, then Now Playing with Resonance.</p>
+                <h2 class="mc-section-h2">Live Resonance build. Try it in the phone.</h2>
+                <p class="mc-lede">Tap the <strong>Spotify logo</strong> on the home screen to open the live prototype from the start: splash, first-time education, then Now Playing with Resonance.</p>
                 <p class="mc-lede">Prefer full screen on a real phone if you want more room.</p>
                 <a class="rs-proto-fallback" id="rs-proto-external" href="https://drop-mode.vercel.app/?fresh=1" target="_blank" rel="noreferrer">Open full screen ↗</a>
               </div>
@@ -429,7 +433,7 @@
             <p class="mc-eyebrow-bar">Reflection</p>
             <h2 class="mc-section-h2">What this exploration is arguing for.</h2>
             <ul class="ga-list">
-              <li>Personalisation can go one layer deeper than the track list — into time inside the song.</li>
+              <li>Personalisation can go one layer deeper than the track list, into time inside the song.</li>
               <li>Confidence should be honest: your moment, popular moment, or just explore.</li>
               <li>The interesting design problem isn’t the model. It’s keeping Spotify familiar while the start position quietly gets smarter.</li>
             </ul>
