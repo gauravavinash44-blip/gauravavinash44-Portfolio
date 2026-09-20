@@ -360,6 +360,10 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   line-height: 1.85;
   color: var(--gray-1);
 }
+.ga-intro-em {
+  font-weight: 700;
+  color: var(--ink);
+}
 
 .ga-icon-btn {
   width: 42px;

@@ -729,7 +729,15 @@
               }, "Resume")
             ),
             e("p", { className: "ga-intro-copy" },
-              "Product designer who enjoys taking ideas from a messy problem to something people can actually use. Over the last 5+ years, I’ve worked across fintech, health tech, and food tech. As a founding designer at Systematic, I helped build the platform from the ground up and shipped multiple products and workflows. I work closely with PMs, engineers, and stakeholders throughout the process, from understanding the problem to seeing the final product come to life."
+              "Product designer turning complex problems into clear, useful products. ",
+              e("strong", { className: "ga-intro-em" }, "5+ years"),
+              " across ",
+              e("strong", { className: "ga-intro-em" }, "fintech"),
+              ", healthtech & foodtech, designing ",
+              e("strong", { className: "ga-intro-em" }, "AI"),
+              "-powered products, ",
+              e("strong", { className: "ga-intro-em" }, "SaaS"),
+              " workflows and data-heavy experiences. I work end-to-end, from figuring out the problem to shipping the final product with PMs and engineers."
             )
           )
         ),
