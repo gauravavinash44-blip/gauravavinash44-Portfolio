@@ -24,7 +24,10 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
 
 body {
   margin: 0;
@@ -32,7 +35,8 @@ body {
   color: var(--ink);
   background: var(--green);
   -webkit-font-smoothing: antialiased;
-  /* Viewport scrolls; avoid overflow traps that break sticky covers */
+  overflow-x: clip;
+  /* Viewport scrolls vertically; clip X so rotated cover/marquee cannot side-scroll the page */
 }
 
 body.is-splash-active { overflow: hidden; }
@@ -659,10 +663,13 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   position: sticky;
   top: 0;
   width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
 }
 .ga-cover-inner {
   will-change: transform;
   transform-origin: center center;
+  max-width: 100%;
 }
 
 /* More work - green band + marquee of playground tiles */
@@ -672,6 +679,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   padding: clamp(44px, 5.5vw, 72px) 0 clamp(40px, 5vw, 56px);
   margin-top: -72px;
   isolation: isolate;
+  overflow-x: clip;
 }
 .ga-more-work::before {
   content: "";
@@ -688,6 +696,9 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .ga-more-work .ga-cover-inner {
   position: relative;
   z-index: 1;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 .ga-more-work-head {
   padding: clamp(40px, 6vw, 72px) 6vw 0;
@@ -716,13 +727,16 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .ga-marquee-viewport {
   overflow: hidden;
   width: 100%;
+  max-width: 100%;
 }
 .ga-marquee-track {
   display: flex;
   gap: 24px;
   width: max-content;
+  max-width: none;
   padding: 18px 6vw;
   animation: ga-marquee 36s linear infinite;
+  will-change: transform;
 }
 .ga-marquee-track:hover { animation-play-state: paused; }
 @keyframes ga-marquee {
