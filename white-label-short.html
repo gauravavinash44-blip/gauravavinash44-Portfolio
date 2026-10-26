@@ -366,26 +366,26 @@
     .wl-pin-track {
       position: relative;
       height: calc(var(--wl-card-h) * var(--wl-steps));
+      overflow: visible;
     }
     .wl-pin-grid {
       position: sticky;
       top: var(--wl-stage-top);
       display: grid;
-      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+      grid-template-columns: minmax(220px, 0.92fr) minmax(0, 1.08fr);
       gap: clamp(28px, 4vw, 56px);
       align-items: center;
       min-height: var(--wl-card-h);
+      overflow: visible;
     }
     .wl-pin-steps {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-self: center;
       gap: clamp(20px, 3.2vh, 44px);
       padding: 0;
-      min-height: 0;
-      will-change: transform;
-      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+      min-width: 0;
+      transform: none;
     }
     .wl-pin-card {
       appearance: none;
@@ -845,8 +845,6 @@
         justify-content: flex-start;
         gap: 0;
         padding: 0;
-        transform: none !important;
-        transition: none;
       }
       .wl-pin-media { display: none; }
       .wl-pin-card {
@@ -1485,8 +1483,6 @@
         let skipPick = false;
         let hovering = false;
         let ignorePickUntil = 0;
-        let stepShift = 0;
-        let alignId = 0;
         let t0 = 0;
         let raf = 0;
         let idleId = 0;
@@ -1521,57 +1517,14 @@
           return box.top < window.innerHeight * 0.7 && box.bottom > window.innerHeight * 0.3;
         };
 
-        const alignActive = () => {
-          if (!stepsEl) return;
-          if (!desktopMq.matches) {
-            stepShift = 0;
-            stepsEl.style.transform = '';
-            return;
-          }
-          const card = cards[active];
-          const target = frame || media;
-          const grid = root.querySelector('.wl-pin-grid');
-          if (!card || !target || !grid) return;
-          const cardBox = card.getBoundingClientRect();
-          const targetBox = target.getBoundingClientRect();
-          const gridBox = grid.getBoundingClientRect();
-          const cardMid = cardBox.top + cardBox.height / 2;
-          const targetMid = targetBox.top + targetBox.height / 2;
-          let next = stepShift + (targetMid - cardMid);
-          const stepsBox = stepsEl.getBoundingClientRect();
-          const unshiftedTop = stepsBox.top - stepShift;
-          const unshiftedBottom = stepsBox.bottom - stepShift;
-          const pad = 16;
-          let nextTop = unshiftedTop + next;
-          let nextBottom = unshiftedBottom + next;
-          if (nextTop < gridBox.top + pad) next += gridBox.top + pad - nextTop;
-          if (nextBottom > gridBox.bottom - pad) next -= nextBottom - (gridBox.bottom - pad);
-          stepShift = next;
-          stepsEl.style.transform = 'translateY(' + Math.round(next) + 'px)';
-        };
-
-        const scheduleAlign = () => {
-          alignActive();
-          requestAnimationFrame(() => {
-            alignActive();
-            requestAnimationFrame(alignActive);
-          });
-          clearTimeout(alignId);
-          alignId = window.setTimeout(alignActive, reduced ? 40 : 480);
-        };
-
         const setActive = (index, force) => {
-          if (!force && index === active) {
-            scheduleAlign();
-            return;
-          }
+          if (!force && index === active) return;
           active = index;
           cards.forEach((card, i) => card.classList.toggle('is-active', i === index));
           panels.forEach((panel, i) => panel.classList.toggle('is-active', i === index));
           dots.forEach((dot, i) => dot.classList.toggle('is-on', i === index));
           if (caption && captions[index]) caption.textContent = captions[index];
           fitFrame();
-          scheduleAlign();
         };
 
         const pauseTimer = () => {
@@ -1724,7 +1677,6 @@
             pauseTimer();
             setProgress(1);
             fitFrame();
-            stepShift = 0;
             if (stepsEl) stepsEl.style.transform = '';
             return;
           }
@@ -1732,7 +1684,6 @@
           if (h < 80) return;
           root.style.setProperty('--wl-card-h', h + 'px');
           fitFrame();
-          scheduleAlign();
         };
 
         measure();
