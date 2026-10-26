@@ -41,6 +41,7 @@
     body.wl-layout .mc-section > .wl-facts,
     body.wl-layout .mc-section > .wl-users,
     body.wl-layout .mc-section > .wl-pin-grid,
+    body.wl-layout .mc-section > .wl-pin-track,
     body.wl-layout .mc-section > .ga-two,
     body.wl-layout .mc-section > .ga-impact-grid,
     body.wl-layout .mc-section > .ga-option-grid,
@@ -350,6 +351,8 @@
     .mc-section[data-wl-pin] {
       --wl-stage-top: var(--mc-sticky-below-nav);
       --wl-card-h: calc(100vh - var(--wl-stage-top));
+      --wl-t: 1;
+      --wl-steps: 4;
     }
     .wl-pin-head {
       position: static;
@@ -360,70 +363,121 @@
     .wl-pin-head .mc-lede {
       max-width: 38em;
     }
+    .wl-pin-track {
+      position: relative;
+      height: calc(var(--wl-card-h) * var(--wl-steps));
+    }
     .wl-pin-grid {
+      position: sticky;
+      top: var(--wl-stage-top);
       display: grid;
       grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
       gap: clamp(28px, 4vw, 56px);
-      align-items: start;
+      align-items: stretch;
+      min-height: var(--wl-card-h);
     }
-    .wl-pin-steps { display: flex; flex-direction: column; }
+    .wl-pin-steps {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-self: stretch;
+      padding: clamp(8px, 2.4vh, 28px) 0;
+      min-height: 0;
+    }
     .wl-pin-card {
       appearance: none;
       width: 100%;
       text-align: left;
       font: inherit;
-      color: inherit;
+      color: rgba(17, 21, 17, 0.38);
       cursor: pointer;
       background: none;
       border: 0;
-      padding: 0;
-      min-height: var(--wl-card-h);
-      scroll-margin-top: var(--wl-stage-top);
+      padding: clamp(12px, 2.2vh, 28px) 0;
+      min-height: 0;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 10px;
-      opacity: 0.34;
-      transition: opacity 0.35s ease;
+      gap: 0;
+      transition: color 0.45s cubic-bezier(0.22, 1, 0.36, 1);
     }
     .wl-pin-copy {
+      position: relative;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      width: max-content;
-      max-width: 100%;
+      gap: 8px;
+      width: 100%;
+      max-width: 34em;
       border-left: 3px solid rgba(17, 21, 17, 0.12);
-      padding: 2px 8px 4px 18px;
-      transition: border-color 0.35s ease;
+      padding: 12px 8px 12px 18px;
+      transition: border-color 0.35s ease, padding 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .wl-pin-copy::after {
+      content: "";
+      position: absolute;
+      left: -3px;
+      top: 0;
+      width: 3px;
+      height: 100%;
+      background: #2ecc71;
+      transform: scaleY(0);
+      transform-origin: top;
+      pointer-events: none;
     }
     .wl-pin-card.is-active {
-      opacity: 1;
+      color: #111511;
     }
     .wl-pin-card.is-active .wl-pin-copy {
-      border-left-color: #2ecc71;
+      border-left-color: rgba(46, 204, 113, 0.28);
+      padding-top: 14px;
+      padding-bottom: 18px;
+    }
+    .wl-pin-card.is-active .wl-pin-copy::after {
+      transform: scaleY(var(--wl-t, 0));
     }
     .wl-pin-card:focus-visible {
       outline: 2px solid #2ecc71;
       outline-offset: 4px;
     }
     .wl-pin-num {
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 800;
       letter-spacing: 0.1em;
       text-transform: uppercase;
+      color: inherit;
+      opacity: 0.72;
+      transition: font-size 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease, color 0.35s ease;
+    }
+    .wl-pin-card.is-active .wl-pin-num {
+      font-size: 11px;
       color: #0a5c2f;
+      opacity: 1;
     }
     .wl-pin-card h3 {
       margin: 0;
+      font-size: 16px;
+      font-weight: 650;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      transition: font-size 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .wl-pin-card.is-active h3 {
       font-size: clamp(22px, 2.4vw, 30px);
-      line-height: 1.15;
     }
     .wl-pin-card p {
       margin: 0;
-      font-size: 15px;
-      line-height: 1.65;
+      font-size: 14px;
+      line-height: 1.5;
       color: rgba(17, 21, 17, 0.68);
       max-width: 34em;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: opacity 0.45s ease, max-height 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .wl-pin-card.is-active p {
+      max-height: 4.8em;
+      opacity: 1;
     }
     .wl-pin-inline {
       display: none;
@@ -440,13 +494,12 @@
       background: #fff;
     }
     .wl-pin-media {
-      position: sticky;
-      top: var(--wl-stage-top);
+      position: relative;
       z-index: 2;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      min-height: var(--wl-card-h);
+      min-height: 0;
     }
     .wl-pin-frame {
       position: relative;
@@ -489,41 +542,50 @@
       width: 100%;
       text-align: left;
       font: inherit;
-      color: inherit;
       cursor: pointer;
       background: none;
       border: 0;
       border-top: 1px solid rgba(17, 21, 17, 0.12);
       border-left: 3px solid transparent;
-      padding: 14px 8px 14px 16px;
+      padding: 10px 8px 10px 16px;
       display: grid;
       grid-template-columns: 2.4em minmax(0, 1fr);
-      gap: 6px 12px;
+      gap: 4px 12px;
       align-items: baseline;
       color: rgba(17, 21, 17, 0.34);
-      transition: color 0.35s ease, border-color 0.35s ease;
+      transition: color 0.45s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, padding 0.45s cubic-bezier(0.22, 1, 0.36, 1);
     }
     .wl-sender-item:first-child { border-top: 0; }
     .wl-sender-item.is-active {
       color: #111511;
       border-left-color: #111511;
+      padding-top: 14px;
+      padding-bottom: 14px;
     }
     .wl-sender-item:focus-visible {
       outline: 2px solid #2ecc71;
       outline-offset: 4px;
     }
     .wl-sender-item .wl-sender-num {
-      font-size: 12px;
+      font-size: 10px;
       font-weight: 600;
       letter-spacing: 0.04em;
       color: inherit;
+      transition: font-size 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .wl-sender-item.is-active .wl-sender-num {
+      font-size: 12px;
     }
     .wl-sender-item h3 {
       margin: 0;
-      font-size: clamp(18px, 2vw, 24px);
+      font-size: 15px;
       font-weight: 650;
       line-height: 1.2;
       letter-spacing: -0.02em;
+      transition: font-size 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .wl-sender-item.is-active h3 {
+      font-size: clamp(20px, 2vw, 26px);
     }
     .wl-sender-item p {
       margin: 0;
@@ -535,7 +597,7 @@
       opacity: 0;
       max-height: 0;
       overflow: hidden;
-      transition: opacity 0.35s ease, max-height 0.35s ease;
+      transition: opacity 0.45s ease, max-height 0.45s cubic-bezier(0.22, 1, 0.36, 1);
     }
     .wl-sender-item.is-active p {
       opacity: 0.68;
@@ -577,7 +639,6 @@
       margin: 0;
       z-index: 0;
       opacity: 0;
-      visibility: hidden;
       transform: none;
       transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1);
       pointer-events: none;
@@ -590,7 +651,6 @@
     .wl-pin-panel.is-active {
       z-index: 1;
       opacity: 1;
-      visibility: visible;
       pointer-events: auto;
     }
     .wl-pin-panel img {
@@ -632,14 +692,14 @@
       gap: 6px;
       margin-top: 12px;
     }
-    .wl-pin-dots span {
+    .wl-pin-dots > span {
       width: 7px;
       height: 7px;
       border-radius: 999px;
       background: rgba(17, 21, 17, 0.2);
       transition: width 0.3s ease, background 0.3s ease;
     }
-    .wl-pin-dots span.is-on {
+    .wl-pin-dots > span.is-on {
       width: 18px;
       background: #2ecc71;
     }
@@ -747,11 +807,17 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
+      .mc-section[data-wl-pin] { --wl-t: 1; }
       .wl-pin-card,
       .wl-pin-copy,
+      .wl-pin-num,
+      .wl-pin-card h3,
+      .wl-pin-card p,
       .wl-pin-panel,
       .wl-pin-dots span,
       .wl-sender-item,
+      .wl-sender-item .wl-sender-num,
+      .wl-sender-item h3,
       .wl-sender-item p,
       .wl-sender-panel,
       .wl-flow-piece { transition: none; opacity: 1; }
@@ -765,14 +831,30 @@
     }
     @media (max-width: 900px) {
       .wl-pin-head { position: static; padding: 0 0 8px; }
-      .wl-pin-grid { display: block; }
+      .wl-pin-track { height: auto; }
+      .wl-pin-grid {
+        position: static;
+        display: block;
+        min-height: 0;
+      }
+      .wl-pin-steps {
+        justify-content: flex-start;
+        padding: 0;
+      }
       .wl-pin-media { display: none; }
       .wl-pin-card {
         min-height: 0;
-        opacity: 1;
+        color: #111511;
         padding: 20px 0 28px;
         justify-content: flex-start;
         border-bottom: 1px solid rgba(17, 21, 17, 0.1);
+      }
+      .wl-pin-card h3,
+      .wl-pin-card.is-active h3 { font-size: clamp(22px, 6vw, 30px); }
+      .wl-pin-card p,
+      .wl-pin-card.is-active p {
+        max-height: none;
+        opacity: 1;
       }
       .wl-pin-copy {
         width: auto;
@@ -801,6 +883,10 @@
         max-height: none;
         color: rgba(17, 21, 17, 0.62);
       }
+      .wl-sender-item .wl-sender-num,
+      .wl-sender-item.is-active .wl-sender-num { font-size: 12px; }
+      .wl-sender-item h3,
+      .wl-sender-item.is-active h3 { font-size: clamp(18px, 5vw, 24px); }
       .sa-ba-col.after {
         padding-left: 0;
         border-left: 0;
@@ -1059,6 +1145,7 @@
           <div class="wl-pin-head">
             <h2 class="mc-section-h2">Empty start. Live end.</h2>
           </div>
+          <div class="wl-pin-track">
           <div class="wl-pin-grid">
             <div class="wl-pin-steps">
               <button type="button" class="wl-pin-card is-active" data-wl-step="0">
@@ -1117,9 +1204,15 @@
                   <img src="./assets/white-label/screens/new-live-verified.png" alt="White Label Setup live with Goldman Sachs logo and verified sender" width="1440" height="978" decoding="async">
                 </figure>
               </div>
-              <div class="wl-pin-dots" data-wl-dots><span class="is-on"></span><span></span><span></span><span></span></div>
+              <div class="wl-pin-dots" data-wl-dots>
+                <span class="is-on"></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
               <p class="wl-pin-caption" data-wl-caption>Step 01 · Empty hub</p>
             </div>
+          </div>
           </div>
         </section>
 
@@ -1364,7 +1457,7 @@
       document.querySelectorAll('[data-wl-pin]').forEach((root) => {
         const cards = Array.from(root.querySelectorAll('[data-wl-step]'));
         const panels = Array.from(root.querySelectorAll('[data-wl-panel]'));
-        const dots = Array.from(root.querySelectorAll('[data-wl-dots] span'));
+        const dots = Array.from(root.querySelectorAll('[data-wl-dots] > span'));
         const caption = root.querySelector('[data-wl-caption]');
         const captions = cards.map((card) => {
           const num = card.querySelector('.wl-pin-num');
@@ -1375,7 +1468,24 @@
 
         const media = root.querySelector('.wl-pin-media');
         const frame = root.querySelector('.wl-pin-frame');
+        const track = root.querySelector('.wl-pin-track');
+        const stepsEl = root.querySelector('.wl-pin-steps');
         const desktopMq = window.matchMedia('(min-width: 901px)');
+        const HOLD = 5000;
+        const IDLE = 700;
+        let playing = false;
+        let programmatic = false;
+        let skipPick = false;
+        let hovering = false;
+        let ignorePickUntil = 0;
+        let t0 = 0;
+        let raf = 0;
+        let idleId = 0;
+        let settleId = 0;
+        let onScrollEnd = null;
+
+        const stageTop = () =>
+          parseFloat(getComputedStyle(root).getPropertyValue('--wl-stage-top')) || 80;
 
         const fitFrame = () => {
           if (!frame || !desktopMq.matches) {
@@ -1392,6 +1502,16 @@
           else img.addEventListener('load', apply, { once: true });
         };
 
+        const setProgress = (p) => {
+          root.style.setProperty('--wl-t', String(Math.max(0, Math.min(1, p))));
+        };
+
+        const engaged = () => {
+          if (!desktopMq.matches || !track) return false;
+          const box = track.getBoundingClientRect();
+          return box.top < window.innerHeight * 0.7 && box.bottom > window.innerHeight * 0.3;
+        };
+
         const setActive = (index, force) => {
           if (!force && index === active) return;
           active = index;
@@ -1402,63 +1522,219 @@
           fitFrame();
         };
 
-        const measure = () => {
-          cards.forEach((card) => { card.style.minHeight = ''; });
-          root.style.removeProperty('--wl-card-h');
-          if (!desktopMq.matches) {
-            fitFrame();
-            return;
+        const pauseTimer = () => {
+          playing = false;
+          t0 = 0;
+          if (raf) cancelAnimationFrame(raf);
+          raf = 0;
+        };
+
+        const trackProgress = () => {
+          if (!track) return 0;
+          const top = stageTop();
+          const viewH = window.innerHeight - top;
+          const rect = track.getBoundingClientRect();
+          const total = rect.height - viewH;
+          if (total <= 1) return 0;
+          return Math.min(1, Math.max(0, (top - rect.top) / total));
+        };
+
+        const indexFromProgress = (p) => {
+          const n = cards.length;
+          if (n <= 1) return 0;
+          const raw = p * n;
+          let index = Math.min(n - 1, Math.max(0, Math.floor(raw)));
+          if (index !== active) {
+            if (index > active && raw < active + 0.88) index = active;
+            else if (index < active && raw > active + 0.12) index = active;
           }
-          const top = parseFloat(getComputedStyle(root).getPropertyValue('--wl-stage-top')) || 80;
-          const h = Math.round(window.innerHeight - top);
-          if (h < 80) return;
-          root.style.setProperty('--wl-card-h', h + 'px');
-          fitFrame();
+          return index;
         };
 
         const pick = () => {
-          if (!desktopMq.matches) return;
+          if (!desktopMq.matches || skipPick || hovering) return;
+          if (Date.now() < ignorePickUntil) return;
+          if (!track) return;
           const box = root.getBoundingClientRect();
-          if (box.bottom < 120 || box.top > window.innerHeight - 80) return;
-          const mid = window.innerHeight * 0.5;
-          let best = 0;
-          let dist = Infinity;
-          cards.forEach((card, i) => {
-            const rect = card.getBoundingClientRect();
-            const center = (rect.top + rect.bottom) / 2;
-            const d = Math.abs(center - mid);
-            if (d < dist) {
-              dist = d;
-              best = i;
-            }
+          if (box.bottom < 80 || box.top > window.innerHeight - 80) return;
+          setActive(indexFromProgress(trackProgress()));
+        };
+
+        const clearScrollWait = () => {
+          if (onScrollEnd) {
+            window.removeEventListener('scrollend', onScrollEnd);
+            onScrollEnd = null;
+          }
+          clearTimeout(settleId);
+          settleId = 0;
+        };
+
+        const afterScroll = (fn, wait) => {
+          clearScrollWait();
+          let done = false;
+          const finish = () => {
+            if (done) return;
+            done = true;
+            clearScrollWait();
+            programmatic = false;
+            skipPick = false;
+            fn();
+          };
+          onScrollEnd = finish;
+          window.addEventListener('scrollend', finish, { once: true });
+          settleId = window.setTimeout(finish, wait);
+        };
+
+        const scrollToIndex = (index, smooth) => {
+          if (!track) return;
+          const top = stageTop();
+          const viewH = window.innerHeight - top;
+          const rect = track.getBoundingClientRect();
+          const total = Math.max(0, rect.height - viewH);
+          const n = cards.length;
+          const t = n <= 1 ? 0 : (index + 0.5) / n;
+          window.scrollTo({
+            top: window.scrollY + rect.top - top + t * total,
+            behavior: smooth ? 'smooth' : 'auto'
           });
-          setActive(best);
+        };
+
+        const goTo = (index, opts) => {
+          if (index === active && !(opts && opts.force)) {
+            pauseTimer();
+            if (opts && opts.play) startTimer();
+            else armTimer();
+            return;
+          }
+          const wrap = index === 0 && active === cards.length - 1;
+          const smooth = opts && opts.smooth && !reduced && !wrap;
+          programmatic = true;
+          skipPick = true;
+          hovering = false;
+          pauseTimer();
+          setProgress(opts && opts.play ? 0 : 1);
+          setActive(index);
+          scrollToIndex(index, smooth);
+          afterScroll(() => {
+            skipPick = false;
+            programmatic = false;
+            ignorePickUntil = Date.now() + 400;
+            if (opts && opts.play) startTimer();
+            else armTimer();
+          }, reduced || !smooth ? 40 : 1100);
+        };
+
+        const tick = (now) => {
+          if (!playing) return;
+          if (!t0) t0 = now;
+          const p = (now - t0) / HOLD;
+          setProgress(p);
+          if (p >= 1) {
+            pauseTimer();
+            goTo((active + 1) % cards.length, { smooth: true, play: true });
+            return;
+          }
+          raf = requestAnimationFrame(tick);
+        };
+
+        const startTimer = () => {
+          if (reduced || !engaged() || document.hidden || programmatic || hovering) return;
+          if (playing) return;
+          playing = true;
+          t0 = 0;
+          setProgress(0);
+          raf = requestAnimationFrame(tick);
+        };
+
+        const armTimer = () => {
+          clearTimeout(idleId);
+          if (reduced) return;
+          idleId = window.setTimeout(() => {
+            if (!programmatic && !hovering) startTimer();
+          }, IDLE);
+        };
+
+        const yieldToUser = () => {
+          hovering = false;
+          ignorePickUntil = 0;
+          if (!programmatic) return;
+          programmatic = false;
+          skipPick = false;
+          clearScrollWait();
+          pick();
+          pauseTimer();
+          setProgress(1);
+          if (engaged()) armTimer();
+        };
+
+        const measure = () => {
+          if (!desktopMq.matches) {
+            pauseTimer();
+            setProgress(1);
+            fitFrame();
+            return;
+          }
+          const h = Math.round(window.innerHeight - stageTop());
+          if (h < 80) return;
+          root.style.setProperty('--wl-card-h', h + 'px');
+          fitFrame();
         };
 
         measure();
         if (typeof ResizeObserver !== 'undefined' && (media || frame)) {
           new ResizeObserver(() => {
             measure();
-            pick();
           }).observe(media || frame);
         }
 
-        window.addEventListener('scroll', pick, { passive: true });
+        window.addEventListener('scroll', () => {
+          if (programmatic || hovering || Date.now() < ignorePickUntil) return;
+          pick();
+          pauseTimer();
+          setProgress(1);
+          if (engaged()) armTimer();
+        }, { passive: true });
+        window.addEventListener('wheel', yieldToUser, { passive: true });
+        window.addEventListener('touchstart', yieldToUser, { passive: true });
         window.addEventListener('resize', () => {
           measure();
           pick();
         });
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) {
+            pauseTimer();
+            return;
+          }
+          if (engaged()) armTimer();
+        });
         pick();
+        if (typeof IntersectionObserver !== 'undefined') {
+          new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) armTimer();
+            else pauseTimer();
+          }, { threshold: 0.15 }).observe(track || root);
+        } else if (engaged()) {
+          armTimer();
+        }
 
         cards.forEach((card) => {
-          card.addEventListener('click', () => {
-            card.scrollIntoView({
-              behavior: reduced ? 'auto' : 'smooth',
-              block: 'center'
-            });
+          card.addEventListener('mouseenter', () => {
+            if (!desktopMq.matches) return;
+            hovering = true;
+            pauseTimer();
             setActive(Number(card.getAttribute('data-wl-step')));
+            setProgress(1);
+          });
+          card.addEventListener('click', () => {
+            goTo(Number(card.getAttribute('data-wl-step')), { smooth: true, play: false });
           });
         });
+        if (stepsEl) {
+          stepsEl.addEventListener('mouseleave', () => {
+            hovering = false;
+            if (engaged()) armTimer();
+          });
+        }
       });
 
       const sender = document.querySelector('[data-wl-sender]');
