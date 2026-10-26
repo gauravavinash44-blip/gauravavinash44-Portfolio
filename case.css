@@ -327,6 +327,8 @@ body.mc-case * {
   width: 10px;
   height: 12px;
   margin-right: 3px;
+  overflow: visible;
+  flex-shrink: 0;
 }
 
 .mc-eye-nav:last-child {
@@ -345,6 +347,36 @@ body.mc-case * {
   width: 5px;
   height: 5px;
   margin: -2.5px 0 0 -2.5px;
+  border: 0 solid transparent;
+  box-shadow: none;
+  transition:
+    width 0.22s ease,
+    height 0.22s ease,
+    margin 0.22s ease,
+    border-radius 0.22s ease,
+    border-width 0.22s ease,
+    border-color 0.22s ease,
+    background 0.22s ease,
+    opacity 0.22s ease,
+    box-shadow 0.22s ease,
+    transform 0.16s ease-out;
+  will-change: transform;
+}
+
+.mc-nav-home .mc-eye-nav::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  width: 6px;
+  height: 1.4px;
+  background: #111511;
+  border-radius: 1px;
+  opacity: 0;
+  transform: translateX(-50%) rotate(0deg);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .mc-eye-big {
@@ -358,6 +390,111 @@ body.mc-case * {
   height: 18px;
   margin: -9px 0 0 -9px;
   background: #0d0f0d;
+}
+
+/* Nav expression system — monochrome only, scoped to .mc-nav-home */
+.mc-nav-home[data-expr] .mc-eye-nav::before,
+.mc-nav-home[data-expr] .mc-eye-nav::after {
+  pointer-events: none;
+}
+
+.mc-nav-home.is-blinking .mc-eye-nav,
+.mc-nav-home.is-winking .mc-eye-nav {
+  transform: scaleY(0.1);
+  transform-origin: center;
+  transition: transform 0.12s ease;
+}
+
+.mc-nav-home.is-winking .mc-eye-nav:first-child {
+  transform: none;
+}
+
+/* Surprised — slightly larger dots */
+.mc-nav-home[data-expr="surprised"] .mc-eye-nav [data-pupil] {
+  width: 7px;
+  height: 7px;
+  margin: -3.5px 0 0 -3.5px;
+}
+
+/* Focused — slightly tighter / steadier gaze */
+.mc-nav-home[data-expr="focused"] .mc-eye-nav [data-pupil] {
+  width: 4.5px;
+  height: 4.5px;
+  margin: -2.25px 0 0 -2.25px;
+}
+
+/* Curious — subtle size + vertical asymmetry */
+.mc-nav-home[data-expr="curious"] .mc-eye-nav:first-child [data-pupil] {
+  width: 5.5px;
+  height: 5.5px;
+  margin: -3.5px 0 0 -2.75px;
+}
+.mc-nav-home[data-expr="curious"] .mc-eye-nav:last-child [data-pupil] {
+  width: 4.5px;
+  height: 4.5px;
+  margin: -1.5px 0 0 -2.25px;
+}
+
+/* Confused — one pupil higher */
+.mc-nav-home[data-expr="confused"] .mc-eye-nav:first-child [data-pupil] {
+  margin-top: -4.5px;
+}
+.mc-nav-home[data-expr="confused"] .mc-eye-nav:last-child [data-pupil] {
+  margin-top: -0.5px;
+}
+
+/* Happy — closed smiling arcs */
+.mc-nav-home[data-expr="happy"] .mc-eye-nav [data-pupil] {
+  width: 6px;
+  height: 6px;
+  margin: -2px 0 0 -3px;
+  background: transparent;
+  border: 1.5px solid transparent;
+  border-top-color: #111511;
+  border-radius: 50%;
+  box-shadow: none;
+  transform: none !important;
+}
+
+/* Angry — dots + short inward brow strokes */
+.mc-nav-home[data-expr="angry"] .mc-eye-nav::before {
+  opacity: 1;
+  transform: translateX(-50%) rotate(-28deg);
+}
+.mc-nav-home[data-expr="angry"] .mc-eye-nav:last-child::before {
+  transform: translateX(-50%) rotate(28deg);
+}
+
+/* Crazy / dizzy — compact spiral rings */
+.mc-nav-home[data-expr="crazy"] .mc-eye-nav [data-pupil] {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  background: transparent;
+  border: 1.3px solid #111511;
+  border-top-color: transparent;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px #111511;
+  transform: none !important;
+}
+
+/* Tired — flat eyelid dashes */
+.mc-nav-home[data-expr="tired"] .mc-eye-nav [data-pupil] {
+  width: 6px;
+  height: 1.5px;
+  margin: -0.75px 0 0 -3px;
+  border-radius: 1px;
+  transform: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mc-eye-nav [data-pupil] {
+    transition: none;
+  }
+  .mc-nav-home.is-blinking .mc-eye-nav,
+  .mc-nav-home.is-winking .mc-eye-nav {
+    transition: none;
+  }
 }
 
 /* ============ CASE HEADER ============ */
@@ -2994,6 +3131,10 @@ body.mc-case .mc-sections--legacy .case-overview-hero-text {
 
 /* ============ GA additions: brand mark ============ */
 .ga-brand {
+  --ga-brand-mint: #e6f9ed;
+  --ga-brand-soft: #a7f3d0;
+  --ga-brand-sea: #34d399;
+  --ga-brand-emerald: #10b981;
   position: fixed;
   top: 1.15rem;
   right: 1.15rem;
@@ -3009,17 +3150,141 @@ body.mc-case .mc-sections--legacy .case-overview-hero-text {
   justify-content: center;
   text-decoration: none;
   box-shadow: 0 10px 30px rgba(17, 21, 17, 0.12);
-  transition: transform 0.15s ease, background 0.15s ease;
+  isolation: isolate;
+  transition:
+    background 0.25s ease-out,
+    border-color 0.25s ease-out,
+    box-shadow 0.25s ease-out;
 }
-.ga-brand:hover {
-  transform: scale(1.04);
-  background: rgba(46, 204, 113, 0.12);
+.ga-brand::before,
+.ga-brand::after {
+  content: "";
+  position: absolute;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease-out;
+}
+.ga-brand::before {
+  inset: -1px;
+  padding: 1.5px;
+  background: linear-gradient(
+    135deg,
+    var(--ga-brand-mint) 0%,
+    var(--ga-brand-soft) 25%,
+    var(--ga-brand-sea) 50%,
+    var(--ga-brand-emerald) 75%,
+    var(--ga-brand-soft) 100%
+  );
+  background-size: 280% 280%;
+  background-position: 0% 0%;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  z-index: 0;
+}
+.ga-brand::after {
+  inset: 1px;
+  background:
+    linear-gradient(
+      125deg,
+      rgba(255, 255, 255, 0.55) 0%,
+      rgba(255, 255, 255, 0) 28%,
+      rgba(255, 255, 255, 0) 72%,
+      rgba(255, 255, 255, 0.2) 100%
+    ),
+    linear-gradient(
+      135deg,
+      var(--ga-brand-mint) 0%,
+      var(--ga-brand-soft) 32%,
+      var(--ga-brand-sea) 68%,
+      var(--ga-brand-emerald) 100%
+    );
+  background-size: 220% 220%, 240% 240%;
+  background-position: 0% 0%, 0% 0%;
+  z-index: 0;
 }
 .ga-brand img {
+  position: relative;
+  z-index: 1;
   display: block;
   height: 20px;
   width: auto;
   filter: brightness(0);
+  transition: filter 0.25s ease-out;
+}
+@media (hover: hover) and (pointer: fine) {
+  .ga-brand:hover {
+    background: var(--ga-brand-mint);
+    border-color: transparent;
+    box-shadow:
+      0 10px 30px rgba(17, 21, 17, 0.1),
+      0 10px 36px rgba(16, 185, 129, 0.28);
+  }
+  .ga-brand:hover::before {
+    opacity: 1;
+    animation: ga-brand-border-shift 3.4s ease-in-out infinite;
+  }
+  .ga-brand:hover::after {
+    opacity: 1;
+    animation: ga-brand-bg-shift 4s ease-in-out infinite;
+  }
+  .ga-brand:hover img {
+    filter: brightness(0) invert(1);
+  }
+}
+.ga-brand:focus-visible {
+  outline: 2px solid var(--ga-brand-emerald);
+  outline-offset: 3px;
+  background: var(--ga-brand-mint);
+  border-color: transparent;
+  box-shadow:
+    0 10px 30px rgba(17, 21, 17, 0.1),
+    0 10px 36px rgba(16, 185, 129, 0.28);
+}
+.ga-brand:focus-visible::before,
+.ga-brand:focus-visible::after {
+  opacity: 1;
+}
+.ga-brand:focus-visible img {
+  filter: brightness(0) invert(1);
+}
+@keyframes ga-brand-border-shift {
+  0%,
+  100% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+}
+@keyframes ga-brand-bg-shift {
+  0%,
+  100% {
+    background-position: 0% 0%, 8% 0%;
+  }
+  50% {
+    background-position: 100% 100%, 92% 100%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ga-brand,
+  .ga-brand::before,
+  .ga-brand::after,
+  .ga-brand img {
+    transition-duration: 0.01ms !important;
+  }
+  .ga-brand:hover::before,
+  .ga-brand:hover::after,
+  .ga-brand:focus-visible::before,
+  .ga-brand:focus-visible::after {
+    animation: none;
+  }
 }
 .proto-badge {
   position: fixed;

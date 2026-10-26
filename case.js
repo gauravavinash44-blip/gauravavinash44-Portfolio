@@ -41,13 +41,14 @@
     }, doneAt);
   }
 
-  /* ---- Eyes follow cursor ---- */
+  /* ---- Eyes: CTA follow + nav expression system (case pages only) ---- */
   const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 3 };
   let rafPending = false;
 
-  function updatePupils() {
-    rafPending = false;
-    document.querySelectorAll('[data-eye]').forEach((eye) => {
+  const LOCK_PUPIL = new Set(['happy', 'crazy', 'tired']);
+
+  function movePupils(selector, damp) {
+    document.querySelectorAll(selector).forEach((eye) => {
       const pupil = eye.querySelector('[data-pupil]');
       if (!pupil) return;
       const r = eye.getBoundingClientRect();
@@ -58,10 +59,22 @@
       const dy = mouse.y - cy;
       const dist = Math.hypot(dx, dy) || 1;
       const reach = Math.min(dist / 240, 1);
-      const tx = (dx / dist) * r.width * 0.2 * reach;
-      const ty = (dy / dist) * r.height * 0.2 * reach;
+      const tx = (dx / dist) * r.width * damp * reach;
+      const ty = (dy / dist) * r.height * damp * reach;
       pupil.style.transform = 'translate(' + tx.toFixed(1) + 'px,' + ty.toFixed(1) + 'px)';
     });
+  }
+
+  function updatePupils() {
+    rafPending = false;
+    /* CTA / non-nav eyes: always follow */
+    movePupils('.mc-eye-big', 0.2);
+
+    const home = document.querySelector('.mc-nav-home');
+    const expr = home && home.getAttribute('data-expr');
+    /* While an idle emotion locks pupils, skip follow transforms */
+    if (!home || LOCK_PUPIL.has(expr)) return;
+    movePupils('.mc-nav-home .mc-eye-nav', 0.2);
   }
 
   function requestPupilUpdate() {
@@ -71,38 +84,220 @@
     }
   }
 
+  /* ---- Nav expression state machine ----
+     Active cursor/scroll → open dots follow only (no emotions).
+     Idle ≥ ~5s → emotions may appear.
+     Interaction resumes → smooth return to original follow form. */
+  const navHome = document.querySelector('.mc-nav-home');
+  const CFG = {
+    idleStartMs: 5000,       /* emotions only after this idle */
+    idleCuriousMs: 5000,
+    idleHappyMs: 8000,
+    idleSurprisedMs: 11000,
+    idleTiredMs: 14000,
+    idleCrazyMs: 17000,
+    idleAngryMs: 20000,
+    moveThresholdPx: 2,      /* counts as active cursor */
+  };
+
+  const signals = {
+    lastX: mouse.x,
+    lastY: mouse.y,
+    lastT: performance.now(),
+    scrollY: window.scrollY || 0,
+    lastScrollT: performance.now(),
+    lastInteractT: performance.now(),
+    active: true,
+    peakSpeed: 0,            /* remembered from last active burst */
+    dirFlips: 0,
+    lastDirX: 0,
+    lastDirY: 0,
+  };
+
+  let blinkTimer = 0;
+  let winkTimer = 0;
+  let evaluateRaf = 0;
+  let currentExpr = 'look';
+
+  function setExpr(name) {
+    if (!navHome) return;
+    const next = (!name || name === 'neutral' || name === 'look') ? 'look' : name;
+    if (next === currentExpr) return;
+    currentExpr = next;
+    if (next === 'look') {
+      navHome.removeAttribute('data-expr');
+    } else {
+      navHome.setAttribute('data-expr', next);
+    }
+  }
+
+  /* Pick an idle emotion from how long we've been still + last activity flavor */
+  function resolveIdleExpr(idleMs) {
+    if (idleMs < CFG.idleStartMs) return 'look';
+
+    if (idleMs >= CFG.idleAngryMs && signals.dirFlips >= 3) return 'angry';
+    if (idleMs >= CFG.idleCrazyMs && signals.peakSpeed > 3.5) return 'crazy';
+    if (idleMs >= CFG.idleTiredMs) return 'tired';
+    if (idleMs >= CFG.idleSurprisedMs && signals.peakSpeed > 2.2) return 'surprised';
+    if (idleMs >= CFG.idleHappyMs) return 'happy';
+    if (idleMs >= CFG.idleCuriousMs) {
+      return signals.dirFlips >= 2 ? 'confused' : 'curious';
+    }
+    return 'look';
+  }
+
+  function evaluateExpr() {
+    evaluateRaf = 0;
+    if (!navHome || reduced) return;
+
+    if (navHome.classList.contains('is-blinking') || navHome.classList.contains('is-winking')) {
+      return;
+    }
+
+    const now = performance.now();
+    const idleMs = now - signals.lastInteractT;
+
+    /* While the visitor is actively moving — always original open eyes */
+    if (signals.active || idleMs < CFG.idleStartMs) {
+      setExpr('look');
+      requestPupilUpdate();
+      return;
+    }
+
+    setExpr(resolveIdleExpr(idleMs));
+  }
+
+  function requestEvaluate() {
+    if (!evaluateRaf) evaluateRaf = requestAnimationFrame(evaluateExpr);
+  }
+
+  function markInteract(speed) {
+    signals.lastInteractT = performance.now();
+    signals.active = true;
+    if (typeof speed === 'number' && speed > signals.peakSpeed) {
+      signals.peakSpeed = speed;
+    }
+    /* Smoothly drop any idle emotion back to following dots */
+    if (currentExpr !== 'look') {
+      setExpr('look');
+    }
+    requestPupilUpdate();
+  }
+
+  function markIdleSoon() {
+    /* Soften "active" after a short pause so idle clock can start */
+    window.setTimeout(() => {
+      const idle = performance.now() - signals.lastInteractT;
+      if (idle >= 400) {
+        signals.active = false;
+        requestEvaluate();
+      }
+    }, 420);
+  }
+
   window.addEventListener('mousemove', (e) => {
+    const now = performance.now();
+    const dt = Math.max(now - signals.lastT, 1);
+    const dx = e.clientX - signals.lastX;
+    const dy = e.clientY - signals.lastY;
+    const dist = Math.hypot(dx, dy);
+    const speed = dist / dt;
+
+    const dirX = Math.abs(dx) > 0.5 ? Math.sign(dx) : 0;
+    const dirY = Math.abs(dy) > 0.5 ? Math.sign(dy) : 0;
+    if (dirX && signals.lastDirX && dirX !== signals.lastDirX) {
+      signals.dirFlips = Math.min(signals.dirFlips + 1, 8);
+      window.setTimeout(() => { signals.dirFlips = Math.max(0, signals.dirFlips - 1); }, 2000);
+    }
+    if (dirY && signals.lastDirY && dirY !== signals.lastDirY) {
+      signals.dirFlips = Math.min(signals.dirFlips + 1, 8);
+      window.setTimeout(() => { signals.dirFlips = Math.max(0, signals.dirFlips - 1); }, 2000);
+    }
+    if (dirX) signals.lastDirX = dirX;
+    if (dirY) signals.lastDirY = dirY;
+
+    signals.lastX = e.clientX;
+    signals.lastY = e.clientY;
+    signals.lastT = now;
     mouse.x = e.clientX;
     mouse.y = e.clientY;
+
+    if (dist >= CFG.moveThresholdPx) {
+      markInteract(speed);
+      markIdleSoon();
+    }
+
     requestPupilUpdate();
+    requestEvaluate();
   }, { passive: true });
 
-  window.addEventListener('scroll', requestPupilUpdate, { passive: true, capture: true });
+  window.addEventListener('scroll', () => {
+    const now = performance.now();
+    const y = window.scrollY || 0;
+    const dt = Math.max(now - signals.lastScrollT, 1);
+    const speed = Math.abs(y - signals.scrollY) / dt;
+    signals.scrollY = y;
+    signals.lastScrollT = now;
 
-  /* ---- Blinking ---- */
+    /* Scrolling counts as active — keep open following eyes */
+    markInteract(speed);
+    markIdleSoon();
+    requestPupilUpdate();
+    requestEvaluate();
+  }, { passive: true, capture: true });
+
+  /* Idle tick — advance emotions only after the quiet window */
+  if (navHome && !reduced) {
+    window.setInterval(() => {
+      const idle = performance.now() - signals.lastInteractT;
+      if (idle >= 400) signals.active = false;
+      if (idle >= CFG.idleStartMs) {
+        /* Decay peak speed slowly so later idle moods soften */
+        signals.peakSpeed *= 0.92;
+        requestEvaluate();
+      }
+    }, 400);
+  }
+
+  /* Natural blink (nav + CTA) */
   if (!reduced) {
     const scheduleBlink = () => {
-      const delay = 2000 + Math.random() * 4000;
-      setTimeout(() => {
-        document.querySelectorAll('[data-eye]').forEach((eye) => {
+      blinkTimer = window.setTimeout(() => {
+        if (navHome) {
+          navHome.classList.add('is-blinking');
+          window.setTimeout(() => navHome.classList.remove('is-blinking'), 150);
+        }
+        document.querySelectorAll('.mc-eye-big').forEach((eye) => {
           eye.style.transition = 'transform 0.12s ease';
           eye.style.transform = 'scaleY(0.08)';
-          setTimeout(() => { eye.style.transform = 'scaleY(1)'; }, 150);
+          window.setTimeout(() => { eye.style.transform = 'scaleY(1)'; }, 150);
         });
         scheduleBlink();
-      }, delay);
+      }, 2200 + Math.random() * 4200);
     };
     scheduleBlink();
   }
 
-  /* ---- Click to wink ---- */
+  /* Click wink on nav eyes / CTA eyes */
   document.addEventListener('click', (e) => {
     const eye = e.target.closest && e.target.closest('[data-eye]');
     if (!eye) return;
+    markInteract();
+    if (eye.classList.contains('mc-eye-nav') && navHome) {
+      navHome.classList.remove('is-blinking');
+      navHome.classList.add('is-winking');
+      window.clearTimeout(winkTimer);
+      winkTimer = window.setTimeout(() => navHome.classList.remove('is-winking'), 320);
+      return;
+    }
     eye.style.transition = 'transform 0.14s ease';
     eye.style.transform = 'scaleY(0.06)';
-    setTimeout(() => { eye.style.transform = 'scaleY(1)'; }, 320);
+    window.setTimeout(() => { eye.style.transform = 'scaleY(1)'; }, 320);
   });
+
+  if (reduced && navHome) {
+    navHome.removeAttribute('data-expr');
+  }
 
   /* ---- Hover tooltips ---- */
   const tip = document.createElement('div');

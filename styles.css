@@ -142,6 +142,10 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 
 /* Top-right brand - white pill/disc, black GD mark (mirrors nav) */
 .ga-brand {
+  --ga-brand-mint: #e6f9ed;
+  --ga-brand-soft: #a7f3d0;
+  --ga-brand-sea: #34d399;
+  --ga-brand-emerald: #10b981;
   position: fixed;
   top: 1.15rem;
   right: 1.15rem;
@@ -155,17 +159,142 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s ease, background 0.15s ease;
+  isolation: isolate;
+  transition:
+    background 0.25s ease-out,
+    box-shadow 0.25s ease-out;
 }
-.ga-brand:hover {
-  transform: scale(1.04);
-  background: rgba(46, 204, 113, 0.12);
+.ga-brand::before,
+.ga-brand::after {
+  content: "";
+  position: absolute;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease-out;
+}
+/* Thin animated gradient border */
+.ga-brand::before {
+  inset: 0;
+  padding: 1.5px;
+  background: linear-gradient(
+    135deg,
+    var(--ga-brand-mint) 0%,
+    var(--ga-brand-soft) 25%,
+    var(--ga-brand-sea) 50%,
+    var(--ga-brand-emerald) 75%,
+    var(--ga-brand-soft) 100%
+  );
+  background-size: 280% 280%;
+  background-position: 0% 0%;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  z-index: 0;
+}
+/* Soft green fill + moving specular highlight */
+.ga-brand::after {
+  inset: 1.5px;
+  background:
+    linear-gradient(
+      125deg,
+      rgba(255, 255, 255, 0.55) 0%,
+      rgba(255, 255, 255, 0) 28%,
+      rgba(255, 255, 255, 0) 72%,
+      rgba(255, 255, 255, 0.2) 100%
+    ),
+    linear-gradient(
+      135deg,
+      var(--ga-brand-mint) 0%,
+      var(--ga-brand-soft) 32%,
+      var(--ga-brand-sea) 68%,
+      var(--ga-brand-emerald) 100%
+    );
+  background-size: 220% 220%, 240% 240%;
+  background-position: 0% 0%, 0% 0%;
+  z-index: 0;
 }
 .ga-brand img {
+  position: relative;
+  z-index: 1;
   display: block;
   height: 22px;
   width: auto;
   filter: brightness(0);
+  transition: filter 0.25s ease-out;
+}
+@media (hover: hover) and (pointer: fine) {
+  .ga-brand:hover {
+    background: var(--ga-brand-mint);
+    box-shadow:
+      0 10px 30px rgba(17, 21, 17, 0.1),
+      0 10px 36px rgba(16, 185, 129, 0.28);
+  }
+  .ga-brand:hover::before {
+    opacity: 1;
+    animation: ga-brand-border-shift 3.4s ease-in-out infinite;
+    transition-duration: 0.25s;
+  }
+  .ga-brand:hover::after {
+    opacity: 1;
+    animation: ga-brand-bg-shift 4s ease-in-out infinite;
+    transition-duration: 0.25s;
+  }
+  .ga-brand:hover img {
+    filter: brightness(0) invert(1);
+  }
+}
+.ga-brand:focus-visible {
+  outline: 2px solid var(--ga-brand-emerald);
+  outline-offset: 3px;
+  background: var(--ga-brand-mint);
+  box-shadow:
+    0 10px 30px rgba(17, 21, 17, 0.1),
+    0 10px 36px rgba(16, 185, 129, 0.28);
+}
+.ga-brand:focus-visible::before,
+.ga-brand:focus-visible::after {
+  opacity: 1;
+}
+.ga-brand:focus-visible img {
+  filter: brightness(0) invert(1);
+}
+@keyframes ga-brand-border-shift {
+  0%,
+  100% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+}
+@keyframes ga-brand-bg-shift {
+  0%,
+  100% {
+    background-position: 0% 0%, 8% 0%;
+  }
+  50% {
+    background-position: 100% 100%, 92% 100%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ga-brand,
+  .ga-brand::before,
+  .ga-brand::after,
+  .ga-brand img {
+    transition-duration: 0.01ms !important;
+  }
+  .ga-brand:hover::before,
+  .ga-brand:hover::after,
+  .ga-brand:focus-visible::before,
+  .ga-brand:focus-visible::after {
+    animation: none;
+  }
 }
 
 /* ── Nav ── */
@@ -440,14 +569,21 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   color: var(--ink);
 }
 
-/* Featured - lead full width; EasyEat · Deal Room · Resonance (WIP) on second row */
+/* Featured - 10-col: chat 100%; WL 60 + EasyEat 40; Resonance 40 + Deal Room 60 */
 .ga-featured-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(10, minmax(0, 1fr));
   gap: 18px;
+  align-items: stretch;
 }
 .ga-card--lead {
   grid-column: 1 / -1;
+}
+.ga-card--span-6 {
+  grid-column: span 6;
+}
+.ga-card--span-4 {
+  grid-column: span 4;
 }
 .ga-card--lead .ga-card-media {
   aspect-ratio: 16 / 8;
@@ -490,9 +626,15 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   overflow: hidden;
   background: #e8ebe4;
 }
-/* Secondary featured cards - taller media so phone/UI screens read clearly */
+/* Paired cards share one media row so image edges line up (60/40 and 40/60) */
 .ga-featured-grid > .ga-card:not(.ga-card--lead) .ga-card-media {
-  aspect-ratio: 3 / 4;
+  aspect-ratio: auto;
+  height: clamp(280px, 32vw, 440px);
+  flex: 0 0 auto;
+}
+.ga-card--span-4 .ga-card-media img {
+  object-fit: cover;
+  object-position: center top;
 }
 .ga-card-media img,
 .ga-card-media video {
@@ -565,6 +707,27 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   font-size: 13px;
   line-height: 1.7;
 }
+.ga-card-sub--reserve:empty {
+  min-height: 4.6em;
+}
+.ga-card--icon .ga-card-media {
+  background: #e8f6ee;
+}
+.ga-card--icon .ga-card-media img {
+  object-fit: contain;
+  object-position: center;
+  padding: 0;
+}
+.ga-card--icon:hover .ga-card-media img {
+  transform: none;
+}
+.ga-card--whitelabel .ga-card-media {
+  background: #e7f3ec;
+}
+.ga-card--whitelabel .ga-card-media img {
+  object-fit: cover;
+  object-position: center center;
+}
 .ga-tags {
   display: flex;
   flex-wrap: wrap;
@@ -617,16 +780,13 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .ga-card--locked .ga-card-footer {
   display: none;
 }
-/* Deal Room - zoom into UI center, crop excess from the right */
+/* Deal Room - poster composition, same as White Label */
+.ga-card--deal .ga-card-media {
+  background: #e8eef8;
+}
 .ga-card--deal .ga-card-media img {
   object-fit: cover;
-  object-position: 58% 42%;
-  transform: scale(1.14);
-  transform-origin: 55% 45%;
-}
-.ga-card--deal:hover .ga-card-media img {
-  transform: scale(1.18);
-  transform-origin: 55% 45%;
+  object-position: center center;
 }
 .ga-card-badge {
   position: absolute;
@@ -1175,7 +1335,6 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
     padding: 0 5vw clamp(48px, 6vw, 72px);
   }
 
-  .ga-featured-grid,
   .ga-about-grid,
   .ga-contact-grid {
     grid-template-columns: 1fr;
@@ -1306,16 +1465,20 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   }
 
   .ga-featured-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(10, minmax(0, 1fr));
+    gap: 14px;
   }
 
   .ga-card--lead {
     grid-column: 1 / -1;
   }
 
-  /* Active pair on top row; Resonance (WIP) full-width below */
-  .ga-card--wip {
-    grid-column: 1 / -1;
+  .ga-card--span-6 {
+    grid-column: span 6;
+  }
+
+  .ga-card--span-4 {
+    grid-column: span 4;
   }
 
   .ga-bring-grid {
@@ -1529,6 +1692,26 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   .ga-featured-grid {
     grid-template-columns: 1fr;
     gap: 14px;
+  }
+
+  .ga-card--lead,
+  .ga-card--span-6,
+  .ga-card--span-4 {
+    grid-column: auto;
+  }
+
+  .ga-featured-grid > .ga-card:not(.ga-card--lead) .ga-card-media {
+    flex: none;
+    height: auto;
+    min-height: 0;
+  }
+
+  .ga-card--span-6 .ga-card-media {
+    aspect-ratio: 1324 / 982;
+  }
+
+  .ga-card--span-4 .ga-card-media {
+    aspect-ratio: 3 / 4;
   }
 
   .ga-card {

@@ -11,6 +11,7 @@
     chatMotionPoster: "./assets/contextual-chat-motion/poster.png?v=2",
     easyeat: "./assets/easyeat-customization-showcase.png",
     resonance: "./assets/resonance/resonance-featured.png?v=1",
+    whiteLabel: "./assets/white-label/featured.jpg?v=1",
     resume: "./assets/Resume-Gaurav.pdf?v=20260822",
     logo: "./assets/logo-ga.svg",
     nomad: "./assets/design-playground/nomad-mobile-mockup.png",
@@ -37,19 +38,21 @@
       lead: true,
     },
     {
+      href: "./white-label-short.html",
+      img: ASSETS.whiteLabel,
+      title: "White Label Setup",
+      sub: "Investors set a URL, logo, and sender in Settings. The old page looked live before anything was set. I redesigned it so the firm starts empty, then looks live.",
+      tags: ["B2B SaaS", "Fintech"],
+      span: 6,
+      whitelabel: true,
+    },
+    {
       href: "./easyeat-case-study.html",
       img: ASSETS.easyeat,
       title: "EasyEat customization redesign",
       sub: "Multi-country launch across Android and iOS. Redesigned monetisation and customization flows for clearer CTAs and less friction. +8.3% QR adoption in 3 weeks.",
       tags: ["FoodTech", "Mobile UX"],
-    },
-    {
-      href: "./deal-room-short.html",
-      img: ASSETS.dealRoom,
-      title: "Deal Room - structured deal execution",
-      sub: "Deal work was split across surfaces. We anchored creation on the company profile - where intent already lives. +32% deal creation adoption.",
-      tags: ["Deal Room", "B2B SaaS"],
-      deal: true,
+      span: 4,
     },
     {
       href: "./resonance-short.html",
@@ -58,6 +61,16 @@
       title: "Spotify Resonance - AI Intelligent Music Playback",
       sub: "Speculative Spotify playback that starts songs closer to the moments you actually want to hear.",
       tags: ["AI", "Music Experience", "Product Design"],
+      span: 4,
+    },
+    {
+      href: "./deal-room-short.html",
+      img: ASSETS.dealRoom,
+      title: "Deal Room - structured deal execution",
+      sub: "Deal work was split across surfaces. We anchored creation on the company profile - where intent already lives. +32% deal creation adoption.",
+      tags: ["Deal Room", "B2B SaaS"],
+      deal: true,
+      span: 6,
     },
   ];
 
@@ -575,6 +588,9 @@
       item.wip ? "ga-card--wip" : "",
       item.resonance ? "ga-card--resonance" : "",
       item.deal ? "ga-card--deal" : "",
+      item.whitelabel ? "ga-card--whitelabel" : "",
+      item.icon ? "ga-card--icon" : "",
+      item.span ? "ga-card--span-" + item.span : "",
     ].filter(Boolean).join(" ");
 
     // Header / title / sub; Resonance keeps existing tags only (no extras)
@@ -583,7 +599,11 @@
       copyKids.push(e("span", { className: "ga-card-eyebrow", key: "eyebrow" }, item.eyebrow));
     }
     copyKids.push(e("span", { className: "ga-card-title", key: "title" }, item.title));
-    copyKids.push(e("span", { className: "ga-card-sub", key: "sub" }, item.sub));
+    if (item.sub) {
+      copyKids.push(e("span", { className: "ga-card-sub", key: "sub" }, item.sub));
+    } else if (item.reserveSub) {
+      copyKids.push(e("span", { className: "ga-card-sub ga-card-sub--reserve", key: "sub" }));
+    }
     if (item.tags && item.tags.length) {
       copyKids.push(
         e("span", { className: "ga-tags", key: "tags" },

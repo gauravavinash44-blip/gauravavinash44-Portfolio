@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 960" role="img" aria-label="Custom logo white-label mark">
+  <rect width="720" height="960" fill="#E8F6EE"/>
+  <rect x="72" y="168" width="576" height="624" rx="48" fill="#111511"/>
+  <rect x="108" y="204" width="504" height="72" rx="16" fill="#1C2420"/>
+  <circle cx="140" cy="240" r="8" fill="#E24B4B"/>
+  <circle cx="168" cy="240" r="8" fill="#E0B44B"/>
+  <circle cx="196" cy="240" r="8" fill="#2ECC71"/>
+  <rect x="228" y="224" width="352" height="32" rx="16" fill="#2A332E"/>
+  <text x="404" y="246" text-anchor="middle" fill="#9BB5A6" font-family="ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="600">hve.systematicventures.com</text>
+  <circle cx="360" cy="468" r="108" fill="#2ECC71"/>
+  <text x="360" y="492" text-anchor="middle" fill="#111511" font-family="ui-sans-serif, system-ui, sans-serif" font-size="92" font-weight="800">H</text>
+  <rect x="198" y="612" width="324" height="48" rx="24" fill="#1C2420"/>
+  <text x="360" y="643" text-anchor="middle" fill="#D7E8DE" font-family="ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="700">Powered by Systematic</text>
+</svg>
