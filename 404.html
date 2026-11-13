@@ -11,7 +11,7 @@
       var base = "https://gauravavinash44-blip.github.io/portfolio";
       var oldPrefix = "/gauravavinash44-Portfolio";
       var path = location.pathname || "/";
-      if (path.indexOf(oldPrefix) === 0) {
+      if (path.toLowerCase().indexOf(oldPrefix.toLowerCase()) === 0) {
         path = path.slice(oldPrefix.length) || "/";
       }
       location.replace(base + path + location.search + location.hash);
